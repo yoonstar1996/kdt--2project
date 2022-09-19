@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link href="/static/css/login.css" rel="stylesheet" /> -->
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <title>SGT - 로그인</title>
+    <style>
+      * {
+        margin: 0;
+      }
+      a {
+        color: black;
+      }
+      .wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        width: 340px;
+        margin: 0 auto;
+      }
+      .write-login {
+        text-align: center;
+        margin: 15px 0;
+        font-size: 1.5rem;
+      }
+      .login-box {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .login-box > input {
+        height: 51px;
+        font-size: 0.8rem;
+        padding-left: 9px;
+        margin: 8px 0;
+      }
+      .find {
+        display: flex;
+        justify-content: right;
+        margin: 7px 0;
+      }
+      .find > a {
+        font-size: 0.8rem;
+        text-decoration: none;
+        margin: 0 4px;
+      }
+      .button {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 8px 0;
+      }
+      .button > button {
+        margin: 8px 0;
+        height: 49px;
+        font-size: 1rem;
+      }
+      .button > button:hover {
+        cursor: pointer;
+      }
+      .login-button {
+        background-color: skyblue;
+        color: white;
+        border: none;
+      }
+      .signup-button {
+        background-color: white;
+        color: skyblue;
+        border: 1px solid skyblue;
+      }
+      .kakao-button {
+        background-color: #fee500;
+        border: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="login">
+        <div class="write-login">로그인</div>
+      </div>
+      <div class="login-box">
+        <input type="text" class="id-input" placeholder="아이디를 입력해주세요" />
+        <input type="password" class="pw-input" placeholder="비밀번호를 입력해주세요" />
+      </div>
+      <div class="find">
+        <a href="/views/find-id.ejs">아이디 찾기</a>
+        <a href="/views/find-pw.ejs">비밀번호 찾기</a>
+      </div>
+      <div class="button">
+        <button type="submit" class="login-button" onclick="NormalLogin()">로그인</button>
+        <button type="button" class="signup-button" onclick="Singup()">회원가입</button>
+        <button type="button" class="kakao-button" onclick="KakaoLogin()">카카오로 로그인</button>
+      </div>
+    </div>
+
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <script>
+      $(document).ready(function () {
+        $(".id-input").focus();
+      });
+
+      function NormalLogin() {
+        const id_input = $(".id-input").val();
+        const pw_input = $(".pw-input").val();
+        if ( id_input || pw_input == ""){
+          console.log(id_input);
+          console.log(pw_input);
+          alert("아이디 또는 비밀번호를 입력해주세요.")
+        } else {
+          console.log("로그인 완료");
+        }
+      }
+
+      function Singup() {
+        console.log("회원가입 페이지로 이동");
+      }
+
+      window.Kakao.init("6bdae09f2a7d64b16126787989a4ae52");
+      function KakaoLogin() {
+        //카카오 로그인 버튼 구현
+        window.Kakao.Auth.login({
+          scope: "	profile_nickname, account_email, gender",
+          success: function (authObj) {
+            // console.log(authObj);
+            window.Kakao.API.request({
+              url: "/v2/user/me",
+              success: (res) => {
+                const kakao_account = res.kakao_account;
+                console.log(kakao_account);
+                console.log(kakao_account.email);
+                console.log(kakao_account.profile.nickname);
+                console.log(kakao_account.gender);
+                // console.log(kakao_account).gender;
+              },
+            });
+          },
+        });
+      }
+    </script>
+  </body>
+</html>
