@@ -3,7 +3,6 @@ const Product = (Sequelize, DataTypes) => {
     "product",
     {
       id: {
-        // id int not null primary key auto_increment
         type: DataTypes.INTEGER,
         allowNull: false,
         autoIncrement: true,
