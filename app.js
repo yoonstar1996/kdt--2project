@@ -17,6 +17,14 @@ app.get("/login", (req, res) => {
   res.render("login");
 });
 
+app.get("/find_id", (req, res) => {
+  res.render("find_id");
+});
+
+app.get("/find_pw", (req, res) => {
+  res.render("find_pw");
+});
+
 // 서버 오픈 명령어
 app.listen(port, () => {
   console.log("server open:", port);

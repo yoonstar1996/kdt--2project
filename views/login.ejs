@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- <link href="/static/css/login.css" rel="stylesheet" /> -->
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
     <title>SGT - 로그인</title>
     <style>
       * {
@@ -55,8 +56,13 @@
         margin: 8px 0;
       }
       .button > button {
-        margin: 8px 0;
+        margin: 8px auto;
         height: 49px;
+        font-size: 1rem;
+        width: 226.63px;
+      }
+      .button > div {
+        margin:8px auto;
         font-size: 1rem;
       }
       .button > button:hover {
@@ -88,13 +94,14 @@
         <input type="password" class="pw-input" placeholder="비밀번호를 입력해주세요" />
       </div>
       <div class="find">
-        <a href="/views/find-id.ejs">아이디 찾기</a>
-        <a href="/views/find-pw.ejs">비밀번호 찾기</a>
+        <a href="/find_id">아이디 찾기</a>
+        <a href="/find_pw">비밀번호 찾기</a>
       </div>
       <div class="button">
         <button type="submit" class="login-button" onclick="NormalLogin()">로그인</button>
         <button type="button" class="signup-button" onclick="Singup()">회원가입</button>
         <button type="button" class="kakao-button" onclick="KakaoLogin()">카카오로 로그인</button>
+        <div id="naver_id_login"></div> <!--네이버 로그인-->
       </div>
     </div>
 
@@ -107,10 +114,10 @@
       function NormalLogin() {
         const id_input = $(".id-input").val();
         const pw_input = $(".pw-input").val();
-        if ( id_input || pw_input == ""){
-          console.log(id_input);
-          console.log(pw_input);
-          alert("아이디 또는 비밀번호를 입력해주세요.")
+        if (id_input == "" || pw_input == "") {
+          // console.log(id_input);
+          // console.log(pw_input);
+          alert("아이디 또는 비밀번호를 입력해주세요.");
         } else {
           console.log("로그인 완료");
         }
@@ -141,6 +148,16 @@
           },
         });
       }
+    </script>
+    <!-- //네이버 로그인 버튼 노출 영역 -->
+    <script type="text/javascript">
+      var naver_id_login = new naver_id_login("RgAJTyB9QRvqTCV77uKZ", "http://localhost:8000/views/naver_callback");
+      var state = naver_id_login.getUniqState();
+      naver_id_login.setButton("green", 3, 49);
+      naver_id_login.setDomain("http://localhost:8000/login");
+      naver_id_login.setState(state);
+      naver_id_login.setPopup();
+      naver_id_login.init_naver_id_login();
     </script>
   </body>
 </html>

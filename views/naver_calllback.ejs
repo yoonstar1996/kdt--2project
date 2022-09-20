@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div>네이버 콜백 완료</div>
+
+    <script type="text/javascript">
+      var naver_id_login = new naver_id_login("RgAJTyB9QRvqTCV77uKZ", "http://localhost:8000/views/naver_callback");
+      // 접근 토큰 값 출력
+      alert(naver_id_login.oauthParams.access_token);
+      // 네이버 사용자 프로필 조회
+      naver_id_login.get_naver_userprofile("naverSignInCallback()");
+      // 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function
+      function naverSignInCallback() {
+        alert(naver_id_login.getProfileData("email"));
+        alert(naver_id_login.getProfileData("nickname"));
+        // alert(naver_id_login.getProfileData("age"));
+      }
+    </script>
+  </body>
+</html>
