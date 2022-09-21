@@ -23,7 +23,7 @@ db.Product.belongsTo(db.User, {
   onDelete: "cascade",
 });
 
-db.User.HasMany(db.Product, {
+db.User.hasMany(db.Product, {
   foreignKey: "user_id",
   sourceKey: "id",
   onUpdate: "cascade",
@@ -37,7 +37,7 @@ db.ProductLikeUsers.belongsTo(db.User, {
   onDelete: "cascade",
 });
 
-db.User.HasMany(db.ProductLikeUsers, {
+db.User.hasMany(db.ProductLikeUsers, {
   foreignKey: "user_id",
   sourceKey: "id",
   onUpdate: "cascade",
@@ -51,7 +51,7 @@ db.ProductLikeUsers.belongsTo(db.Product, {
   onDelete: "cascade",
 });
 
-db.Product.HasMany(db.ProductLikeUsers, {
+db.Product.hasMany(db.ProductLikeUsers, {
   foreignKey: "product_id",
   sourceKey: "id",
   onUpdate: "cascade",
