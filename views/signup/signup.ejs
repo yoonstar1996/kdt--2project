@@ -143,6 +143,9 @@
     </div>
 
     <script>
+      $(document).ready(function () {
+        $("#id").focus();
+      });
       // 우편번호 찾기 찾기 화면을 넣을 element
       var element_wrap = document.getElementById("wrap");
 
@@ -255,7 +258,7 @@
       function emailconfirm() {
         var form = $("form");
         var data = {
-          id: form.email.value,
+          email: form.email.value,
         };
         axios({
           url: "/",
@@ -278,6 +281,7 @@
           pw: form.pw.value,
           name: form.name.value,
           email: form.email.value,
+          phone: form.phone.value,
           position: form.adress.value,
         };
 
@@ -285,7 +289,7 @@
           url: "/api/signup",
           method: "post",
           data: data,
-        }).then((respone) => {
+        }).then((response) => {
           if (response.data) {
             alert("회원가입 완료");
           } else {

@@ -41,3 +41,19 @@ exports.signup_create = (req, res) => {
     res.send(true);
   });
 };
+
+// 상품 생성
+exports.product_create = (req, res) => {
+  const data = {
+    user_id: req.body.user_id,
+    title: req.body.title,
+    img: req.body.img,
+    adult: req.body.adult,
+    price: req.body.price,
+    position: req.body.position,
+    category: req.body.category,
+  };
+  Product.create(data).then((result) => {
+    res.send(true);
+  });
+};

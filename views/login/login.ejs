@@ -26,7 +26,7 @@
         <div class="button">
           <button type="button" class="login-button" onclick="NormalLogin()">로그인</button>
           <button type="button" class="signup-button" onclick="Singup()">회원가입</button>
-          <button type="button" class="kakao-button" onclick="KakaoLogin()">카카오로 로그인</button>
+          <img src="/static/img/web-long.png" class="kakao-button" onclick="KakaoLogin()">
           <div id="naver_id_login"></div>
           <!--네이버 로그인-->
         </div>
@@ -49,7 +49,7 @@
         };
 
         axios({
-          url:"/",
+          url:"/api/login",
           method:"post",
           data:data,
         }).then((response)=>{
