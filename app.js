@@ -6,6 +6,8 @@ const http = require("http").Server(app);
 const io = require("socket.io")(http);
 
 app.set("view engine", "ejs");
+
+app.use(express.static("apidoc"));
 app.use("/static", express.static(__dirname + "/static"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
