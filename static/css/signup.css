@@ -1,0 +1,142 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 650px;
+  margin: 0 auto;
+}
+button,
+.btncolor {
+  background-color: white;
+  color: skyblue;
+  border: 1px solid skyblue;
+  font-weight: bold;
+  width: 98px;
+  height: 42px;
+  cursor: pointer;
+  margin-left: 15px;
+}
+.btncolor {
+  margin-top: 10px;
+}
+.left-text {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  width: 139px;
+  height: 33px;
+  margin: auto 0;
+}
+.write-signup {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 1.5rem;
+}
+.necessary {
+  display: flex;
+  justify-content: right;
+  font-size: 0.9rem;
+}
+hr {
+  margin-top: 8px;
+}
+.red {
+  color: red;
+}
+.left-text {
+  display: flex;
+}
+.sign-main {
+  font-size: 0.9rem;
+}
+.sign-id {
+  display: flex;
+  margin: 10px 0;
+}
+.sign-pw {
+  display: flex;
+  margin: 10px 0;
+}
+.sign-pw-confirm {
+  display: flex;
+  margin: 10px 0;
+}
+.sign-name {
+  display: flex;
+  margin: 10px 0;
+}
+.sign-email {
+  display: flex;
+  margin: 10px 0;
+}
+.sign-phone {
+  display: flex;
+  margin: 10px 0;
+}
+.sign-adress {
+  display: flex;
+  margin: 10px 0;
+}
+.sign-adress-input {
+  display: flex;
+  flex-direction: column;
+}
+.sign-gender {
+  display: flex;
+  margin: 10px 0;
+}
+.sign-birth {
+  display: flex;
+  margin: 10px 0;
+}
+.sign-gender-text,
+.sign-birth-text {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  width: 139px;
+  height: 33px;
+  margin: auto 0;
+}
+.sign-gender-radio {
+  display: flex;
+
+}
+
+.sign-id > input {
+  width: 300px;
+  padding-left: 10px;
+}
+.sign-pw > input {
+  width: 300px;
+  padding-left: 10px;
+}
+.sign-pw-confirm > input {
+  width: 300px;
+  padding-left: 10px;
+}
+.sign-name > input {
+  width: 300px;
+  padding-left: 10px;
+}
+.sign-email > input {
+  width: 300px;
+  padding-left: 10px;
+}
+.sign-phone > input {
+  width: 300px;
+  padding-left: 10px;
+}
+.sign-adress-input > input {
+  width: 300px;
+  padding-left: 10px;
+}
+.height2 {
+  height: 42px;
+  margin: 10px 0;
+}

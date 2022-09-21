@@ -1,30 +1,38 @@
 const express = require("express");
 const app = express();
-
-app.set("view engine", "ejs");
-app.use(express.urlencoded({extended: true}));
-app.use(express.json());
-
-// 포트설정 (3000 8080도 가능)
 const port = 8000;
 
+const http = require("http").Server(app);
+const io = require("socket.io")(http);
+
+app.set("view engine", "ejs");
+
+app.use(express.static("apidoc"));
+app.use("/static", express.static(__dirname + "/static"));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+const router = require("./routes");
+app.use("/", router);
+
+const users = {};
+io.on("connection", (socket) => {});
 
 // ex - ip:8000/
 app.get("/", (req, res) => {
-    res.render("index");
-})
+  res.render("index");
+});
 
-app.use(express.static('static'));
-
-// 서버 오픈 명령어
-app.listen(port, () => {
-    console.log("server open:", port);
-})
+app.use(express.static("static"));
 
 app.get("/login", (req, res) => {
-    res.render("login");
-})
+  res.render("login");
+});
 
 app.get("/main", (req, res) => {
-    res.render("main");
-})
+  res.render("main");
+});
+// 서버 오픈 명령어
+app.listen(port, () => {
+  console.log("server open:", port);
+});
