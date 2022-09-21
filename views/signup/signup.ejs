@@ -26,49 +26,69 @@
           <div class="left-text">
             <div>아이디<span class="red">*</span></div>
           </div>
-          <input type="text" placeholder="아이디를 입력해주세요" name="id" />
-          <button type="button" onclick="idconfirm()">중복확인</button>
+          <div>
+            <input type="text" class="height2" placeholder="아이디를 입력해주세요" name="id" id="id" />
+            <div class="validid d-none colors">4~12자의 영문 대소문자와 숫자로만 입력</div>
+          </div>
+          <div class="rightbtn">
+            <button type="button" onclick="idconfirm()">중복확인</button>
+          </div>
         </div>
         <div class="sign-pw">
           <div class="left-text">
             <div>비밀번호<span class="red">*</span></div>
           </div>
-
-          <input type="password" class="height2" placeholder="비밀번호를 입력해주세요" style="margin-bottom:0px" name="pw" />
+          <div>
+            <input type="password" class="height2" placeholder="비밀번호를 입력해주세요" style="margin-bottom: 0px" name="pw" id="pw" />
+            <div class="validpw d-none colors">4~12자의 영문 대소문자와 숫자로만 입력</div>
+          </div>
         </div>
         <div class="sign-pw-confirm">
           <div class="left-text">
             <div>비밀번호확인<span class="red">*</span></div>
           </div>
-
-          <input type="password" class="height2" placeholder="비밀번호를 한번 더 입력해주세요" style="margin-bottom:0px" name="pw.confirm" />
+          <div>
+            <input type="password" class="height2" placeholder="비밀번호를 한번 더 입력해주세요" style="margin-bottom: 0px" name="pw.confirm" id="pwconfirm" />
+            <div class="validpwconfirm d-none colors">비밀번호가 일치하지 않습니다.</div>
+          </div>
         </div>
         <div class="sign-name">
           <div class="left-text">
             <div>이름<span class="red">*</span></div>
           </div>
+          <div>
+            <input type="text" class="height2" placeholder="이름를 입력해주세요" name="name" id="name" />
+            <div class="validname d-none colors">이름 형식에 맞지 않습니다.</div>
 
-          <input type="text" class="height2" placeholder="이름를 입력해주세요" name="name" />
+          </div>
         </div>
         <div class="sign-email">
           <div class="left-text">
             <div>이메일<span class="red">*</span></div>
           </div>
-
-          <input type="text" placeholder="예:SGTmarket@sgt.com" name="email" />
-          <button type="button">중복확인</button>
+          <div>
+            <input type="text" class="height2" placeholder="예:SGTmarket@sgt.com" name="email" id="email" />
+            <div class="validemail d-none colors">이메일 형식에 맞지 않습니다.</div>
+          </div>
+          <div class="rightbtn">
+            <button type="button" onclick="emailconfirm()">중복확인</button>
+          </div>
         </div>
         <div class="sign-phone">
           <div class="left-text">
             <div>휴대폰<span class="red">*</span></div>
           </div>
-
-          <input type="text" placeholder="숫자만 입력해주세요" name="phone" />
-          <button type="button" disabled>인증번호 받기</button>
+          <div>
+            <input type="text" class="height2" placeholder="숫자만 입력해주세요" name="phone" id="phone" />
+            <div class="validephone d-none colors">휴대폰번호 형식에 맞지 않습니다.</div>
+          </div>
+          <div class="rightbtn">
+            <button type="button" disabled>인증번호 받기</button>
+          </div>
         </div>
         <div class="sign-adress">
           <div class="left-text">
-            <div>우편번호</div>
+            <div>우편번호<span class="red">*</span></div>
           </div>
           <div class="sign-adress-input">
             <!-- <input type="text" id="adress_number" placeholder="우편번호" /> -->
@@ -117,7 +137,7 @@
         </div>
         <hr />
         <div class="signup-button">
-          <button type="submit" onclick="signupCreate()">가입하기</button>
+          <button type="button" onclick="signupCreate()">가입하기</button>
         </div>
       </form>
     </div>
@@ -196,10 +216,28 @@
         element_wrap.style.display = "block";
       }
 
+      let id = document.getElementById("id");
+      let pw = document.getElementById("pw");
+      let pwconfirm = document.getElementById("pwconfirm");
+      let name = document.getElementById("name");
+      let email = document.getElementById("email");
+      let phone = document.getElementById("phone");
+      ///////////////////////////////////////////////
+      let idval = document.querySelector(".validid");
+      let pwval = document.querySelector(".validpw");
+      let pwconfirmval = document.querySelector(".validpwconfirm");
+      let nameval = document.querySelector(".validname");
+      let emailval = document.querySelector(".validemail");
+      let phoneval = document.querySelector(".validephone");
+
+      var valconfirm = /^[a-zA-Z0-9]{4,12}$/; //id와 pwassword 유효성 검사 정규식
+      var name_valconfirm = /^[가-힣]{2,15}$/; //이름 유효성검사 정규식
+      var email_valconfirm = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i; //이메일 유효성검사
+
       function idconfirm() {
-        var form = $("form");
+        var form = document.querySelector("form");
         var data = {
-          ID: form.id.value,
+          id: form.id.value,
         };
         axios({
           url: "/",
@@ -214,27 +252,94 @@
         });
       }
 
-      function signupCreate() {
+      function emailconfirm() {
         var form = $("form");
+        var data = {
+          id: form.email.value,
+        };
+        axios({
+          url: "/",
+          method: "post",
+          data: data,
+        }).then((respone) => {
+          if (response.data) {
+            console.log(respone.data);
+          } else {
+            alert("이미 존재하는 이메일 입니다.");
+          }
+        });
+      }
+
+      function signupCreate() {
+        var form = document.querySelector("form");
+
         var data = {
           id: form.id.value,
           pw: form.pw.value,
-          name: form.name.vlaue,
+          name: form.name.value,
           email: form.email.value,
           position: form.adress.value,
         };
+
         axios({
           url: "/api/signup",
           method: "post",
           data: data,
         }).then((respone) => {
           if (response.data) {
-            alert("회원가입 완료")
+            alert("회원가입 완료");
           } else {
             alert("실패");
           }
         });
       }
+
+      // function validation(){
+
+      // }
+
+      id.addEventListener("input", function (event) {
+        if (valconfirm.test(id.value)) {
+          idval.classList.add("d-none");
+        } else {
+          idval.classList.remove("d-none");
+        }
+      });
+      pw.addEventListener("input", function (event) {
+        if (valconfirm.test(pw.value)) {
+          pwval.classList.add("d-none");
+        } else {
+          pwval.classList.remove("d-none");
+        }
+      });
+      pwconfirm.addEventListener("input", function (event) {
+        if (pwconfirm.value == pw.value) {
+          pwconfirmval.classList.add("d-none");
+        } else {
+          pwconfirmval.classList.remove("d-none");
+        }
+      });
+      name.addEventListener("input", function (event) {
+        if (name_valconfirm.test(name.value)) {
+          nameval.classList.add("d-none");
+        } else {
+          nameval.classList.remove("d-none");
+        }
+      });
+      email.addEventListener("input", function (event) {
+        if (email_valconfirm.test(email.value)) {
+          emailval.classList.add("d-none");
+        } else {
+          emailval.classList.remove("d-none");
+        }
+      });
+      phone.addEventListener("input", function (event) {
+        if (valconfirm.test(phone.value)) {
+          phoneval.classList.add("d-none");
+        } else {
+          phoneval.classList.remove("d-none");
+        }
+      });
     </script>
   </body>
 </html>

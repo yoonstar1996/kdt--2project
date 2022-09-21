@@ -16,15 +16,15 @@
         <div class="write-login">로그인</div>
       </div>
       <form class="login-box">
-        <input type="text" class="id-input" name="id" placeholder="아이디를 입력해주세요" />
-        <input type="password" class="pw-input" name="pw" placeholder="비밀번호를 입력해주세요" />
+        <input type="text" class="id-input" name="id" placeholder="아이디를 입력해주세요" id="id" />
+        <input type="password" class="pw-input" name="pw" placeholder="비밀번호를 입력해주세요" id="pw" />
       
         <div class="find">
           <a href="/find_id">아이디 찾기</a>
           <a href="/find_pw">비밀번호 찾기</a>
         </div>
         <div class="button">
-          <button type="submit" class="login-button" onclick="NormalLogin()">로그인</button>
+          <button type="button" class="login-button" onclick="NormalLogin()">로그인</button>
           <button type="button" class="signup-button" onclick="Singup()">회원가입</button>
           <button type="button" class="kakao-button" onclick="KakaoLogin()">카카오로 로그인</button>
           <div id="naver_id_login"></div>
@@ -40,18 +40,34 @@
       });
 
       function NormalLogin() {
-        const id_input = $(".id-input").val();
-        const pw_input = $(".pw-input").val();
-        const form = $("form");
-        // var data = {
-        //   ID: form.id.value,
-        //   Password: form.pw.value,
-        // };
-        if (id_input == "" || pw_input == "") {
+        var form = document.querySelector("form");
+        const id_input = document.getElementById("id").value;
+        const pw_input = document.getElementById("pw").value;
+        var data = {
+          id: form.id.value,
+          pw: form.pw.value,
+        };
+
+        axios({
+          url:"/",
+          method:"post",
+          data:data,
+        }).then((response)=>{
+          if(response.data) {
+            window.location.href = "/";
+          } else {
+            alert("로그인 실패");
+          }
+
+        /*
+          if (id_input == "" || pw_input == "") {
           alert("아이디 또는 비밀번호를 입력해주세요.");
         } else {
-          console.log("로그인 완료");
+          window.location = "/";
         }
+        */
+
+        });
       }
 
       function Singup() {

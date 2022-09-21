@@ -58,14 +58,16 @@ hr {
 .sign-email,
 .sign-phone,
 .sign-adress,
-.sign-gender
-{
+.sign-gender {
   display: flex;
   margin: 20px 0;
 }
 .sign-adress-input {
   display: flex;
   flex-direction: column;
+}
+.sign-adress-find {
+  margin-top: 10px;
 }
 .sign-birth {
   display: flex;
@@ -86,46 +88,29 @@ hr {
   align-content: center;
   width: 314px;
   justify-content: space-between;
-
 }
 
-.sign-id > input {
-  width: 300px;
-  padding-left: 10px;
-}
-.sign-pw > input {
-  width: 300px;
-  padding-left: 10px;
-}
-.sign-pw-confirm > input {
-  width: 300px;
-  padding-left: 10px;
-}
-.sign-name > input {
-  width: 300px;
-  padding-left: 10px;
-}
-.sign-email > input {
-  width: 300px;
-  padding-left: 10px;
-}
-.sign-phone > input {
-  width: 300px;
-  padding-left: 10px;
-}
-.sign-adress-input > input {
-  width: 300px;
-  padding-left: 10px;
-}
 .height2 {
+  width: 300px;
   height: 38px;
-  margin: 20px 0;
+  padding-left: 10px;
+}
+.height2,
+.rightbtn {
+  margin-top: 10px;
 }
 
-.signup-button{
+.signup-button {
   display: flex;
   justify-content: center;
 }
-.signup-button > button{
+.signup-button > button {
   margin: 30px 0 0 0;
+}
+.colors{
+  color: red;
+  margin-left: 10px;
+}
+.d-none{
+  display: none;
 }
