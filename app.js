@@ -14,7 +14,17 @@ app.get("/", (req, res) => {
     res.render("index");
 })
 
+app.use(express.static('static'));
+
 // 서버 오픈 명령어
 app.listen(port, () => {
     console.log("server open:", port);
+})
+
+app.get("/login", (req, res) => {
+    res.render("login");
+})
+
+app.get("/main", (req, res) => {
+    res.render("main");
 })
