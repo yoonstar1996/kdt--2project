@@ -28,6 +28,19 @@ exports.callback = (req, res) => {
 exports.signup = (req, res) => {
   res.render("./signup/signup");
 };
+
+// 회원가입 아이디 중복 검사
+exports.signup_id_check = (req, res) => {
+  User.findOne({
+    where: {
+      id: req.body.id,
+    },
+  }).then((result) => {
+    if (result) res.send(true);
+    else res.send(false);
+  });
+};
+
 // 유저 생성
 exports.signup_create = (req, res) => {
   const data = {
