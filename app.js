@@ -18,6 +18,21 @@ app.use("/", router);
 const users = {};
 io.on("connection", (socket) => {});
 
-http.listen(port, () => {
-  console.log("Server Port : ", port);
+// ex - ip:8000/
+app.get("/", (req, res) => {
+  res.render("index");
+});
+
+app.use(express.static("static"));
+
+app.get("/login", (req, res) => {
+  res.render("login");
+});
+
+app.get("/main", (req, res) => {
+  res.render("main");
+});
+// 서버 오픈 명령어
+app.listen(port, () => {
+  console.log("server open:", port);
 });
