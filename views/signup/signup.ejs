@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="/static/css/signup.css" rel="stylesheet" />
-
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
@@ -34,14 +34,14 @@
             <div>비밀번호<span class="red">*</span></div>
           </div>
 
-          <input type="password" class="height2" placeholder="비밀번호를 입력해주세요" name="pw" />
+          <input type="password" class="height2" placeholder="비밀번호를 입력해주세요" style="margin-bottom:0px" name="pw" />
         </div>
         <div class="sign-pw-confirm">
           <div class="left-text">
             <div>비밀번호확인<span class="red">*</span></div>
           </div>
 
-          <input type="password" class="height2" placeholder="비밀번호를 한번 더 입력해주세요" name="pw.confirm" />
+          <input type="password" class="height2" placeholder="비밀번호를 한번 더 입력해주세요" style="margin-bottom:0px" name="pw.confirm" />
         </div>
         <div class="sign-name">
           <div class="left-text">
@@ -56,7 +56,7 @@
           </div>
 
           <input type="text" placeholder="예:SGTmarket@sgt.com" name="email" />
-          <button type="button" onclick="emailconfirm()">중복확인</button>
+          <button type="button">중복확인</button>
         </div>
         <div class="sign-phone">
           <div class="left-text">
@@ -72,33 +72,32 @@
           </div>
           <div class="sign-adress-input">
             <!-- <input type="text" id="adress_number" placeholder="우편번호" /> -->
-            <input type="text" class="adress height2" placeholder="주소" />
-            <input type="text" class="adress_more height2" placeholder="상세주소" />
-          </div>
-            
-            <input type="button" class="btncolor" onclick="findAdress()" value="우편번호 찾기" /><br />
-            <!-- <input type="text" id="etc" placeholder="참고항목" /> -->
-            <div id="wrap" style="display: none; border: 1px solid; width: 400px; height: 250px; margin: 5px 0; position: relative">
+            <input type="text" id="adress" class="height2" placeholder="주소" />
+            <input type="text" id="adress_more" class="height2" placeholder="상세주소" />
+            <div id="wrap" style="display: none; border: 1px solid; width: 314px; max-height: 250px; margin: 5px 0; position: relative">
               <img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap" style="cursor: pointer; position: absolute; right: 0px; top: -1px; z-index: 1" onclick="closebtn()" alt="접기 버튼" />
             </div>
-
-          
+          </div>
+          <div class="sign-adress-find">
+            <input type="button" class="btncolor" onclick="findAdress()" value="우편번호 찾기" /><br />
+            <!-- <input type="text" id="etc" placeholder="참고항목" /> -->
+          </div>
         </div>
         <div class="sign-gender">
           <div class="sign-gender-text">
             <div>성별</div>
           </div>
           <div class="sign-gender-radio">
-            <input type="radio" id="male" name="gender" value="male" /> 남자
-            <input type="radio" id="female" name="gender" value="female" /> 여자
-            <input type="radio" id="none" name="gender" value="none" /> 선택안함
+            <div><input type="radio" id="male" name="gender" value="male" /> 남자</div>
+            <div><input type="radio" id="female" name="gender" value="female" /> 여자</div>
+            <div><input type="radio" id="none" name="gender" value="none" /> 선택안함</div>
           </div>
         </div>
         <div class="sign-birth">
           <div class="sign-birth-text">
-
             <div>생년월일</div>
           </div>
+          <div style="width: 314px; display: flex; flex-wrap: wrap; align-content: center">
             <select type="select" name="birth" required>
               <% for(var i=1950; i<2023; i++) { %>
               <option value=<%=i%>><%=i%></option>
@@ -115,8 +114,12 @@
               <% } %></select
             >일
           </div>
+        </div>
+        <hr />
+        <div class="signup-button">
+          <button type="submit">가입하기</button>
+        </div>
       </form>
-      <hr />
     </div>
 
     <script>
@@ -165,13 +168,11 @@
                 extraAddr = " (" + extraAddr + ")";
               }
               // 조합된 참고항목을 해당 필드에 넣는다.
-              document.getElementById("etc").value = extraAddr;
-            } else {
-              document.getElementById("etc").value = "";
+              // document.getElementById("etc").value = extraAddr;
             }
 
             // 우편번호와 주소 정보를 해당 필드에 넣는다.
-            document.getElementById("adress_number").value = data.zonecode;
+            // document.getElementById("adress_number").value = data.zonecode;
             document.getElementById("adress").value = addr;
             // 커서를 상세주소 필드로 이동한다.
             document.getElementById("adress_more").focus();
@@ -193,6 +194,24 @@
 
         // iframe을 넣은 element를 보이게 한다.
         element_wrap.style.display = "block";
+      }
+
+      function idconfirm() {
+        var form = $("form");
+        var data = {
+          ID: form.id.value,
+        };
+        axios({
+          url: "/",
+          method: "post",
+          data: data,
+        }).then((respone) => {
+          if (response.data) {
+            console.log(respone.data);
+          } else {
+            alert("중복된 아이디가 존재합니다.");
+          }
+        });
       }
     </script>
   </body>
