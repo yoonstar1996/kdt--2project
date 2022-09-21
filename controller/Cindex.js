@@ -35,7 +35,7 @@ exports.signup = (req, res) => {
 };
 
 // 회원가입 아이디 중복 검사
-exports.login_id_check = (req, res) => {
+exports.signup_id_check = (req, res) => {
   User.findOne({
     where: {
       id: req.body.id,
