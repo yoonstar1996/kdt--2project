@@ -1,14 +1,21 @@
 const express = require("express");
-const user = require("../controller/Cindex");
+const index = require("../controller/Cindex");
 const router = express.Router();
 
-router.get("/", user.main);
+router.get("/", index.main);
 
-router.get("/login", user.login); // 로그인 페이지
+// 로그인 페이지
+router.get("/login", index.login);
 
-router.get("/callback", user.callback); // 네이버 로그인 콜백
+// 네이버 로그인 콜백
+router.get("/callback", index.callback);
 
-router.get("/signup", user.signup); // 회원가입 페이지
-router.post("/api/signup", user.signup_create); // 유저 생성
+// 회원가입 페이지
+router.get("/signup", index.signup);
+// 유저 생성
+router.post("/api/signup", index.signup_create);
+
+// 상품 생성
+router.post("/api/product", index.product_create);
 
 module.exports = router;
