@@ -243,14 +243,14 @@
           id: form.id.value,
         };
         axios({
-          url: "/",
+          url: "/api/signup/idcheck",
           method: "post",
           data: data,
-        }).then((respone) => {
+        }).then((response) => {
           if (response.data) {
-            console.log(respone.data);
-          } else {
             alert("중복된 아이디가 존재합니다.");
+          } else {
+            alert("사용가능한 아이디 입니다.");
           }
         });
       }
@@ -264,9 +264,9 @@
           url: "/",
           method: "post",
           data: data,
-        }).then((respone) => {
+        }).then((response) => {
           if (response.data) {
-            console.log(respone.data);
+            console.log(response.data);
           } else {
             alert("이미 존재하는 이메일 입니다.");
           }
