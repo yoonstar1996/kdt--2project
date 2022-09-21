@@ -6,6 +6,7 @@ router.get("/", index.main);
 
 // 로그인 페이지
 router.get("/login", index.login);
+router.post("/api/login", index.login_check);
 
 // 네이버 로그인 콜백
 router.get("/callback", index.callback);
@@ -14,6 +15,7 @@ router.get("/callback", index.callback);
 router.get("/signup", index.signup);
 // 유저 생성
 router.post("/api/signup", index.signup_create);
+router.post("/api/signup/idcheck", index.signup_id_check);
 
 // 상품 생성
 router.post("/api/product", index.product_create);
