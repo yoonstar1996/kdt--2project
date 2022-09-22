@@ -5,7 +5,7 @@
 .wrapper {
   display: flex;
   justify-content: flex-start;
-  width: 900px;
+  width: 1000px;
   margin: 0 auto;
   margin-top: 50px;
 }
@@ -17,7 +17,7 @@
   flex-direction: column;
   float: left;
   margin: 0 50px 0 0;
-  width: 200px;
+  width: 170px;
 }
 .left-sgt > div {
   display: flex;
@@ -38,11 +38,15 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-  margin: 0 50px;
+  /* margin: 0 50px; */
+  width: 100%;
+}
+.right-sgt-content{
   width: 100%;
 }
 .right-sgt-bottom {
   display: flex;
+  justify-content: center;
 }
 .no-item {
   display: flex;
@@ -54,14 +58,6 @@
 .no-item > div {
   display: flex;
   justify-content: center;
-  margin: 20px 0;
-}
-.no-item > button {
-  display: flex;
-  justify-content: center;
-  width: 200px;
-  background-color: skyblue;
-  border: none;
   margin: 20px 0;
 }
 
@@ -101,8 +97,8 @@
   cursor: pointer;
 }
 .addTitle {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
   width: 400px;
   height: 30px;
   font-weight: bold;
@@ -111,37 +107,77 @@
   letter-spacing: -0.05em;
   color: #eb8d00;
 }
-.img{
-    padding-left: 0;
+.img {
+  padding-left: 0;
 }
-.title, .price, .category{
-    height: 30px;
-    border: 1px solid black;
-    width: 70%;
+.title,
+.price,
+.category {
+  height: 30px;
+  border: 1px solid black;
+  width: 70%;
 }
 .content {
-    border: 1px solid black;
-    margin-bottom: 10px;
-    width: 70%;
+  border: 1px solid black;
+  margin: 10px 0;
+  width: 70%;
+  resize: none;
 }
 
-.addItemBtn{
-    width: 90px;
-    height: 40px;
-    background-color: #FFE4BC;
-    border: none;
-    border-radius: 20px;
-    font-weight: 500;
+.addItemBtn {
+  width: 90px;
+  height: 40px;
+  background-color: #ffe4bc;
+  border: none;
+  border-radius: 20px;
+  font-weight: 500;
 }
-.modalClose{
-    font-size: 0.9rem;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-content: center;
-    width: 90px;
-    height: 40px;
-    background-color: #FFE4BC;
-    border: none;
-    border-radius: 20px;
+.modalClose {
+  font-size: 0.9rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  width: 90px;
+  height: 40px;
+  background-color: #ffe4bc;
+  border: none;
+  border-radius: 20px;
+}
+#modalOn {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  width: 150px;
+  background-color: #eb8d00;
+  border: none;
+  margin: 20px 0 20px auto;
+  border-radius: 20px;
+  height: 30px;
+}
+.itemList{
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100%;
+}
+.my-item{
+  width: 30%;
+  height: 300px;
+  margin: 10px;
+  padding: 1px;
+  border: 1px solid black;
+  border-radius: 15px;
+}
+.item-img{
+  width: 100%;
+  height: 80px;
+}
+.item-text-content {
+  border: 1px solid black;
+  margin: 10px 0;
+  width: 100%;
+  height: 150px;
+  resize: none;
 }

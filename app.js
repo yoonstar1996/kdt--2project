@@ -23,7 +23,10 @@ app.get("/", (req, res) => {
 });
 
 app.get("/mypage", (req, res) => {
-  res.render("./login/mypageItem");
+  const data = [
+    
+  ]
+  res.render("./login/mypageItem", data);
 });
 
 app.use(express.static("static"));

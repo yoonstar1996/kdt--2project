@@ -59,14 +59,14 @@ a {
   cursor: pointer;
 }
 .login-button {
-  background-color: skyblue;
+  background-color: #eb8d00;
   color: white;
   border: none;
 }
 .signup-button {
   background-color: white;
-  color: skyblue;
-  border: 1px solid skyblue;
+  color: #eb8d00;
+  border: 1px solid #eb8d00;
 }
 .kakao-button:hover {
   cursor: pointer;
