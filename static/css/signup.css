@@ -13,8 +13,8 @@
 button,
 .btncolor {
   background-color: white;
-  color: skyblue;
-  border: 1px solid skyblue;
+  color: #eb8d00;
+  border: 1px solid #eb8d00;
   font-weight: bold;
   width: 98px;
   height: 42px;
@@ -107,10 +107,10 @@ hr {
 .signup-button > button {
   margin: 30px 0 0 0;
 }
-.colors{
+.colors {
   color: red;
   margin-left: 10px;
 }
-.d-none{
+.d-none {
   display: none;
 }
