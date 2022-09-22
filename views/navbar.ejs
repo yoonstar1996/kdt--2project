@@ -1,259 +1,298 @@
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-<script src="https://kit.fontawesome.com/a766c546f2.js" crossorigin="anonymous"></script>
+<link
+  href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
+  rel="stylesheet"
+/>
+<script
+  src="https://kit.fontawesome.com/a766c546f2.js"
+  crossorigin="anonymous"
+></script>
 <style>
-    body {
-        margin: 0;
-        padding: 0;
-    }
+  body {
+    margin: 0;
+    padding: 0;
+  }
 
-    .nav-top {
-        width: 100%;
-        height: 40px;
-        background-color: white;
-        border-bottom: solid #EEEEEE 1px;
-    }
+  .nav-top {
+    width: 100%;
+    height: 40px;
+    background-color: white;
+    border-bottom: solid #eeeeee 1px;
+  }
 
-    .nav-top-menu {
-        margin-top: 13px;
-        font-size: 0.8em;
-        display: inline-block;
-        float: right;
-        margin-right: 200px;
-    }
+  .nav-top-menu {
+    margin-top: 13px;
+    font-size: 0.8em;
+    display: inline-block;
+    float: right;
+    margin-right: 200px;
+  }
 
-    .nav-top-menu-join {
-        color: #EB8D00;
-    }
+  .nav-top-menu-join {
+    color: #eb8d00;
+  }
 
-    .nav-top-menu-login {
-        text-decoration: none;
-        color: black;
-    }
+  .nav-top-menu-login {
+    text-decoration: none;
+    color: black;
+  }
 
-    .nav-top-second {
-        margin-top: 20px;
-        margin-left: 150px;
-        margin-right: 150px;
-        display: flex;
-        justify-content: space-evenly;
-    }
+  .nav-top-second {
+    margin-top: 20px;
+    margin-left: 150px;
+    margin-right: 150px;
+    display: flex;
+    justify-content: space-evenly;
+  }
 
-    #search {
-        border: 3px solid #D3D3D3;
-        width: 400px;
-        height: 25px;
-        border-radius: 50px;
-        padding-left: 20px;
-        margin-top: 25px;
-    }
+  #search {
+    border: 3px solid #d3d3d3;
+    width: 400px;
+    height: 25px;
+    border-radius: 50px;
+    padding-left: 20px;
+    margin-top: 25px;
+  }
 
-    input:focus {
-        outline: none;
-    }
+  input:focus {
+    outline: none;
+  }
 
-    hr {
-        margin-top: 20px;
-        border: #EEEEEE 1px solid;
-    }
+  hr {
+    margin-top: 20px;
+    border: #eeeeee 1px solid;
+  }
 
-    #search-button {
-        background-color: white;
-        border: none;
-    }
+  #search-button {
+    background-color: white;
+    border: none;
+  }
 
-    .right-menu {
-        display: inline;
-        text-align: right;
-        margin-left: 40px;
-        margin-top: 30px;
-    }
+  .right-menu {
+    display: inline;
+    text-align: right;
+    margin-left: 40px;
+    margin-top: 30px;
+  }
 
-    .chatting,
-    .like-list,
-    .user-info,
-    .living,
-    .electric,
-    .fashion,
-    .interior,
-    .book,
-    .foodetc,
-    .animal {
-        text-decoration: none;
-        color: black;
-        font-size: medium;
-    }
+  .chatting,
+  .like-list,
+  .user-info,
+  .living,
+  .electric,
+  .fashion,
+  .interior,
+  .book,
+  .foodetc,
+  .animal {
+    text-decoration: none;
+    color: black;
+    font-size: medium;
+  }
 
-    .toggle {
-        margin-top: 30px;
-    }
+  .toggle {
+    margin-top: 30px;
+  }
 
-    .toggle span {
-        width: 23px;
-        height: 3px;
-        background: #D3D3D3;
-        display: block;
-        margin-bottom: 5px;
-        transition: 0.5s;
-    }
+  .toggle span {
+    width: 23px;
+    height: 3px;
+    background: #d3d3d3;
+    display: block;
+    margin-bottom: 5px;
+    transition: 0.5s;
+  }
 
-    .toggle span:nth-child(1) {
-        transform-origin: left;
-    }
+  .toggle span:nth-child(1) {
+    transform-origin: left;
+  }
 
-    .toggle span:nth-child(2) {
-        transform-origin: center;
-    }
+  .toggle span:nth-child(2) {
+    transform-origin: center;
+  }
 
-    .toggle span:nth-child(3) {
-        transform-origin: left;
-    }
+  .toggle span:nth-child(3) {
+    transform-origin: left;
+  }
 
-    .toggle.active span:nth-child(1) {
-        transform: rotate(45deg);
-    }
+  .toggle.active span:nth-child(1) {
+    transform: rotate(45deg);
+  }
 
-    .toggle.active span:nth-child(2) {
-        transform: scaleX(0);
-    }
+  .toggle.active span:nth-child(2) {
+    transform: scaleX(0);
+  }
 
-    .toggle.active span:nth-child(3) {
-        transform: rotate(-45deg);
-    }
+  .toggle.active span:nth-child(3) {
+    transform: rotate(-45deg);
+  }
 
-    .btn_top {
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        border: 0px;
-        outline: 0px;
-        width: 45px;
-        height: 45px;
-        cursor: pointer;
-        display: none;
-        border-radius: 100px;
-        opacity: 0.7;
-        z-index: 999;
-    }
+  .btn_top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    border: 0px;
+    outline: 0px;
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+    display: none;
+    border-radius: 100px;
+    opacity: 0.7;
+    z-index: 999;
+  }
 
-    .chatting:hover,
-    .like-list:hover,
-    .user-info:hover,
-    .living:hover,
-    .electric:hover,
-    .fashion:hover,
-    .interior:hover,
-    .book:hover,
-    .foodetc:hover,
-    .animal:hover {
-        color: #EB8D00
-    }
+  .chatting:hover,
+  .like-list:hover,
+  .user-info:hover,
+  .living:hover,
+  .electric:hover,
+  .fashion:hover,
+  .interior:hover,
+  .book:hover,
+  .foodetc:hover,
+  .animal:hover {
+    color: #eb8d00;
+  }
 
-    #category {
-        transition: 1s;
-        margin-top: 30px;
+  #category {
+    transition: 1s;
+    margin-top: 30px;
 
-        /* width: 100%;
+    /* width: 100%;
         height: 80px;
         text-decoration: none; */
-    }
+  }
 
-    .d-none {
-        display: none;
-    }
+  .d-none {
+    display: none;
+  }
 
-    .category-first {
-        text-align: center;
-        margin: auto;
-        transition: 1s;
-    }
+  .category-first {
+    text-align: center;
+    margin: auto;
+    transition: 1s;
+  }
 
-    .category-up {
-        transition: 1s;
-    }
+  .category-up {
+    transition: 1s;
+  }
 
-    .category-set-on {
-        opacity: 1;
-        height: 50px;
-    }
+  .category-set-on {
+    opacity: 1;
+    height: 50px;
+  }
 
-    .category-set-off {
-        opacity: 0;
-        height: 0px;
-    }
+  .category-set-off {
+    opacity: 0;
+    height: 0px;
+  }
 </style>
-</head>
 
 <body>
-    <div class="nav-top">
-        <div class="nav-top-menu"><a class="nav-top-menu-join">회원가입</a><span>　|　</span><a href="/login"
-                class="nav-top-menu-login">로그인</span><span>　|　</span><a class="nav-top-menu-cs">고객센터</a></div>
+  <div class="nav-top">
+    <div class="nav-top-menu">
+      <a class="nav-top-menu-join">회원가입</a>
+      <span>　|　</span>
+      <a href="/login" class="nav-top-menu-login">로그인</a>
+      <span>　|　</span>
+      <a class="nav-top-menu-cs">고객센터</a>
     </div>
-    <div class="nav-top-second">
-        <div class="toggle">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <a href="/"><img src="img/logo.png" alt="logo" width="200" height="77"></a>
-        <div class="container-1"><input id="search" type="text" placeholder="세상의 모든 중고거래, SGT MARKET"
-                onfocus="this.placeholder = ''" onblur="this.placeholder = '세상의 모든 중고거래, SGT MARKET'"><button
-                type="button" id="search-button"><i class="fa fa-search" style="color:#EB8D00;"></i></button></div>
-        <div class="right-menu"><a href="/socket?id=aaa" class="chatting"><i class="fa-solid fa-comments"
-                    style="color:#909090;"></i>
-                채팅 </a><span style="color:#D3D3D3;">　|　</span><a href="" class="like-list"><i
-                    class="fa-regular fa-heart" style="color:#909090;"></i> 관심목록
-            </a><span style="color:#D3D3D3;">　|　</span><a href="" class="user-info"><i class="fa-regular fa-user"
-                    style="color:#909090;"></i>
-                개인정보 </a></div>
+  </div>
+  <div class="nav-top-second">
+    <div class="toggle">
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
-    <hr>
-    <div class="category-up">
-        <div class="category-set-off" id="category">
-            <div class="category-first">
-                <a href="" class="living">생활/가전</a><span style="color:#D3D3D3;">　|　</span><a href=""
-                    class="electric">전자제품</a><span style="color:#D3D3D3;">　|　</span><a href=""
-                    class="fashion">패션/의류</a><span style="color:#D3D3D3;">　|　</span><a href=""
-                    class="interior">가구/인테리어</a><span style="color:#D3D3D3;">　|　</span><a href=""
-                    class="book">도서/음반/티켓</a><span style="color:#D3D3D3;">　|　</span><a href=""
-                    class="foodetc">식품/잡화</a><span style="color:#D3D3D3;">　|　</span><a href="" class="animal">반려동물</a>
-            </div>
-        </div>
+    <a href="/">
+      <img src="static/img/logo.png" alt="logo" width="200" height="77" />
+    </a>
+    <div class="container-1">
+      <input
+        id="search"
+        type="text"
+        placeholder="세상의 모든 중고거래, SGT MARKET"
+        onfocus="this.placeholder = ''"
+        onblur="this.placeholder = '세상의 모든 중고거래, SGT MARKET'"
+      />
+      <button type="button" id="search-button">
+        <i class="fa fa-search" style="color: #eb8d00"></i>
+      </button>
     </div>
-    <div>
-        <button id="btnTop" class="btn_top" type="button">
-            <img class="arrow_up" src="/img/top2.png" style="width: 35px; height: 35px;" alt="arrow_up">
-        </button>
+    <div class="right-menu">
+      <a href="" class="chatting">
+        <i class="fa-solid fa-comments" style="color: #909090"></i>
+        채팅
+      </a>
+      <span style="color: #d3d3d3">　|　</span>
+      <a href="" class="like-list">
+        <i class="fa-regular fa-heart" style="color: #909090"> </i> 관심목록
+      </a>
+      <span style="color: #d3d3d3">　|　</span>
+      <a href="" class="user-info">
+        <i class="fa-regular fa-user" style="color: #909090"> </i>
+        개인정보
+      </a>
     </div>
+  </div>
+  <hr />
+  <div class="category-up">
+    <div class="category-set-off" id="category">
+      <div class="category-first">
+        <a href="" class="living">생활/가전</a
+        ><span style="color: #d3d3d3">　|　</span
+        ><a href="" class="electric">전자제품</a
+        ><span style="color: #d3d3d3">　|　</span
+        ><a href="" class="fashion">패션/의류</a
+        ><span style="color: #d3d3d3">　|　</span
+        ><a href="" class="interior">가구/인테리어</a
+        ><span style="color: #d3d3d3">　|　</span
+        ><a href="" class="book">도서/음반/티켓</a
+        ><span style="color: #d3d3d3">　|　</span
+        ><a href="" class="foodetc">식품/잡화</a
+        ><span style="color: #d3d3d3">　|　</span
+        ><a href="" class="animal">반려동물</a>
+      </div>
+    </div>
+  </div>
+  <div>
+    <button id="btnTop" class="btn_top" type="button">
+      <img
+        class="arrow_up"
+        src="/img/top2.png"
+        style="width: 35px; height: 35px"
+        alt="arrow_up"
+      />
+    </button>
+  </div>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('.toggle').click(function () {
-                $('.toggle').toggleClass('active')
-            })
-        })
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  <script>
+    $(document).ready(function () {
+      $(".toggle").click(function () {
+        $(".toggle").toggleClass("active");
+      });
+    });
 
-        $(window).scroll(function () {
-            if ($(this).scrollTop() > 100) {
-                $('#btnTop').show();
-            } else {
-                $('#btnTop').hide();
-            }
-        });
-        $('#btnTop').on('click', e => {
-            window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-        });
+    $(window).scroll(function () {
+      if ($(this).scrollTop() > 100) {
+        $("#btnTop").show();
+      } else {
+        $("#btnTop").hide();
+      }
+    });
+    $("#btnTop").on("click", (e) => {
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    });
 
-        $(".toggle").click(function () {
-            if ($("#category").hasClass("category-set-off")) {
-                $("#category").removeClass("category-set-off");
-                $("#category").addClass("category-set-on");
-            }
-            else if ($("#category").hasClass("category-set-on")) {
-                $("#category").removeClass("category-set-on");
-                $("#category").addClass("category-set-off");
-            }
-        })
-
-    </script>
+    $(".toggle").click(function () {
+      if ($("#category").hasClass("category-set-off")) {
+        $("#category").removeClass("category-set-off");
+        $("#category").addClass("category-set-on");
+      } else if ($("#category").hasClass("category-set-on")) {
+        $("#category").removeClass("category-set-on");
+        $("#category").addClass("category-set-off");
+      }
+    });
+  </script>
 </body>
