@@ -112,6 +112,14 @@
                 word-break: break-all;
             }
 
+            .myfirstboxtime {
+                text-align: right;
+                margin-top: 7px;
+                font-size: 10px;
+                padding: 10px;
+                word-break: break-all;
+            }
+
             .myfirstbox>div {
                 display: inline-block;
                 background-color: yellow;
@@ -126,6 +134,14 @@
                 padding: 10px;
                 margin-top: 7px;
                 font-size: 13px;
+                word-break: break-all;
+            }
+
+            .yousecondboxtime {
+                text-align: left;
+                margin-top: 7px;
+                font-size: 10px;
+                padding: 10px;
                 word-break: break-all;
             }
 
@@ -149,6 +165,12 @@
                 margin-bottom: 10px;
             }
 
+            .nowtime {
+                text-align: center;
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+
             .sidebarLi2 {
                 text-align: center;
                 padding-left: 0rem;
@@ -160,49 +182,96 @@
                 width: 100%;
             }
 
-            .chatlistStyle {
+            /* .chatlistStyle {
                 padding-left: 0rem;
                 text-align: center;
-            }
+            } */
 
             /* 채팅방 목록 css 시작 */
             .area {
-                margin: 0;
-                padding: 0;
-                display: -webkit-box;
-                display: -moz-box;
-                display: -ms-flexbox;
-                display: -moz-flex;
-                display: -webkit-flex;
-                display: flex;
-                justify-content: space-between;
                 list-style: none;
-                height: 100px;
-                background-color: #1565c0;
+                /* background-color: #1565c0; */
                 border-bottom: 1px solid gray;
-                
-            }
+                padding-left: 0rem;
+                text-align: center;
+                cursor: pointer;
 
-            .area:before {
-                display: inline-block;
-                width: 1px;
-                content: '';
-            }
-
-            .area:after {
-                display: inline-block;
-                width: 1px;
-                content: '';
             }
 
             .item {
-                display: inline-block;
+                display: flex;
                 color: #fff;
-                text-align: center;
-                line-height: 30px;
-                line-height: 100px;
+                /* text-align: center; */
                 overflow: hidden;
+                justify-content: space-between;
+
             }
+
+            .imgbox {
+                display: flex;
+                width: 30%;
+                height: 70px;
+            }
+
+            .imgbox img {
+                width: 100%;
+            }
+
+            /* 닉네임 내용 묶음 */
+            .roomniccon {
+                flex-grow: 1;
+                overflow-x: hidden;
+                background-color: white;
+                /* margin: auto; */
+            }
+
+            .roomnickname {
+                line-height: 35px;
+                color: gray;
+                font-size: medium;
+                font-weight: 700;
+            }
+
+            .roomcontents {
+                overflow-x: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                word-break: break-all;
+                line-height: 35px;
+                color: gray;
+                font-size: small;
+                margin-left: 10px;
+            }
+
+            /* 시간 타임 묶음 */
+            .roomtimenoti {
+                display: flex;
+                background-color: white;
+                width: 40%;
+                align-items: center;
+            }
+
+            .roomtime {
+                flex-grow: 1;
+                text-align: center;
+                color: gray;
+            }
+
+            .roomnotice {
+                flex-grow: 1;
+                text-align: center;
+                display: flex;
+            }
+
+            .notibox {
+                width: 20px;
+                height: 20px;
+                line-height: 20px;
+                border-radius: 20px;
+                background-color: #EB8D00;
+                margin: auto;
+            }
+
             /* 채팅방 목록 css 끝 */
         </style>
     </head>
@@ -231,62 +300,45 @@
             </header>
             <section class="content">
                 <nav>
-                    <ul class="chatlistStyle">
-                        <ul class="area">
-                            <li class="item"><img style="width: 40px;" src="/static/img/coffee.jpeg" alt=""></li>
-                            <li class="item">어디서 만날래요?</li>
-                            <li class="item">02:38</li>
-                            <li class="item">1</li>
-                        </ul>
-                        <ul class="area">
-                            <li class="item">사진</li>
-                            <li class="item">어디서 만날래요?</li>
-                            <li class="item">시간</li>
-                            <li class="item">알림</li>
-                        </ul>
-                        <ul class="area">
-                            <li class="item">사진</li>
-                            <li class="item">내용</li>
-                            <li class="item">시간</li>
-                            <li class="item">알림</li>
-                        </ul>
-                        <!-- <li>
-              <div><img src="" alt="">사진</div>
-              <div>내용</div>
-              <div>시간</div>
-              <div>알림</div>
-            </li>
-            <li>
-              <div><img src="" alt="">사진</div>
-              <div>내용</div>
-              <div>시간</div>
-              <div>알림</div>
-            </li>
-            <li>
-              <div><img src="" alt="">사진</div>
-              <div>내용</div>
-              <div>시간</div>
-              <div>알림</div>
-            </li>
-          </ul> -->
+                    <ul class="area">
+                        <li class="item">
+                            <div class="imgbox">
+                                <img src="/static/img/coffee.jpeg" alt="">
+                            </div>
+                            <div class="roomniccon">
+                                <div class="roomnickname">닉네임</div>
+                                <div class="roomcontents">asdaa dsfsd fdslkjf sdfjkldsj </div>
+                            </div>
+                            <div class="roomtimenoti">
+                                <div class="roomtime">02:53</div>
+                                <div class="roomnotice">
+                                    <div class="notibox">1</div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </nav>
                 <main>
                     <div id="jb-content">
                         <div class="chat_wrap">
                             <div class="innertext">
-                                <div class="notice">${msg2}가 입장했습니다.</div>
-                                <div class="outnotice">${msg2}가 퇴장했습니다.</div>
+                                <div class="notice"><%=id%>가 입장했습니다.</div>
+                                <div class="outnotice"><%=id%>가 퇴장했습니다.</div>
+                                <div class="nowtime">2022년 09월 22일</div>
                                 <div class="myfirstbox">
+                                    <span class="myfirstboxtime">02:53</span>
                                     <div>안녕</div>
                                 </div>
+
                                 <div class="yousecondbox">
-                                    <div>나도 안녕</div>
+                                    <div>안녕</div>
+                                    <span class="yousecondboxtime">02:53</span>
                                 </div>
                             </div>
                         </div>
                         <div class="sendsub">
                             <div id="jb-sendinputBtn">
-                                <input type="text" placeholder="내용을 입력하세요."><button>전송</button>
+                                <input id="msg" type="text" placeholder="내용을 입력하세요."><button onclick="hellobtn();">전송</button>
                             </div>
                         </div>
                     </div>
@@ -298,6 +350,37 @@
                 </main>
             </section>
         </div>
+
+        <script>
+           var socket = io.connect();
+
+            socket.emit("welcome", "(클라이언트) 반가워");
+
+            socket.on("welcome from server", (data) =>{
+                console.log(data);
+                
+                console.log(data.name, data.msg);
+            })
+
+            function hellobtn() {
+                        console.log("hello");
+                        socket.emit("hellobtn","hello")
+                    }
+
+                    function studybtn() {
+                        console.log("study")
+                        socket.emit("studybtn", "study")
+                    }
+
+                    function byebtn() {
+                        console.log("bye")
+                        socket.emit("byebtn", "bye")
+                    }
+
+        </script>
+
+
+
     </body>
 
     </html>
