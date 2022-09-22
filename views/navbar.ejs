@@ -85,6 +85,7 @@
 
     .toggle {
         margin-top: 30px;
+        cursor: pointer;
     }
 
     .toggle span {
@@ -151,10 +152,6 @@
     #category {
         transition: 1s;
         margin-top: 30px;
-        
-        /* width: 100%;
-        height: 80px;
-        text-decoration: none; */
     }
 
     .d-none {
@@ -181,7 +178,6 @@
         height: 0px;
     }
 </style>
-</head>
 
 <body>
     <div class="nav-top">
@@ -194,7 +190,7 @@
             <span></span>
             <span></span>
         </div>
-        <a href="/"><img src="img/logo.png" alt="logo" width="200" height="77"></a>
+        <a href="/main"><img src="static/img/logo.png" alt="logo" width="200" height="77"></a>
         <div class="container-1"><input id="search" type="text" placeholder="세상의 모든 중고거래, SGT MARKET"
                 onfocus="this.placeholder = ''" onblur="this.placeholder = '세상의 모든 중고거래, SGT MARKET'"><button
                 type="button" id="search-button"><i class="fa fa-search" style="color:#EB8D00;"></i></button></div>
@@ -209,7 +205,7 @@
     <div class="category-up">
     <div class="category-set-off" id="category">
         <div class="category-first">
-            <a href="" class="living">생활/가전</a><span style="color:#D3D3D3;">　|　</span><a href=""
+            <a href="/product" class="living">생활/가전</a><span style="color:#D3D3D3;">　|　</span><a href=""
                 class="electric">전자제품</a><span style="color:#D3D3D3;">　|　</span><a href=""
                 class="fashion">패션/의류</a><span style="color:#D3D3D3;">　|　</span><a href=""
                 class="interior">가구/인테리어</a><span style="color:#D3D3D3;">　|　</span><a href=""
@@ -220,7 +216,7 @@
 </div>
     <div>
         <button id="btnTop" class="btn_top" type="button">
-            <img class="arrow_up" src="/img/top2.png" style="width: 35px; height: 35px;" alt="arrow_up">
+            <img class="arrow_up" src="static/img/top2.png" style="width: 35px; height: 35px;" alt="arrow_up">
         </button>
     </div>
 

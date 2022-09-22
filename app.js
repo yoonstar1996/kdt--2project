@@ -32,6 +32,11 @@ app.get("/login", (req, res) => {
 app.get("/main", (req, res) => {
   res.render("main");
 });
+
+app.get("/product", (req, res) => {
+  res.render("product");
+});
+
 // 서버 오픈 명령어
 app.listen(port, () => {
   console.log("server open:", port);
