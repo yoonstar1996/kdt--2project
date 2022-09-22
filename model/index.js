@@ -14,7 +14,7 @@ db.Sequelize = Sequelize;
 
 db.User = require("./User")(sequelize, Sequelize);
 db.Product = require("./Product")(sequelize, Sequelize);
-db.ProductLikeUsers = require("./Product_Like_User")(sequelize, Sequelize);
+db.ProductLikeUsers = require("./ProductLikeUser")(sequelize, Sequelize);
 
 db.Product.belongsTo(db.User, {
   foreignKey: "user_id",

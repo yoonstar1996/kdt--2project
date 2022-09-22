@@ -34,7 +34,7 @@ button,
 }
 .write-signup {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 15px 0;
   font-size: 1.5rem;
 }
 .necessary {
@@ -48,51 +48,30 @@ hr {
 .red {
   color: red;
 }
-.left-text {
-  display: flex;
-}
 .sign-main {
   font-size: 0.9rem;
 }
-.sign-id {
+.sign-id,
+.sign-pw,
+.sign-pw-confirm,
+.sign-name,
+.sign-email,
+.sign-phone,
+.sign-adress,
+.sign-gender {
   display: flex;
-  margin: 10px 0;
-}
-.sign-pw {
-  display: flex;
-  margin: 10px 0;
-}
-.sign-pw-confirm {
-  display: flex;
-  margin: 10px 0;
-}
-.sign-name {
-  display: flex;
-  margin: 10px 0;
-}
-.sign-email {
-  display: flex;
-  margin: 10px 0;
-}
-.sign-phone {
-  display: flex;
-  margin: 10px 0;
-}
-.sign-adress {
-  display: flex;
-  margin: 10px 0;
+  margin: 20px 0;
 }
 .sign-adress-input {
   display: flex;
   flex-direction: column;
 }
-.sign-gender {
-  display: flex;
-  margin: 10px 0;
+.sign-adress-find {
+  margin-top: 10px;
 }
 .sign-birth {
   display: flex;
-  margin: 10px 0;
+  margin: 30px 0;
 }
 .sign-gender-text,
 .sign-birth-text {
@@ -105,38 +84,33 @@ hr {
 }
 .sign-gender-radio {
   display: flex;
-
+  flex-wrap: wrap;
+  align-content: center;
+  width: 314px;
+  justify-content: space-between;
 }
 
-.sign-id > input {
-  width: 300px;
-  padding-left: 10px;
-}
-.sign-pw > input {
-  width: 300px;
-  padding-left: 10px;
-}
-.sign-pw-confirm > input {
-  width: 300px;
-  padding-left: 10px;
-}
-.sign-name > input {
-  width: 300px;
-  padding-left: 10px;
-}
-.sign-email > input {
-  width: 300px;
-  padding-left: 10px;
-}
-.sign-phone > input {
-  width: 300px;
-  padding-left: 10px;
-}
-.sign-adress-input > input {
-  width: 300px;
-  padding-left: 10px;
-}
 .height2 {
-  height: 42px;
-  margin: 10px 0;
+  width: 300px;
+  height: 38px;
+  padding-left: 10px;
+}
+.height2,
+.rightbtn {
+  margin-top: 10px;
+}
+
+.signup-button {
+  display: flex;
+  justify-content: center;
+}
+.signup-button > button {
+  margin: 30px 0 0 0;
+}
+.colors{
+  color: red;
+  margin-left: 10px;
+}
+.d-none{
+  display: none;
 }
