@@ -20,4 +20,9 @@ router.post("/api/signup/idcheck", index.signup_id_check);
 // 상품 생성
 router.post("/api/product", index.product_create);
 
+// 소캣
+router.post("/socket", index.socket);
+// 소캣 룸 생성
+router.post("/api/socket", index.socket_create);
+
 module.exports = router;
