@@ -1,8 +1,11 @@
 const { User } = require("../model");
 const { Product } = require("../model");
 const { ProductLikeUsers } = require("../model");
+const { Room } = require("../model");
+const { ChatContent } = require("../model");
+const { Participation } = require("../model");
 exports.main = (req, res) => {
-  res.render("index");
+  res.render("main");
 };
 // 로그인 페이지
 exports.login = (req, res) => {
@@ -65,8 +68,40 @@ exports.product_create = (req, res) => {
     price: req.body.price,
     position: req.body.position,
     category: req.body.category,
+    content: req.body.content,
   };
   Product.create(data).then((result) => {
+    res.send(true);
+  });
+};
+
+// 채팅 페이지
+exports.socket = (req, res) => {
+  res.render("./socket");
+};
+
+// 채팅 방 만들기
+exports.socket_create = (req, res) => {
+  const data = {
+    name: req.body.name,
+  };
+  Room.create(data).then((result) => {
+    console.log(result);
+    const chat_data = {
+      room_id: result.id,
+      content: "",
+    };
+    ChatContent.create(chat_data).then((result) => {});
+    const participation_my_data = {
+      user_id: req.body.user_id,
+      room_id: result.id,
+    };
+    const participation_other_data = {
+      user_id: req.body.other_id,
+      room_id: result.id,
+    };
+    Participation.create(participation_my_data).then((result) => {});
+    Participation.create(participation_other_data).then((result) => {});
     res.send(true);
   });
 };
