@@ -4,9 +4,11 @@ const port = 8000;
 
 const http = require("http").Server(app);
 const io = require("socket.io")(http);
+const moment = require('moment');
+require('moment-timezone'); 
+moment.tz.setDefault("Asia/Seoul");
 
 app.set("view engine", "ejs");
-
 app.use(express.static("apidoc"));
 app.use("/static", express.static(__dirname + "/static"));
 app.use(express.urlencoded({ extended: true }));
@@ -36,8 +38,13 @@ app.get("/main", (req, res) => {
 
 // 다른페이지 연결시 추가 (여러개사용 X)
 app.get("/socket",(req, res)=> {
-    res.render("socket");
+    
+    res.render("socket",{id:req.query.id});
 })
+
+// 소켓작업 시작
+
+// 소켓작업 끝
 
 
 // 서버 오픈 명령어
