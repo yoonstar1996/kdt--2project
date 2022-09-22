@@ -31,6 +31,14 @@ app.get("/login", (req, res) => {
 app.get("/main", (req, res) => {
   res.render("main");
 });
+
+
+// 다른페이지 연결시 추가 (여러개사용 X)
+app.get("/socket",(req, res)=> {
+    res.render("socket");
+})
+
+
 // 서버 오픈 명령어
 app.listen(port, () => {
   console.log("server open:", port);
