@@ -22,6 +22,10 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+app.get("/mypage", (req, res) => {
+  res.render("./login/mypageItem");
+});
+
 app.use(express.static("static"));
 
 app.get("/login", (req, res) => {

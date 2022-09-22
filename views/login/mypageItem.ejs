@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/static/css/mypage-left.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+    <title>SGT - 상품 등록</title>
+
+    <style>
+      .logo {
+        width: 30px;
+        height: 30px;
+      }
+    </style>
+  </head>
+  <body>
+
+    <%-include("../navbar.ejs")%>
+
+    <div class="wrapper">
+      <div class="left-sgt">
+        <div>마이 SGT</div>
+        <ul class="left-sgt-button">
+          <button type="button">상품 등록</button>
+          <button type="button">거래 내역</button>
+          <button type="button">찜한 상품</button>
+          <button type="button">개인 정보 수정</button>
+        </ul>
+      </div>
+
+      <div class="right-sgt">
+        <div>상품 목록</div>
+        <hr />
+        <div class="right-sgt-content">
+          <div class="itemList"></div>
+          <div class="no-item">
+            <div>등록한 상품이 없습니다.</div>
+
+            <form class="myModal">
+            <div>
+                <div class="addTitle">상품 등록</div>
+            </div>
+              <input type="file" name="img" class="img" />
+              <input type="text" placeholder="상품 이름" name="title" class="title" />
+              <input type="text" placeholder="가격" name="price" class="price" />
+              <input type="text" placeholder="카테고리" name="category" class="category" />
+              <textarea placeholder="상품 설명" name="content" class="content"></textarea>
+              <div class="itemAdd">
+                <button type="button" class="addItemBtn cursor" onclick="addItem()">상품 등록</button>
+                <div class="modalClose cursor">닫기</div>
+              </div>
+            </form>
+
+            <button id="modalOn" class="cursor" onclick="display()">상품 등록 하기</button>
+          </div>
+          <div class="have-item d-none">
+            <div><img src="/static/img/logo.png" class="logo" /></div>
+            <div><img src="/static/img/logo.png" class="logo" /></div>
+            <div><img src="/static/img/logo.png" class="logo" /></div>
+            <div><img src="/static/img/logo.png" class="logo" /></div>
+          </div>
+          <div class="right-sgt-bottom">
+            <div>페이지 네이션</div>
+            <button type="file">상품 등록</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+        function display() {
+            var button = document.querySelector("#modalOn");
+            var modal = document.querySelector(".myModal");
+            // modal.attributes0("display","flex");
+        }
+
+      function modal(id) {
+        var zIndex = 9999;
+        var modal = document.querySelector(".myModal");
+
+        // 모달 div 뒤에 희끄무레한 레이어
+        var bg = document.createElement("div");
+        bg.setStyle({
+          position: "fixed",
+          zIndex: zIndex,
+          left: "0px",
+          top: "0px",
+          width: "100%",
+          height: "100%",
+          overflow: "auto",
+          // 레이어 색갈은 여기서 바꾸면 됨
+          backgroundColor: "rgba(0,0,0,0.4)",
+        });
+        document.body.append(bg);
+
+        // 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
+        modal.querySelector(".modalClose").addEventListener("click", function () {
+          bg.remove();
+          modal.reset();
+          modal.style.display = "none";
+        });
+
+        modal.setStyle({
+          position: "fixed",
+          display: "flex",
+          boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+
+          // 시꺼먼 레이어 보다 한칸 위에 보이기
+          zIndex: zIndex + 1,
+
+          // div center 정렬
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          msTransform: "translate(-50%, -50%)",
+          webkitTransform: "translate(-50%, -50%)",
+        });
+      }
+
+      // Element 에 style 한번에 오브젝트로 설정하는 함수 추가
+      Element.prototype.setStyle = function (styles) {
+        for (var k in styles) this.style[k] = styles[k];
+        return this;
+      };
+
+      document.getElementById("modalOn").addEventListener("click", function () {
+        // 모달창 띄우기
+        modal("my_modal");
+      });
+
+      function addItem() {
+        const form = document.querySelector(".myModal");
+        const formData = new FormData();
+        const file = document.querySelector(".img");
+
+        var data = {
+          //등록한 사람 아이디
+          user_id: "1234",
+          title: form.title.value,
+          img: form.img.value,
+          adult:true,
+          price: form.price.value,
+          position: "마포구",
+          category: form.category.value,
+          content: form.content.value,
+        };
+        axios({
+          url: "/api/product",
+          method: "post",
+          data: data,
+        }).then((response) => {
+          console.log(response);
+        });
+      }
+
+    </script>
+  </body>
+</html>
