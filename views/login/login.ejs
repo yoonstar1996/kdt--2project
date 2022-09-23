@@ -12,6 +12,8 @@
   </head>
   <body>
 
+    <%-include("../navbar.ejs")%>
+
     <div class="wrapper">
       <div class="login">
         <div class="write-login">로그인</div>
@@ -55,7 +57,7 @@
           data:data,
         }).then((response)=>{
           if(response.data) {
-            window.location.href = "/";
+            window.location.href = "/main";
           } else {
             alert("로그인 실패");
           }
@@ -90,7 +92,6 @@
                 // console.log(kakao_account);
                 console.log(kakao_account.email);
                 console.log(kakao_account.profile.nickname);
-                // console.log(kakao_account.gender);
               },
             });
           },

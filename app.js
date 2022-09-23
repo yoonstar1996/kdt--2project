@@ -39,6 +39,32 @@ io.on("connection", function (socket) {
 
 // 소켓 채팅 끝!
 
+// ex - ip:8000/
+app.get("/", (req, res) => {
+  res.render("index");
+});
+
+app.get("/mypage", (req, res) => {
+  const data = [
+    
+  ]
+  res.render("./login/mypageItem", data);
+});
+
+app.use(express.static("static"));
+
+app.get("/login", (req, res) => {
+  res.render("login");
+});
+
+app.get("/main", (req, res) => {
+  res.render("main");
+});
+
+app.get("/product", (req, res) => {
+  res.render("product");
+});
+
 // 서버 오픈 명령어
 http.listen(port, () => {
   console.log("server open:", port);

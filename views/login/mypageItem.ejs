@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/static/css/mypage-item.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+    <title>SGT - 상품 등록</title>
+
+  </head>
+  <body>
+    <%-include("../navbar.ejs")%>
+
+    <div class="wrapper">
+      <div class="left-sgt">
+        <div>마이 SGT</div>
+        <ul class="left-sgt-button">
+          <button type="button">상품 목록</button>
+          <button type="button">거래 내역</button>
+          <button type="button">찜한 상품</button>
+          <button type="button">개인 정보 수정</button>
+        </ul>
+      </div>
+
+      <div class="right-sgt">
+        <div>상품 목록</div>
+        <hr />
+        <div class="right-sgt-content">
+          <%if(true) {%>
+
+          <div class="itemList">
+
+            <div class="my-item">
+                <img class="item-img" src="/static/img/logo.png">
+                <div class="item-info">
+                    <div class="item-text">
+                        <h4 class="item-text-name">상품 이름</h4>
+                        <div class="item-text-price">가격</div>
+                        <div class="item-text-category">카테고리</div>
+                        <textarea class="item-text-content">상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 </textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="my-item">
+                <img class="item-img" src="/static/img/logo.png">
+                <div class="item-info">
+                    <div class="beer__text">
+                        <h4 class="beer__text--title">하이트 엑스트라 콜드(hite EXTRA COLD)</h4>
+                        <div class="displayflex">
+                            <p class="beer__text--alchol">도수 : 4.5%</p>
+                            <button class="clickinfo"><i class="fa-solid fa-circle-info fa-xl"></i></button>
+                            <button class="beericon nocolor"><i class="fa-solid fa-beer-mug-empty fa-lg"></i></button>
+                        </div>
+                        <p class="beer__text--infor">하이트 맥주를 리브랜딩 해서 내놓은 맥주. 舊 하이트 맥주다. 90년대에 만년 2등이었던 맥주 시장에서 1위를 차지하게한 맥주</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="my-item">
+                <img class="item-img" src="/static/img/logo.png">
+                <div class="item-info">
+                    <div class="beer__text">
+                        <h4 class="beer__text--title">하이트 엑스트라 콜드(hite EXTRA COLD)</h4>
+                        <div class="displayflex">
+                            <p class="beer__text--alchol">도수 : 4.5%</p>
+                            <button class="clickinfo"><i class="fa-solid fa-circle-info fa-xl"></i></button>
+                            <button class="beericon nocolor"><i class="fa-solid fa-beer-mug-empty fa-lg"></i></button>
+                        </div>
+                        <p class="beer__text--infor">하이트 맥주를 리브랜딩 해서 내놓은 맥주. 舊 하이트 맥주다. 90년대에 만년 2등이었던 맥주 시장에서 1위를 차지하게한 맥주</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="my-item">
+                <img class="item-img" src="/static/img/logo.png">
+                <div class="item-info">
+                    <div class="beer__text">
+                        <h4 class="beer__text--title">하이트 엑스트라 콜드(hite EXTRA COLD)</h4>
+                        <div class="displayflex">
+                            <p class="beer__text--alchol">도수 : 4.5%</p>
+                            <button class="clickinfo"><i class="fa-solid fa-circle-info fa-xl"></i></button>
+                            <button class="beericon nocolor"><i class="fa-solid fa-beer-mug-empty fa-lg"></i></button>
+                        </div>
+                        <p class="beer__text--infor">하이트 맥주를 리브랜딩 해서 내놓은 맥주. 舊 하이트 맥주다. 90년대에 만년 2등이었던 맥주 시장에서 1위를 차지하게한 맥주</p>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <button id="modalOn" class="cursor" onclick="addItem()">상품 등록 하기</button>
+          <%} else {%>
+          <div class="no-item">
+            <div>등록한 상품이 없습니다.</div>
+            <button id="modalOn" class="cursor" onclick="addItem()">상품 등록 하기</button>
+          </div>
+          <% } %>
+          <form class="myModal">
+            <div>
+              <div class="addTitle">상품 등록</div>
+            </div>
+            <input type="file" name="img" class="img" accept="image/png, image/jpeg" />
+            <input type="text" placeholder="상품 이름" name="title" class="title" />
+            <input type="text" placeholder="가격" name="price" class="price" />
+            <select class="category">
+              <option value="life">생활/가전</option>
+              <option value="electro">전자제품</option>
+              <option value="fashion">패션/의류</option>
+              <option value="interior">가구/인테리어</option>
+              <option value="book">도서/음반/티켓</option>
+              <option value="food">식품/잡화</option>
+              <option value="pet">반려동물</option>
+            </select>
+            <!-- <input type="text" placeholder="카테고리" name="category" class="category" /> -->
+            <textarea placeholder="상품 설명" name="content" class="content"></textarea>
+            <div class="itemAdd">
+              <button type="button" class="addItemBtn cursor" onclick="modalAddItem()">상품 등록</button>
+              <div class="modalClose cursor">닫기</div>
+            </div>
+          </form>
+
+          <div class="right-sgt-bottom">
+            <div>페이지네이션</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      //   function display() {
+      //     var button = document.querySelector("#modalOn");
+      //     var modal = document.querySelector(".myModal");
+      //     modal.attributes0("display","flex");
+      //   }
+
+      function addItem() {
+        var zIndex = 9999;
+        var modal = document.querySelector(".myModal");
+
+        // 모달 div 뒤에 희끄무레한 레이어
+        var bg = document.createElement("div");
+        bg.setStyle({
+          position: "fixed",
+          zIndex: zIndex,
+          left: "0px",
+          top: "0px",
+          width: "100%",
+          height: "100%",
+          overflow: "auto",
+          // 레이어 색갈은 여기서 바꾸면 됨
+          backgroundColor: "rgba(0,0,0,0.4)",
+        });
+        document.body.append(bg);
+
+        // 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
+        modal.querySelector(".modalClose").addEventListener("click", function () {
+          bg.remove();
+          modal.reset();
+          modal.style.display = "none";
+        });
+
+        modal.setStyle({
+          position: "fixed",
+          display: "flex",
+          boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+
+          // 시꺼먼 레이어 보다 한칸 위에 보이기
+          zIndex: zIndex + 1,
+
+          // div center 정렬
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          msTransform: "translate(-50%, -50%)",
+          webkitTransform: "translate(-50%, -50%)",
+        });
+      }
+
+      // Element 에 style 한번에 오브젝트로 설정하는 함수 추가
+      Element.prototype.setStyle = function (styles) {
+        for (var k in styles) this.style[k] = styles[k];
+        return this;
+      };
+
+      //   document.getElementById("modalOn").addEventListener("click", function () {
+      //     // 모달창 띄우기
+      //     modal("my_modal");
+      //   });
+
+      function modalAddItem() {
+        const form = document.querySelector(".myModal");
+        const category = document.querySelector(".category");
+        const formData = new FormData();
+        const file = document.querySelector(".img");
+
+        var data = {
+          //등록한 사람 아이디
+          user_id: "1234",
+          title: form.title.value,
+          img: form.img.value,
+          adult: true,
+          price: form.price.value,
+          position: "마포구",
+          category: category.value,
+          content: form.content.value,
+        };
+        axios({
+          url: "/api/product",
+          method: "post",
+          data: data,
+        }).then((response) => {
+          console.log(response);
+        });
+      }
+
+      function renderPagination(currentPage) {
+        if (_totalCount <= 9) return;
+
+        var totalPage = Math.ceil(_totalCount / 9);
+        var pageGroup = Math.ceil(currentPage / 5);
+
+        var last = pageGroup * 10;
+        if (last > totalPage) last = totalPage;
+        var first = last - (10 - 1) <= 0 ? 1 : last - (10 - 1);
+        var next = last + 1;
+        var prev = first - 1;
+
+        const fragmentPage = document.createDocumentFragment();
+        if (prev > 0) {
+          var allpreli = document.createElement("li");
+          allpreli.insertAdjacentHTML("beforeend", `<a href='#js-bottom' id='allprev'>&lt;&lt;</a>`);
+
+          var preli = document.createElement("li");
+          preli.insertAdjacentHTML("beforeend", `<a href='#js-bottom' id='prev'>&lt;</a>`);
+
+          fragmentPage.appendChild(allpreli);
+          fragmentPage.appendChild(preli);
+        }
+
+        for (var i = first; i <= last; i++) {
+          const li = document.createElement("li");
+          li.insertAdjacentHTML("beforeend", `<a href='#js-bottom' id='page-${i}' data-num='${i}'>${i}</a>`);
+          fragmentPage.appendChild(li);
+        }
+
+        if (last < totalPage) {
+          var allendli = document.createElement("li");
+          allendli.insertAdjacentHTML("beforeend", `<a href='#js-bottom'  id='allnext'>&gt;&gt;</a>`);
+
+          var endli = document.createElement("li");
+          endli.insertAdjacentHTML("beforeend", `<a  href='#js-program-detail-bottom'  id='next'>&gt;</a>`);
+
+          fragmentPage.appendChild(endli);
+          fragmentPage.appendChild(allendli);
+        }
+
+        document.getElementById("js-pagination").appendChild(fragmentPage);
+        // 페이지 목록 생성
+
+        $(`#js-pagination a`).removeClass("active");
+        $(`#js-pagination a#page-${currentPage}`).addClass("active");
+
+        $("#js-pagination a").click(function (e) {
+          e.preventDefault();
+          var $item = $(this);
+          var $id = $item.attr("id");
+          var selectedPage = $item.text();
+
+          if ($id == "next") selectedPage = next;
+          if ($id == "prev") selectedPage = prev;
+          if ($id == "allprev") selectedPage = 1;
+          if ($id == "allnext") selectedPage = totalPage;
+
+          list.renderPagination(selectedPage); //페이지네이션 그리는 함수
+          list.search(selectedPage); //페이지 그리는 함수
+        });
+      }
+    </script>
+  </body>
+</html>
