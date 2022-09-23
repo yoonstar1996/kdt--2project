@@ -33,6 +33,6 @@ const users = {};
 io.on("connection", (socket) => {});
 
 // 서버 오픈 명령어
-app.listen(port, () => {
+http.listen(port, () => {
   console.log("server open:", port);
 });

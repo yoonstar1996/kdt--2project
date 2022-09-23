@@ -126,3 +126,104 @@ main {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
+.sidebarLi2 {
+  text-align: center;
+  padding-left: 0rem;
+}
+
+.sendsub {
+  bottom: 0px;
+  opacity: 0.8;
+  width: 100%;
+}
+
+/* .chatlistStyle {
+          padding-left: 0rem;
+          text-align: center;
+      } */
+
+/* 채팅방 목록 css 시작 */
+.area {
+  list-style: none;
+  /* background-color: #1565c0; */
+  border-bottom: 1px solid gray;
+  padding-left: 0rem;
+  text-align: center;
+  cursor: pointer;
+}
+
+.item {
+  display: flex;
+  color: #fff;
+  /* text-align: center; */
+  overflow: hidden;
+  justify-content: space-between;
+}
+
+.imgbox {
+  display: flex;
+  width: 30%;
+  height: 70px;
+}
+
+.imgbox img {
+  width: 100%;
+}
+
+/* 닉네임 내용 묶음 */
+.roomniccon {
+  flex-grow: 1;
+  overflow-x: hidden;
+  background-color: white;
+  /* margin: auto; */
+}
+
+.roomnickname {
+  line-height: 35px;
+  color: gray;
+  font-size: medium;
+  font-weight: 700;
+}
+
+.roomcontents {
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-break: break-all;
+  line-height: 35px;
+  color: gray;
+  font-size: small;
+  margin-left: 10px;
+}
+
+/* 시간 타임 묶음 */
+.roomtimenoti {
+  display: flex;
+  background-color: white;
+  width: 40%;
+  align-items: center;
+}
+
+.roomtime {
+  flex-grow: 1;
+  text-align: center;
+  color: gray;
+}
+
+.roomnotice {
+  flex-grow: 1;
+  text-align: center;
+  display: flex;
+}
+
+.notibox {
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  border-radius: 20px;
+  background-color: #eb8d00;
+  margin: auto;
+}
+
+/* 채팅방 목록 css 끝 */

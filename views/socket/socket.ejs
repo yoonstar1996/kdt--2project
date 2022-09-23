@@ -27,6 +27,11 @@
               />
               로고명
             </a>
+            <input
+              id="ibjangmsg"
+              type="text"
+              placeholder="내용을 입력하세요."
+            /><button onclick="myOnClick()">전송</button>
             <div class="dropdown">
               <button
                 class="btn btn-secondary dropdown-toggle"
@@ -68,9 +73,6 @@
           <div id="jb-content">
             <div class="chat_wrap">
               <div class="innertext">
-                <div class="notice"><%=id%>가 입장했습니다.</div>
-                <div class="outnotice"><%=id%>가 퇴장했습니다.</div>
-                <div class="nowtime">2022년 09월 22일</div>
                 <div class="myfirstbox">
                   <span class="myfirstboxtime">02:53</span>
                   <div>안녕</div>
@@ -88,7 +90,7 @@
                   id="msg"
                   type="text"
                   placeholder="내용을 입력하세요."
-                /><button onclick="hellobtn();">전송</button>
+                /><button onclick="sendOnClick()">전송</button>
               </div>
             </div>
           </div>

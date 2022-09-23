@@ -1,24 +1,18 @@
+var client_list = {};
+// {소켓아이디 : 닉네임, 소켓아이디 : 닉네임 , .....}
+
 var socket = io.connect();
+//   var data = {
+//     msg: msg,
+//   };
 
-socket.emit("welcome", "(클라이언트) 반가워");
+// 입장 메시지 시작
 
-socket.on("welcome from server", (data) => {
-  console.log(data);
-
-  console.log(data.name, data.msg);
+function myOnClick() {
+  socket.emit("showchat", { ibjangmsg: $("#ibjangmsg").val() });
+  $("#ibjangmsg").val("");
+}
+socket.on("showchat", (ibjangmsg) => {
+  $(".chat_wrap").append(`<div class="notice">${ibjangmsg}</div>`);
 });
-
-function hellobtn() {
-  console.log("hello");
-  socket.emit("hellobtn", "hello");
-}
-
-function studybtn() {
-  console.log("study");
-  socket.emit("studybtn", "study");
-}
-
-function byebtn() {
-  console.log("bye");
-  socket.emit("byebtn", "bye");
-}
+// 입장 메시지 끝
