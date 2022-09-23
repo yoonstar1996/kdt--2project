@@ -24,8 +24,12 @@ exports.login_check = (req, res) => {
   });
 };
 // 네이버 로그인 콜백 페이지
-exports.callback = (req, res) => {
-  res.render("naver_callback");
+exports.naverCallback = (req, res) => {
+  res.render("./login/naver_callback");
+};
+// 카카오 로그인 콜백 페이지
+exports.kakaoCallback = (req, res) => {
+  res.render("./login/kakao_callback");
 };
 // 회원가입 페이지
 exports.signup = (req, res) => {

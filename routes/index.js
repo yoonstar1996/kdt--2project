@@ -9,7 +9,10 @@ router.get("/login", index.login);
 router.post("/api/login", index.login_check);
 
 // 네이버 로그인 콜백
-router.get("/callback", index.callback);
+router.get("/naver_callback", index.naverCallback);
+
+// 카카오 로그인 콜백
+router.get("/kakao_callback", index.kakaoCallback)
 
 // 회원가입 페이지
 router.get("/signup", index.signup);

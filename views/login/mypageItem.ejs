@@ -9,7 +9,6 @@
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 
     <title>SGT - 상품 등록</title>
-
   </head>
   <body>
     <%-include("../navbar.ejs")%>
@@ -29,69 +28,22 @@
         <div>상품 목록</div>
         <hr />
         <div class="right-sgt-content">
-          <%if(true) {%>
+          <%if(data) {%>
 
           <div class="itemList">
-
             <div class="my-item">
-                <img class="item-img" src="/static/img/logo.png">
-                <div class="item-info">
-                    <div class="item-text">
-                        <h4 class="item-text-name">상품 이름</h4>
-                        <div class="item-text-price">가격</div>
-                        <div class="item-text-category">카테고리</div>
-                        <textarea class="item-text-content">상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 </textarea>
-                    </div>
+              <img class="item-img" src="/static/img/logo.png" />
+              <div class="item-info">
+                <div class="item-text">
+                  <h4 class="item-text-name">상품 이름</h4>
+                  <div class="item-text-price">가격</div>
+                  <div class="item-text-category">카테고리</div>
+                  <div class="item-text-content">상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명</div>
                 </div>
+              </div>
             </div>
-
-            <div class="my-item">
-                <img class="item-img" src="/static/img/logo.png">
-                <div class="item-info">
-                    <div class="beer__text">
-                        <h4 class="beer__text--title">하이트 엑스트라 콜드(hite EXTRA COLD)</h4>
-                        <div class="displayflex">
-                            <p class="beer__text--alchol">도수 : 4.5%</p>
-                            <button class="clickinfo"><i class="fa-solid fa-circle-info fa-xl"></i></button>
-                            <button class="beericon nocolor"><i class="fa-solid fa-beer-mug-empty fa-lg"></i></button>
-                        </div>
-                        <p class="beer__text--infor">하이트 맥주를 리브랜딩 해서 내놓은 맥주. 舊 하이트 맥주다. 90년대에 만년 2등이었던 맥주 시장에서 1위를 차지하게한 맥주</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="my-item">
-                <img class="item-img" src="/static/img/logo.png">
-                <div class="item-info">
-                    <div class="beer__text">
-                        <h4 class="beer__text--title">하이트 엑스트라 콜드(hite EXTRA COLD)</h4>
-                        <div class="displayflex">
-                            <p class="beer__text--alchol">도수 : 4.5%</p>
-                            <button class="clickinfo"><i class="fa-solid fa-circle-info fa-xl"></i></button>
-                            <button class="beericon nocolor"><i class="fa-solid fa-beer-mug-empty fa-lg"></i></button>
-                        </div>
-                        <p class="beer__text--infor">하이트 맥주를 리브랜딩 해서 내놓은 맥주. 舊 하이트 맥주다. 90년대에 만년 2등이었던 맥주 시장에서 1위를 차지하게한 맥주</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="my-item">
-                <img class="item-img" src="/static/img/logo.png">
-                <div class="item-info">
-                    <div class="beer__text">
-                        <h4 class="beer__text--title">하이트 엑스트라 콜드(hite EXTRA COLD)</h4>
-                        <div class="displayflex">
-                            <p class="beer__text--alchol">도수 : 4.5%</p>
-                            <button class="clickinfo"><i class="fa-solid fa-circle-info fa-xl"></i></button>
-                            <button class="beericon nocolor"><i class="fa-solid fa-beer-mug-empty fa-lg"></i></button>
-                        </div>
-                        <p class="beer__text--infor">하이트 맥주를 리브랜딩 해서 내놓은 맥주. 舊 하이트 맥주다. 90년대에 만년 2등이었던 맥주 시장에서 1위를 차지하게한 맥주</p>
-                    </div>
-                </div>
-            </div>
-            
-        </div>
-        <button id="modalOn" class="cursor" onclick="addItem()">상품 등록 하기</button>
+          </div>
+          <button id="noModalOn" class="cursor" onclick="addItem()">상품 등록 하기</button>
           <%} else {%>
           <div class="no-item">
             <div>등록한 상품이 없습니다.</div>
@@ -104,7 +56,7 @@
             </div>
             <input type="file" name="img" class="img" accept="image/png, image/jpeg" />
             <input type="text" placeholder="상품 이름" name="title" class="title" />
-            <input type="text" placeholder="가격" name="price" class="price" />
+            <input type="number" placeholder="가격" name="price" class="price" />
             <select class="category">
               <option value="life">생활/가전</option>
               <option value="electro">전자제품</option>
@@ -118,7 +70,7 @@
             <textarea placeholder="상품 설명" name="content" class="content"></textarea>
             <div class="itemAdd">
               <button type="button" class="addItemBtn cursor" onclick="modalAddItem()">상품 등록</button>
-              <div class="modalClose cursor">닫기</div>
+              <div class="modalClose cursor" onclick="modalClose();">닫기</div>
             </div>
           </form>
 
@@ -136,12 +88,18 @@
       //     modal.attributes0("display","flex");
       //   }
 
-      function addItem() {
-        var zIndex = 9999;
-        var modal = document.querySelector(".myModal");
+      var modal = document.querySelector(".myModal");
+      var bg = document.createElement("div");
+      var zIndex = 9999;
 
+      function modalClose() {
+        bg.remove();
+        modal.reset();
+        modal.style.display = "none";
+      }
+
+      function addItem() {
         // 모달 div 뒤에 희끄무레한 레이어
-        var bg = document.createElement("div");
         bg.setStyle({
           position: "fixed",
           zIndex: zIndex,
@@ -156,6 +114,7 @@
         document.body.append(bg);
 
         // 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
+
         modal.querySelector(".modalClose").addEventListener("click", function () {
           bg.remove();
           modal.reset();
@@ -195,6 +154,8 @@
         const category = document.querySelector(".category");
         const formData = new FormData();
         const file = document.querySelector(".img");
+        
+        formData.append(".img", file.files[0]);
 
         var data = {
           //등록한 사람 아이디
@@ -208,74 +169,34 @@
           content: form.content.value,
         };
         axios({
+          // headers: {
+          //   "Content-Type": "multipart/form-data",
+          // },
           url: "/api/product",
           method: "post",
           data: data,
+          formData,
         }).then((response) => {
-          console.log(response);
-        });
-      }
-
-      function renderPagination(currentPage) {
-        if (_totalCount <= 9) return;
-
-        var totalPage = Math.ceil(_totalCount / 9);
-        var pageGroup = Math.ceil(currentPage / 5);
-
-        var last = pageGroup * 10;
-        if (last > totalPage) last = totalPage;
-        var first = last - (10 - 1) <= 0 ? 1 : last - (10 - 1);
-        var next = last + 1;
-        var prev = first - 1;
-
-        const fragmentPage = document.createDocumentFragment();
-        if (prev > 0) {
-          var allpreli = document.createElement("li");
-          allpreli.insertAdjacentHTML("beforeend", `<a href='#js-bottom' id='allprev'>&lt;&lt;</a>`);
-
-          var preli = document.createElement("li");
-          preli.insertAdjacentHTML("beforeend", `<a href='#js-bottom' id='prev'>&lt;</a>`);
-
-          fragmentPage.appendChild(allpreli);
-          fragmentPage.appendChild(preli);
-        }
-
-        for (var i = first; i <= last; i++) {
-          const li = document.createElement("li");
-          li.insertAdjacentHTML("beforeend", `<a href='#js-bottom' id='page-${i}' data-num='${i}'>${i}</a>`);
-          fragmentPage.appendChild(li);
-        }
-
-        if (last < totalPage) {
-          var allendli = document.createElement("li");
-          allendli.insertAdjacentHTML("beforeend", `<a href='#js-bottom'  id='allnext'>&gt;&gt;</a>`);
-
-          var endli = document.createElement("li");
-          endli.insertAdjacentHTML("beforeend", `<a  href='#js-program-detail-bottom'  id='next'>&gt;</a>`);
-
-          fragmentPage.appendChild(endli);
-          fragmentPage.appendChild(allendli);
-        }
-
-        document.getElementById("js-pagination").appendChild(fragmentPage);
-        // 페이지 목록 생성
-
-        $(`#js-pagination a`).removeClass("active");
-        $(`#js-pagination a#page-${currentPage}`).addClass("active");
-
-        $("#js-pagination a").click(function (e) {
-          e.preventDefault();
-          var $item = $(this);
-          var $id = $item.attr("id");
-          var selectedPage = $item.text();
-
-          if ($id == "next") selectedPage = next;
-          if ($id == "prev") selectedPage = prev;
-          if ($id == "allprev") selectedPage = 1;
-          if ($id == "allnext") selectedPage = totalPage;
-
-          list.renderPagination(selectedPage); //페이지네이션 그리는 함수
-          list.search(selectedPage); //페이지 그리는 함수
+          if (response) {
+            var itemList = document.querySelector(".itemList");
+            $(itemList).append(`
+            <div class="my-item">
+              <img class="item-img" src="${data.img}" />
+              <div class="item-info">
+                <div class="item-text">
+                  <h4 class="item-text-name">${data.title}</h4>
+                  <div class="item-text-price">${data.price}</div>
+                  <div class="item-text-category">${data.category}</div>
+                  <div class="item-text-content">${data.content}</div>
+                </div>
+              </div>
+            </div>
+            `);
+            console.log(data.img);
+            modalClose();
+          } else {
+            alert("상품 등록 실패");
+          }
         });
       }
     </script>

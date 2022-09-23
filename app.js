@@ -31,8 +31,14 @@ app.get("/mypage", (req, res) => {
   const data = [
     
   ]
-  res.render("./login/mypageItem", data);
+
+  var result = true;
+  res.render("./login/mypageItem", {data:result});
 });
+
+app.get("/test", (req,res)=>{
+  res.render("test");
+})
 
 app.use(express.static("static"));
 
