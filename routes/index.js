@@ -1,31 +1,26 @@
 const express = require("express");
-const index = require("../controller/Cindex");
+const main = require("../controller/Cindex");
+const socket = require("../controller/CSocket");
+const uesr = require("../controller/CUser");
+const product = require("../controller/CProduct");
 const router = express.Router();
 
-router.get("/", index.main);
+router.get("/", main.main);
 
 // 로그인 페이지
-router.get("/login", index.login);
-router.post("/api/login", index.login_check);
-
+router.get("/login", uesr.login);
 // 네이버 로그인 콜백
-router.get("/naver_callback", index.naverCallback);
+router.get("/naver_callback", main.naverCallback);
 
 // 카카오 로그인 콜백
-router.get("/kakao_callback", index.kakaoCallback)
+router.get("/kakao_callback", main.kakaoCallback)
 
 // 회원가입 페이지
-router.get("/signup", index.signup);
-// 유저 생성
-router.post("/api/signup", index.signup_create);
-router.post("/api/signup/idcheck", index.signup_id_check);
+router.get("/signup", uesr.signup);
 
 // 상품 생성
-router.post("/api/product", index.product_create);
-
+router.get("/product", product.product);
 // 소캣
-router.post("/socket", index.socket);
-// 소캣 룸 생성
-router.post("/api/socket", index.socket_create);
+router.get("/socket", socket.socket);
 
 module.exports = router;

@@ -4,14 +4,15 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="/static/css/login.css" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+    <%-include("../link.ejs")%>
+    <link href="/static/css/user/login.css" rel="stylesheet" />
     <title>SGT - 로그인</title>
   </head>
   <body>
-    <%-include("../navbar.ejs")%>
+    <%-include("../main/navbar.ejs")%>
 
     <div class="wrapper">
       <div class="login">
@@ -28,78 +29,26 @@
         <div class="button">
           <button type="button" class="login-button" onclick="NormalLogin()">로그인</button>
           <button type="button" class="signup-button" onclick="Singup()">회원가입</button>
-          <a href="javascript:kakaoLogin();"><img src="/static/img/web-long.png" alt="카카오계정 로그인" style="height: 49px" /></a>
+          <a href="javascript:kakaoLogin();"><img src="/static/img/web-long.png" alt="카카오계정 로그인" style="width:340px; height: 49px" /></a>
           <div id="naver_id_login"></div>
           <!--네이버 로그인-->
         </div>
       </form>
     </div>
 
+    <script src="/static/js/user/login.js"></script>
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-
+    <script type="text/javascript">
+      var naver_id_login = new naver_id_login("RgAJTyB9QRvqTCV77uKZ", "http://localhost:8000/naver_callback");
+      var state = naver_id_login.getUniqState();
+      naver_id_login.setButton("green", 3, 73);
+      naver_id_login.setDomain(".service.com");
+      naver_id_login.setState(state);
+      // naver_id_login.setPopup();
+      naver_id_login.init_naver_id_login();
+      // <!-- 네이버아디디로로그인 초기화 Script -->
+    </script>
     <script>
-      $(document).ready(function () {
-        $(".id-input").focus();
-      });
-
-      function NormalLogin() {
-        var form = document.querySelector("form");
-        const id_input = document.getElementById("id").value;
-        const pw_input = document.getElementById("pw").value;
-        var data = {
-          id: form.id.value,
-          pw: form.pw.value,
-        };
-
-        axios({
-          url: "/api/login",
-          method: "post",
-          data: data,
-        }).then((response) => {
-          if (response.data) {
-            window.location.href = "/main";
-          } else {
-            alert("로그인 실패");
-          }
-
-          /*
-          if (id_input == "" || pw_input == "") {
-          alert("아이디 또는 비밀번호를 입력해주세요.");
-        } else {
-          window.location = "/";
-        }
-        */
-        });
-      }
-
-      function Singup() {
-        // console.log("회원가입 페이지로 이동");
-        window.location.href = "http://localhost:8000/signup";
-      }
-
-      /*
-      window.Kakao.init("6bdae09f2a7d64b16126787989a4ae52");
-      function KakaoLogin() {
-        //카카오 로그인 버튼 구현
-        window.Kakao.Auth.login({
-          scope: "	profile_nickname, account_email, gender",
-          success: function (authObj) {
-            // console.log(authObj);
-            window.Kakao.API.request({
-              url: "/v2/user/me",
-              success: (res) => {
-                const kakao_account = res.kakao_account;
-                // console.log(kakao_account);
-                console.log(kakao_account.email);
-                console.log(kakao_account.profile.nickname);
-                // window.location.href= "http://localhost:8000/kakao_callback"
-              },
-            });
-          },
-        });
-      }
-      */
-
       window.Kakao.init("6bdae09f2a7d64b16126787989a4ae52");
       function kakaoLogin() {
         window.Kakao.Auth.login({
@@ -123,16 +72,5 @@
         });
       }
     </script>
-    <!-- 네이버아디디로로그인 초기화 Script -->
-    <script type="text/javascript">
-      var naver_id_login = new naver_id_login("RgAJTyB9QRvqTCV77uKZ", "http://localhost:8000/naver_callback");
-      var state = naver_id_login.getUniqState();
-      naver_id_login.setButton("green", 3, 49);
-      naver_id_login.setDomain(".service.com");
-      naver_id_login.setState(state);
-      // naver_id_login.setPopup();
-      naver_id_login.init_naver_id_login();
-    </script>
-    <!-- // 네이버 로그인 초기화 Script -->
   </body>
 </html>
