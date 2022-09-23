@@ -14,7 +14,7 @@ exports.product_create = (req, res) => {
   const data = {
     user_id: req.body.user_id,
     title: req.body.title,
-    img: req.body.img,
+    img: "/uploads" + req.body.img,
     adult: req.body.adult,
     price: req.body.price,
     position: req.body.position,
