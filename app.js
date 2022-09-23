@@ -11,6 +11,7 @@ moment.tz.setDefault("Asia/Seoul");
 app.set("view engine", "ejs");
 app.use(express.static("apidoc"));
 app.use("/static", express.static(__dirname + "/static"));
+app.use("/uploads", express.static(__dirname + "/uploads"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
