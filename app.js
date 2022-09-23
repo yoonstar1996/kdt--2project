@@ -45,9 +45,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/mypage", (req, res) => {
-  const data = [
-    
-  ]
+  const data = [];
   res.render("./login/mypageItem", data);
 });
 
@@ -63,6 +61,10 @@ app.get("/main", (req, res) => {
 
 app.get("/product", (req, res) => {
   res.render("product");
+});
+
+app.get("/categories", (req, res) => {
+  res.render("categories");
 });
 
 // 서버 오픈 명령어
