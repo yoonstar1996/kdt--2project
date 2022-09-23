@@ -21,3 +21,10 @@ exports.naverCallback = (req, res) => {
 exports.kakaoCallback = (req, res) => {
   res.render("./login/kakao_callback");
 };
+
+exports.mypage = (req, res) => {
+  const data = [];
+
+  let result = true;
+  res.render("./login/mypageItem",{data: result});
+};

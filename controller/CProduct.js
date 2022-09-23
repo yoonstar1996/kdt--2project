@@ -11,6 +11,8 @@ exports.product = (req, res) => {
 
 // 상품 생성
 exports.product_create = (req, res) => {
+
+  console.log("aaa");
   const data = {
     user_id: req.body.user_id,
     title: req.body.title,

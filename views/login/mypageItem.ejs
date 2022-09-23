@@ -7,11 +7,12 @@
     <link href="/static/css/mypage-item.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <%-include("../link.ejs")%>
 
     <title>SGT - 상품 등록</title>
   </head>
   <body>
-    <%-include("../navbar.ejs")%>
+    <%-include("../main/navbar.ejs")%>
 
     <div class="wrapper">
       <div class="left-sgt">
@@ -54,7 +55,7 @@
             <div>
               <div class="addTitle">상품 등록</div>
             </div>
-            <input type="file" name="img" class="img" accept="image/png, image/jpeg" />
+            <input type="file" id="img" name="img" class="img" accept="image/png, image/jpeg" />
             <input type="text" placeholder="상품 이름" name="title" class="title" />
             <input type="number" placeholder="가격" name="price" class="price" />
             <select class="category">
@@ -155,39 +156,34 @@
         const formData = new FormData();
         const file = document.querySelector(".img");
         
-        formData.append(".img", file.files[0]);
+        formData.append("user_id", "1234");
+        formData.append("title",  form.title.value);
+        formData.append("img", file.files[0]);
+        formData.append("adult",true);
+        formData.append("price", form.price.value);
+        formData.append("position", '마포구');
+        formData.append("category", category.value);
+        formData.append("content", form.content.value);
 
-        var data = {
-          //등록한 사람 아이디
-          user_id: "1234",
-          title: form.title.value,
-          img: form.img.value,
-          adult: true,
-          price: form.price.value,
-          position: "마포구",
-          category: category.value,
-          content: form.content.value,
-        };
         axios({
-          // headers: {
-          //   "Content-Type": "multipart/form-data",
-          // },
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
           url: "/api/product",
           method: "post",
-          data: data,
-          formData,
+          data: formData,
         }).then((response) => {
           if (response) {
             var itemList = document.querySelector(".itemList");
             $(itemList).append(`
             <div class="my-item">
-              <img class="item-img" src="${data.img}" />
+              <img class="item-img" src="${formData.img}" />
               <div class="item-info">
                 <div class="item-text">
-                  <h4 class="item-text-name">${data.title}</h4>
-                  <div class="item-text-price">${data.price}</div>
-                  <div class="item-text-category">${data.category}</div>
-                  <div class="item-text-content">${data.content}</div>
+                  <h4 class="item-text-name">${formData.title}</h4>
+                  <div class="item-text-price">${formData.price}</div>
+                  <div class="item-text-category">${formData.category}</div>
+                  <div class="item-text-content">${formData.content}</div>
                 </div>
               </div>
             </div>
