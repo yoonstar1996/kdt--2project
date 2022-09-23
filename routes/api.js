@@ -5,18 +5,14 @@ const uesr = require("../controller/CUser");
 const product = require("../controller/CProduct");
 const router = express.Router();
 
-router.get("/", main.main);
-
 // 로그인 페이지
-router.get("/login", uesr.login);
-// 네이버 로그인 콜백
-router.get("/callback", uesr.callback);
-// 회원가입 페이지
-router.get("/signup", uesr.signup);
-
+router.post("/login", uesr.login_check);
+// 유저 생성
+router.post("/signup", uesr.signup_create);
+router.post("/signup/idcheck", uesr.signup_id_check);
 // 상품 생성
-router.get("/product", product.product);
-// 소캣
-router.get("/socket", socket.socket);
+router.post("/product", product.product_create);
+// 소캣 룸 생성
+router.post("/socket", socket.socket_create);
 
 module.exports = router;
