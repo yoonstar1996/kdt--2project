@@ -9,93 +9,95 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"
     />
+    <%-include("../link.ejs")%>
     <link rel="stylesheet" href="/static/css/socket/socket.css" />
-    <link rel="stylesheet" href="/static/css/socket/socket2.css" />
   </head>
   <body>
-    <div class="container">
-      <header>
-        <nav class="navbar navbar-light bg-light">
-          <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-              <img
-                src="/docs/5.1/assets/brand/bootstrap-logo.svg"
-                alt=""
-                width="30"
-                height="24"
-                class="d-inline-block align-text-top"
-              />
-              로고명
-            </a>
-            <input
-              id="ibjangmsg"
-              type="text"
-              placeholder="내용을 입력하세요."
-            /><button onclick="myOnClick()">전송</button>
-            <div class="dropdown">
-              <button
-                class="btn btn-secondary dropdown-toggle"
-                type="button"
-                id="dropdownMenuButton1"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                아이디
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="#">로그아웃</a></li>
-              </ul>
+    <div class="box">
+      <div class="container">
+        <header>
+          <nav class="navbar navbar-light bg-light">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">
+                <img
+                  src="/docs/5.1/assets/brand/bootstrap-logo.svg"
+                  alt=""
+                  width="30"
+                  height="24"
+                  class="d-inline-block align-text-top"
+                />
+                로고명
+              </a>
+              <input
+                id="ibjangmsg"
+                type="text"
+                placeholder="내용을 입력하세요."
+              /><button onclick="myOnClick()">전송</button>
+              <div class="dropdown">
+                <button
+                  class="btn btn-secondary dropdown-toggle"
+                  type="button"
+                  id="dropdownMenuButton1"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  아이디
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li><a class="dropdown-item" href="#">로그아웃</a></li>
+                </ul>
+              </div>
             </div>
-          </div>
-        </nav>
-      </header>
-      <section class="content">
-        <nav>
-          <ul class="area">
-            <li class="item">
-              <div class="imgbox">
-                <img src="/static/img/coffee.jpeg" alt="" />
-              </div>
-              <div class="roomniccon">
-                <div class="roomnickname">닉네임</div>
-                <div class="roomcontents">asdaa dsfsd fdslkjf sdfjkldsj</div>
-              </div>
-              <div class="roomtimenoti">
-                <div class="roomtime">02:53</div>
-                <div class="roomnotice">
-                  <div class="notibox">1</div>
+          </nav>
+        </header>
+        <section class="content">
+          <nav>
+            <ul class="area">
+              <li class="item">
+                <div class="imgbox">
+                  <img src="/static/img/coffee.jpeg" alt="" />
                 </div>
-              </div>
-            </li>
-          </ul>
-        </nav>
-        <main>
-          <div id="jb-content">
-            <div class="chat_wrap">
-              <div class="innertext">
-                <div class="myfirstbox">
-                  <span class="myfirstboxtime">02:53</span>
-                  <div>안녕</div>
+                <div class="roomniccon">
+                  <div class="roomnickname">닉네임</div>
+                  <div class="roomcontents">asdaa dsfsd fdslkjf sdfjkldsj</div>
                 </div>
+                <div class="roomtimenoti">
+                  <div class="roomtime">02:53</div>
+                  <div class="roomnotice">
+                    <div class="notibox">1</div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </nav>
+          <main>
+            <div id="jb-content">
+              <div class="chat_wrap">
+                <div class="innertext">
+                  <div class="myfirstbox">
+                    <span class="myfirstboxtime">02:53</span>
+                    <div>안녕</div>
+                  </div>
 
-                <div class="yousecondbox">
-                  <div>안녕</div>
-                  <span class="yousecondboxtime">02:53</span>
+                  <div class="yousecondbox">
+                    <div>안녕</div>
+                    <span class="yousecondboxtime">02:53</span>
+                  </div>
+                </div>
+              </div>
+              <div class="sendsub">
+                <div id="jb-sendinputBtn">
+                  <input
+                    id="msg"
+                    type="text"
+                    placeholder="내용을 입력하세요."
+                  /><button onclick="sendOnClick()">전송</button>
                 </div>
               </div>
             </div>
-            <div class="sendsub">
-              <div id="jb-sendinputBtn">
-                <input
-                  id="msg"
-                  type="text"
-                  placeholder="내용을 입력하세요."
-                /><button onclick="sendOnClick()">전송</button>
-              </div>
-            </div>
-          </div>
-        </main>
-      </section>
+          </main>
+        </section>
+      </div>
     </div>
     <script src="/static/js/socket/socket.js"></script>
   </body>
