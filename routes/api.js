@@ -18,9 +18,25 @@ const upload = multer({
     },
     filename(req, file, done) {
       const ext = path.extname(file.originalname);
-      //   done(null, req.body.id + ext);
-      var time = new Date()
-      done(null, file.originalname + time + ext);
+      const time = new Date();
+      done(
+        null,
+        time.getFullYear() +
+          "_" +
+          time.getMonth() +
+          "_" +
+          time.getDate() +
+          "_" +
+          time.getHours() +
+          "_" +
+          time.getMinutes() +
+          "_" +
+          time.getSeconds() +
+          "_" +
+          time.getMilliseconds() +
+          ext
+      );
+      // done(null, file.originalname);
     },
   }),
   limits: { fileSize: 5 * 1024 * 1024 },
@@ -33,7 +49,7 @@ router.post("/signup", uesr.signup_create);
 router.post("/signup/idcheck", uesr.signup_id_check);
 
 // 상품 생성
-router.post("/product",upload.single("img"), product.product_create);
+router.post("/product", upload.single("img"), product.product_create);
 // 소캣 룸 생성
 router.post("/socket", socket.socket_create);
 

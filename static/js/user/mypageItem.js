@@ -2,6 +2,17 @@ var modal = document.querySelector(".myModal");
 var bg = document.createElement("div");
 var zIndex = 9999;
 
+const categories = {
+  life : '생활/가전',
+  electro :'전자제품',
+  fashion :'패션/의류',
+  interior :'가구/인테리어',
+  book :'도서/음반/티켓',
+  food :'식품/잡화',
+  pet :'반려동물'
+}
+
+
 function modalClose() {
   bg.remove();
   modal.reset();
@@ -65,7 +76,7 @@ function modalAddItem() {
   const formData = new FormData();
   const file = document.querySelector(".img");
 
-  formData.append("user_id", "1234");
+  formData.append("user_id", "dyun");
   formData.append("category_id", category.value);
   formData.append("title", form.title.value);
   formData.append("img", file.files[0]);
@@ -87,12 +98,12 @@ function modalAddItem() {
       var itemList = document.querySelector(".itemList");
       $(itemList).append(`
       <div class="my-item">
-        <img class="item-img" src="/uploads/${response.data.img}">
+        <img class="item-img" src="${response.data.img}">
         <div class="item-info">
           <div class="item-text">
             <h4 class="item-text-name">${response.data.title}</h4>
             <div class="item-text-price">${response.data.price}</div>
-            <div class="item-text-category">${response.data.category_id}</div>
+            <div class="item-text-category">${categories[response.data.category_id]}</div>
             <div class="item-text-content">${response.data.content}</div>
           </div>
         </div>

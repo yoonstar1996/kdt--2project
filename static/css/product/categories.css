@@ -1,0 +1,141 @@
+/* 셀렉트 박스 css 시작*/
+.all-body {
+  max-width: 70%;
+  margin: auto;
+}
+
+.search_nav {
+  width: 100%;
+}
+.navi-select {
+  right: 0;
+  font-size: 12px;
+  border: 1px solid #999;
+  font-family: inherit;
+  border-radius: 0px;
+  text-align: center;
+  /* 화살표 가리는법 */
+  /* background: url("/static/img/arrowimg.jpg") no-repeat 100% 50%; */
+  /* -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none; */
+}
+.navi-select::-ms-expand {
+  display: none;
+}
+
+/* 상단 서치 네브바 홈버튼 */
+.search_nav .home {
+  display: inline-block;
+  vertical-align: middle;
+  width: 20px;
+  height: 34px;
+  overflow: hidden;
+  text-indent: -999px;
+  background: url(/static/img/icon_navi_home.png) 50% 50% no-repeat;
+}
+
+/* 상단 서치 네브바 화살표버튼(우측방향) */
+.search_nav .navi_linemap:before {
+  display: inline-block;
+  content: "";
+  width: 14px;
+  height: 32px;
+  margin-right: 2px;
+  vertical-align: top;
+  background: url(/static/img/icon_navi_linemap.png) 50% 50% no-repeat;
+}
+
+/* 상단 정렬네브바 css 시작 */
+.onestnavsort {
+  display: flex;
+  justify-content: space-between;
+}
+
+.twostnavsort {
+  display: flex;
+}
+
+.threestnavsort {
+  display: flex;
+}
+
+.sortnav {
+  float: left;
+  height: 100%;
+  padding: 0 10px;
+  line-height: 1.5;
+  border-left: 1px solid #eee;
+}
+
+.sortnav a {
+  text-decoration: none;
+  color: #555;
+}
+
+/* 상단 정렬네브바 css 끝 */
+
+/* 셀렉트 박스 css 끝*/
+
+/* 페이지네이션 css 시작 */
+
+.paginationjs {
+  float: right;
+  position: relative;
+  left: -50%;
+}
+
+.paginationjs li {
+  float: left;
+  position: relative;
+  left: 50%;
+  border: 1px solid red;
+}
+/* 페이지네이션 css 끝 */
+
+.hero-header {
+  height: 450px;
+  background-image: url(https://i0.wp.com/osiswing.com/wp-content/uploads/2021/02/4876507.jpg?resize=1536%2C1024&ssl=1);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.product-list {
+  width: 735px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.products h3 {
+  font-size: 24px;
+  color: #545454;
+  margin-top: 60px;
+  margin-bottom: 60px;
+  text-align: center;
+}
+
+.product {
+  display: block;
+  width: 225px;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+  float: left;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 30px;
+}
+
+.product-name {
+  margin-top: 20px;
+  margin-bottom: 4px;
+}
+
+.clearfix {
+  clear: both;
+}
+
+.g-4,
+.gy-4 {
+  --bs-gutter-y: 0rem !important;
+}

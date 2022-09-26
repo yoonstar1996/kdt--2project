@@ -3,8 +3,6 @@ const main = require("../controller/Cindex");
 const socket = require("../controller/CSocket");
 const uesr = require("../controller/CUser");
 const product = require("../controller/CProduct");
-const multer = require("multer");
-const path = require("path");
 const router = express.Router();
 
 router.get("/", main.main);
@@ -21,7 +19,10 @@ router.post("/kakao_callback", main.kakaoCallback);
 router.get("/signup", uesr.signup);
 
 // 상품 생성
-router.get("/product",  product.product);
+router.get("/product/:id", product.product);
+// 카테고리별 상품
+router.get("/categories/:id", product.categories);
+
 // 소캣
 router.get("/socket", socket.socket);
 
