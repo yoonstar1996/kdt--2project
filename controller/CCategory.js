@@ -1,7 +1,7 @@
-const { Product } = require("../model");
+const { Category } = require("../model");
 
-exports.product = (req, res) => {
-  Product.findOne({
+exports.category = (req, res) => {
+  Category.findOne({
     id: req.query,
   }).then((result) => {
     const data = result;
