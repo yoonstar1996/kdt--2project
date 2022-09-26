@@ -51,25 +51,37 @@
         <a class="home" href="/">홈</a>
         <span class="navi_linemap">
           <select name="navi_0" class="navi-select">
-            <option value="0001" data-value="all">&nbsp;전체상품&nbsp;</option>
-            <option value="0015">&nbsp;생활/가전&nbsp;</option>
-            <option value="0016" selected="" data-value="elec">&nbsp;전자제품&nbsp;</option>
-            <option value="0012">&nbsp;가구/인테리어&nbsp;</option>
-            <option value="0011">&nbsp;도서/음반/티켓&nbsp;</option>
-            <option value="0014">&nbsp;식품/잡화&nbsp;</option>
-            <option value="0013">&nbsp;반려동물&nbsp;</option>
-            <option value="0006">&nbsp;스포츠/레저&nbsp;</option>
-            <option value="0017">&nbsp;자동차용품&nbsp;</option>
-            <option value="0018">&nbsp;생활용품&nbsp;</option>
+            <option class="filter-item active" value="all" selected="">
+              &nbsp;전체상품&nbsp;
+            </option>
+            <option class="filter-item" value="lifeelec">
+              &nbsp;생활/가전&nbsp;
+            </option>
+            <option class="filter-item" value="elec">
+              &nbsp;전자제품&nbsp;
+            </option>
+            <option class="filter-item" value="">
+              &nbsp;가구/인테리어&nbsp;
+            </option>
+            <option class="filter-item" value="">
+              &nbsp;도서/음반/티켓&nbsp;
+            </option>
+            <option class="filter-item" value="">&nbsp;식품/잡화&nbsp;</option>
+            <option class="filter-item" value="">&nbsp;반려동물&nbsp;</option>
+            <option class="filter-item" value="">
+              &nbsp;스포츠/레저&nbsp;
+            </option>
+            <option class="filter-item" value="">&nbsp;자동차용품&nbsp;</option>
+            <option class="filter-item" value="">&nbsp;생활용품&nbsp;</option>
           </select>
         </span>
         <span class="navi_linemap">
           <select name="navi_1" class="navi-select">
-            <option value="0012" selected="">&nbsp;선택&nbsp;</option>
-            <option value="00120001">&nbsp;노트북&nbsp;</option>
-            <option value="00120002">&nbsp;모니터&nbsp;</option>
-            <option value="00120003">&nbsp;저장장치&nbsp;</option>
-            <option value="00120004">&nbsp;스마트폰&nbsp;</option>
+            <option value="" selected="">&nbsp;선택&nbsp;</option>
+            <option value="">&nbsp;노트북&nbsp;</option>
+            <option value="">&nbsp;모니터&nbsp;</option>
+            <option value="">&nbsp;저장장치&nbsp;</option>
+            <option value="">&nbsp;스마트폰&nbsp;</option>
           </select>
         </span>
       </div>
@@ -242,19 +254,44 @@
       <div class="hero-header"></div>
       <div class="products">
         <h3>새로운 중고물품</h3>
-      <a href="#" class="products"></a>
+        <div>
+          <div class="pagenation-container">
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+              <% for(var i =0; i < data.length; i++) {%>
+
+              <div class="col">
+                <div class="card h-100">
+                  <img src="<%=data[i].img%>" class="card-img-top" alt="..." />
+                  <div class="card-body">
+                    <h5 class="card-title"><%=data[i].title%></h5>
+                    <p class="card-text"><%=data[i].user_id%></p>
+                    <p class="card-text"><%=data[i].content%></p>
+                    <p class="card-text"><%=data[i].position%></p>
+                    <p class="card-text"><%=data[i].price%></p>
+                    <p class="card-text"><%=data[i].category_id%></p>
+                  </div>
+                </div>
+              </div>
+
+              <% } %>
+            </div>
+          </div>
+        </div>
+
+        <a href="#" class="products"></a>
       <div class="pagenation-container">
           <div
             class="row row-cols-3 row-cols-md-3 g-4"
             id="data-container"
-          ></div>
+          >
+        </div>
       </div>
     </a>
-      <br />
-      <div id="pagination"></div>
-      <br />
-      <br />
-    </div>
+        <br />
+        <div id="pagination"></div>
+        <br />
+        <br />
+      </div>
     </div>
     <!-- 페이지네이션 기능 끝 -->
 
