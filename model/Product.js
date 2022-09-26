@@ -13,7 +13,7 @@ const Product = (Sequelize, DataTypes) => {
         allowNull: false,
       },
       category_id: {
-        type: DataTypes.STRING(20),
+        type: DataTypes.STRING(30),
         allowNull: false,
       },
       title: {
@@ -33,6 +33,10 @@ const Product = (Sequelize, DataTypes) => {
         allowNull: false,
       },
       position: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+      },
+      content: {
         type: DataTypes.TEXT,
         allowNull: false,
       },
