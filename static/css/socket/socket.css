@@ -1,0 +1,229 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  border-bottom: 1px solid gray;
+}
+
+header {
+  border-bottom: 1px solid gray;
+  border-right: 1px solid gray;
+  border-left: 1px solid gray;
+  border-top: 1px solid gray;
+}
+
+.content {
+  display: flex;
+  flex-grow: 1;
+}
+
+.content nav {
+  border-right: 1px solid gray;
+  border-left: 1px solid gray;
+  border-bottom: 1px solid gray;
+}
+
+nav {
+  flex-basis: 250px;
+  flex-shrink: 0;
+}
+
+main {
+  /* padding: 10px; */
+  border-right: 1px solid gray;
+  flex-basis: 100%;
+  display: flex;
+  flex-grow: 1;
+}
+
+/* 채팅칸 */
+#jb-content {
+  /* border: 1px solid #bcbcbc; */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 채팅방 하단 전송 인풋,버튼 css */
+#jb-sendinputBtn {
+  text-align: center;
+  display: flex;
+  height: 100px;
+}
+
+#jb-sendinputBtn input {
+  width: 100%;
+}
+
+.chat_wrap {
+  overflow-y: auto;
+  /* display: flex; */
+  flex-grow: 1;
+}
+
+.myfirstbox {
+  text-align: right;
+  margin-top: 7px;
+  font-size: 13px;
+  padding: 10px;
+  word-break: break-all;
+}
+
+.myfirstboxtime {
+  text-align: right;
+  margin-top: 7px;
+  font-size: 10px;
+  padding: 10px;
+  word-break: break-all;
+}
+
+.myfirstbox > div {
+  display: inline-block;
+  background-color: yellow;
+  padding: 8px;
+  border-radius: 10px;
+  color: rgb(107, 104, 104);
+}
+
+.yousecondbox {
+  text-align: left;
+  padding: 10px;
+  margin-top: 7px;
+  font-size: 13px;
+  word-break: break-all;
+}
+
+.yousecondboxtime {
+  text-align: left;
+  margin-top: 7px;
+  font-size: 10px;
+  padding: 10px;
+  word-break: break-all;
+}
+
+.yousecondbox > div {
+  display: inline-block;
+  background-color: rgb(114, 113, 113);
+  padding: 8px;
+  border-radius: 10px;
+  color: white;
+}
+
+.notice {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.outnotice {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.nowtime {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.sidebarLi2 {
+  text-align: center;
+  padding-left: 0rem;
+}
+
+.sendsub {
+  bottom: 0px;
+  opacity: 0.8;
+  width: 100%;
+}
+
+/* .chatlistStyle {
+          padding-left: 0rem;
+          text-align: center;
+      } */
+
+/* 채팅방 목록 css 시작 */
+.area {
+  list-style: none;
+  /* background-color: #1565c0; */
+  border-bottom: 1px solid gray;
+  padding-left: 0rem;
+  text-align: center;
+  cursor: pointer;
+}
+
+.item {
+  display: flex;
+  color: #fff;
+  /* text-align: center; */
+  overflow: hidden;
+  justify-content: space-between;
+}
+
+.imgbox {
+  display: flex;
+  width: 30%;
+  height: 70px;
+}
+
+.imgbox img {
+  width: 100%;
+}
+
+/* 닉네임 내용 묶음 */
+.roomniccon {
+  flex-grow: 1;
+  overflow-x: hidden;
+  background-color: white;
+  /* margin: auto; */
+}
+
+.roomnickname {
+  line-height: 35px;
+  color: gray;
+  font-size: medium;
+  font-weight: 700;
+}
+
+.roomcontents {
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-break: break-all;
+  line-height: 35px;
+  color: gray;
+  font-size: small;
+  margin-left: 10px;
+}
+
+/* 시간 타임 묶음 */
+.roomtimenoti {
+  display: flex;
+  background-color: white;
+  width: 40%;
+  align-items: center;
+}
+
+.roomtime {
+  flex-grow: 1;
+  text-align: center;
+  color: gray;
+}
+
+.roomnotice {
+  flex-grow: 1;
+  text-align: center;
+  display: flex;
+}
+
+.notibox {
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  border-radius: 20px;
+  background-color: #eb8d00;
+  margin: auto;
+}
+
+/* 채팅방 목록 css 끝 */

@@ -1,12 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>메인페이지</title>
+    <meta charset="utf-8" />
+    <title>SGT market</title>
+    <script
+      src="https://kit.fontawesome.com/a766c546f2.js"
+      crossorigin="anonymous"
+    ></script>
+    <%-include("link.ejs")%>
+    <link rel="stylesheet" href="/static/css/main/main.css" />
   </head>
   <body>
-    <span> Hello! Main Page </span>
+    <%-include("main/navbar.ejs")%>
+    <div class="all-space">
+      <div class="new">
+        <div class="new1">새로 올라왔어요</div>
+        <br />
+        <div class="new-box">
+          <div class="new-box1"></div>
+          <div class="new-box2"></div>
+          <div class="new-box3"></div>
+          <div class="new-box4"></div>
+        </div>
+      </div>
+      <br />
+      <br />
+      <div class="attention">
+        <div class="attention1">인기 상품</div>
+        <br />
+        <div class="att-box">
+          <div class="att-box1"></div>
+          <div class="att-box2"></div>
+          <div class="att-box3"></div>
+          <div class="att-box4"></div>
+        </div>
+      </div>
+    </div>
+    <br />
+    <br />
+    <%-include("main/footer.ejs")%>
   </body>
 </html>
