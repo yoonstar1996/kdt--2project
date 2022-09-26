@@ -3,15 +3,14 @@ var bg = document.createElement("div");
 var zIndex = 9999;
 
 const categories = {
-  life : '생활/가전',
-  electro :'전자제품',
-  fashion :'패션/의류',
-  interior :'가구/인테리어',
-  book :'도서/음반/티켓',
-  food :'식품/잡화',
-  pet :'반려동물'
-}
-
+  life: "생활/가전",
+  electro: "전자제품",
+  fashion: "패션/의류",
+  interior: "가구/인테리어",
+  book: "도서/음반/티켓",
+  food: "식품/잡화",
+  pet: "반려동물",
+};
 
 function modalClose() {
   bg.remove();
@@ -65,11 +64,6 @@ Element.prototype.setStyle = function (styles) {
   return this;
 };
 
-//   document.getElementById("modalOn").addEventListener("click", function () {
-//     // 모달창 띄우기
-//     modal("my_modal");
-//   });
-
 function modalAddItem() {
   const form = document.querySelector(".myModal");
   const category = document.querySelector(".category");
@@ -94,7 +88,7 @@ function modalAddItem() {
     data: formData,
   }).then((response) => {
     if (response) {
-      console.log(response);
+      // console.log(response);
       var itemList = document.querySelector(".itemList");
       $(itemList).append(`
       <div class="my-item">
@@ -108,6 +102,7 @@ function modalAddItem() {
           </div>
         </div>
         <div class="item-cancel">
+        <button type="button" class="item-fix-btn" onclick="itemFix(this)">상품 수정</button>
         <button type="button" class="item-cancel-btn" onclick="itemCancel(this)">등록 취소</button>
       </div>
 
@@ -133,4 +128,13 @@ function itemCancel(obj) {
   // }).then((response)=>{
 
   // })
+}
+
+function itemFix(obj) {
+  var parent1 = $(obj).parent("div"); /*item-cancel*/
+  var parent2 = $(parent1).siblings("div"); /*item-info*/
+  var parent3 = $(parent2).parent("div"); /*my-item*/
+
+  addItem();
+  console.log($(".title").val(`${response.data.title}`));
 }

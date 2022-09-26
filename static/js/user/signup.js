@@ -104,7 +104,6 @@ function idconfirm() {
   }).then((response) => {
     if (response.data) {
       alert("중복된 아이디가 존재합니다.");
-      return;
     } else {
       alert("사용가능한 아이디 입니다.");
     }
@@ -160,6 +159,7 @@ function signupCreate() {
     }).then((response) => {
       if (response.data) {
         alert("회원가입 완료");
+        window.location.href = "/"
       } else {
         alert("실패");
       }
