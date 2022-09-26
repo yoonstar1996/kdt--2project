@@ -1,9 +1,4 @@
 const { Product } = require("../model");
-const multer = require("multer");
-const path = require("path");
-
-const jwt = require("jsonwebtoken");
-require("dotenv").config();
 
 exports.product = (req, res) => {
   res.render("product/product");

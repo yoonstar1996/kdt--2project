@@ -1,6 +1,6 @@
-const Product = (Sequelize, DataTypes) => {
+const Reveiw = (Sequelize, DataTypes) => {
   const model = Sequelize.define(
-    "product",
+    "review",
     {
       id: {
         type: DataTypes.INTEGER,
@@ -12,34 +12,26 @@ const Product = (Sequelize, DataTypes) => {
         type: DataTypes.STRING(20),
         allowNull: false,
       },
-      category_id: {
+      product_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      title: {
-        type: DataTypes.STRING(30),
-        allowNull: false,
-      },
-      img: {
-        type: DataTypes.TEXT("medium"),
-        allowNull: false,
-      },
-      adult: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false,
-      },
-      price: {
+      score: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      position: {
+      reveiw: {
         type: DataTypes.TEXT,
         allowNull: false,
       },
+      img: {
+        type: DataTypes.TEXT("long"),
+        allowNull: false,
+      },
     },
-    { tableName: "product", freezTableName: true, timestamps: false }
+    { tableName: "review", freezTableName: true, timestamps: false }
   );
   return model;
 };
 
-module.exports = Product;
+module.exports = Reveiw;
