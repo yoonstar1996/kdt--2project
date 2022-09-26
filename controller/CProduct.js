@@ -10,15 +10,15 @@ exports.product_create = (req, res) => {
   console.log("aaa");
   const data = {
     user_id: req.body.user_id,
+    category_id: req.body.category,
     title: req.body.title,
     img: "/uploads" + req.body.img,
     adult: req.body.adult,
     price: req.body.price,
     position: req.body.position,
-    category: req.body.category,
     content: req.body.content,
   };
   Product.create(data).then((result) => {
-    res.send(true);
+    res.send(result);
   });
 };
