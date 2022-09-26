@@ -3,13 +3,9 @@
   <head>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
-    <%-include("../link.ejs")%>
-    <link href="/static/css/user/signup.css" rel="stylesheet" />
-    <title>SGT - 회원가입</title>
-
   </head>
   <body>
-    <%-include("../main/navbar.ejs")%>
+    <%-include("../navbar.ejs")%>
 
     <div class="wrapper">
       <div class="signup-text">
@@ -26,7 +22,7 @@
             <div>아이디<span class="red">*</span></div>
           </div>
           <div class="center-id">
-            <input type="text" class="height2" placeholder="아이디를 입력해주세요" name="id" id="id" disabled/>
+            <input type="text" class="height2" placeholder="아이디를 입력해주세요" name="id" id="id" disabled />
             <div class="validid d-none colors">4~12자의 영문 대소문자와 숫자로만 입력</div>
           </div>
           <div class="rightbtn">
@@ -58,7 +54,6 @@
           <div class="center-name">
             <input type="text" class="height2" placeholder="이름를 입력해주세요" name="name" id="name" disabled />
             <div class="validname d-none colors">이름 형식에 맞지 않습니다.</div>
-
           </div>
         </div>
         <div class="sign-email">
@@ -119,17 +114,17 @@
           <div style="width: 314px; display: flex; flex-wrap: wrap; align-content: center">
             <select type="select" name="birth" required>
               <% for(var i=1950; i<2023; i++) { %>
-              <option value='<%=i%>'><%=i%></option>
+              <option value="<%=i%>"><%=i%></option>
               <% } %></select
             >년
             <select type="select" name="month">
               <% for(var i=1; i<13; i++) { %>
-              <option value='<%=i%>'><%=i%></option>
+              <option value="<%=i%>"><%=i%></option>
               <% } %></select
             >월
             <select type="select" name="day">
               <% for(var i=1; i<32; i++) { %>
-              <option value='<%=i%>'><%=i%></option>
+              <option value="<%=i%>"><%=i%></option>
               <% } %></select
             >일
           </div>
@@ -141,7 +136,7 @@
       </form>
     </div>
     <script>
-            $(document).ready(function () {
+      $(document).ready(function () {
         $("#id").focus();
       });
       // 우편번호 찾기 찾기 화면을 넣을 element
@@ -342,30 +337,37 @@
           phoneval.classList.remove("d-none");
         }
       });
-
     </script>
 
-    <script type="text/javascript">
-      var naver_id_login = new naver_id_login("RgAJTyB9QRvqTCV77uKZ", "http://localhost:8000/naver_callback");
-      // 접근 토큰 값 출력
-      // alert(naver_id_login.oauthParams.access_token);
-      // 네이버 사용자 프로필 조회
-      naver_id_login.get_naver_userprofile("naverSignInCallback()");
-      // 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function
-      function naverSignInCallback() {
-        // var name = document.querySelector(".sign-name");
-        // var email = document.querySelector(".sign-email");
-
-        $(".center-id").children("input").val(naver_id_login.getProfileData("email"));
-        $(".center-name").children("input").val(naver_id_login.getProfileData("name"));
-        $(".center-email").children("input").val(naver_id_login.getProfileData("email"));
-
-        console.log(naver_id_login.getProfileData("name"));
-        console.log(naver_id_login.getProfileData("email"));
-        // console.log(naver_id_login.getProfileData("age"));
+    <script>
+      // window.Kakao.init("6bdae09f2a7d64b16126787989a4ae52");
+      function KakaoLogin() {
+        //카카오 로그인 버튼 구현
+        window.Kakao.Auth.login({
+          scope: "	profile_nickname, account_email, gender",
+          success: function (authObj) {
+            // console.log(authObj);
+            window.Kakao.API.request({
+              url: "/v2/user/me",
+              success: (res) => {
+                const kakao_account = res.kakao_account;
+                // console.log(kakao_account);
+                console.log(kakao_account.email);
+                console.log(kakao_account.profile.nickname);
+              },
+            });
+          },
+        });
       }
+      $(document).ready(function () {
+        KakaoLogin();
+        // $(".center-id").children("input").val(kakao_account.email);
+        // $(".center-name").children("input").val(kakao_account.profile.nickname);
+        // $(".center-email").children("input").val(kakao_account.email);
+        // console.log(kakao_account.email);
+        // console.log(kakao_account.profile.nickname);
+      });
 
-      //https://nid.naver.com/oauth2.0/token?grant_type=delete&client_id=RgAJTyB9QRvqTCV77uKZ&client_secret=ag0YPa6Sgs&access_token=AAAAOiJxJy6WDZJAPoYYcuIAw4yWiIfeK-tlWifrSo-3j7lbW1FAeOmJafjcfTc2Jk-N8PFARr4E9WDpAo1v6Vnv23Q&service_provider=NAVER
     </script>
   </body>
 </html>
