@@ -149,6 +149,7 @@ hr {
 #category {
   transition: 1s;
   margin-top: 30px;
+  height: 20px;
 }
 
 .d-none {
@@ -162,15 +163,20 @@ hr {
 }
 
 .category-up {
-  transition: 1s;
+  transition: 0.3s ease-out;
+  height: 30px;
+  margin-bottom: 20px;
 }
 
 .category-set-on {
   opacity: 1;
-  height: 50px;
 }
 
 .category-set-off {
+  visibility: hidden;
   opacity: 0;
-  height: 0px;
+}
+
+.button-list {
+  text-align: center;
 }

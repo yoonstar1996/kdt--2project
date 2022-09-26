@@ -8,10 +8,41 @@
       crossorigin="anonymous"
     ></script>
     <%-include("link.ejs")%>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
+    />
+    <link rel="stylesheet" type="text/css" href="/plugin/slick/slick.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/plugin/slick/slick-theme.css"
+    />
+
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/plugin/slick/slick.js"></script>
     <link rel="stylesheet" href="/static/css/main/main.css" />
+    <!-- CSS only -->
   </head>
   <body>
     <%-include("main/navbar.ejs")%>
+    <div class="slideshow-container">
+      <div class="mySlideDiv fade active">
+        <img src="static/img/banner1.png" />
+      </div>
+
+      <div class="mySlideDiv fade">
+        <img src="static/img/banner2.png" />
+      </div>
+
+      <div class="mySlideDiv fade">
+        <img src="static/img/banner3.png" />
+      </div>
+
+      <a class="prev" onclick="prevSlide()">&#10094;</a>
+      <a class="next" onclick="nextSlide()">&#10095;</a>
+    </div>
     <div class="all-space">
       <div class="new">
         <div class="new1">새로 올라왔어요</div>
