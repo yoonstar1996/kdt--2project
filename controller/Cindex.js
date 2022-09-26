@@ -14,8 +14,9 @@ exports.naverCallback = (req, res) => {
 exports.kakaoCallback = (req, res) => {
   var data = {
     email: req.body.email,
-  };
-  res.render("./login/kakao_callback", { email: req.body.email });
+    name: req.body.name
+  }
+  res.render("./login/kakao_callback", { email: req.body.email, name: req.body.name });
 };
 
 exports.mypage = (req, res) => {

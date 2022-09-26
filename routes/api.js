@@ -19,22 +19,21 @@ const upload = multer({
     filename(req, file, done) {
       const ext = path.extname(file.originalname);
       const time = new Date();
-
       done(
         null,
-        today.getFullYear() +
-          "/" +
-          today.getMonth() +
-          "/" +
-          today.getDate() +
-          "/" +
-          today.getHours() +
-          "/" +
-          today.getMinutes() +
-          "/" +
-          today.getSeconds() +
-          "/" +
-          today.getMilliseconds() +
+        time.getFullYear() +
+          "_" +
+          time.getMonth() +
+          "_" +
+          time.getDate() +
+          "_" +
+          time.getHours() +
+          "_" +
+          time.getMinutes() +
+          "_" +
+          time.getSeconds() +
+          "_" +
+          time.getMilliseconds() +
           ext
       );
       // done(null, file.originalname);
