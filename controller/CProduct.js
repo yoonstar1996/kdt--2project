@@ -1,12 +1,23 @@
-const { Product } = require("../model");
-
+const { Product, Category } = require("../model");
 exports.product = (req, res) => {
   Product.findOne({
-    id: req.query,
+    where: {
+      id: req.params.id,
+    },
   }).then((result) => {
     const data = result;
-    console.log("data", data);
     res.render("product/product", { data });
+  });
+};
+
+exports.categories = (req, res) => {
+  Product.findAll({
+    where: {
+      category_id: req.params.id,
+    },
+  }).then((result) => {
+    const data = result;
+    res.render("product/categories", { data });
   });
 };
 
