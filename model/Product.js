@@ -13,7 +13,7 @@ const Product = (Sequelize, DataTypes) => {
         allowNull: false,
       },
       category_id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING(20),
         allowNull: false,
       },
       title: {

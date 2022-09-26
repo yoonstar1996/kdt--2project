@@ -69,7 +69,7 @@ function modalAddItem() {
   formData.append("title", form.title.value);
   formData.append("img", file.files[0]);
   formData.append("adult", true);
-  formData.append("price", form.price.value);
+  formData.append("price", parseInt(form.price.value));
   formData.append("position", "마포구");
   formData.append("category", category.value);
   formData.append("content", form.content.value);

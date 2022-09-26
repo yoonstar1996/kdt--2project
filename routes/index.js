@@ -15,7 +15,7 @@ router.get("/login", uesr.login);
 router.get("/naver_callback", main.naverCallback);
 
 // 카카오 로그인 콜백
-router.get("/kakao_callback", main.kakaoCallback);
+router.post("/kakao_callback", main.kakaoCallback);
 
 // 회원가입 페이지
 router.get("/signup", uesr.signup);
@@ -26,20 +26,5 @@ router.get("/product",  product.product);
 router.get("/socket", socket.socket);
 
 router.get("/mypage", main.mypage);
-
-//카카오 로그인
-router.get('/logout', isLoggedIn, (req, res) => {
-    req.logout();
-    req.session.destroy();
-    res.redirect('/');
-});
-
-router.get('/', passport.authenticate('kakao'));
-
-router.get('/kakao/callback', passport.authenticate('kakao', {
-  failureRedirect: '/',
-}), (req, res) => {
-  res.redirect('/');
-});
 
 module.exports = router;

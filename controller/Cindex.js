@@ -7,7 +7,10 @@ exports.naverCallback = (req, res) => {
 };
 // 카카오 로그인 콜백 페이지
 exports.kakaoCallback = (req, res) => {
-  res.render("./login/kakao_callback");
+  var data ={
+    email: req.body.email,
+  }
+  res.render("./login/kakao_callback", { email: req.body.email, });
 };
 
 exports.mypage = (req, res) => {
