@@ -27,4 +27,19 @@ router.get("/socket", socket.socket);
 
 router.get("/mypage", main.mypage);
 
+//카카오 로그인
+router.get('/logout', isLoggedIn, (req, res) => {
+    req.logout();
+    req.session.destroy();
+    res.redirect('/');
+});
+
+router.get('/', passport.authenticate('kakao'));
+
+router.get('/kakao/callback', passport.authenticate('kakao', {
+  failureRedirect: '/',
+}), (req, res) => {
+  res.redirect('/');
+});
+
 module.exports = router;
