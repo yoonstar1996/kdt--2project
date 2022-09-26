@@ -22,6 +22,8 @@
 .left-sgt > div {
   display: flex;
   justify-content: center;
+  font-weight: 700;
+  margin: 0 0 20px 0;
 }
 .left-sgt-button {
   display: flex;
@@ -29,10 +31,14 @@
 }
 .left-sgt-button > button {
   background-color: transparent;
-  height: 50px;
+  height: 55px;
+  border: none;
+  border-bottom: 1px solid #eaeaea;
 }
 .left-sgt-button > button:hover {
   cursor: pointer;
+  color: #eb8d00;
+  /* background-color: #f1f3f5; */
 }
 .right-sgt {
   display: flex;
@@ -40,6 +46,9 @@
   flex-direction: column;
   /* margin: 0 50px; */
   width: 100%;
+}
+.right-sgt-top {
+  font-weight: 700;
 }
 .right-sgt-content {
   width: 100%;
@@ -156,7 +165,7 @@
   background-color: #eb8d00;
   border: none;
   /* margin: 20px 0 20px auto; */
-  border-radius: 20px;
+  border-radius: 30px;
   height: 30px;
 }
 #noModalOn {
@@ -168,8 +177,8 @@
   background-color: #eb8d00;
   border: none;
   margin: 20px 0 20px auto;
-  border-radius: 20px;
-  height: 30px;
+  border-radius: 30px;
+  height: 44px;
 }
 .itemList {
   display: flex;
@@ -200,10 +209,26 @@
 }
 .item-text-content {
   display: block;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   margin: 10px 0;
   width: 243px;
   text-overflow: ellipsis;
   white-space: nowrap; /*글자를 한줄로 모아준다*/
   overflow: hidden;
+}
+.item-cancel-btn {
+  float: right;
+  font-size: 0.9rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  width: 90px;
+  height: 30px;
+  background-color: #ffe4bc;
+  border: none;
+  border-radius: 20px;
+}
+.item-cancel-btn:hover{
+  cursor: pointer;
 }

@@ -11,7 +11,7 @@ exports.product_create = (req, res) => {
     user_id: req.body.user_id,
     category_id: req.body.category_id,
     title: req.body.title,
-    img: "/uploads" + req.body.img,
+    img: "/uploads" + req.file.filename,
     adult: req.body.adult,
     price: req.body.price,
     position: req.body.position,

@@ -26,10 +26,11 @@
       </div>
 
       <div class="right-sgt">
-        <div>상품 목록</div>
+        <div class="right-sgt-top">상품 목록</div>
         <hr />
         <div class="right-sgt-content">
-          <%if(data) {%>
+          
+          <!-- <%if(data) {%> -->
 
           <div class="itemList">
             <div class="my-item">
@@ -43,17 +44,17 @@
                 </div>
               </div>
               <div class="item-cancel">
-                <button>등록 취소</button>
+                <button type="button" class="item-cancel-btn" onclick="itemCancel(this)">등록 취소</button>
               </div>
             </div>
           </div>
           <button id="noModalOn" class="cursor" onclick="addItem()">상품 등록 하기</button>
-          <%} else {%>
+          <!-- <%} else {%> -->
           <div class="no-item">
             <div>등록한 상품이 없습니다.</div>
             <button id="modalOn" class="cursor" onclick="addItem()">상품 등록 하기</button>
           </div>
-          <% } %>
+          <!-- <% } %> -->
           <form class="myModal">
             <div>
               <div class="addTitle">상품 등록</div>
