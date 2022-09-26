@@ -29,16 +29,17 @@
         <div class="button">
           <button type="button" class="login-button" onclick="NormalLogin()">로그인</button>
           <button type="button" class="signup-button" onclick="Singup()">회원가입</button>
-          <a href="javascript:kakaoLogin();"><img src="/static/img/web-long.png" alt="카카오계정 로그인" style="width: 340px; height: 49px" /></a>
-          <div id="naver_id_login" style="width: 340px; background-color: #03C75A;"></div>
+          <a href="javascript:kakaoLogin();"><img src="/static/img/web-long.png" alt="카카오계정 로그인" class="kakao-button" /></a>
+          <div id="naver_id_login" class="naver-button"></div>
+
           <!--네이버 로그인-->
         </div>
       </form>
     </div>
 
     <form action="/kakao_callback" method="post" id="kakao_sign">
-      <input type="hidden" name="email" id="email">
-      <input type="hidden" name="name" id="name">
+      <input type="hidden" name="email" id="email" />
+      <input type="hidden" name="name" id="name" />
     </form>
 
     <script src="/static/js/user/login.js"></script>
@@ -47,12 +48,16 @@
     <script type="text/javascript">
       var naver_id_login = new naver_id_login("RgAJTyB9QRvqTCV77uKZ", "http://localhost:8000/naver_callback");
       var state = naver_id_login.getUniqState();
-      naver_id_login.setButton("green", 3, 49);
+      naver_id_login.setButton("green", 3, 51);
       naver_id_login.setDomain(".service.com");
       naver_id_login.setState(state);
       // naver_id_login.setPopup();
       naver_id_login.init_naver_id_login();
       // <!-- 네이버아디디로로그인 초기화 Script -->
+
+      const naver_img = document.querySelector("#naver_id_login img");
+      naver_img.src = "./static/img/naver-login.png";
+      naver_img.style.width = "340px";
     </script>
 
     <script>

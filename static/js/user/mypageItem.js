@@ -3,15 +3,14 @@ var bg = document.createElement("div");
 var zIndex = 9999;
 
 const categories = {
-  life : '생활/가전',
-  electro :'전자제품',
-  fashion :'패션/의류',
-  interior :'가구/인테리어',
-  book :'도서/음반/티켓',
-  food :'식품/잡화',
-  pet :'반려동물'
-}
-
+  life: "생활/가전",
+  electro: "전자제품",
+  fashion: "패션/의류",
+  interior: "가구/인테리어",
+  book: "도서/음반/티켓",
+  food: "식품/잡화",
+  pet: "반려동물",
+};
 
 function modalClose() {
   bg.remove();
@@ -65,11 +64,6 @@ Element.prototype.setStyle = function (styles) {
   return this;
 };
 
-//   document.getElementById("modalOn").addEventListener("click", function () {
-//     // 모달창 띄우기
-//     modal("my_modal");
-//   });
-
 function modalAddItem() {
   const form = document.querySelector(".myModal");
   const category = document.querySelector(".category");
@@ -94,7 +88,6 @@ function modalAddItem() {
     data: formData,
   }).then((response) => {
     if (response) {
-      console.log(response);
       var itemList = document.querySelector(".itemList");
       $(itemList).append(`
       <div class="my-item">
@@ -108,12 +101,11 @@ function modalAddItem() {
           </div>
         </div>
         <div class="item-cancel">
-        <button type="button" class="item-cancel-btn" onclick="itemCancel(this)">등록 취소</button>
-      </div>
+          <button type="button" class="item-cancel-btn" onclick="itemDelete(this)">상품 삭제</button>
+        </div>
 
       </div>
       `);
-      // console.log(response);
       modalClose();
     } else {
       alert("상품 등록 실패");
@@ -121,7 +113,7 @@ function modalAddItem() {
   });
 }
 
-function itemCancel(obj) {
+function itemDelete(obj) {
   var parent1 = $(obj).parent("div"); /*item-cancel*/
   var parent2 = $(parent1).siblings("div"); /*item-info*/
   var parent3 = $(parent2).parent("div"); /*my-item*/
@@ -134,3 +126,34 @@ function itemCancel(obj) {
 
   // })
 }
+
+axios({
+  url: "/api/product/myproduct",
+  method: "post",
+  data: { id: "dyun" },
+}).then((result) => {
+  console.log(result);
+  console.log(result.data);
+  console.log(result.data[0]);
+  var i;
+  for (i = 0; i < length; i++) {
+    var itemList = document.querySelector(".itemList");
+    $(itemList).append(`
+    <div class="my-item">
+      <img class="item-img" src="${result.data[i].img}">
+      <div class="item-info">
+        <div class="item-text">
+          <h4 class="item-text-name">${result.data[i].title}</h4>
+          <div class="item-text-price">${result.data[i].price}</div>
+          <div class="item-text-category">${categories[result.data[i].category_id]}</div>
+          <div class="item-text-content">${result.data[i].content}</div>
+        </div>
+      </div>
+      <div class="item-cancel">
+        <button type="button" class="item-cancel-btn" onclick="itemDelete(this)">상품 삭제</button>
+      </div>
+  
+    </div>
+    `);
+  }
+});
