@@ -11,10 +11,7 @@ function closebtn() {
 
 function findAdress() {
   // 현재 scroll 위치를 저장해놓는다.
-  var currentScroll = Math.max(
-    document.body.scrollTop,
-    document.documentElement.scrollTop
-  );
+  var currentScroll = Math.max(document.body.scrollTop, document.documentElement.scrollTop);
   new daum.Postcode({
     oncomplete: function (data) {
       // 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
@@ -42,10 +39,7 @@ function findAdress() {
         }
         // 건물명이 있고, 공동주택일 경우 추가한다.
         if (data.buildingName !== "" && data.apartment === "Y") {
-          extraAddr +=
-            extraAddr !== ""
-              ? ", " + data.buildingName
-              : data.buildingName;
+          extraAddr += extraAddr !== "" ? ", " + data.buildingName : data.buildingName;
         }
         // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
         if (extraAddr !== "") {
@@ -96,8 +90,7 @@ let phoneval = document.querySelector(".validephone");
 
 var valconfirm = /^[a-zA-Z0-9]{4,12}$/; //id와 pwassword 유효성 검사 정규식
 var name_valconfirm = /^[가-힣]{2,15}$/; //이름 유효성검사 정규식
-var email_valconfirm =
-  /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i; //이메일 유효성검사
+var email_valconfirm = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i; //이메일 유효성검사
 
 function idconfirm() {
   var form = document.querySelector("form");
@@ -111,6 +104,7 @@ function idconfirm() {
   }).then((response) => {
     if (response.data) {
       alert("중복된 아이디가 존재합니다.");
+      return;
     } else {
       alert("사용가능한 아이디 입니다.");
     }
@@ -146,18 +140,31 @@ function signupCreate() {
     phone: form.phone.value,
     position: form.adress.value,
   };
-
-  axios({
-    url: "/api/signup",
-    method: "post",
-    data: data,
-  }).then((response) => {
-    if (response.data) {
-      alert("회원가입 완료");
-    } else {
-      alert("실패");
-    }
-  });
+  if (form.id.value == "") {
+    alert("아이디를 입력해주세요.");
+  } else if (form.pw.value == "") {
+    alert("비밀번호를 입력해주세요.");
+  } else if (form.name.value == "") {
+    alert("이름을 입력해주세요.");
+  } else if (form.email.value == "") {
+    alert("이메일을 입력해주세요.");
+  } else if (form.phone.value == "") {
+    alert("핸드폰번호를 입력해주세요.");
+  } else if (form.adress.value == "") {
+    alert("주소를 입력해주세요.");
+  } else {
+    axios({
+      url: "/api/signup",
+      method: "post",
+      data: data,
+    }).then((response) => {
+      if (response.data) {
+        alert("회원가입 완료");
+      } else {
+        alert("실패");
+      }
+    });
+  }
 }
 
 // function validation(){
@@ -171,6 +178,9 @@ id.addEventListener("input", function (event) {
     idval.classList.remove("d-none");
   }
 });
+// id.addEventListener("focusout", function (event) {
+//   alert("중복확인을 눌러주세요.");
+// });
 pw.addEventListener("input", function (event) {
   if (valconfirm.test(pw.value)) {
     pwval.classList.add("d-none");

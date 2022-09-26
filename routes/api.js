@@ -18,8 +18,24 @@ const upload = multer({
     },
     filename(req, file, done) {
       const ext = path.extname(file.originalname);
-      const time = new Date().toString();
-      done(null, time + ext);
+      const time = new Date();
+      done(
+        null,
+        time.getFullYear() +
+          "_" +
+          time.getMonth() +
+          "_" +
+          time.getDate() +
+          "_" +
+          time.getHours() +
+          "_" +
+          time.getMinutes() +
+          "_" +
+          time.getSeconds() +
+          "_" +
+          time.getMilliseconds() +
+          ext
+      );
       // done(null, file.originalname);
     },
   }),

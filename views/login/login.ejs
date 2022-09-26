@@ -37,8 +37,8 @@
     </div>
 
     <form action="/kakao_callback" method="post" id="kakao_sign">
-      <input type="hidden" name="email">
-      <input type="hidden" name="nickname">
+      <input type="hidden" name="email" id="email">
+      <input type="hidden" name="name" id="name">
     </form>
 
     <script src="/static/js/user/login.js"></script>
@@ -67,10 +67,11 @@
               url: "/v2/user/me",
               success: (res) => {
                 var form = document.getElementById("kakao_sign");
-                
                 const kakao_account = res.kakao_account;
-                console.log(kakao_account.email);
-                console.log(kakao_account.profile.nickname);
+                $("#kakao_sign").children("#email").val(kakao_account.email);
+                $("#kakao_sign").children("#name").val(kakao_account.profile.nickname);
+                console.log($("#kakao_sign").children("#email").val());
+                console.log($("#kakao_sign").children("#name").val());
                 form.submit();
                 // window.location.href = "http://localhost:8000/kakao_callback"; //리다이렉트 되는 코드
                 // $(".center-id").children("input").val(kakao_account.email);
