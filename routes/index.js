@@ -21,7 +21,10 @@ router.post("/kakao_callback", main.kakaoCallback);
 router.get("/signup", uesr.signup);
 
 // 상품 생성
-router.get("/product",  product.product);
+router.get("/product", product.product);
+// 카테고리별 상품
+router.get("/categories", product.categories);
+
 // 소캣
 router.get("/socket", socket.socket);
 

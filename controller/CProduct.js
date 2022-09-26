@@ -4,6 +4,10 @@ exports.product = (req, res) => {
   res.render("product/product");
 };
 
+exports.categories = (req, res) => {
+  res.render("product/categories");
+};
+
 // 상품 생성
 exports.product_create = (req, res) => {
   console.log("aaa");
