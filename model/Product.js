@@ -12,6 +12,10 @@ const Product = (Sequelize, DataTypes) => {
         type: DataTypes.STRING(20),
         allowNull: false,
       },
+      category_id: {
+        type: DataTypes.STRING(30),
+        allowNull: false,
+      },
       title: {
         type: DataTypes.STRING(30),
         allowNull: false,
@@ -32,8 +36,8 @@ const Product = (Sequelize, DataTypes) => {
         type: DataTypes.TEXT,
         allowNull: false,
       },
-      category: {
-        type: DataTypes.STRING(20),
+      content: {
+        type: DataTypes.TEXT,
         allowNull: false,
       },
     },

@@ -1,8 +1,5 @@
 const { Room, ChatContent, Participation } = require("../model");
 
-const jwt = require("jsonwebtoken");
-require("dotenv").config();
-
 // 채팅 페이지
 exports.socket = (req, res) => {
   res.render("socket/socket");
