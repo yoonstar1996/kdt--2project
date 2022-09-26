@@ -37,3 +37,12 @@ exports.product_create = (req, res) => {
     res.send(result);
   });
 };
+
+// 나의 등록 상품
+exports.product_myproduct = (req, res) => {
+  Product.findAll({
+    where: { user_id: req.body.id },
+  }).then((result) => {
+    res.send(result);
+  });
+};

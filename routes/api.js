@@ -50,6 +50,7 @@ router.post("/signup/idcheck", uesr.signup_id_check);
 
 // 상품 생성
 router.post("/product", upload.single("img"), product.product_create);
+router.post("/product/myproduct", product.product_myproduct);
 // 소캣 룸 생성
 router.post("/socket", socket.socket_create);
 
