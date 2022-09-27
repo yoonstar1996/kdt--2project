@@ -1,13 +1,14 @@
 const express = require("express");
 const app = express();
 const port = 8000;
-
+const cookieParser = require("cookie-parser");
 const http = require("http").Server(app);
 const io = require("socket.io")(http);
 const moment = require("moment");
 require("moment-timezone");
 moment.tz.setDefault("Asia/Seoul");
 
+app.use(cookieParser());
 app.set("view engine", "ejs");
 app.use(express.static("apidoc"));
 app.use("/static", express.static(__dirname + "/static"));
@@ -23,7 +24,8 @@ app.use("/jqui", express.static(__dirname + "/node_modules/jquery-ui/dist"));
 app.use("/js", express.static(__dirname + "/node_modules/bootstrap/dist/js"));
 // redirect CSS bootstrap
 app.use("/css", express.static(__dirname + "/node_modules/bootstrap/dist/css"));
-// redirect CSS bootstrap
+// redirect axios
+app.use("/axios", express.static(__dirname + "/node_modules/axios/dist"));
 
 const router = require("./routes");
 app.use("/", router);

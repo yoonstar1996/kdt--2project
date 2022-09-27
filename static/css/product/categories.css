@@ -139,3 +139,12 @@
 .gy-4 {
   --bs-gutter-y: 0rem !important;
 }
+
+/* 카테고리 필터 css 시작*/
+
+/*responsive*/
+@media (max-width: 491px) {
+}
+@media (max-width: 467px) {
+}
+/* 카테고리 필터 css 끝*/

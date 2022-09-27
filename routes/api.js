@@ -1,16 +1,9 @@
 const express = require("express");
-const main = require("../controller/Cindex");
 const socket = require("../controller/CSocket");
 const uesr = require("../controller/CUser");
 const product = require("../controller/CProduct");
-
-const jwt = require("jsonwebtoken");
-require("dotenv").config();
-
-const router = express.Router();
 const multer = require("multer");
 const path = require("path");
-
 const upload = multer({
   storage: multer.diskStorage({
     destination(req, file, done) {
@@ -41,6 +34,7 @@ const upload = multer({
   }),
   limits: { fileSize: 5 * 1024 * 1024 },
 });
+const router = express.Router();
 
 // 로그인 페이지
 router.post("/login", uesr.login_check);
@@ -50,6 +44,13 @@ router.post("/signup/idcheck", uesr.signup_id_check);
 
 // 상품 생성
 router.post("/product", upload.single("img"), product.product_create);
+router.post("/products", product.product_list);
+router.post("/product/myproduct", product.product_myproduct);
+router.delete("/product/delete", product.product_delete);
+
+// 카테고리 상품
+router.post("/categories/:id", product.categories_list);
+
 // 소캣 룸 생성
 router.post("/socket", socket.socket_create);
 

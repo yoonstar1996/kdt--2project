@@ -232,6 +232,7 @@
   background-color: #ffe4bc;
   border: none;
   border-radius: 20px;
+  margin: 0 5px 0 0;
 }
 .item-cancel-btn:hover {
   cursor: pointer;

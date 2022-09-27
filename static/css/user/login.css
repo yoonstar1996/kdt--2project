@@ -45,11 +45,22 @@ a {
   margin: 8px 0;
 }
 .button > button,
-.kakao-button {
+.kakao-button,
+.naver-button {
   margin: 8px auto;
-  height: 49px;
-  font-size: 1rem;
+  height: 51px;
   width: 340px;
+  font-size: 1rem;
+}
+.kakao-button {
+  background-color: #ffeb33;
+}
+.naver-button {
+  background-color: #03c75a;
+  object-fit: contain;
+}
+.naver-button:hover{
+  cursor: pointer;
 }
 .button > div {
   margin: 8px auto;

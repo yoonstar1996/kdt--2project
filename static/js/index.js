@@ -5,3 +5,8 @@ $(".post-wrapper").slick({
   autoplaySpeed: 2000,
   arrows: false,
 });
+
+axios({
+  url: "/api/products",
+  method: "post",
+}).then((result) => {});

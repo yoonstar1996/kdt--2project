@@ -1,9 +1,8 @@
-exports.verifyToken = (req, res, next) => {
+const jwt = require("jsonwebtoken");
+
+const verifyToken = (req, res, next) => {
   try {
-    req.decoded = jwt.verify(
-      req.headers.authorization,
-      process.env.ACCESS_TOKEN_SECRET
-    );
+    req.decoded = jwt.verify(req.cookies.jwt, process.env.ACCESS_TOKEN_SECRET);
     return next();
   } catch (error) {
     if (error.name === "TokenExpiredError") {
@@ -19,3 +18,4 @@ exports.verifyToken = (req, res, next) => {
     });
   }
 };
+module.exports = verifyToken;

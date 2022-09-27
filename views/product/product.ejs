@@ -33,29 +33,25 @@
       <div class="product-wrapper3">
         <div class="profile-photo"></div>
         <div class="user-nick-add">
-          <div class="user-nick">이름1</div>
-          <div class="user-address">서울시 마포구 염리동</div>
+          <div class="user-nick"><%=data.user.id%></div>
+          <div class="user-address"><%=data.position%></div>
         </div>
       </div>
       <hr class="hr-2" />
       <div class="product-wrapper4">
-        <div class="product-name">애플워치SE 미개봉 새제품</div>
+        <div class="product-name"><%=data.title%></div>
         <div class="product-wrapper4-2">
-          <div class="product-category">가전/생활용품</div>
+          <div class="product-category"><%=data.category_id%></div>
           <span> • </span>
           <div class="product-upload-time">12시간 전</div>
         </div>
         <br />
-        <div class="product-explanation">
-          안녕하세요 <br />
-          상품 설명 어쩌고 저쩌고 주절주절 어쩌고 저저고<br />
-          사고싶은사람연락해라 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ <br />
-        </div>
+        <div class="product-explanation"><%=data.content%></div>
       </div>
       <hr class="hr-2" />
       <div class="product-wrapper5">
         <div class="price">가격</div>
-        <div class="product-price">250,000<span>원</span></div>
+        <div class="product-price"><%=data.price%><span>원</span></div>
       </div>
       <hr class="hr-2" />
       <div class="category-another">이 카테고리의 다른 상품</div>

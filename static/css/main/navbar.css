@@ -195,6 +195,7 @@ hr {
     height: 40px;
     background-color: white;
     border-bottom: solid #eeeeee 1px;
+    text-align: right;
   }
 }
 
