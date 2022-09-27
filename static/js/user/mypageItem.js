@@ -101,7 +101,7 @@ function modalAddItem() {
           </div>
         </div>
         <div class="item-cancel">
-          <button type="button" class="item-cancel-btn" onclick="itemDelete(this)">상품 삭제</button>
+          <button type="button" class="item-cancel-btn" onclick="itemDelete(this, ${result.data[i].id})">상품 삭제</button>
         </div>
 
       </div>
@@ -113,18 +113,20 @@ function modalAddItem() {
   });
 }
 
-function itemDelete(obj) {
-  var parent1 = $(obj).parent("div"); /*item-cancel*/
-  var parent2 = $(parent1).siblings("div"); /*item-info*/
-  var parent3 = $(parent2).parent("div"); /*my-item*/
-  $(parent3).remove();
-  // axios({
-  //   url:"",
-  //   method:"post",
-  //   data:,
-  // }).then((response)=>{
+function itemDelete(obj, id) {
+  // console.log(id);
+  axios({
+    url: "/api/product/delete",
+    method: "delete",
+    data: { id: id },
+  }).then((result) => {
+    // console.log(result);
+    var parent1 = $(obj).parent("div"); /*item-cancel*/
+    var parent2 = $(parent1).siblings("div"); /*item-info*/
+    var parent3 = $(parent2).parent("div"); /*my-item*/
 
-  // })
+    $(parent3).remove();
+  });
 }
 
 axios({
@@ -136,7 +138,7 @@ axios({
   console.log(result.data);
   console.log(result.data[0]);
   var i;
-  for (i = 0; i < length; i++) {
+  for (i = 0; i < result.data.length; i++) {
     var itemList = document.querySelector(".itemList");
     $(itemList).append(`
     <div class="my-item">
@@ -150,7 +152,7 @@ axios({
         </div>
       </div>
       <div class="item-cancel">
-        <button type="button" class="item-cancel-btn" onclick="itemDelete(this)">상품 삭제</button>
+        <button type="button" class="item-cancel-btn" onclick="itemDelete(this, ${result.data[i].id})">상품 삭제</button>
       </div>
   
     </div>
