@@ -59,7 +59,7 @@ a {
   background-color: #03c75a;
   object-fit: contain;
 }
-.naver-button:hover{
+.naver-button:hover {
   cursor: pointer;
 }
 .button > div {
@@ -81,4 +81,16 @@ a {
 }
 .kakao-button:hover {
   cursor: pointer;
+}
+.id-input,
+.pw-input,
+.login-button,
+.signup-button,
+.kakao-button,
+.naver-button {
+  border-radius: 10px;
+}
+.id-input,
+.pw-input {
+  border: 1px solid rgb(118, 118, 118);
 }

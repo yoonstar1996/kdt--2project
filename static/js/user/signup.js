@@ -1,3 +1,16 @@
+// 오류 메세지 사전을 만든다
+const validityMessage = {
+  badInput: "잘못된 입력입니다.",
+  patternMismatch: "패턴에 맞게 입력하세요.",
+  rangeOverflow: "비밀번호가 일치하지 않습니다.",
+  rangeUnderflow: "[커스텀 메세지] 범위에 미달하였습니다",
+  stepMismatch: "[커스텀 메세지] 간격에 맞게 입력하세요",
+  tooLong: "[커스텀 메세지] 최대 글자 미만으로 입력하세요",
+  tooShort: "[커스텀 메세지] 최소 글자 미만으로 입력하세요",
+  typeMismatch: "[커스텀 메세지] 형식에 맞게 입력하세요",
+  valueMissing: "[커스텀 메세지] 이 필드를 반드시 입력하세요",
+};
+
 $(document).ready(function () {
   $("#id").focus();
 });
@@ -91,6 +104,7 @@ let phoneval = document.querySelector(".validephone");
 var valconfirm = /^[a-zA-Z0-9]{4,12}$/; //id와 pwassword 유효성 검사 정규식
 var name_valconfirm = /^[가-힣]{2,15}$/; //이름 유효성검사 정규식
 var email_valconfirm = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i; //이메일 유효성검사
+var phone_valconfirm = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
 
 function idconfirm() {
   var form = document.querySelector("form");
@@ -129,74 +143,130 @@ function emailconfirm() {
 }
 
 function signupCreate() {
+  // e.preventDefault();
   var form = document.querySelector("form");
+  var id_key = 0;
+  var pw_key = 0;
+  var name_key = 0;
+  var email_key = 0;
+  var phone_key = 0;
 
-  var data = {
-    id: form.id.value,
-    pw: form.pw.value,
-    name: form.name.value,
-    email: form.email.value,
-    phone: form.phone.value,
-    position: form.adress.value,
-  };
-  if (form.id.value == "") {
-    alert("아이디를 입력해주세요.");
-  } else if (form.pw.value == "") {
-    alert("비밀번호를 입력해주세요.");
-  } else if (form.name.value == "") {
-    alert("이름을 입력해주세요.");
-  } else if (form.email.value == "") {
-    alert("이메일을 입력해주세요.");
-  } else if (form.phone.value == "") {
-    alert("핸드폰번호를 입력해주세요.");
-  } else if (form.adress.value == "") {
-    alert("주소를 입력해주세요.");
+  console.log("155 : id.value : ", id.value);
+  console.log(valconfirm.test(id.value));
+
+  if (id.value == "") {
+    id.setCustomValidity(validityMessage["badInput"]);
+  } else if (!valconfirm.test(id.value)) {
+    id.setCustomValidity(validityMessage["patternMismatch"]);
   } else {
-    axios({
-      url: "/api/signup",
-      method: "post",
-      data: data,
-    }).then((response) => {
-      if (response.data) {
-        alert("회원가입 완료");
-        window.location.href = "/";
-      } else {
-        alert("실패");
-      }
-    });
+    id.setCustomValidity("");
+    id_key = 1;
   }
+
+  if (pw.value == "") {
+    pw.setCustomValidity(validityMessage["badInput"]);
+  } else if (!valconfirm.test(pw.value)) {
+    pw.setCustomValidity(validityMessage["patternMismatch"]);
+  } else {
+    pw.setCustomValidity("");
+    pw_key = 1;
+  }
+
+  if (pwconfirm.value == "") {
+    pwconfirm.setCustomValidity(validityMessage["badInput"]);
+  } else if (pw.value !== pwconfirm.value) {
+    pwconfirm.setCustomValidity(validityMessage["rangeOverflow"]);
+  } else {
+    pwconfirm.setCustomValidity("");
+    pwconfirm_key = 1;
+  }
+
+  if (name.value == "") {
+    name.setCustomValidity(validityMessage["badInput"]);
+  } else if (!name_valconfirm.test(name.value)) {
+    name.setCustomValidity(validityMessage["patternMismatch"]);
+  } else {
+    name.setCustomValidity("");
+    name_key = 1;
+  }
+
+  if (email.value == "") {
+    email.setCustomValidity(validityMessage["badInput"]);
+  } else if (!email_valconfirm.test(email.value)) {
+    email.setCustomValidity(validityMessage["patternMismatch"]);
+  } else {
+    email.setCustomValidity("");
+    email_key = 1;
+  }
+
+  if (phone.value == "") {
+    phone.setCustomValidity(validityMessage["badInput"]);
+  } else if (!phone_valconfirm.test(phone.value)) {
+    phone.setCustomValidity(validityMessage["patternMismatch"]);
+  } else {
+    phone.setCustomValidity("");
+    phone_key = 1;
+  }
+
+  // console.log("202 : ", form.checkValidity());
+  if (!form.checkValidity()) {
+    form.reportValidity();
+    return;
+  }
+
+  if (id_key == 1 && pw_key == 1 && name_key == 1 && email_key == 1 && phone_key == 1)
+    var data = {
+      id: form.id.value,
+      pw: form.pw.value,
+      name: form.name.value,
+      email: form.email.value,
+      phone: form.phone.value,
+      position: form.adress.value,
+    };
+  axios({
+    url: "/api/signup",
+    method: "post",
+    data: data,
+  }).then((response) => {
+    if (response.data) {
+      alert("회원가입 완료");
+      window.location.href = "/";
+    } else {
+      alert("실패");
+    }
+  });
+  // }
 }
 
-// function validation(){
-
-// }
-
 id.addEventListener("input", function (event) {
+  // console.log("231 : id.value : ", id.value);
+  // console.log(valconfirm.test(id.value));
   if (valconfirm.test(id.value)) {
+    id.setCustomValidity("");
     idval.classList.add("d-none");
   } else {
     idval.classList.remove("d-none");
   }
 });
-// id.addEventListener("focusout", function (event) {
-//   alert("중복확인을 눌러주세요.");
-// });
 pw.addEventListener("input", function (event) {
   if (valconfirm.test(pw.value)) {
+    pw.setCustomValidity("");
     pwval.classList.add("d-none");
   } else {
     pwval.classList.remove("d-none");
   }
 });
 pwconfirm.addEventListener("input", function (event) {
-  if (pwconfirm.value == pw.value) {
-    pwconfirmval.classList.add("d-none");
-  } else {
+  if (pw.value !== pwconfirm.value) {
+    pwconfirm.setCustomValidity("");
     pwconfirmval.classList.remove("d-none");
+  } else {
+    pwconfirmval.classList.add("d-none");
   }
 });
 name.addEventListener("input", function (event) {
   if (name_valconfirm.test(name.value)) {
+    name.setCustomValidity("");
     nameval.classList.add("d-none");
   } else {
     nameval.classList.remove("d-none");
@@ -204,13 +274,15 @@ name.addEventListener("input", function (event) {
 });
 email.addEventListener("input", function (event) {
   if (email_valconfirm.test(email.value)) {
+    email.setCustomValidity("");
     emailval.classList.add("d-none");
   } else {
     emailval.classList.remove("d-none");
   }
 });
 phone.addEventListener("input", function (event) {
-  if (valconfirm.test(phone.value)) {
+  if (phone_valconfirm.test(phone.value)) {
+    phone.setCustomValidity("");
     phoneval.classList.add("d-none");
   } else {
     phoneval.classList.remove("d-none");

@@ -91,6 +91,8 @@ function modalAddItem() {
       var itemList = document.querySelector(".itemList");
       $(itemList).append(`
       <div class="my-item">
+      <a class="pagelink" href="/product/${response.data.id}">
+      <div>
         <img class="item-img" src="${response.data.img}">
         <div class="item-info">
           <div class="item-text">
@@ -100,12 +102,14 @@ function modalAddItem() {
             <div class="item-text-content">${response.data.content}</div>
           </div>
         </div>
+        </div>
+        </a>
         <div class="item-cancel">
           <button type="button" class="item-cancel-btn" onclick="itemDelete(this, ${response.data.id})">상품 삭제</button>
         </div>
-
-      </div>
+        </div>
       `);
+      console.log(response.data.id);
       modalClose();
     } else {
       alert("상품 등록 실패");
@@ -122,7 +126,7 @@ function itemDelete(obj, id) {
   }).then((result) => {
     // console.log(result);
     var parent1 = $(obj).parent("div"); /*item-cancel*/
-    var parent2 = $(parent1).siblings("div"); /*item-info*/
+    var parent2 = $(parent1).siblings("a"); /*pagelink*/
     var parent3 = $(parent2).parent("div"); /*my-item*/
 
     $(parent3).remove();
@@ -135,14 +139,14 @@ axios({
   data: { id: "yagobo1110" },
 }).then((result) => {
   // console.log(result);
-  // console.log(result.data);
-  console.log(result.data[0]);
   var i;
   for (i = 0; i < result.data.length; i++) {
     var itemList = document.querySelector(".itemList");
     $(itemList).append(`
     <div class="my-item">
-      <img class="item-img" src="${result.data[i].img}">
+    <a class="pagelink" href="/product/${result.data[i].id}">
+    <div >
+    <img class="item-img" src="${result.data[i].img}">
       <div class="item-info">
         <div class="item-text">
           <h4 class="item-text-name">${result.data[i].title}</h4>
@@ -151,11 +155,20 @@ axios({
           <div class="item-text-content">${result.data[i].content}</div>
         </div>
       </div>
+      </div>
+      </a>
       <div class="item-cancel">
         <button type="button" class="item-cancel-btn" onclick="itemDelete(this, ${result.data[i].id})">상품 삭제</button>
       </div>
-  
-    </div>
+      </div>
     `);
   }
 });
+
+function imgname() {
+  var imgname = document.querySelector("#img").files[0].name;
+  var uploadName = document.querySelector(".upload-name");
+  console.log(imgname);
+  console.log(uploadName.value);
+  uploadName.value = imgname;
+}
