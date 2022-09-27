@@ -5,100 +5,108 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"
-    />
-    <%-include("../link.ejs")%>
+    <link rel="stylesheet" href="../link.ejs" />
     <link rel="stylesheet" href="/static/css/socket/socket.css" />
   </head>
   <body>
-    <div class="box">
-      <div class="container">
-        <header>
-          <nav class="navbar navbar-light bg-light">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="#">
-                <img
-                  src="/docs/5.1/assets/brand/bootstrap-logo.svg"
-                  alt=""
-                  width="30"
-                  height="24"
-                  class="d-inline-block align-text-top"
-                />
-                로고명
-              </a>
-              <input
-                id="ibjangmsg"
-                type="text"
-                placeholder="내용을 입력하세요."
-              /><button onclick="myOnClick()">전송</button>
-              <div class="dropdown">
-                <button
-                  class="btn btn-secondary dropdown-toggle"
-                  type="button"
-                  id="dropdownMenuButton1"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  아이디
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <li><a class="dropdown-item" href="#">로그아웃</a></li>
-                </ul>
-              </div>
-            </div>
-          </nav>
-        </header>
-        <section class="content">
-          <nav>
-            <ul class="area">
-              <li class="item">
-                <div class="imgbox">
-                  <img src="/static/img/coffee.jpeg" alt="" />
-                </div>
-                <div class="roomniccon">
-                  <div class="roomnickname">닉네임</div>
-                  <div class="roomcontents">asdaa dsfsd fdslkjf sdfjkldsj</div>
-                </div>
-                <div class="roomtimenoti">
-                  <div class="roomtime">02:53</div>
-                  <div class="roomnotice">
-                    <div class="notibox">1</div>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </nav>
-          <main>
-            <div id="jb-content">
-              <div class="chat_wrap">
-                <div class="innertext">
-                  <div class="myfirstbox">
-                    <span class="myfirstboxtime">02:53</span>
-                    <div>안녕</div>
-                  </div>
-
-                  <div class="yousecondbox">
-                    <div>안녕</div>
-                    <span class="yousecondboxtime">02:53</span>
-                  </div>
-                </div>
-              </div>
-              <div class="sendsub">
-                <div id="jb-sendinputBtn">
-                  <input
-                    id="msg"
-                    type="text"
-                    placeholder="내용을 입력하세요."
-                  /><button onclick="sendOnClick()">전송</button>
-                </div>
-              </div>
-            </div>
-          </main>
-        </section>
-      </div>
+    <div class="scene flex">
+      <section id="chatbox">
+        <div class="headerbox">
+          <a href="/">
+            <img
+              src="/static/img/logo.png"
+              alt=""
+              class="logo"
+              class="d-inline-block align-text-top"
+            />
+          </a>
+          <button class="chat__custom back-btn" onclick="back()">
+            <span class="material-symbols-outlined"> keyboard_backspace </span>
+          </button>
+        </div>
+        <ul id="messages"></ul>
+        <form id="form" action="">
+          <input id="input" autocomplete="off" />
+          <button class="chat__custom">
+            <span class="material-symbols-outlined"> send </span>
+          </button>
+        </form>
+      </section>
     </div>
-    <script src="/static/js/socket/socket.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      let socket = io.connect();
+      let messages = document.getElementById("messages");
+      let form = document.getElementById("form");
+      let input = document.getElementById("input");
+      let select = document.getElementById("select");
+
+      socket.on("notice", (msg) => {
+        let item = document.createElement("li");
+        let span = document.createElement("span");
+        span.classList.add("msg");
+        span.classList.add("chat__custom");
+        span.textContent = msg;
+        item.classList.add("notice");
+        item.append(span);
+        messages.appendChild(item);
+      });
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        if (!input.value) return;
+
+        let item = document.createElement("li");
+        let span = document.createElement("span");
+        item.classList.add("mymsg");
+        span.classList.add("msg");
+        span.classList.add("chat__custom");
+        if (select.value === "all") {
+          span.classList.add("all");
+          span.textContent = `${name} : ${input.value}`;
+        } else {
+          span.classList.add("to");
+          span.textContent = `(속닥 속닥)${name} : ${input.value}`;
+        }
+        item.append(span);
+        messages.appendChild(item);
+        messages.scrollTo(0, messages.scrollHeight);
+        socket.emit("chat message", { id: select.value, msg: input.value });
+        input.value = "";
+      });
+
+      socket.on("chat message", function (data) {
+        let item = document.createElement("li");
+        let span = document.createElement("span");
+        span.classList.add("chat__custom");
+        span.classList.add("msg");
+        if (data.type === "all") {
+          span.textContent = `${data.id} : ${data.msg}`;
+          span.classList.add("all");
+        } else {
+          span.textContent = `(속닥 속닥)${data.id} : ${data.msg}`;
+          span.classList.add("to");
+        }
+        item.append(span);
+        messages.appendChild(item);
+        messages.scrollTo(0, messages.scrollHeight);
+      });
+
+      socket.on("users", (data) => {
+        select.innerHTML = "";
+        for (let key in data) {
+          if (key != socket.id) {
+            const option = document.createElement("option");
+            option.value = key;
+            option.innerText = data[key];
+            select.append(option);
+          }
+        }
+      });
+
+      function back() {
+        location.href = "/signin";
+      }
+    </script>
   </body>
 </html>
