@@ -15,7 +15,7 @@
 
 .new-box {
   border: 1px #eeeeee solid;
-  height: 400px;
+  height: 550px;
   padding: 20px;
 }
 
@@ -80,4 +80,26 @@
 .attention1 {
   font-weight: 700;
   font-size: large;
+}
+
+.box-title,
+.box-price {
+  text-align: center;
+}
+
+.box-title {
+  margin-top: 5px;
+  font-weight: 500;
+  letter-spacing: -0.05em;
+}
+
+.box-price {
+  font-weight: 800;
+  font-size: 0.9em;
+}
+
+@media screen and (min-width: 1146px) {
+}
+
+@media screen and (max-width: 1145px) {
 }
