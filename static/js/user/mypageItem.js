@@ -71,7 +71,7 @@ function modalAddItem() {
   const formData = new FormData();
   const file = document.querySelector(".img");
 
-  formData.append("user_id", "admin");
+  formData.append("user_id", "yagobo1110");
   formData.append("category_id", category.value);
   formData.append("title", form.title.value);
   formData.append("img", file.files[0]);
@@ -137,10 +137,10 @@ function itemDelete(obj, id) {
 axios({
   url: "/api/product/myproduct",
   method: "post",
-  data: { id: "admin" },
+  data: { id: "yagobo1110" },
 }).then((result) => {
-  console.log(result);
-  console.log(result.data);
+  // console.log(result);
+  // console.log(result.data);
   console.log(result.data[0]);
   var i;
   for (i = 0; i < result.data.length; i++) {
