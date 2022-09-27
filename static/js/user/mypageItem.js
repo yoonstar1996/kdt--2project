@@ -70,7 +70,7 @@ function modalAddItem() {
   const formData = new FormData();
   const file = document.querySelector(".img");
 
-  formData.append("user_id", "dyun");
+  formData.append("user_id", "yagobo1110");
   formData.append("category_id", category.value);
   formData.append("title", form.title.value);
   formData.append("img", file.files[0]);
@@ -101,7 +101,7 @@ function modalAddItem() {
           </div>
         </div>
         <div class="item-cancel">
-          <button type="button" class="item-cancel-btn" onclick="itemDelete(this, ${result.data[i].id})">상품 삭제</button>
+          <button type="button" class="item-cancel-btn" onclick="itemDelete(this, ${response.data.id})">상품 삭제</button>
         </div>
 
       </div>
@@ -132,10 +132,10 @@ function itemDelete(obj, id) {
 axios({
   url: "/api/product/myproduct",
   method: "post",
-  data: { id: "dyun" },
+  data: { id: "yagobo1110" },
 }).then((result) => {
-  console.log(result);
-  console.log(result.data);
+  // console.log(result);
+  // console.log(result.data);
   console.log(result.data[0]);
   var i;
   for (i = 0; i < result.data.length; i++) {
