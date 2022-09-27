@@ -1,24 +1,41 @@
-const { Product } = require("../model");
-
+const { Product, Category } = require("../model");
 exports.product = (req, res) => {
-  res.render("product/product");
+  Product.findOne({
+    where: {
+      id: req.params.id,
+    },
+  }).then((result) => {
+    const data = result;
+    console.log(data);
+    res.render("product/product", { data });
+  });
+};
+
+exports.categories = (req, res) => {
+  Product.findAll({
+    where: {
+      category_id: req.params.id,
+    },
+  }).then((result) => {
+    const data = result;
+    console.log(data);
+    res.render("product/categories", { data });
+  });
 };
 
 // 상품 생성
 exports.product_create = (req, res) => {
-
-  console.log("aaa");
   const data = {
     user_id: req.body.user_id,
+    category_id: req.body.category_id,
     title: req.body.title,
-    img: "/uploads" + req.body.img,
+    img: "/uploads/" + req.file.filename,
     adult: req.body.adult,
     price: req.body.price,
     position: req.body.position,
-    category: req.body.category,
     content: req.body.content,
   };
   Product.create(data).then((result) => {
-    res.send(true);
+    res.send(result);
   });
 };

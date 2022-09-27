@@ -1,5 +1,10 @@
+const { Product } = require("../model");
+
 exports.main = (req, res) => {
-  res.render("index");
+  Product.findAll().then((result) => {
+    const data = result;
+    res.render("index", { data: data });
+  });
 };
 // 네이버 로그인 콜백 페이지
 exports.naverCallback = (req, res) => {
@@ -7,12 +12,16 @@ exports.naverCallback = (req, res) => {
 };
 // 카카오 로그인 콜백 페이지
 exports.kakaoCallback = (req, res) => {
-  res.render("./login/kakao_callback");
+  var data = {
+    email: req.body.email,
+    name: req.body.name
+  }
+  res.render("./login/kakao_callback", { email: req.body.email, name: req.body.name });
 };
 
 exports.mypage = (req, res) => {
   const data = [];
 
   let result = true;
-  res.render("./login/mypageItem",{data: result});
+  res.render("./login/mypageItem", { data: result });
 };

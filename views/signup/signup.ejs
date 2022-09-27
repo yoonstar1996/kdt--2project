@@ -5,11 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script
-      src="https://code.jquery.com/jquery-3.6.1.min.js"
-      integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <%-include("../link.ejs")%>
     <link href="/static/css/user/signup.css" rel="stylesheet" />
@@ -33,16 +29,8 @@
             <div>아이디<span class="red">*</span></div>
           </div>
           <div>
-            <input
-              type="text"
-              class="height2"
-              placeholder="아이디를 입력해주세요"
-              name="id"
-              id="id"
-            />
-            <div class="validid d-none colors">
-              4~12자의 영문 대소문자와 숫자로만 입력
-            </div>
+            <input type="text" class="height2" placeholder="아이디를 입력해주세요" name="id" id="id" />
+            <div class="validid d-none colors">4~12자의 영문 대소문자와 숫자로만 입력</div>
           </div>
           <div class="rightbtn">
             <button type="button" onclick="idconfirm()">중복확인</button>
@@ -53,17 +41,8 @@
             <div>비밀번호<span class="red">*</span></div>
           </div>
           <div>
-            <input
-              type="password"
-              class="height2"
-              placeholder="비밀번호를 입력해주세요"
-              style="margin-bottom: 0px"
-              name="pw"
-              id="pw"
-            />
-            <div class="validpw d-none colors">
-              4~12자의 영문 대소문자와 숫자로만 입력
-            </div>
+            <input type="password" class="height2" placeholder="비밀번호를 입력해주세요" style="margin-bottom: 0px" name="pw" id="pw" />
+            <div class="validpw d-none colors">4~12자의 영문 대소문자와 숫자로만 입력</div>
           </div>
         </div>
         <div class="sign-pw-confirm">
@@ -71,17 +50,8 @@
             <div>비밀번호확인<span class="red">*</span></div>
           </div>
           <div>
-            <input
-              type="password"
-              class="height2"
-              placeholder="비밀번호를 한번 더 입력해주세요"
-              style="margin-bottom: 0px"
-              name="pw.confirm"
-              id="pwconfirm"
-            />
-            <div class="validpwconfirm d-none colors">
-              비밀번호가 일치하지 않습니다.
-            </div>
+            <input type="password" class="height2" placeholder="비밀번호를 한번 더 입력해주세요" style="margin-bottom: 0px" name="pw.confirm" id="pwconfirm" />
+            <div class="validpwconfirm d-none colors">비밀번호가 일치하지 않습니다.</div>
           </div>
         </div>
         <div class="sign-name">
@@ -91,7 +61,6 @@
           <div class="center-name">
             <input type="text" class="height2" placeholder="이름를 입력해주세요" name="name" id="name" />
             <div class="validname d-none colors">이름 형식에 맞지 않습니다.</div>
-
           </div>
         </div>
         <div class="sign-email">
@@ -111,16 +80,8 @@
             <div>휴대폰<span class="red">*</span></div>
           </div>
           <div>
-            <input
-              type="text"
-              class="height2"
-              placeholder="숫자만 입력해주세요"
-              name="phone"
-              id="phone"
-            />
-            <div class="validephone d-none colors">
-              휴대폰번호 형식에 맞지 않습니다.
-            </div>
+            <input type="text" class="height2" placeholder="숫자만 입력해주세요" name="phone" id="phone" />
+            <div class="validephone d-none colors">휴대폰번호 형식에 맞지 않습니다.</div>
           </div>
           <div class="rightbtn">
             <button type="button" disabled>인증번호 받기</button>
@@ -132,52 +93,14 @@
           </div>
           <div class="sign-adress-input">
             <!-- <input type="text" id="adress_number" placeholder="우편번호" /> -->
-            <input
-              type="text"
-              name="adress"
-              id="adress"
-              class="height2"
-              placeholder="주소"
-            />
-            <input
-              type="text"
-              id="adress_more"
-              class="height2"
-              placeholder="상세주소"
-            />
-            <div
-              id="wrap"
-              style="
-                display: none;
-                border: 1px solid;
-                width: 314px;
-                max-height: 250px;
-                margin: 5px 0;
-                position: relative;
-              "
-            >
-              <img
-                src="//t1.daumcdn.net/postcode/resource/images/close.png"
-                id="btnFoldWrap"
-                style="
-                  cursor: pointer;
-                  position: absolute;
-                  right: 0px;
-                  top: -1px;
-                  z-index: 1;
-                "
-                onclick="closebtn()"
-                alt="접기 버튼"
-              />
+            <input type="text" name="adress" id="adress" class="height2" placeholder="주소" />
+            <input type="text" id="adress_more" class="height2" placeholder="상세주소" />
+            <div id="wrap" style="display: none; border: 1px solid; width: 314px; max-height: 250px; margin: 5px 0; position: relative">
+              <img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap" style="cursor: pointer; position: absolute; right: 0px; top: -1px; z-index: 1" onclick="closebtn()" alt="접기 버튼" />
             </div>
           </div>
           <div class="sign-adress-find">
-            <input
-              type="button"
-              class="btncolor"
-              onclick="findAdress()"
-              value="우편번호 찾기"
-            /><br />
+            <input type="button" class="btncolor" onclick="findAdress()" value="우편번호 찾기" /><br />
             <!-- <input type="text" id="etc" placeholder="참고항목" /> -->
           </div>
         </div>
@@ -186,9 +109,7 @@
             <div>성별</div>
           </div>
           <div class="sign-gender-radio">
-            <div>
-              <input type="radio" id="male" name="gender" value="male" /> 남자
-            </div>
+            <div><input type="radio" id="male" name="gender" value="male" /> 남자</div>
             <div>
               <input type="radio" id="female" name="gender" value="female" />
               여자
@@ -203,27 +124,20 @@
           <div class="sign-birth-text">
             <div>생년월일</div>
           </div>
-          <div
-            style="
-              width: 314px;
-              display: flex;
-              flex-wrap: wrap;
-              align-content: center;
-            "
-          >
+          <div style="width: 314px; display: flex; flex-wrap: wrap; align-content: center">
             <select type="select" name="birth" required>
               <% for(var i=1950; i<2023; i++) { %>
-              <option value='<%=i%>'><%=i%></option>
+              <option value="<%=i%>"><%=i%></option>
               <% } %></select
             >년
             <select type="select" name="month">
               <% for(var i=1; i<13; i++) { %>
-              <option value='<%=i%>'><%=i%></option>
+              <option value="<%=i%>"><%=i%></option>
               <% } %></select
             >월
             <select type="select" name="day">
               <% for(var i=1; i<32; i++) { %>
-              <option value='<%=i%>'><%=i%></option>
+              <option value="<%=i%>"><%=i%></option>
               <% } %></select
             >일
           </div>

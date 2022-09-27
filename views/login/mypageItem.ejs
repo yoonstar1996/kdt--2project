@@ -26,10 +26,11 @@
       </div>
 
       <div class="right-sgt">
-        <div>상품 목록</div>
+        <div class="right-sgt-top">상품 목록</div>
         <hr />
         <div class="right-sgt-content">
-          <%if(data) {%>
+          
+          <!-- <%if(data) {%> -->
 
           <div class="itemList">
             <div class="my-item">
@@ -42,15 +43,18 @@
                   <div class="item-text-content">상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명 상품 설명</div>
                 </div>
               </div>
+              <div class="item-cancel">
+                <button type="button" class="item-cancel-btn" onclick="itemCancel(this)">등록 취소</button>
+              </div>
             </div>
           </div>
           <button id="noModalOn" class="cursor" onclick="addItem()">상품 등록 하기</button>
-          <%} else {%>
+          <!-- <%} else {%> -->
           <div class="no-item">
             <div>등록한 상품이 없습니다.</div>
             <button id="modalOn" class="cursor" onclick="addItem()">상품 등록 하기</button>
           </div>
-          <% } %>
+          <!-- <% } %> -->
           <form class="myModal">
             <div>
               <div class="addTitle">상품 등록</div>
@@ -67,14 +71,12 @@
               <option value="food">식품/잡화</option>
               <option value="pet">반려동물</option>
             </select>
-            <!-- <input type="text" placeholder="카테고리" name="category" class="category" /> -->
             <textarea placeholder="상품 설명" name="content" class="content"></textarea>
             <div class="itemAdd">
               <button type="button" class="addItemBtn cursor" onclick="modalAddItem()">상품 등록</button>
               <div class="modalClose cursor" onclick="modalClose();">닫기</div>
             </div>
           </form>
-
           <div class="right-sgt-bottom">
             <div>페이지네이션</div>
           </div>
@@ -82,119 +84,7 @@
       </div>
     </div>
 
-    <script>
-      //   function display() {
-      //     var button = document.querySelector("#modalOn");
-      //     var modal = document.querySelector(".myModal");
-      //     modal.attributes0("display","flex");
-      //   }
+    <script src="/static/js/user/mypageItem.js"></script>
 
-      var modal = document.querySelector(".myModal");
-      var bg = document.createElement("div");
-      var zIndex = 9999;
-
-      function modalClose() {
-        bg.remove();
-        modal.reset();
-        modal.style.display = "none";
-      }
-
-      function addItem() {
-        // 모달 div 뒤에 희끄무레한 레이어
-        bg.setStyle({
-          position: "fixed",
-          zIndex: zIndex,
-          left: "0px",
-          top: "0px",
-          width: "100%",
-          height: "100%",
-          overflow: "auto",
-          // 레이어 색갈은 여기서 바꾸면 됨
-          backgroundColor: "rgba(0,0,0,0.4)",
-        });
-        document.body.append(bg);
-
-        // 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
-
-        modal.querySelector(".modalClose").addEventListener("click", function () {
-          bg.remove();
-          modal.reset();
-          modal.style.display = "none";
-        });
-
-        modal.setStyle({
-          position: "fixed",
-          display: "flex",
-          boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
-
-          // 시꺼먼 레이어 보다 한칸 위에 보이기
-          zIndex: zIndex + 1,
-
-          // div center 정렬
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          msTransform: "translate(-50%, -50%)",
-          webkitTransform: "translate(-50%, -50%)",
-        });
-      }
-
-      // Element 에 style 한번에 오브젝트로 설정하는 함수 추가
-      Element.prototype.setStyle = function (styles) {
-        for (var k in styles) this.style[k] = styles[k];
-        return this;
-      };
-
-      //   document.getElementById("modalOn").addEventListener("click", function () {
-      //     // 모달창 띄우기
-      //     modal("my_modal");
-      //   });
-
-      function modalAddItem() {
-        const form = document.querySelector(".myModal");
-        const category = document.querySelector(".category");
-        const formData = new FormData();
-        const file = document.querySelector(".img");
-        
-        formData.append("user_id", "1234");
-        formData.append("title",  form.title.value);
-        formData.append("img", file.files[0]);
-        formData.append("adult",true);
-        formData.append("price", form.price.value);
-        formData.append("position", '마포구');
-        formData.append("category", category.value);
-        formData.append("content", form.content.value);
-
-        axios({
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-          url: "/api/product",
-          method: "post",
-          data: formData,
-        }).then((response) => {
-          if (response) {
-            var itemList = document.querySelector(".itemList");
-            $(itemList).append(`
-            <div class="my-item">
-              <img class="item-img" src="${formData.img}" />
-              <div class="item-info">
-                <div class="item-text">
-                  <h4 class="item-text-name">${formData.title}</h4>
-                  <div class="item-text-price">${formData.price}</div>
-                  <div class="item-text-category">${formData.category}</div>
-                  <div class="item-text-content">${formData.content}</div>
-                </div>
-              </div>
-            </div>
-            `);
-            console.log(data.img);
-            modalClose();
-          } else {
-            alert("상품 등록 실패");
-          }
-        });
-      }
-    </script>
   </body>
 </html>

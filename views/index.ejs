@@ -13,50 +13,81 @@
       type="text/css"
       href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
     />
-    <link rel="stylesheet" type="text/css" href="/plugin/slick/slick.css" />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="/plugin/slick/slick-theme.css"
-    />
-
-    <script type="text/javascript" src="/js/jquery.js"></script>
-    <script type="text/javascript" src="/plugin/slick/slick.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
+    ></script>
     <link rel="stylesheet" href="/static/css/main/main.css" />
     <!-- CSS only -->
   </head>
   <body>
     <%-include("main/navbar.ejs")%>
-    <div class="slideshow-container">
-      <div class="mySlideDiv fade active">
-        <img src="static/img/banner1.png" />
+    <div class="post-slider">
+      <div class="post-wrapper">
+        <div class="post">
+          <a
+            ><img
+              src="static/img/banner4.jpeg"
+              style="max-width: 100%; width: 1100px; height: auto"
+          /></a>
+        </div>
+        <div class="post">
+          <a
+            ><img
+              src="static/img/banner5.jpeg"
+              style="max-width: 100%; width: 1100px; height: auto"
+          /></a>
+        </div>
+        <div class="post">
+          <a
+            ><img
+              src="static/img/banner6.jpeg"
+              style="max-width: 100%; width: 1px; height: auto"
+          /></a>
+        </div>
       </div>
-
-      <div class="mySlideDiv fade">
-        <img src="static/img/banner2.png" />
-      </div>
-
-      <div class="mySlideDiv fade">
-        <img src="static/img/banner3.png" />
-      </div>
-
-      <a class="prev" onclick="prevSlide()">&#10094;</a>
-      <a class="next" onclick="nextSlide()">&#10095;</a>
     </div>
+    <br />
     <div class="all-space">
       <div class="new">
-        <div class="new1">새로 올라왔어요</div>
         <br />
         <div class="new-box">
+          <div class="new-first">
+          <div class="new1">
+            <div>새로</div>
+            <div>올라왔어요</div>
+          </div>
           <div class="new-box1"></div>
           <div class="new-box2"></div>
           <div class="new-box3"></div>
+        </div>
+        <div class="new-second">
           <div class="new-box4"></div>
+          <div class="new-box5"></div>
+          <div class="new-box6"></div>
+          <div class="new-box7"></div>
         </div>
       </div>
       <br />
       <br />
-      <div class="attention">
+      <div class="new-box">
+        <div class="new-first">
+        <div class="new1">
+          <div>SGT</div>
+          <div>인기상품</div>
+        </div>
+        <div class="new-box1"></div>
+        <div class="new-box2"></div>
+        <div class="new-box3"></div>
+      </div>
+      <div class="new-second">
+        <div class="new-box4"></div>
+        <div class="new-box5"></div>
+        <div class="new-box6"></div>
+        <div class="new-box7"></div>
+      </div>
+    </div>
+      <!-- <div class="attention">
         <div class="attention1">인기 상품</div>
         <br />
         <div class="att-box">
@@ -65,10 +96,10 @@
           <div class="att-box3"></div>
           <div class="att-box4"></div>
         </div>
-      </div>
-    </div>
+      </div> -->
     <br />
     <br />
     <%-include("main/footer.ejs")%>
+    <script src="/static/js/index.js"></script>
   </body>
 </html>
