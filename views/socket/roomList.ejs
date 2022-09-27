@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <%-include("../link.ejs")%>
+    <link rel="stylesheet" href="/static/css/socket/roomlist.css" />
+    <link rel="stylesheet" href="/static/css/socket/socket.css" />
+  </head>
+  <body>
+    <div class="scene flex">
+      <section id="chatbox">
+        <div class="headerbox">
+          <a href="/">
+            <img
+              src="/static/img/logo.png"
+              alt=""
+              class="logo"
+              class="d-inline-block align-text-top"
+            />
+          </a>
+          <button class="chat__custom back-btn" onclick="back()">
+            <span class="material-symbols-outlined"> keyboard_backspace </span>
+          </button>
+        </div>
+        <section class="content">
+          <ul class="area">
+            <li class="item">
+              <div class="imgbox">
+                <img src="/static/img/coffee.jpeg" alt="" />
+              </div>
+              <div class="roomnickcon">
+                <div class="roomnickname">닉네임</div>
+                <div class="roomcontents">asdaa dsfsd fdslkjf sdfjkldsj</div>
+              </div>
+              <div class="roomtimenoti">
+                <div class="roomtime">02:53</div>
+                <div class="roomnotice">
+                  <div class="notibox">1</div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </section>
+      </section>
+    </div>
+
+    <!-- <div class="box">
+      <div class="container">
+        <header class="container-fluid nav">
+          <a href="/">
+            <img
+              src="/static/img/logo.png"
+              alt=""
+              class="logo"
+              class="d-inline-block align-text-top"
+            />
+          </a>
+        </header>
+        <section class="content">
+          <ul class="area">
+            <li class="item">
+              <div class="imgbox">
+                <img src="/static/img/coffee.jpeg" alt="" />
+              </div>
+              <div class="roomnickcon">
+                <div class="roomnickname">닉네임</div>
+                <div class="roomcontents">asdaa dsfsd fdslkjf sdfjkldsj</div>
+              </div>
+              <div class="roomtimenoti">
+                <div class="roomtime">02:53</div>
+                <div class="roomnotice">
+                  <div class="notibox">1</div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </section>
+      </div>
+    </div> -->
+    <script src="/static/js/socket/socket.js"></script>
+  </body>
+</html>

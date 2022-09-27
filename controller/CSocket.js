@@ -1,6 +1,9 @@
 const { Room, ChatContent, Participation } = require("../model");
 
 // 채팅 페이지
+exports.roomlist = (req, res) => {
+  res.render("socket/roomList");
+};
 exports.socket = (req, res) => {
   res.render("socket/socket");
 };

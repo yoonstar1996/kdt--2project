@@ -1,0 +1,83 @@
+.logo {
+  height: 80px;
+}
+
+.content {
+  display: flex;
+  flex-grow: 1;
+}
+
+/* 채팅방 목록 css 시작 */
+.area {
+  list-style: none;
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+}
+
+.item {
+  display: flex;
+  overflow: hidden;
+  justify-content: space-between;
+  height: 70px;
+}
+
+.imgbox {
+  display: flex;
+  width: 30%;
+}
+
+/* 닉네임 내용 묶음 */
+.roomnickcon {
+  overflow-x: hidden;
+}
+
+.roomnickname {
+  line-height: 35px;
+  color: gray;
+  font-size: medium;
+  font-weight: 700;
+  text-align: start;
+  margin-left: 10px;
+}
+
+.roomcontents {
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-break: break-all;
+  line-height: 35px;
+  color: gray;
+  font-size: small;
+  margin-left: 10px;
+  text-align: start;
+}
+
+/* 시간 타임 묶음 */
+.roomtimenoti {
+  width: 40%;
+  display: flex;
+  align-items: center;
+}
+
+.roomtime {
+  flex-grow: 1;
+  text-align: center;
+  color: gray;
+}
+
+.roomnotice {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.notibox {
+  width: 25px;
+  height: 25px;
+  border-radius: 20px;
+  background-color: #eb8d00;
+  color: #fff;
+  margin: auto;
+}
+
+/* 채팅방 목록 css 끝 */

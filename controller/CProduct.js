@@ -10,14 +10,23 @@ exports.product = (req, res) => {
   });
 };
 
+exports.product_list = (req, res) => {
+  Product.findAll().then((result) => {
+    res.send(result);
+  });
+};
 exports.categories = (req, res) => {
+  res.render("product/categories", { category: req.params.id });
+};
+
+exports.categories_list = (req, res) => {
   Product.findAll({
     where: {
       category_id: req.params.id,
     },
   }).then((result) => {
-    const data = result;
-    res.render("product/categories", { data });
+    console.log(result);
+    res.send(result);
   });
 };
 

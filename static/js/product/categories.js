@@ -1,6 +1,16 @@
 // 상품목록 리스트 (페이지네이션) 시작
 $(function () {
   let container = $("#pagination");
+  const category = "<%=category%>";
+  console.log(category);
+  axios({
+    url: `/categories/${category}`,
+    method: "post",
+    data: { category: category },
+  }).then((result) => {
+    console.log(result.data);
+  });
+
   container.pagination({
     dataSource: [
       {
