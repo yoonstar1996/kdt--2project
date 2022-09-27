@@ -46,6 +46,7 @@ router.post("/signup/idcheck", uesr.signup_id_check);
 router.post("/product", upload.single("img"), product.product_create);
 router.post("/products", product.product_list);
 router.post("/product/myproduct", product.product_myproduct);
+router.delete("/product/delete", product.product_delete);
 
 // 카테고리 상품
 router.post("/categories/:id", product.categories_list);

@@ -55,3 +55,12 @@ exports.product_myproduct = (req, res) => {
     res.send(result);
   });
 };
+
+// 나의 등록 상품
+exports.product_delete = (req, res) => {
+  Product.destroy({
+    where: { id: req.body.id },
+  }).then((result) => {
+    res.send(result);
+  });
+};
