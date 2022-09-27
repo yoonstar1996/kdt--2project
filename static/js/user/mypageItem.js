@@ -44,7 +44,8 @@ function addItem() {
   modal.setStyle({
     position: "fixed",
     display: "flex",
-    boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+    boxShadow:
+      "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
 
     // 시꺼먼 레이어 보다 한칸 위에 보이기
     zIndex: zIndex + 1,
@@ -70,7 +71,7 @@ function modalAddItem() {
   const formData = new FormData();
   const file = document.querySelector(".img");
 
-  formData.append("user_id", "dyun");
+  formData.append("user_id", "admin");
   formData.append("category_id", category.value);
   formData.append("title", form.title.value);
   formData.append("img", file.files[0]);
@@ -96,12 +97,16 @@ function modalAddItem() {
           <div class="item-text">
             <h4 class="item-text-name">${response.data.title}</h4>
             <div class="item-text-price">${response.data.price}</div>
-            <div class="item-text-category">${categories[response.data.category_id]}</div>
+            <div class="item-text-category">${
+              categories[response.data.category_id]
+            }</div>
             <div class="item-text-content">${response.data.content}</div>
           </div>
         </div>
         <div class="item-cancel">
-          <button type="button" class="item-cancel-btn" onclick="itemDelete(this, ${result.data[i].id})">상품 삭제</button>
+          <button type="button" class="item-cancel-btn" onclick="itemDelete(this, ${
+            response.data.id
+          })">상품 삭제</button>
         </div>
 
       </div>
@@ -132,7 +137,7 @@ function itemDelete(obj, id) {
 axios({
   url: "/api/product/myproduct",
   method: "post",
-  data: { id: "dyun" },
+  data: { id: "admin" },
 }).then((result) => {
   console.log(result);
   console.log(result.data);
@@ -147,12 +152,16 @@ axios({
         <div class="item-text">
           <h4 class="item-text-name">${result.data[i].title}</h4>
           <div class="item-text-price">${result.data[i].price}</div>
-          <div class="item-text-category">${categories[result.data[i].category_id]}</div>
+          <div class="item-text-category">${
+            categories[result.data[i].category_id]
+          }</div>
           <div class="item-text-content">${result.data[i].content}</div>
         </div>
       </div>
       <div class="item-cancel">
-        <button type="button" class="item-cancel-btn" onclick="itemDelete(this, ${result.data[i].id})">상품 삭제</button>
+        <button type="button" class="item-cancel-btn" onclick="itemDelete(this, ${
+          result.data[i].id
+        })">상품 삭제</button>
       </div>
   
     </div>
