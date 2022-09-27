@@ -74,7 +74,7 @@ exports.product_myproduct = (req, res) => {
 exports.product_delete = (req, res) => {
   Product.destroy({
     where: { id: req.body.id },
-  }).then((result) => {
-    res.send(result);
+  }).then(() => {
+    res.send('true');
   });
 };
