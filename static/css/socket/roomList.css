@@ -1,35 +1,80 @@
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scene {
+  background: white;
+  height: 100vh;
+  position: relative;
+}
+
+#chatbox {
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(254, 254, 254, 0.18);
+  border-radius: 15px;
+  box-shadow: 0 10px 35px 0 rgba(54, 33, 0, 0.65);
+  color: black;
+  width: 70vw;
+  height: 80vh;
+  overflow: hidden;
+  padding: 20px 30px 50px 30px;
+  position: relative;
+  z-index: 1;
+}
+.headerbox {
+  display: flex;
+  justify-content: center;
+}
 .logo {
   height: 80px;
 }
-
-.content {
-  display: flex;
-  flex-grow: 1;
+.chat__custom {
+  border-radius: 5px;
+  background: transparent;
+  cursor: pointer;
+  box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
+    7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
 }
-
+.back-btn {
+  position: absolute;
+  left: 40px;
+  top: 40px;
+}
 /* 채팅방 목록 css 시작 */
 .area {
   list-style: none;
   width: 100%;
   padding: 10px;
-  text-align: center;
+  height: 90%;
+  overflow-y: scroll;
 }
 
 .item {
   display: flex;
-  overflow: hidden;
   justify-content: space-between;
-  height: 70px;
+  height: 80px;
+  cursor: pointer;
 }
-
-.imgbox {
+.room {
   display: flex;
-  width: 30%;
+  width: 50%;
+}
+.imgbox {
+  width: 80px;
+}
+.imgbox img {
+  width: 80px;
+  height: 80px;
 }
 
 /* 닉네임 내용 묶음 */
 .roomnickcon {
   overflow-x: hidden;
+  margin-left: 20px;
 }
 
 .roomnickname {
@@ -37,8 +82,6 @@
   color: gray;
   font-size: medium;
   font-weight: 700;
-  text-align: start;
-  margin-left: 10px;
 }
 
 .roomcontents {
@@ -49,26 +92,25 @@
   line-height: 35px;
   color: gray;
   font-size: small;
-  margin-left: 10px;
   text-align: start;
 }
 
 /* 시간 타임 묶음 */
 .roomtimenoti {
-  width: 40%;
+  width: 10%;
   display: flex;
+  justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 .roomtime {
   flex-grow: 1;
-  text-align: center;
   color: gray;
 }
 
 .roomnotice {
   flex-grow: 1;
-  text-align: center;
 }
 
 .notibox {
@@ -77,6 +119,7 @@
   border-radius: 20px;
   background-color: #eb8d00;
   color: #fff;
+  text-align: center;
   margin: auto;
 }
 
