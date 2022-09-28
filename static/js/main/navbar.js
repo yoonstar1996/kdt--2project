@@ -1,3 +1,21 @@
+if (sessionStorage.getItem("id")) {
+  const navTop = document.querySelector(".nav-top");
+  navTop.classList.add("d-none");
+} else {
+  const navTopLogged = document.querySelector(".nav-top-logged");
+  navTopLogged.classList.add("d-none");
+}
+
+if (sessionStorage.id == sessionStorage.id) {
+  var nameposition = document.querySelector(".nameposition");
+  nameposition.innerHTML = sessionStorage.id;
+}
+
+function logout() {
+  sessionStorage.removeItem("id");
+  window.location.href = "/"
+}
+
 $(document).ready(function () {
   $(".toggle").click(function () {
     $(".toggle").toggleClass("active");
