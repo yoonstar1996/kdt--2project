@@ -1,11 +1,25 @@
-const { Product, Category } = require("../model");
+const { User, Product, Category } = require("../model");
+
+const categories = {
+  life: "생활/가전",
+  electro: "전자제품",
+  fashion: "패션/의류",
+  interior: "가구/인테리어",
+  book: "도서/음반/티켓",
+  food: "식품/잡화",
+  pet: "반려동물",
+};
+
 exports.product = (req, res) => {
   Product.findOne({
+    include: [{ model: User }],
     where: {
       id: req.params.id,
     },
   }).then((result) => {
     const data = result;
+    console.log(data);
+    data.category_id = categories[data.category_id];
     res.render("product/product", { data });
   });
 };

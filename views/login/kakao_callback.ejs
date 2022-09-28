@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
-
     <%-include("../link.ejs")%>
     <link href="/static/css/user/signup.css" rel="stylesheet" />
     <title>SGT - 회원가입</title>
@@ -13,9 +14,6 @@
   <body>
     <%-include("../main/navbar.ejs")%>
 
-    <!-- <script>
-        window.location.href="localhost:8000/"
-      </script> -->
     <div class="wrapper">
       <div class="signup-text">
         <div class="write-signup">회원가입</div>
@@ -30,8 +28,8 @@
           <div class="left-text">
             <div>아이디<span class="red">*</span></div>
           </div>
-          <div class="center-id">
-            <input type="text" class="height2" placeholder="아이디를 입력해주세요" name="id" id="id" value="<%=email%>" disabled />
+          <div>
+            <input type="text" class="height2" placeholder="아이디를 입력해주세요" value="<%=email%>" name="id" id="id" disabled />
             <div class="validid d-none colors">4~12자의 영문 대소문자와 숫자로만 입력</div>
           </div>
           <div class="rightbtn">
@@ -43,7 +41,7 @@
             <div>비밀번호<span class="red">*</span></div>
           </div>
           <div>
-            <input type="password" class="height2" placeholder="비밀번호를 입력해주세요" style="margin-bottom: 0px" name="pw" id="pw" />
+            <input type="password" class="height2" placeholder="비밀번호를 입력해주세요" style="margin-bottom: 0px" name="pw" id="pw" required />
             <div class="validpw d-none colors">4~12자의 영문 대소문자와 숫자로만 입력</div>
           </div>
         </div>
@@ -52,7 +50,7 @@
             <div>비밀번호확인<span class="red">*</span></div>
           </div>
           <div>
-            <input type="password" class="height2" placeholder="비밀번호를 한번 더 입력해주세요" style="margin-bottom: 0px" name="pw.confirm" id="pwconfirm" />
+            <input type="password" class="height2" placeholder="비밀번호를 한번 더 입력해주세요" style="margin-bottom: 0px" name="pw.confirm" id="pwconfirm" required />
             <div class="validpwconfirm d-none colors">비밀번호가 일치하지 않습니다.</div>
           </div>
         </div>
@@ -61,7 +59,7 @@
             <div>이름<span class="red">*</span></div>
           </div>
           <div class="center-name">
-            <input type="text" class="height2" placeholder="이름를 입력해주세요" name="name" id="name" value="<%=name%>" disabled />
+            <input type="text" class="height2" placeholder="이름를 입력해주세요" value="<%=name%>" name="name" id="name" disabled />
             <div class="validname d-none colors">이름 형식에 맞지 않습니다.</div>
           </div>
         </div>
@@ -70,7 +68,7 @@
             <div>이메일<span class="red">*</span></div>
           </div>
           <div class="center-email">
-            <input type="text" class="height2" placeholder="예:SGTmarket@sgt.com" name="email" id="email" value="<%=email%>" disabled />
+            <input type="text" class="height2" placeholder="예:SGTmarket@sgt.com" value="<%=email%>" name="email" id="email" disabled />
             <div class="validemail d-none colors">이메일 형식에 맞지 않습니다.</div>
           </div>
           <div class="rightbtn">
@@ -111,31 +109,36 @@
             <div>성별</div>
           </div>
           <div class="sign-gender-radio">
-            <div><input type="radio" id="male" name="gender" value="male" /> 남자</div>
-            <div><input type="radio" id="female" name="gender" value="female" /> 여자</div>
-            <div><input type="radio" id="none" name="gender" value="none" /> 선택안함</div>
+            <div>
+              <input type="radio" class="radio-input" id="male" name="gender" value="male" />
+              <label for="male"
+                ><span class="bigcircle"><span class="smallcircle"></span></span> 남자</label
+              >
+            </div>
+            <div>
+              <input type="radio" class="radio-input" id="female" name="gender" value="female" />
+              <label for="female"
+                ><span class="bigcircle"><span class="smallcircle"></span></span> 여자</label
+              >
+            </div>
+            <div>
+              <input type="radio" class="radio-input" id="none" name="gender" value="none" />
+              <label for="none"
+                ><span class="bigcircle"><span class="smallcircle"></span></span> 선택안함</label
+              >
+            </div>
           </div>
         </div>
         <div class="sign-birth">
           <div class="sign-birth-text">
             <div>생년월일</div>
           </div>
-          <div style="width: 314px; display: flex; flex-wrap: wrap; align-content: center">
-            <select type="select" name="birth" required>
-              <% for(var i=1950; i<2023; i++) { %>
-              <option value="<%=i%>"><%=i%></option>
-              <% } %></select
-            >년
-            <select type="select" name="month">
-              <% for(var i=1; i<13; i++) { %>
-              <option value="<%=i%>"><%=i%></option>
-              <% } %></select
-            >월
-            <select type="select" name="day">
-              <% for(var i=1; i<32; i++) { %>
-              <option value="<%=i%>"><%=i%></option>
-              <% } %></select
-            >일
+          <div class="sign-birth-right">
+            <div class="sign-birth-input">
+              <input type="text" class="yyyy" placeholder="YYYY" maxlength="4" />
+              <input type="text" class="mmmm" placeholder="MM" maxlength="2" />
+              <input type="text" class="dddd" placeholder="DD" maxlength="2" />
+            </div>
           </div>
         </div>
         <hr />
@@ -144,5 +147,7 @@
         </div>
       </form>
     </div>
+    <%-include("../main/footer.ejs")%>
+    <script src="/static/js/user/kakao_callback.js"></script>
   </body>
 </html>

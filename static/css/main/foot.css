@@ -1,4 +1,54 @@
-.foot {
+#footer {
+  width: 100%;
+  height: 200px;
+  margin: 0px;
+  background-color: #eeeeee;
+}
+
+.footer-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.section-1,
+.section-2,
+.section-3,
+.section-4 {
+  width: 25%;
+  height: 100%;
+}
+
+.section-1 {
+  display: flex;
+}
+
+.first-inner {
+  background-color: white;
+  border: none;
+  border-radius: 30px;
+  width: 70%;
+  height: 100px;
+  display: flex;
+  margin: auto;
+}
+
+.foot-logo {
+  width: 14vw;
+  /* height: 77px; */
+  margin: auto;
+}
+
+.team1 {
+  font-weight: 700;
+  font-size: 1.2em;
+}
+
+.team2 {
+  font-weight: 700;
+  font-size: 1.2em;
+}
+/* .foot {
   text-align: center;
   align-items: center;
   margin: auto;
@@ -50,4 +100,4 @@ b {
 
 .footbg-top > div {
   font-size: small;
-}
+} */

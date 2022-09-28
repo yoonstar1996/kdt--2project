@@ -18,22 +18,26 @@
   float: left;
   margin: 0 50px 0 0;
   width: 170px;
+  font-size: 1rem;
 }
 .left-sgt > div {
   display: flex;
   justify-content: center;
   font-weight: 700;
   margin: 0 0 20px 0;
+  font-size: 1.1rem;
 }
 .left-sgt-button {
   display: flex;
   flex-direction: column;
+  font-size: 1.1rem;
 }
 .left-sgt-button > button {
   background-color: transparent;
   height: 55px;
   border: none;
   border-bottom: 1px solid #eaeaea;
+  font-size: 1rem;
 }
 .left-sgt-button > button:hover {
   cursor: pointer;
@@ -49,6 +53,7 @@
 }
 .right-sgt-top {
   font-weight: 700;
+  font-size: 1.1rem;
 }
 .right-sgt-content {
   width: 100%;
@@ -77,16 +82,31 @@
   justify-content: center;
   align-content: center;
   background-color: white;
-  height: 350px;
-  width: 500px;
+  height: 600px;
+  width: 700px;
   border-radius: 20px;
 }
 .myModal > input {
-  padding-left: 10px;
   margin: 10px 0;
 }
+.myModal > .title {
+  padding-left: 10px;
+  margin: 15px auto;
+  height: 50px;
+}
+.myModal > .price {
+  padding-left: 10px;
+  margin: 15px auto;
+  height: 50px;
+}
+.myModal > .category {
+  padding: 0 10px;
+  margin: 15px auto;
+  height: 50px;
+}
 .myModal > textarea {
-  padding: 10px 0 0 10px;
+  padding: 15px;
+  margin: 15px auto;
 }
 .myModal > button {
   display: flex;
@@ -97,6 +117,7 @@
   flex-wrap: wrap;
   align-content: center;
   justify-content: center;
+  margin: 15px auto;
 }
 .modalClose {
   position: relative;
@@ -108,13 +129,14 @@
 .addTitle {
   display: flex;
   justify-content: center;
-  width: 400px;
+  width: 700px;
   height: 30px;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 1.5rem;
   line-height: 30px;
   letter-spacing: -0.05em;
   color: #eb8d00;
+  margin: 10px auto;
 }
 .img {
   padding-left: 0;
@@ -122,39 +144,94 @@
 .title,
 .price {
   height: 30px;
-  border: 1px solid black;
+  border: 1px solid #eaeaea;
   width: 80%;
-}
-.category {
-  height: 30px;
-  border: 1px solid black;
+  border-radius: 20px;
+  font-size: 1rem;
 }
 .content {
-  border: 1px solid black;
+  border: 1px solid #eaeaea;
   margin: 10px 0;
-  width: 80%;
+  width: 545px;
+  height: 55px;
   resize: none;
+  border-radius: 20px;
+  font-size: 1rem;
+  overflow: hidden;
+}
+.select > .category {
+  border: 1px solid #eaeaea;
+  border-radius: 20px;
+  width: 130px;
+  height: 60px;
+  margin: 15px 20px 15px 0;
+  padding-left: 10px;
+  font-size: 1rem;
+}
+.container {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+  margin: 15px 0 15px 0;
+}
+.upload-name {
+  display: inline-block;
+  height: 60px;
+  padding: 0 15px;
+  vertical-align: middle;
+  border: 1px solid #dddddd;
+  width: 250px;
+  color: #999999;
+  border-radius: 30px;
+}
+.container label {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
+  padding: 10px 10px;
+  color: #fff;
+  background-color: rgba(0, 53, 109, 0.95);
+  cursor: pointer;
+  height: 40px;
+  margin-left: 10px;
+  border-radius: 30px;
+  font-size: 0.9rem;
+  width: 120px;
+}
+.img {
+  display: none;
+}
+.select {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
 }
 
 .addItemBtn {
-  width: 90px;
-  height: 40px;
+  width: 110px;
+  height: 50px;
   background-color: #ffe4bc;
   border: none;
   border-radius: 20px;
-  font-weight: 500;
+  font-weight: 700;
+  font-size: 1rem;
 }
 .modalClose {
-  font-size: 0.9rem;
+  width: 110px;
+  height: 50px;
+  background-color: #ffe4bc;
+  border: none;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 1rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-content: center;
-  width: 90px;
-  height: 40px;
-  background-color: #ffe4bc;
-  border: none;
-  border-radius: 20px;
 }
 #modalOn {
   display: flex;
@@ -179,6 +256,8 @@
   margin: 20px 0 20px auto;
   border-radius: 30px;
   height: 44px;
+  font-size: 1rem;
+  font-weight: 700;
 }
 .itemList {
   display: flex;
@@ -188,42 +267,62 @@
 }
 .my-item {
   width: 30%;
-  height: 300px;
+  height: 450px;
   margin: 10px;
   padding: 1px;
-  border: 1px solid black;
+  border: 1px solid coral;
   border-radius: 15px;
+}
+a {
+  text-decoration: none;
+  color: black;
 }
 .item-img {
   width: 90%;
-  height: 130px;
+  height: 220px;
   margin: 5px 0 0 11px;
+  /* border-bottom: 1px solid #eaeaea; */
 }
 .item-text-name {
+  width: 90%;
+  height: 30px;
   margin: 7px 0;
   padding-left: 5px;
+  font-size: 1.1rem;
+  /* border-bottom: 1px solid #eaeaea; */
 }
 .item-text-price {
+  width: 90%;
+  height: 30px;
   margin: 7px 0;
   padding-left: 5px;
+  /* border-bottom: 1px solid #eaeaea; */
+  font-weight: 700;
 }
 .item-text-category {
+  width: 90%;
+  height: 30px;
   margin: 7px 0;
   padding-left: 5px;
+  font-size: 0.9rem;
+  color: #9c9c9c;
+  /* border-bottom: 1px solid #eaeaea; */
 }
 .item-text-content {
+  height: 30px;
   display: block;
   /* border: 1px solid black; */
   margin: 10px 0;
-  width: 243px;
+  width: 86%;
   text-overflow: ellipsis;
   white-space: nowrap; /*글자를 한줄로 모아준다*/
   overflow: hidden;
-  padding-left: 5px;
+  padding: 0 8px;
+  /* border-bottom: 1px solid #eaeaea; */
 }
 .item-cancel-btn {
   float: right;
-  font-size: 0.9rem;
+  font-size: 1rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -233,7 +332,8 @@
   background-color: #ffe4bc;
   border: none;
   border-radius: 20px;
-  margin: 0 5px 0 0;
+  margin: 0 10px 0 0;
+  font-weight: 550;
 }
 .item-cancel-btn:hover {
   cursor: pointer;
