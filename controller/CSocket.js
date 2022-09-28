@@ -15,7 +15,6 @@ exports.socket_create = (req, res) => {
   const data = {
     name: req.body.title,
   };
-  console.log(data);
   Room.create(data).then((result) => {
     console.log(result);
     const chat_data = {
@@ -33,7 +32,7 @@ exports.socket_create = (req, res) => {
     };
     Participation.create(participation_my_data).then((result) => {});
     Participation.create(participation_other_data).then((result) => {});
-    res.send(result.id);
+    res.send({ id: result.id });
   });
 };
 

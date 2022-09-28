@@ -2,7 +2,7 @@ function chattingRoom(title, id) {
   const data = {
     other_id: id,
     title: title,
-    user_id: "dyun",
+    user_id: "dyun022",
   };
   axios({
     url: "/api/roomcheck",
@@ -22,7 +22,7 @@ function createChattingRoom(title, id) {
   const data = {
     other_id: id,
     title: title,
-    user_id: "dyun",
+    user_id: "dyun022",
   };
 
   axios({
