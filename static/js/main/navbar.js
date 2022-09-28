@@ -13,7 +13,7 @@ if (sessionStorage.id == sessionStorage.id) {
 
 function logout() {
   sessionStorage.removeItem("id");
-  window.location.href = "/"
+  window.location.href = "/";
 }
 
 $(document).ready(function () {
@@ -43,20 +43,10 @@ $(".toggle").click(function () {
   }
 });
 
-function filter() {
-  var value, name, item, i;
-
-  value = document.getElementById("search").value.toUpperCase();
-  item = document.getElementsByClassName("item-info");
-
-  for (i = 0; i < item.length; i++) {
-    name = item[i].getElementsByClassName("item-text-name");
-    if (name[0].innerHTML.toUpperCase().indexOf(value) > -1) {
-      item[i].style.display = "flex";
-    } else {
-      item[i].style.display = "none";
-    }
-  }
+function search() {
+  searchInput = document.querySelector("#search");
+  keyword = searchInput.value;
+  window.location.href = `/search/${keyword}`;
 }
 
 var media = window.matchMedia(mediaQueryString);

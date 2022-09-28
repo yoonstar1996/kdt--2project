@@ -48,6 +48,9 @@ router.post("/products", product.product_list);
 router.post("/product/myproduct", product.product_myproduct);
 router.delete("/product/delete", product.product_delete);
 
+
+router.post("/search/:product", product.search_item);
+
 // 카테고리 상품
 router.post("/categories/:id", product.categories_list);
 

@@ -89,6 +89,9 @@ function modalAddItem() {
   }).then((response) => {
     if (response) {
       var itemList = document.querySelector(".itemList");
+      const price = response.data.price;
+      const comma = price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+
       $(itemList).append(`
       <div class="my-item">
       <a class="pagelink" href="/product/${response.data.id}">
@@ -97,7 +100,7 @@ function modalAddItem() {
         <div class="item-info">
           <div class="item-text">
             <h4 class="item-text-name">${response.data.title}</h4>
-            <div class="item-text-price">${response.data.price}</div>
+            <div class="item-text-price">${comma}원</div>
             <div class="item-text-category">${categories[response.data.category_id]}</div>
             <div class="item-text-content">${response.data.content}</div>
           </div>
@@ -138,6 +141,9 @@ axios({
   var i;
   for (i = 0; i < result.data.length; i++) {
     var itemList = document.querySelector(".itemList");
+    const price = result.data[i].price;
+    const comma = price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+
     $(itemList).append(`
     <div class="my-item">
     <a class="pagelink" href="/product/${result.data[i].id}">
@@ -146,7 +152,7 @@ axios({
       <div class="item-info">
         <div class="item-text">
           <h4 class="item-text-name">${result.data[i].title}</h4>
-          <div class="item-text-price">${result.data[i].price}</div>
+          <div class="item-text-price">${comma}원</div>
           <div class="item-text-category">${categories[result.data[i].category_id]}</div>
           <div class="item-text-content">${result.data[i].content}</div>
         </div>

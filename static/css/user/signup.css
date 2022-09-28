@@ -70,6 +70,7 @@ hr {
 .sign-adress-input {
   display: flex;
   flex-direction: column;
+  width: 300px;
 }
 .sign-birth {
   display: flex;
@@ -185,4 +186,8 @@ input[type="radio"]:checked + label span span {
   top: 7px;
   left: 5px;
   text-align: center;
+}
+
+#wrap{
+  width: 300px;
 }

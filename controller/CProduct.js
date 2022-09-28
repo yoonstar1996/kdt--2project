@@ -83,11 +83,18 @@ exports.product_delete = (req, res) => {
 
 // 나의 등록 상품
 exports.product_search = (req, res) => {
+  res.render('product/search', {search_item:req.params.product});
+};
+
+// 나의 등록 상품
+exports.search_item = (req, res) => {
   Product.findAll({
     where: {
-      [Op.like]: [{ title: "%" + req.params.product + "%" }],
-    },
+      title:{
+      [Op.like]:  "%" + req.body.search_item + "%",
+    }},
   }).then((result) => {
-    res.send(result);
+    const data = result
+    res.send( data);
   });
 };
