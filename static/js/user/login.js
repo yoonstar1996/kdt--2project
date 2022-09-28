@@ -16,14 +16,11 @@ function NormalLogin() {
     method: "post",
     data: data,
   }).then((response) => {
-    if (id_input == "" || pw_input == "") {
-      alert("아이디 또는 비밀번호를 입력해주세요.");
+   
+    if (response.data.success) {
+      window.location.href = "/";
     } else {
-      if (response.data) {
-        window.location.href = "/";
-      } else {
-        alert("로그인 실패");
-      }
+      alert(response.data.errormessage);
     }
 
     /*

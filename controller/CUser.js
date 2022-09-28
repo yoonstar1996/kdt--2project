@@ -13,26 +13,30 @@ exports.login_check = (req, res) => {
       pw: req.body.pw,
     },
   }).then((result) => {
-    jwt.sign(
-      {
-        id: req.body.id,
-      },
-      process.env.ACCESS_TOKEN_SECRET,
-      {
-        expiresIn: "1d",
-      },
-      (err, token) => {
-        if (err) {
-          console.log(err);
-          res
-            .status(401)
-            .json({ success: false, errormessage: "token sign fail" });
-        } else {
-          res.cookie("jwt", token);
-          res.json({ success: true, accessToken: token });
+    if( result ) {
+      jwt.sign(
+        {
+          id: req.body.id,
+        },
+        process.env.ACCESS_TOKEN_SECRET,
+        {
+          expiresIn: "1d",
+        },
+        (err, token) => {
+          if (err) {
+            console.log(err);
+            res
+              .status(401)
+              .json({ success: false, errormessage: "token sign fail" });
+          } else {
+            res.cookie("jwt", token);
+            res.json({ success: true, accessToken: token });
+          }
         }
-      }
-    );
+      );
+    } else {
+      res.json({ success: false, errormessage: "아이디 또는 비밀번호를 입력해주세요." });
+    }
   });
 };
 // 네이버 로그인 콜백 페이지
