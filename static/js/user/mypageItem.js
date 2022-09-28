@@ -70,7 +70,7 @@ function modalAddItem() {
   const formData = new FormData();
   const file = document.querySelector(".img");
 
-  formData.append("user_id", "yagobo1110");
+  formData.append("user_id", sessionStorage.getItem("id"));
   formData.append("category_id", category.value);
   formData.append("title", form.title.value);
   formData.append("img", file.files[0]);
@@ -109,7 +109,6 @@ function modalAddItem() {
         </div>
         </div>
       `);
-      console.log(response.data.id);
       modalClose();
     } else {
       alert("상품 등록 실패");
@@ -118,13 +117,11 @@ function modalAddItem() {
 }
 
 function itemDelete(obj, id) {
-  // console.log(id);
   axios({
     url: "/api/product/delete",
     method: "delete",
     data: { id: id },
   }).then((result) => {
-    // console.log(result);
     var parent1 = $(obj).parent("div"); /*item-cancel*/
     var parent2 = $(parent1).siblings("a"); /*pagelink*/
     var parent3 = $(parent2).parent("div"); /*my-item*/
@@ -136,9 +133,8 @@ function itemDelete(obj, id) {
 axios({
   url: "/api/product/myproduct",
   method: "post",
-  data: { id: "yagobo1110" },
+  data: { id: sessionStorage.getItem("id") },
 }).then((result) => {
-  // console.log(result);
   var i;
   for (i = 0; i < result.data.length; i++) {
     var itemList = document.querySelector(".itemList");
@@ -168,40 +164,5 @@ axios({
 function imgname() {
   var imgname = document.querySelector("#img").files[0].name;
   var uploadName = document.querySelector(".upload-name");
-  console.log(imgname);
-  console.log(uploadName.value);
   uploadName.value = imgname;
-}
-
-
-function pageAlgo(total, bottomSize, listSize, cursor) {
-  //total = 총 갯수
-  //bottomSize = 하단크기
-  //listSize = 화면에서 보여줄 크기
-  //cursor = 현재 나의 페이지
-
-  let totalPageSize = Math.ceil(total / listSize); //한 화면에 보여줄 갯수에서 구한 하단 총 갯수
-
-  let firstBottomNumber = cursor - (cursor % bottomSize) + 1; //하단 최초 숫자
-  let lastBottomNumber = cursor - (cursor % bottomSize) + bottomSize; //하단 마지막 숫자
-
-  if (lastBottomNumber > totalPageSize) lastBottomNumber = totalPageSize; //총 갯수보다 큰 경우 방지
-
-  return {
-    firstBottomNumber,
-    lastBottomNumber,
-    totalPageSize,
-    total,
-    bottomSize,
-    listSize,
-    cursor,
-  };
-}
-
-//280개의 데이터, 하단에는 20개씩, 1개화면에는 10개, 지금 나의페이지는 21
-let info = pageAlgo(280, 20, 10, 21);
-
-//실제 출력하는 방법 샘플
-for (let i = info.firstBottomNumber; i <= info.lastBottomNumber; i++) {
-  i == info.cursor ? console.log(`<span>cur : ${i}</span>`) : console.log(`<span>${i}</span>`);
 }
