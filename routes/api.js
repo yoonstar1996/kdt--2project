@@ -16,7 +16,7 @@ const upload = multer({
         null,
         time.getFullYear() +
           "_" +
-          time.getMonth() +
+          (time.getMonth()+1) +
           "_" +
           time.getDate() +
           "_" +

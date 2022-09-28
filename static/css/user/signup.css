@@ -10,6 +10,9 @@
   width: 650px;
   margin: 0 auto;
 }
+.nec-text {
+  font-size: 1rem;
+}
 button,
 .btncolor {
   background-color: white;
@@ -20,6 +23,7 @@ button,
   height: 42px;
   cursor: pointer;
   margin-left: 15px;
+  border-radius: 10px;
 }
 .btncolor {
   margin-top: 10px;
@@ -31,6 +35,7 @@ button,
   width: 139px;
   height: 33px;
   margin: auto 0;
+  font-size: 1rem;
 }
 .write-signup {
   text-align: center;
@@ -66,12 +71,31 @@ hr {
   display: flex;
   flex-direction: column;
 }
-.sign-adress-find {
-  margin-top: 10px;
-}
 .sign-birth {
   display: flex;
   margin: 30px 0;
+}
+.sign-birth-right {
+  display: flex;
+  width: 340px;
+}
+.sign-birth-input {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 315px;
+  height: 42px;
+  border: 1px solid rgb(118, 118, 118);
+  border-radius: 10px;
+}
+.yyyy,
+.mmmm,
+.dddd {
+  width: 90px;
+  border: 1px dotted #eaeaea;
+  border-radius: 10px;
+  /* border: none; */
+  padding-left: 13px;
 }
 .sign-gender-text,
 .sign-birth-text {
@@ -81,6 +105,7 @@ hr {
   width: 139px;
   height: 33px;
   margin: auto 0;
+  font-size: 1rem;
 }
 .sign-gender-radio {
   display: flex;
@@ -94,6 +119,9 @@ hr {
   width: 300px;
   height: 38px;
   padding-left: 10px;
+  font-size: 0.9rem;
+  border-radius: 10px;
+  border: 1px solid rgb(118, 118, 118);
 }
 .height2,
 .rightbtn {
@@ -103,6 +131,7 @@ hr {
 .signup-button {
   display: flex;
   justify-content: center;
+  margin-bottom: 31px;
 }
 .signup-button > button {
   margin: 30px 0 0 0;
@@ -113,4 +142,47 @@ hr {
 }
 .d-none {
   display: none;
+}
+select {
+  width: 90px;
+  height: 30px;
+  border: 1px solid black;
+  font-size: 1rem;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+input[type="radio"] + label {
+  color: black;
+  font-family: Arial, sans-serif;
+}
+
+input[type="radio"] + label span {
+  display: inline-block;
+  width: 19px;
+  height: 19px;
+  margin: -2px 10px 0 0;
+  vertical-align: middle;
+  cursor: pointer;
+  background-color: #868686;
+  border-radius: 20px;
+  position: relative;
+}
+
+input[type="radio"]:checked + label span {
+  background-color: #eb8d00;
+  border-radius: 20px;
+}
+
+input[type="radio"]:checked + label span span {
+  background-color: white;
+  width: 9px;
+  height: 9px;
+  border-radius: 20px;
+  position: absolute;
+  top: 7px;
+  left: 5px;
+  text-align: center;
 }

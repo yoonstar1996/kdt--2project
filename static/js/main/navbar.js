@@ -25,11 +25,25 @@ $(".toggle").click(function () {
   }
 });
 
+function filter() {
+  var value, name, item, i;
+
+  value = document.getElementById("search").value.toUpperCase();
+  item = document.getElementsByClassName("item-info");
+
+  for (i = 0; i < item.length; i++) {
+    name = item[i].getElementsByClassName("item-text-name");
+    if (name[0].innerHTML.toUpperCase().indexOf(value) > -1) {
+      item[i].style.display = "flex";
+    } else {
+      item[i].style.display = "none";
+    }
+  }
+}
+
 var media = window.matchMedia(mediaQueryString);
 matchMedia("screen and (orientation:portrait)");
-matchMedia(
-  "only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1)"
-);
+matchMedia("only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1)");
 var m = matchMedia("screen and (max-width: 1145px)");
 m.media; // -> "screen and (min-width: 1024px)"
 m.matches; // -> true
