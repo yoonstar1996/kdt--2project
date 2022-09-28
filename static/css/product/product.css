@@ -12,8 +12,8 @@
 .product-photo {
   width: 666px;
   height: 417px;
-
-  background: #eeeeee;
+  display: flex;
+  /* background: #eeeeee; */
 }
 
 .product-wrapper3 {
@@ -104,7 +104,7 @@
 
 .product-price {
   width: 100px;
-  height: 30px;
+  height: 40px;
   background-color: #ffe4bc;
   border-radius: 20px;
   text-align: center;

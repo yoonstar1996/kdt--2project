@@ -25,7 +25,9 @@ exports.product = (req, res) => {
 };
 
 exports.product_list = (req, res) => {
-  Product.findAll().then((result) => {
+  Product.findAll({
+    order: [["id", "DESC"]],
+  }).then((result) => {
     res.send(result);
   });
 };
@@ -75,6 +77,6 @@ exports.product_delete = (req, res) => {
   Product.destroy({
     where: { id: req.body.id },
   }).then(() => {
-    res.send('true');
+    res.send("true");
   });
 };

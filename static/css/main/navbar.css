@@ -174,7 +174,7 @@ hr {
   padding-top: 5px;
 }
 
-@media screen and (min-width: 1146px) {
+@media screen and (min-width: 1201px) {
   .nav-top-second {
     margin-top: 20px;
     margin-left: 150px;
@@ -190,7 +190,7 @@ hr {
     border-radius: 50px;
     padding-left: 20px;
     margin-top: 25px;
-    font-size: 0.9em;
+    font-size: 0.8em;
   }
 
   .nav-top-menu {
@@ -227,7 +227,7 @@ hr {
   }
 }
 
-@media screen and (max-width: 1145px) {
+@media screen and (max-width: 1200px) {
   .nav-top-second {
     margin-top: 20px;
     margin-left: 30px;

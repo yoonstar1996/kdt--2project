@@ -9,22 +9,18 @@
 }
 
 .all-space {
-  width: 1000px;
+  max-width: 840px;
   margin: auto;
 }
 
 .new-box {
   border: 1px #eeeeee solid;
-  height: 550px;
   padding: 20px;
+  display: flex;
 }
 
 .new-first {
-  display: flex;
-  justify-content: space-around;
   padding: 10px;
-  vertical-align: middle;
-  margin: auto;
 }
 
 .new-second {
@@ -34,7 +30,11 @@
   vertical-align: middle;
   margin: auto;
 }
-
+.newb {
+  /* width: 200px; */
+  height: 230px;
+  align-items: center;
+}
 .att-box {
   border: 1px #eeeeee solid;
   width: 100%;
@@ -53,11 +53,19 @@
 .new-box5,
 .new-box6,
 .new-box7 {
-  width: 200px;
-  height: 180px;
+  width: 150px;
+  height: 150px;
   background-color: #eeeeee;
+  margin: auto;
 }
 
+.new-box2 {
+  overflow-x: hidden;
+  overflow-y: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-break: break-all;
+}
 .att-box1,
 .att-box2,
 .att-box3,
@@ -69,12 +77,13 @@
 
 .new1 {
   display: block;
-  width: 200px;
-  height: 180px;
+  height: 230px;
   font-weight: 700;
   font-size: 24px;
   line-height: 45px;
   letter-spacing: -0.05em;
+  padding-top: 20px;
+  padding-left: 30px;
 }
 
 .attention1 {
