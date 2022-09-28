@@ -108,6 +108,22 @@ var phone_valconfirm = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
 
 function idconfirm() {
   var form = document.querySelector("form");
+  if (id.value == "") {
+    id.setCustomValidity(validityMessage["badInput"]);
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+  } else if (!valconfirm.test(id.value)) {
+    id.setCustomValidity(validityMessage["patternMismatch"]);
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+  } else {
+    id.setCustomValidity("");
+  }
+
   var data = {
     id: form.id.value,
   };
@@ -145,14 +161,14 @@ function emailconfirm() {
 function signupCreate() {
   // e.preventDefault();
   var form = document.querySelector("form");
+  console.log("155 : id.value : ", id.value);
+  console.log(valconfirm.test(id.value));
+
   var id_key = 0;
   var pw_key = 0;
   var name_key = 0;
   var email_key = 0;
   var phone_key = 0;
-
-  console.log("155 : id.value : ", id.value);
-  console.log(valconfirm.test(id.value));
 
   if (id.value == "") {
     id.setCustomValidity(validityMessage["badInput"]);
@@ -214,15 +230,16 @@ function signupCreate() {
     return;
   }
 
-  if (id_key == 1 && pw_key == 1 && name_key == 1 && email_key == 1 && phone_key == 1)
-    var data = {
-      id: form.id.value,
-      pw: form.pw.value,
-      name: form.name.value,
-      email: form.email.value,
-      phone: form.phone.value,
-      position: form.adress.value,
-    };
+  if (id_key == 1 && pw_key == 1 && name_key == 1 && email_key == 1 && phone_key == 1);
+
+  var data = {
+    id: form.id.value,
+    pw: form.pw.value,
+    name: form.name.value,
+    email: form.email.value,
+    phone: form.phone.value,
+    position: form.adress.value,
+  };
   axios({
     url: "/api/signup",
     method: "post",
@@ -230,17 +247,14 @@ function signupCreate() {
   }).then((response) => {
     if (response.data) {
       alert("회원가입 완료");
-      window.location.href = "/";
+      window.location.href = "/login";
     } else {
       alert("실패");
     }
   });
-  // }
 }
 
 id.addEventListener("input", function (event) {
-  // console.log("231 : id.value : ", id.value);
-  // console.log(valconfirm.test(id.value));
   if (valconfirm.test(id.value)) {
     id.setCustomValidity("");
     idval.classList.add("d-none");

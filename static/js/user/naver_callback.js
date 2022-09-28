@@ -1,3 +1,15 @@
+const validityMessage = {
+  badInput: "잘못된 입력입니다.",
+  patternMismatch: "패턴에 맞게 입력하세요.",
+  rangeOverflow: "비밀번호가 일치하지 않습니다.",
+  rangeUnderflow: "[커스텀 메세지] 범위에 미달하였습니다",
+  stepMismatch: "[커스텀 메세지] 간격에 맞게 입력하세요",
+  tooLong: "[커스텀 메세지] 최대 글자 미만으로 입력하세요",
+  tooShort: "[커스텀 메세지] 최소 글자 미만으로 입력하세요",
+  typeMismatch: "[커스텀 메세지] 형식에 맞게 입력하세요",
+  valueMissing: "[커스텀 메세지] 이 필드를 반드시 입력하세요",
+};
+
 $(document).ready(function () {
   $("#id").focus();
 });
@@ -91,9 +103,11 @@ let phoneval = document.querySelector(".validephone");
 var valconfirm = /^[a-zA-Z0-9]{4,12}$/; //id와 pwassword 유효성 검사 정규식
 var name_valconfirm = /^[가-힣]{2,15}$/; //이름 유효성검사 정규식
 var email_valconfirm = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i; //이메일 유효성검사
+var phone_valconfirm = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
 
 function idconfirm() {
-  var form = document.querySelector("form");
+  form = document.querySelector("form");
+
   var data = {
     id: form.id.value,
   };
@@ -130,6 +144,64 @@ function emailconfirm() {
 
 function signupCreate() {
   var form = document.querySelector("form");
+  var id_key = 0;
+  var pw_key = 0;
+  var name_key = 0;
+  var email_key = 0;
+  var phone_key = 0;
+
+  if (pw.value == "") {
+    pw.setCustomValidity(validityMessage["badInput"]);
+  } else if (!valconfirm.test(pw.value)) {
+    pw.setCustomValidity(validityMessage["patternMismatch"]);
+  } else {
+    pw.setCustomValidity("");
+    pw_key = 1;
+  }
+
+  if (pwconfirm.value == "") {
+    pwconfirm.setCustomValidity(validityMessage["badInput"]);
+  } else if (pw.value !== pwconfirm.value) {
+    pwconfirm.setCustomValidity(validityMessage["rangeOverflow"]);
+  } else {
+    pwconfirm.setCustomValidity("");
+    pwconfirm_key = 1;
+  }
+
+  if (name.value == "") {
+    name.setCustomValidity(validityMessage["badInput"]);
+  } else if (!name_valconfirm.test(name.value)) {
+    name.setCustomValidity(validityMessage["patternMismatch"]);
+  } else {
+    name.setCustomValidity("");
+    name_key = 1;
+  }
+
+  if (email.value == "") {
+    email.setCustomValidity(validityMessage["badInput"]);
+  } else if (!email_valconfirm.test(email.value)) {
+    email.setCustomValidity(validityMessage["patternMismatch"]);
+  } else {
+    email.setCustomValidity("");
+    email_key = 1;
+  }
+
+  if (phone.value == "") {
+    phone.setCustomValidity(validityMessage["badInput"]);
+  } else if (!phone_valconfirm.test(phone.value)) {
+    phone.setCustomValidity(validityMessage["patternMismatch"]);
+  } else {
+    phone.setCustomValidity("");
+    phone_key = 1;
+  }
+
+  // console.log("202 : ", form.checkValidity());
+  if (!form.checkValidity()) {
+    form.reportValidity();
+    return;
+  }
+
+  if (id_key == 1 && pw_key == 1 && name_key == 1 && email_key == 1 && phone_key == 1);
 
   var data = {
     id: form.id.value,
@@ -147,15 +219,12 @@ function signupCreate() {
   }).then((response) => {
     if (response.data) {
       alert("회원가입 완료");
+      window.location.href = "/login";
     } else {
       alert("실패");
     }
   });
 }
-
-// function validation(){
-
-// }
 
 id.addEventListener("input", function (event) {
   if (valconfirm.test(id.value)) {
