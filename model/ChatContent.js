@@ -6,6 +6,7 @@ const ChatContent = (Sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
+        autoIncrement: true,
       },
       room_id: {
         type: DataTypes.INTEGER,

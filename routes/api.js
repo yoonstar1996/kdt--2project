@@ -52,6 +52,6 @@ router.delete("/product/delete", product.product_delete);
 router.post("/categories/:id", product.categories_list);
 
 // 소캣 룸 생성
-router.post("/socket", socket.socket_create);
-
+router.post("/room", socket.socket_create);
+router.post("/roomcheck", socket.socket_check);
 module.exports = router;

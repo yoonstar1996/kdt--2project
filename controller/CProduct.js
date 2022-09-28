@@ -1,4 +1,6 @@
 const { User, Product, Category } = require("../model");
+const { Op } = require("sequelize");
+const sequelize = require("sequelize");
 
 const categories = {
   life: "생활/가전",
@@ -75,6 +77,17 @@ exports.product_delete = (req, res) => {
   Product.destroy({
     where: { id: req.body.id },
   }).then(() => {
-    res.send('true');
+    res.send("true");
+  });
+};
+
+// 나의 등록 상품
+exports.product_search = (req, res) => {
+  Product.findAll({
+    where: {
+      [Op.like]: [{ title: "%" + req.params.product + "%" }],
+    },
+  }).then((result) => {
+    res.send(result);
   });
 };

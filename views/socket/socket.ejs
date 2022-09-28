@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="../link.ejs" />
+    <%-include("../link.ejs")%>
     <link rel="stylesheet" href="/static/css/socket/socket.css" />
   </head>
   <body>
@@ -105,7 +105,7 @@
       });
 
       function back() {
-        location.href = "/signin";
+        location.href = "/roomlist";
       }
     </script>
   </body>

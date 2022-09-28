@@ -16,6 +16,11 @@ app.use("/uploads", express.static(__dirname + "/uploads"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+// app.use("/*", function(req,res, next){
+
+//   next()
+// })
+
 // redirect JS jQuery
 app.use("/jq", express.static(__dirname + "/node_modules/jquery/dist"));
 // redirect JS jQuery
