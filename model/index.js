@@ -19,6 +19,10 @@ db.Product = require("./Product")(sequelize, Sequelize);
 db.ProductLikeUsers = require("./ProductLikeUser")(sequelize, Sequelize);
 db.Review = require("./Review")(sequelize, Sequelize);
 
+db.ChatContent = require("./ChatContent")(sequelize, Sequelize);
+db.Room = require("./Room")(sequelize, Sequelize);
+db.Participation = require("./Participation")(sequelize, Sequelize);
+
 db.Product.belongsTo(db.User, {
   foreignKey: "user_id",
   sourceKey: "id",
@@ -90,7 +94,7 @@ db.Product.hasMany(db.ProductLikeUsers, {
 });
 
 db.ProductLikeUsers.belongsTo(db.Product, {
-  foreignKey: "user_id",
+  foreignKey: "product_id",
   sourceKey: "id",
   onUpdate: "cascade",
   onDelete: "cascade",
@@ -103,4 +107,49 @@ db.Product.hasMany(db.ProductLikeUsers, {
   onDelete: "cascade",
 });
 
+db.ChatContent = require("./ChatContent")(sequelize, Sequelize);
+db.Room = require("./Room")(sequelize, Sequelize);
+db.Participation = require("./Participation")(sequelize, Sequelize);
+
+db.ChatContent.belongsTo(db.Room, {
+  foreignKey: "room_id",
+  sourceKey: "id",
+  onUpdate: "cascade",
+  onDelete: "cascade",
+});
+
+db.Room.hasMany(db.ChatContent, {
+  foreignKey: "room_id",
+  sourceKey: "id",
+  onUpdate: "cascade",
+  onDelete: "cascade",
+});
+
+db.Participation.belongsTo(db.Room, {
+  foreignKey: "room_id",
+  sourceKey: "id",
+  onUpdate: "cascade",
+  onDelete: "cascade",
+});
+
+db.Room.hasMany(db.Participation, {
+  foreignKey: "room_id",
+  sourceKey: "id",
+  onUpdate: "cascade",
+  onDelete: "cascade",
+});
+
+db.Participation.belongsTo(db.User, {
+  foreignKey: "user_id",
+  sourceKey: "id",
+  onUpdate: "cascade",
+  onDelete: "cascade",
+});
+
+db.User.hasMany(db.Participation, {
+  foreignKey: "user_id",
+  sourceKey: "id",
+  onUpdate: "cascade",
+  onDelete: "cascade",
+});
 module.exports = db;

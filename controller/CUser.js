@@ -30,7 +30,7 @@ exports.login_check = (req, res) => {
               .json({ success: false, errormessage: "token sign fail" });
           } else {
             res.cookie("jwt", token);
-            res.json({ success: true, accessToken: token });
+            res.json({ success: true, accessToken: token, id:req.body.id });
           }
         }
       );

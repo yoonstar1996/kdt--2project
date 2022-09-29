@@ -19,7 +19,10 @@ axios({
 }).then((result) => {
   console.log(result.data);
   var product = result.data;
+
   for (var i = 0; i < 7; i++) {
+    var imglist = product[i].img.split("..");
+    console.log(imglist);
     $(".new-first")
       .append(`<div class="newb col-xs-6 col-sm-6 col-md-4 col-lg-3">
       <div class="new-box2">

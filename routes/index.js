@@ -22,6 +22,7 @@ router.get("/signup", user.signup);
 router.get("/product/:id", product.product);
 // 카테고리별 상품
 router.get("/categories/:id", product.categories);
+router.get("/search/:product", product.product_search);
 
 // 소캣
 router.get("/roomlist", socket.roomlist);
@@ -29,5 +30,7 @@ router.get("/socket/:id", socket.socket);
 // router.get("/socket", verifyToken, socket.socket);
 
 router.get("/mypage", main.mypage);
+
+router.get("/mypick", main.mypick);
 
 module.exports = router;

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="../link.ejs" />
+    <%-include("../link.ejs")%>
     <link rel="stylesheet" href="/static/css/socket/socket.css" />
   </head>
   <body>
@@ -35,78 +35,32 @@
     </div>
     <script src="/socket.io/socket.io.js"></script>
     <script>
+      let chatContent = [];
+      let room_id = "<%=room_id%>";
+      axios({
+        url: "/api/content",
+        method: "post",
+        data: { room_id: room_id },
+      }).then((res) => {
+        console.log(res.data["chat_contents.content"]);
+        chatContent = res.data["chat_contents.content"].split("/");
+      });
+
       let socket = io.connect();
-      let messages = document.getElementById("messages");
-      let form = document.getElementById("form");
-      let input = document.getElementById("input");
-      let select = document.getElementById("select");
+      socket.emit("create", `room${room_id}`);
 
-      socket.on("notice", (msg) => {
-        let item = document.createElement("li");
-        let span = document.createElement("span");
-        span.classList.add("msg");
-        span.classList.add("chat__custom");
-        span.textContent = msg;
-        item.classList.add("notice");
-        item.append(span);
-        messages.appendChild(item);
+      socket.on("db message", (msg) => {
+        axios({
+          url: "/api/content/update",
+          method: "patch",
+          data: {
+            content: chatContent,
+          },
+        }).then((res) => {
+          console.log(res);
+        });
       });
-
-      form.addEventListener("submit", function (e) {
-        e.preventDefault();
-        if (!input.value) return;
-
-        let item = document.createElement("li");
-        let span = document.createElement("span");
-        item.classList.add("mymsg");
-        span.classList.add("msg");
-        span.classList.add("chat__custom");
-        if (select.value === "all") {
-          span.classList.add("all");
-          span.textContent = `${name} : ${input.value}`;
-        } else {
-          span.classList.add("to");
-          span.textContent = `(속닥 속닥)${name} : ${input.value}`;
-        }
-        item.append(span);
-        messages.appendChild(item);
-        messages.scrollTo(0, messages.scrollHeight);
-        socket.emit("chat message", { id: select.value, msg: input.value });
-        input.value = "";
-      });
-
-      socket.on("chat message", function (data) {
-        let item = document.createElement("li");
-        let span = document.createElement("span");
-        span.classList.add("chat__custom");
-        span.classList.add("msg");
-        if (data.type === "all") {
-          span.textContent = `${data.id} : ${data.msg}`;
-          span.classList.add("all");
-        } else {
-          span.textContent = `(속닥 속닥)${data.id} : ${data.msg}`;
-          span.classList.add("to");
-        }
-        item.append(span);
-        messages.appendChild(item);
-        messages.scrollTo(0, messages.scrollHeight);
-      });
-
-      socket.on("users", (data) => {
-        select.innerHTML = "";
-        for (let key in data) {
-          if (key != socket.id) {
-            const option = document.createElement("option");
-            option.value = key;
-            option.innerText = data[key];
-            select.append(option);
-          }
-        }
-      });
-
-      function back() {
-        location.href = "/signin";
-      }
     </script>
+    <script src="/static/js/socket/socket.js"></script>
   </body>
 </html>

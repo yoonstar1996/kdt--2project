@@ -1,4 +1,6 @@
 const { User, Product, Category } = require("../model");
+const { Op } = require("sequelize");
+const sequelize = require("sequelize");
 
 const categories = {
   life: "생활/가전",
@@ -19,6 +21,7 @@ exports.product = (req, res) => {
   }).then((result) => {
     const data = result;
     console.log(data);
+    data.img = data.img.split("..")[0];
     data.category_id = categories[data.category_id];
     res.render("product/product", { data });
   });
@@ -48,11 +51,17 @@ exports.categories_list = (req, res) => {
 
 // 상품 생성
 exports.product_create = (req, res) => {
+  let img_name = "";
+  console.log(req.files);
+  for (let i = 0; i < req.files.length; i++) {
+    if (i != 0) img_name += "..";
+    img_name += "/uploads/" + req.files[i].filename;
+  }
   const data = {
     user_id: req.body.user_id,
     category_id: req.body.category_id,
     title: req.body.title,
-    img: "/uploads/" + req.file.filename,
+    img: img_name,
     adult: req.body.adult,
     price: req.body.price,
     position: req.body.position,
@@ -78,5 +87,24 @@ exports.product_delete = (req, res) => {
     where: { id: req.body.id },
   }).then(() => {
     res.send("true");
+  });
+};
+
+// 나의 등록 상품
+exports.product_search = (req, res) => {
+  res.render("product/search", { search_item: req.params.product });
+};
+
+// 나의 등록 상품
+exports.search_item = (req, res) => {
+  Product.findAll({
+    where: {
+      title: {
+        [Op.like]: "%" + req.body.search_item + "%",
+      },
+    },
+  }).then((result) => {
+    const data = result;
+    res.send(data);
   });
 };
