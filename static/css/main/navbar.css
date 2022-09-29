@@ -37,9 +37,9 @@ input:focus {
   outline: none;
 }
 
-hr {
+.hihr {
   margin-top: 20px;
-  border: #eeeeee 1px solid;
+  border: #d3d3d3 1px solid;
 }
 
 #search-button {

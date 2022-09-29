@@ -34,6 +34,10 @@
           ></i>
         </div>
       </div>
+      <button id="heart-1" class="heart-1" type="button" onclick="heart()">
+        <i class="heart-i fa-solid fa-heart"></i
+        ><span style="color: black; margin-left: 5px">찜하기</span>
+      </button>
       <br />
       <div class="product-wrapper3">
         <div class="profile-photo"></div>
@@ -56,7 +60,9 @@
       <hr class="hr-2" />
       <div class="product-wrapper5">
         <div class="price">가격</div>
-        <div class="product-price"><%=data.price%><span>원</span></div>
+        <div class="product-price">
+          <span><%=data.price%></span><span>원</span>
+        </div>
       </div>
       <hr class="hr-2" />
       <div class="category-another">이 카테고리의 다른 상품</div>
@@ -82,6 +88,7 @@
         채팅하기
       </button>
     </div>
+    <script src="/static/js/product/product.js"></script>
     <%-include("../main/footer.ejs")%>
   </body>
 </html>
