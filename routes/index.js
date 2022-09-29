@@ -29,8 +29,16 @@ router.get("/roomlist", socket.roomlist);
 router.get("/socket/:id", socket.socket);
 // router.get("/socket", verifyToken, socket.socket);
 
+//상품 목록
 router.get("/mypage", main.mypage);
 
+//찜한 상품
 router.get("/mypick", main.mypick);
+
+//개인 정보 수정
+router.get("/myfix", main.myfix);
+
+//개인정보 수정하는곳
+router.get("/infofix", main.infofix);
 
 module.exports = router;

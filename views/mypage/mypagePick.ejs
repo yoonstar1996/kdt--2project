@@ -21,7 +21,7 @@
           <button type="button" onclick="mypage();">상품 목록</button>
           <button type="button">거래 내역</button>
           <button type="button" onclick="mypick();">찜한 상품</button>
-          <button type="button">개인 정보 수정</button>
+          <button type="button" onclick="myfix();">개인 정보 수정</button>
         </ul>
       </div>
 
@@ -31,8 +31,8 @@
         <div class="right-sgt-content">
           <!-- <%if(data) {%> -->
 
-          <div class="itemList"></div>
-          <button id="noModalOn" class="cursor" onclick="addItem()">상품 등록 하기</button>
+          <div class="pickList"></div>
+          <button id="noModalOn" class="cursor" onclick="goPick()" hidden>상품 찜 하기</button>
           <!-- <%} else {%> -->
           <div class="no-item">
             <div>등록한 상품이 없습니다.</div>
@@ -69,12 +69,12 @@
             </div>
           </form>
           <div class="right-sgt-bottom">
-            <div>페이지네이션</div>
+            <!-- <div>페이지네이션</div> -->
           </div>
         </div>
       </div>
     </div>
 
-    <script src="/static/js/user/mypageItem.js"></script>
+    <script src="/static/js/user/mypagePick.js"></script>
   </body>
 </html>

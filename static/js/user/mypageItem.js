@@ -109,6 +109,8 @@ Element.prototype.setStyle = function (styles) {
   return this;
 };
 
+
+///상품 등록///
 function modalAddItem() {
   const form = document.querySelector(".myModal");
   const category = document.querySelector(".category");
@@ -139,6 +141,7 @@ function modalAddItem() {
     if (response) {
       var itemList = document.querySelector(".itemList");
       const price = response.data.price;
+      let img_list = response.data.img.split('..');
       const comma = price
         .toString()
         .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
@@ -147,7 +150,7 @@ function modalAddItem() {
       <div class="my-item">
       <a class="pagelink" href="/product/${response.data.id}">
       <div>
-        <img class="item-img" src="${response.data.img}">
+        <img class="item-img" src="${img_list[0]}">
         <div class="item-info">
           <div class="item-text">
             <h4 class="item-text-name">${response.data.title}</h4>
@@ -191,15 +194,20 @@ function itemDelete(obj, id) {
   });
 }
 
+
+
+
+///상품 불러오기////
 axios({
   url: "/api/product/myproduct",
   method: "post",
   data: { id: sessionStorage.getItem("id") },
 }).then((result) => {
-  var i;
-  for (i = 0; i < result.data.length; i++) {
+
+  for (var i = 0; i < result.data.length; i++) {
     var itemList = document.querySelector(".itemList");
     const price = result.data[i].price;
+    let img_list = result.data[i].img.split('..');
     const comma = price
       .toString()
       .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
@@ -208,7 +216,7 @@ axios({
       <div class="my-item">
         <a class="pagelink" href="/product/${result.data[i].id}">
           <div>
-            <img class="item-img" src="${result.data[i].img}">
+            <img class="item-img" src="${img_list[0]}">
             <div class="item-info">
               <div class="item-text">
                 <h4 class="item-text-name">${result.data[i].title}</h4>
@@ -250,6 +258,8 @@ function imgname() {
 
 // }
 
+
+///상품 수정////
 function itemFix(obj) {
   axios({
     url: "/api/product/myproduct",
@@ -304,6 +314,7 @@ function modalFixItem() {
   }).then((response) => {
     if (response) {
       var itemList = document.querySelector(".itemList");
+      let img_list = response.data.img.split('..');
       const price = response.data.price;
       const comma = price
         .toString()
@@ -313,7 +324,7 @@ function modalFixItem() {
         <div class="my-item">
           <a class="pagelink" href="/product/${response.data.id}">
             <div>
-              <img class="item-img" src="${response.data.img}">
+              <img class="item-img" src="${img_list[0]}">
               <div class="item-info">
                 <div class="item-text">
                   <h4 class="item-text-name">${response.data.title}</h4>
@@ -349,4 +360,8 @@ function mypage() {
 
 function mypick() {
   window.location.href = "/mypick";
+}
+
+function myfix() {
+  window.location.href = "/myfix";
 }
