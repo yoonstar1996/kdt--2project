@@ -1,3 +1,5 @@
+const { default: axios } = require("axios");
+
 function chattingRoom(title, id) {
   const data = {
     other_id: id,

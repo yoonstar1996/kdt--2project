@@ -8,7 +8,7 @@
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <%-include("../link.ejs")%>
-    <link href="/static/css/user/signup.css" rel="stylesheet" />
+    <link href="/static/css/user/fixInfo.css" rel="stylesheet" />
     <title>SGT - 회원 정보 수정</title>
   </head>
   <body>
@@ -33,7 +33,7 @@
             <div class="validid d-none colors">4~12자의 영문 대소문자와 숫자로만 입력</div>
           </div>
           <div class="rightbtn">
-            <button type="button" required="required" onclick="idconfirm()">중복확인</button>
+            <button type="button" required="required" onclick="idconfirm()" hidden>중복확인</button>
           </div>
         </div>
         <div class="sign-pw">
@@ -143,11 +143,12 @@
         </div>
         <hr />
         <div class="signup-button">
-          <button type="button" onclick="signupCreate()">가입하기</button>
+          <button type="button" class="withdraw" onclick="withdraw()">회원탈퇴</button>
+          <button type="button" class="fix" onclick="fixInfo()">수정하기</button>
         </div>
       </form>
     </div>
     <%-include("../main/footer.ejs")%>
-    <script src="/static/js/user/signup.js"></script>
+    <script src="/static/js/user/mypageFixInfo.js"></script>
   </body>
 </html>

@@ -38,7 +38,25 @@ const api_router = require("./routes/api");
 app.use("/api", api_router);
 
 const users = {};
-io.on("connection", (socket) => {});
+io.on("connection", (socket) => {
+  socket.on("create", (msg) => {
+    socket.join(msg);
+  });
+
+  socket.on("chat message", (data) => {
+    // console.log(socket.adapter.rooms);
+    socket.broadcast.to(data.room_id).emit("chat message", {
+      msg: data.msg,
+      type: "to",
+    });
+  });
+
+  socket.on("disconnect", () => {
+    io.emit("notice", `${users[socket.id]}님이 퇴장하셨습니다.`);
+    delete users[socket.id];
+    io.emit("users", users);
+  });
+});
 
 // 서버 오픈 명령어
 http.listen(port, () => {

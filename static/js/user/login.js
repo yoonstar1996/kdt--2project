@@ -2,6 +2,13 @@ $(document).ready(function () {
   $(".id-input").focus();
 });
 
+var search = document.querySelector(".pw-input");
+search.addEventListener("keydown", ({ key }) => {
+  if (key == "Enter") {
+    NormalLogin();
+  }
+});
+
 function NormalLogin() {
   var form = document.querySelector("form");
   const id_input = document.getElementById("id").value;
