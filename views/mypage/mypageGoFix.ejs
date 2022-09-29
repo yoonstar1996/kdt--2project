@@ -8,7 +8,7 @@
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <%-include("../link.ejs")%>
-    <link href="/static/css/user/fixInfo.css" rel="stylesheet" />
+    <link href="/static/css/user/mypage-gofix.css" rel="stylesheet" />
     <title>SGT - 회원 정보 수정</title>
   </head>
   <body>
@@ -143,12 +143,12 @@
         </div>
         <hr />
         <div class="signup-button">
-          <button type="button" class="withdraw" onclick="withdraw()">회원탈퇴</button>
+          <!-- <a type="button" class="withdraw" onclick="withdraw()">회원탈퇴</a> -->
           <button type="button" class="fix" onclick="fixInfo()">수정하기</button>
         </div>
       </form>
     </div>
     <%-include("../main/footer.ejs")%>
-    <script src="/static/js/user/mypageFixInfo.js"></script>
+    <script src="/static/js/user/mypageGoFix.js"></script>
   </body>
 </html>
