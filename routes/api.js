@@ -16,7 +16,7 @@ const upload = multer({
         null,
         time.getFullYear() +
           "_" +
-          (time.getMonth()+1) +
+          (time.getMonth() + 1) +
           "_" +
           time.getDate() +
           "_" +
@@ -43,7 +43,7 @@ router.post("/signup", uesr.signup_create);
 router.post("/signup/idcheck", uesr.signup_id_check);
 
 // 상품 생성
-router.post("/product", upload.single("img"), product.product_create);
+router.post("/product", upload.array("img"), product.product_create);
 router.post("/products", product.product_list);
 router.post("/product/myproduct", product.product_myproduct);
 router.delete("/product/delete", product.product_delete);
@@ -54,4 +54,7 @@ router.post("/categories/:id", product.categories_list);
 // 소캣 룸 생성
 router.post("/room", socket.socket_create);
 router.post("/roomcheck", socket.socket_check);
+
+router.post("/content", socket.socket_content);
+
 module.exports = router;

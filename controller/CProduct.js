@@ -48,11 +48,17 @@ exports.categories_list = (req, res) => {
 
 // 상품 생성
 exports.product_create = (req, res) => {
+  let img_name = "";
+  for (let i = 0; i < req.file.length; i++) {
+    if (i != 0) img_name += "..";
+    img_name += "/uploads/" + req.file[i].filename;
+  }
+
   const data = {
     user_id: req.body.user_id,
     category_id: req.body.category_id,
     title: req.body.title,
-    img: "/uploads/" + req.file.filename,
+    img: img_name,
     adult: req.body.adult,
     price: req.body.price,
     position: req.body.position,
