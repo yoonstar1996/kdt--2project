@@ -6,6 +6,13 @@ $(".post-wrapper").slick({
   arrows: false,
 });
 
+function heart(id, btn) {
+  var myheart = $(btn).children("i");
+  if ($(myheart).hasClass("heart1")) {
+    $(myheart).removeClass("heart1").addClass("heart-click");
+  } else $(myheart).removeClass("heart-click").addClass("heart1");
+}
+
 axios({
   url: "/api/products",
   method: "post",

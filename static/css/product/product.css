@@ -12,14 +12,14 @@
 .product-photo {
   width: 666px;
   height: 417px;
-
-  background: #eeeeee;
+  display: flex;
+  /* background: #eeeeee; */
 }
 
 .product-wrapper3 {
   display: flex;
   align-items: center;
-  padding-left: 50px;
+  padding-left: 70px;
 }
 
 .product-wrapper4 {
@@ -58,8 +58,7 @@
   height: 50px;
   background-color: #eeeeee;
   border-radius: 100px;
-  margin-left: 20px;
-  margin-right: 15px;
+  margin-right: 20px;
 }
 
 .user-nick {
@@ -76,8 +75,12 @@
   height: 0.1px;
   width: 680px;
   border: 0 none;
-  color: #ccc;
-  background-color: #ccc;
+  color: #a4a4a4;
+  background-color: #a4a4a4;
+}
+
+hr {
+  margin: auto;
 }
 
 .product-name {
@@ -104,12 +107,14 @@
 
 .product-price {
   width: 100px;
-  height: 30px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
   background-color: #ffe4bc;
   border-radius: 20px;
   text-align: center;
   font-weight: 600;
-  padding-top: 10px;
+  padding-top: 8px;
 }
 
 .another-photo1,
@@ -153,4 +158,38 @@
   border-radius: 20px;
   opacity: 0.8;
   z-index: 999;
+}
+
+.heart-1 {
+  position: relative;
+  border: none;
+  background-color: #ffe4bc;
+  color: black;
+  font-weight: 700;
+  top: -60px;
+  left: 500px;
+  outline: 0px;
+  width: 100px;
+  height: 40px;
+  cursor: pointer;
+  border-radius: 20px;
+  opacity: 0.8;
+  z-index: 999;
+}
+
+.heart-1 {
+  /* 하트아이콘 */
+  color: #747474;
+  cursor: pointer;
+}
+
+.heart-i {
+  /* 하트아이콘 */
+  color: #747474;
+  cursor: pointer;
+}
+
+.heart-click {
+  color: red;
+  cursor: pointer;
 }
