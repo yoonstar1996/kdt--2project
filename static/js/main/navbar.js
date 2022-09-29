@@ -13,7 +13,7 @@ if (sessionStorage.id == sessionStorage.id) {
 
 function logout() {
   sessionStorage.removeItem("id");
-  window.location.href = "/"
+  window.location.href = "/";
 }
 
 $(document).ready(function () {
@@ -43,22 +43,22 @@ $(".toggle").click(function () {
   }
 });
 
-function filter() {
-  var value, name, item, i;
-
-  value = document.getElementById("search").value.toUpperCase();
-  item = document.getElementsByClassName("item-info");
-
-  for (i = 0; i < item.length; i++) {
-    name = item[i].getElementsByClassName("item-text-name");
-    if (name[0].innerHTML.toUpperCase().indexOf(value) > -1) {
-      item[i].style.display = "flex";
-    } else {
-      item[i].style.display = "none";
-    }
+function searchBtn() {
+  searchInput = document.querySelector("#search");
+  keyword = searchInput.value;
+  if (keyword == "") {
+    return;
+  } else {
+    window.location.href = `/search/${keyword}`;
   }
 }
 
+var search = document.querySelector("#search");
+search.addEventListener("keydown", ({ key }) => {
+  if (key == "Enter") {
+    searchBtn();
+  }
+});
 var media = window.matchMedia(mediaQueryString);
 matchMedia("screen and (orientation:portrait)");
 matchMedia("only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1)");

@@ -3,8 +3,8 @@ const validityMessage = {
   badInput: "잘못된 입력입니다.",
   patternMismatch: "패턴에 맞게 입력하세요.",
   rangeOverflow: "비밀번호가 일치하지 않습니다.",
-  rangeUnderflow: "[커스텀 메세지] 범위에 미달하였습니다",
-  stepMismatch: "[커스텀 메세지] 간격에 맞게 입력하세요",
+  rangeUnderflow: "우편번호 찾기를 눌러주세요.",
+  stepMismatch: "우편번호 찾기로 등록해주세요.",
   tooLong: "[커스텀 메세지] 최대 글자 미만으로 입력하세요",
   tooShort: "[커스텀 메세지] 최소 글자 미만으로 입력하세요",
   typeMismatch: "[커스텀 메세지] 형식에 맞게 입력하세요",
@@ -93,6 +93,7 @@ let pwconfirm = document.getElementById("pwconfirm");
 let name = document.getElementById("name");
 let email = document.getElementById("email");
 let phone = document.getElementById("phone");
+let adress = document.getElementById("adress");
 ///////////////////////////////////////////////
 let idval = document.querySelector(".validid");
 let pwval = document.querySelector(".validpw");
@@ -105,6 +106,7 @@ var valconfirm = /^[a-zA-Z0-9]{4,12}$/; //id와 pwassword 유효성 검사 �
 var name_valconfirm = /^[가-힣]{2,15}$/; //이름 유효성검사 정규식
 var email_valconfirm = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i; //이메일 유효성검사
 var phone_valconfirm = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
+var adress_valconfirm = /^[가-힣0-9 ]{2,30}$/; //주소 유효성검사 (내가만듬)
 
 function idconfirm() {
   var form = document.querySelector("form");
@@ -169,6 +171,7 @@ function signupCreate() {
   var name_key = 0;
   var email_key = 0;
   var phone_key = 0;
+  var adress_key = 0;
 
   if (id.value == "") {
     id.setCustomValidity(validityMessage["badInput"]);
@@ -222,6 +225,15 @@ function signupCreate() {
   } else {
     phone.setCustomValidity("");
     phone_key = 1;
+  }
+
+  if (adress.value == "") {
+    adress.setCustomValidity(validityMessage["rangeUnderflow"]);
+  } else if (!adress_valconfirm.test(adress.value)) {
+    adress.setCustomValidity(validityMessage["stepMismatch"]);
+  } else {
+    adress.setCustomValidity("");
+    adress_key = 1;
   }
 
   // console.log("202 : ", form.checkValidity());

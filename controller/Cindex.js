@@ -22,3 +22,9 @@ exports.mypage = (req, res) => {
   let result = true;
   res.render("./login/mypageItem", { data: result });
 };
+
+exports.mypick = (req, res) => {
+  const data = [];
+  let result = true;
+  res.render("./login/mypagePick", { data: result });
+};

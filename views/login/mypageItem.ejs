@@ -18,9 +18,9 @@
       <div class="left-sgt">
         <div>마이 SGT</div>
         <ul class="left-sgt-button">
-          <button type="button">상품 목록</button>
+          <button type="button" onclick="mypage();">상품 목록</button>
           <button type="button">거래 내역</button>
-          <button type="button">찜한 상품</button>
+          <button type="button" onclick="mypick();">찜한 상품</button>
           <button type="button">개인 정보 수정</button>
         </ul>
       </div>
@@ -59,11 +59,12 @@
               <div class="container">
                 <input type="text" class="upload-name" placeholder="이미지를 업로드하세요" disabled />
                 <label for="img">상품 사진 선택</label>
-                <input type="file" onchange="imgname()" id="img" name="img" class="img" accept="image/png, image/jpeg" />
+                <input type="file" onchange="imgname()" id="img" name="img" class="img" accept="image/png, image/jpeg" multiple />
               </div>
             </div>
             <div class="itemAdd">
               <button type="button" class="addItemBtn cursor" onclick="modalAddItem()">상품 등록</button>
+              <button type="button" class="addFixBtn cursor d-none" onclick="modalFixItem()">상품 수정</button>
               <div class="modalClose cursor" onclick="modalClose();">닫기</div>
             </div>
           </form>

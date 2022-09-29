@@ -4,6 +4,7 @@ const uesr = require("../controller/CUser");
 const product = require("../controller/CProduct");
 const multer = require("multer");
 const path = require("path");
+
 const upload = multer({
   storage: multer.diskStorage({
     destination(req, file, done) {
@@ -12,6 +13,7 @@ const upload = multer({
     filename(req, file, done) {
       const ext = path.extname(file.originalname);
       const time = new Date();
+      console.log(time.getMilliseconds());
       done(
         null,
         time.getFullYear() +
@@ -47,6 +49,8 @@ router.post("/product", upload.array("img"), product.product_create);
 router.post("/products", product.product_list);
 router.post("/product/myproduct", product.product_myproduct);
 router.delete("/product/delete", product.product_delete);
+
+router.post("/search/:product", product.search_item);
 
 // 카테고리 상품
 router.post("/categories/:id", product.categories_list);
