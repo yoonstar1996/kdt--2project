@@ -20,6 +20,7 @@ exports.product = (req, res) => {
     },
   }).then((result) => {
     const data = result;
+    console.log(data);
     data.img = data.img.split("..")[0];
     data.category_id = categories[data.category_id];
     res.render("product/product", { data });
@@ -27,7 +28,9 @@ exports.product = (req, res) => {
 };
 
 exports.product_list = (req, res) => {
-  Product.findAll().then((result) => {
+  Product.findAll({
+    order: [["id", "DESC"]],
+  }).then((result) => {
     res.send(result);
   });
 };
