@@ -43,12 +43,22 @@ $(".toggle").click(function () {
   }
 });
 
-function search() {
+function searchBtn() {
   searchInput = document.querySelector("#search");
   keyword = searchInput.value;
-  window.location.href = `/search/${keyword}`;
+  if (keyword == "") {
+    return;
+  } else {
+    window.location.href = `/search/${keyword}`;
+  }
 }
 
+var search = document.querySelector("#search");
+search.addEventListener("keydown", ({ key }) => {
+  if (key == "Enter") {
+    searchBtn();
+  }
+});
 var media = window.matchMedia(mediaQueryString);
 matchMedia("screen and (orientation:portrait)");
 matchMedia("only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1)");

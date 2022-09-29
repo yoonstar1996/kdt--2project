@@ -12,6 +12,7 @@ const upload = multer({
     filename(req, file, done) {
       const ext = path.extname(file.originalname);
       const time = new Date();
+      console.log(time.getMilliseconds());
       done(
         null,
         time.getFullYear() +
@@ -43,7 +44,7 @@ router.post("/signup", uesr.signup_create);
 router.post("/signup/idcheck", uesr.signup_id_check);
 
 // 상품 생성
-router.post("/product", upload.single("img"), product.product_create);
+router.post("/product", upload.array("img"), product.product_create);
 router.post("/products", product.product_list);
 router.post("/product/myproduct", product.product_myproduct);
 router.delete("/product/delete", product.product_delete);

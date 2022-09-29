@@ -86,6 +86,7 @@
   height: 600px;
   width: 700px;
   border-radius: 20px;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 }
 .myModal > input {
   margin: 10px 0;
@@ -212,7 +213,8 @@
   justify-content: center;
 }
 
-.addItemBtn {
+.addItemBtn,
+.addFixBtn {
   width: 110px;
   height: 50px;
   background-color: #ffe4bc;
@@ -271,8 +273,9 @@
   height: 450px;
   margin: 10px;
   padding: 1px;
-  border: 1px solid coral;
+  border: 2px solid rgba(255, 111, 59, 0.897);
   border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
 .pagelink {
   text-decoration: none;
@@ -285,7 +288,7 @@
 .item-img {
   width: 90%;
   height: 220px;
-  margin: 5px 0 0 11px;
+  margin: 5px 0 10px 11px;
   /* border-bottom: 1px solid #eaeaea; */
 }
 .item-text-name {
@@ -293,7 +296,8 @@
   height: 30px;
   margin: 7px 0;
   padding-left: 8px;
-  font-size: 1.1rem;
+  font-size: 1.3rem;
+  font-weight: 800;
   /* border-bottom: 1px solid #eaeaea; */
 }
 .item-text-price {
@@ -302,6 +306,7 @@
   margin: 7px 0;
   padding-left: 8px;
   /* border-bottom: 1px solid #eaeaea; */
+  font-size: 1.2rem;
   font-weight: 700;
 }
 .item-text-category {
@@ -309,7 +314,7 @@
   height: 30px;
   margin: 7px 0;
   padding-left: 8px;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: #9c9c9c;
   /* border-bottom: 1px solid #eaeaea; */
 }
@@ -323,7 +328,23 @@
   white-space: nowrap; /*글자를 한줄로 모아준다*/
   overflow: hidden;
   padding: 0 8px;
+  color: black;
   /* border-bottom: 1px solid #eaeaea; */
+}
+.item-fix-btn {
+  float: left;
+  font-size: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  width: 90px;
+  height: 30px;
+  background-color: #ffe4bc;
+  border: none;
+  border-radius: 20px;
+  margin: 10px 0 0 10px;
+  font-weight: 550;
 }
 .item-cancel-btn {
   float: right;
@@ -337,9 +358,10 @@
   background-color: #ffe4bc;
   border: none;
   border-radius: 20px;
-  margin: 15px 10px 0 0;
+  margin: 10px 10px 0 0;
   font-weight: 550;
 }
-.item-cancel-btn:hover {
+.item-cancel-btn:hover,
+.item-fix-btn:hover {
   cursor: pointer;
 }
