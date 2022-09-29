@@ -4,21 +4,23 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="/static/css/mypage.css" rel="stylesheet" />
+    <link href="/static/css/user/mypage-fix.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <%-include("../link.ejs")%>
 
     <title>SGT - 개인 정보 수정</title>
   </head>
   <body>
+    <%-include("../main/navbar.ejs")%>
     <div class="wrapper">
       <div class="left-sgt">
         <div>마이 SGT</div>
         <ul class="left-sgt-button">
-          <button type="button">상품 등록</button>
+          <button type="button" onclick="mypage();">상품 목록</button>
           <button type="button">거래 내역</button>
-          <button type="button">찜한 상품</button>
-          <button type="button">개인 정보 수정</button>
+          <button type="button" onclick="mypick();">찜한 상품</button>
+          <button type="button" onclick="myfix();">개인 정보 수정</button>
         </ul>
       </div>
 
@@ -26,17 +28,15 @@
         <div>개인 정보 수정</div>
         <hr />
         <div class="right-sgt-content">
-          <input type="text" />
-          <input type="password" />
-          <button type="button" onclick="goToFix()">개인 정보 수정 하러가기</button>
+          <div class="content-wrapper">
+            <input type="text" name="id" id="id" class="id" placeholder="ID" disabled />
+            <input type="password" name="pw" id="pw" class="pw" placeholder="비밀번호를 입력하세요." />
+            <button type="button" id="fixbtn" onclick="goToFix()">개인 정보 수정 하러가기</button>
+          </div>
         </div>
       </div>
     </div>
 
-    <script>
-      function goToFix() {
-        window.location.href = "http://localhost:8000/gofix";
-      }
-    </script>
+    <script src="/static/js/user/mypageFix.js"></script>
   </body>
 </html>
