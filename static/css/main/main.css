@@ -9,22 +9,18 @@
 }
 
 .all-space {
-  width: 1000px;
+  max-width: 840px;
   margin: auto;
 }
 
 .new-box {
   border: 1px #eeeeee solid;
-  height: 550px;
   padding: 20px;
+  display: flex;
 }
 
 .new-first {
-  display: flex;
-  justify-content: space-around;
   padding: 10px;
-  vertical-align: middle;
-  margin: auto;
 }
 
 .new-second {
@@ -34,7 +30,11 @@
   vertical-align: middle;
   margin: auto;
 }
-
+.newb {
+  /* width: 200px; */
+  height: 230px;
+  align-items: center;
+}
 .att-box {
   border: 1px #eeeeee solid;
   width: 100%;
@@ -53,11 +53,14 @@
 .new-box5,
 .new-box6,
 .new-box7 {
-  width: 200px;
-  height: 180px;
+  width: 150px;
+  height: 150px;
   background-color: #eeeeee;
+  margin: auto;
 }
 
+.new-box2 {
+}
 .att-box1,
 .att-box2,
 .att-box3,
@@ -67,14 +70,41 @@
   background-color: #eeeeee;
 }
 
+.heart1 {
+  /* 하트아이콘 */
+  color: #d3d3d3;
+  cursor: pointer;
+}
+
+.heart-click {
+  color: red;
+  cursor: pointer;
+}
+
+.heart {
+  /* 하트 버튼 */
+  position: relative;
+  left: 140px;
+  top: -80px;
+  z-index: 50;
+  opacity: 0.7;
+  border: none;
+  background-color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
 .new1 {
   display: block;
-  width: 200px;
-  height: 180px;
+  height: 230px;
   font-weight: 700;
   font-size: 24px;
   line-height: 45px;
   letter-spacing: -0.05em;
+  padding-top: 20px;
+  padding-left: 30px;
 }
 
 .attention1 {
@@ -93,9 +123,24 @@
   letter-spacing: -0.05em;
 }
 
+a {
+  text-decoration: none;
+}
 .box-price {
   font-weight: 800;
   font-size: 0.9em;
+}
+
+.box-title {
+  margin-top: 10px;
+  margin-bottom: 5px;
+  text-decoration: none;
+  color: black;
+}
+
+.box-price {
+  text-decoration: none;
+  color: black;
 }
 
 @media screen and (min-width: 1146px) {

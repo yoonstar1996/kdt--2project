@@ -1,7 +1,7 @@
 #footer {
   width: 100%;
-  height: 200px;
-  margin: 0px;
+  height: 180px;
+  margin: 0;
   background-color: #eeeeee;
 }
 
@@ -23,30 +23,95 @@
   display: flex;
 }
 
+.section-2 {
+  text-align: right;
+  margin-right: 30px;
+}
+
 .first-inner {
   background-color: white;
   border: none;
   border-radius: 30px;
-  width: 70%;
-  height: 100px;
+  width: 14vw;
+  height: 10vw;
   display: flex;
   margin: auto;
 }
 
+.second-inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  padding-right: 20px;
+}
+
+.third-inner {
+  font-size: calc(0.75em + 0.1vw);
+  line-height: 25px;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.third-inner > div > span {
+  font-weight: 700;
+}
+.section-4 {
+  display: flex;
+}
+
+.forth-inner {
+  width: 100%;
+  height: 80%;
+  border-left: 1px #d3d3d3 solid;
+  margin: auto 0;
+}
+
 .foot-logo {
   width: 14vw;
-  /* height: 77px; */
   margin: auto;
 }
 
 .team1 {
   font-weight: 700;
-  font-size: 1.2em;
+  font-size: calc(0.75em + 0.8vw);
 }
 
 .team2 {
   font-weight: 700;
-  font-size: 1.2em;
+  font-size: calc(0.75em + 0.8vw);
+  color: #eb8d00;
+}
+
+.forth-outer {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 10px;
+  text-align: center;
+}
+
+.forth1 {
+  font-size: calc(0.75em + 0.4vw);
+  color: grey;
+}
+
+.forth1 > span {
+  color: black;
+  font-weight: 700;
+}
+
+.forth2,
+.forth3 {
+  font-size: calc(0.75em + 0.02vw);
+  line-height: 20px;
+  letter-spacing: -0.05em;
+}
+
+.forth3 {
+  font-weight: 700;
 }
 /* .foot {
   text-align: center;
