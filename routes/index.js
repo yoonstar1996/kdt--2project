@@ -31,4 +31,6 @@ router.get("/socket/:id", socket.socket);
 
 router.get("/mypage", main.mypage);
 
+router.get("/mypick", main.mypick);
+
 module.exports = router;

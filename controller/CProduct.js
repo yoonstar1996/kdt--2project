@@ -48,11 +48,18 @@ exports.categories_list = (req, res) => {
 
 // 상품 생성
 exports.product_create = (req, res) => {
+  let img_name = "";
+  console.log(req.file)
+  for (let i = 0; i < req.file.length; i++) {
+    if (i != 0) img_name += "..";
+    img_name += "/uploads/" + req.file[i].filename;
+  }
+
   const data = {
     user_id: req.body.user_id,
     category_id: req.body.category_id,
     title: req.body.title,
-    img: "/uploads/" + req.file.filename,
+    img: img_name,
     adult: req.body.adult,
     price: req.body.price,
     position: req.body.position,
@@ -83,11 +90,18 @@ exports.product_delete = (req, res) => {
 
 // 나의 등록 상품
 exports.product_search = (req, res) => {
+  res.render('product/search', {search_item:req.params.product});
+};
+
+// 나의 등록 상품
+exports.search_item = (req, res) => {
   Product.findAll({
     where: {
-      [Op.like]: [{ title: "%" + req.params.product + "%" }],
-    },
+      title:{
+      [Op.like]:  "%" + req.body.search_item + "%",
+    }},
   }).then((result) => {
-    res.send(result);
+    const data = result
+    res.send( data);
   });
 };

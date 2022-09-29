@@ -8,32 +8,11 @@
     <%-include("../link.ejs")%>
     <link rel="stylesheet" href="/static/css/product/categories.css" />
     <!-- 폰트어썸 -->
-    <script
-      src="https://kit.fontawesome.com/a766c546f2.js"
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://kit.fontawesome.com/a766c546f2.js" crossorigin="anonymous"></script>
     <!-- 페이지네이션 기능 연결 시작 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css" />
     <!-- 페이지네이션 기능 연결 끝 -->
-    <script>
-      // var dict = [
-      //   { age: 22, name: "a" },
-      //   { age: 25, name: "a" },
-      //   { age: 15, name: "a" },
-      // ];
-      // dict.sort((a, b) => {
-      //   console.log(" a : ", a);
-      //   console.log(" b : ", b);
-      //   return b.age - a.age;
-      //   // 내림차순
-      //   // a.age - b.age 로 하면 오름차순
-      // });
-      // console.log("dict : ", dict);
-    </script>
   </head>
   <body>
     <%-include("../main/navbar.ejs")%>
@@ -46,9 +25,6 @@
 
         <div class="onestnavsort">
           <div class="twostnavsort">
-            <!-- <div class="sortnav"><a href="">랭킹순</a></div>
-            <div class="sortnav"><a href="">누적판매순</a></div>
-            <div class="sortnav"><a href="">후기많은순</a></div> -->
             <div class="sortnav">
               <button onclick="handleOnLow()">낮은가격순</button>
             </div>
@@ -70,10 +46,8 @@
         <!-- 받아온 데이터 -->
         <a href="#" class="products"></a>
         <div class="pagenation-container">
-          <div
-            class="row row-cols-3 row-cols-md-3 g-4"
-            id="data-container"
-          ></div>
+          <div class="row row-cols-3 row-cols-md-3 g-4" id="data-container">
+          </div>
         </div>
         <br />
         <div id="pagination"></div>
@@ -85,32 +59,18 @@
 
     <%-include("../main/footer.ejs")%>
 
-    <!-- <script src="/static/js/product/categories.js"></script> -->
     <script>
       // 상품목록 리스트 (페이지네이션) 시작
       $(function () {
         let container = $("#pagination");
-        const category = "<%=category%>";
+        const search_item = "<%=search_item%>";
+        console.log(search_item);
         axios({
-          url: `/api/categories/${category}`,
+          url: `/api/search/${search_item}`,
           method: "post",
-          data: { category: category },
+          data: { search_item: search_item },
         }).then((result) => {
           console.log(result.data);
-
-          // // //변수가 없으면 기본 배열로 목록 생성
-          // if (result.data == "" || result.data == null) {
-          //   $("#data-container").html(createList(result.data));
-          //   //내림차순일때
-          // } else if (result.data == "desc") {
-          //   result.data.sort((a, b) => a.priceValue - b.priceValue);
-          //   $("#data-container").html(createList(result.data));
-          //   //오름차순일때
-          // } else {
-          //   result.data.sort((a, b) => b.priceValue - a.priceValue);
-          //   $("#data-container").html(createList(result.data));
-          // }
-          // console.log(data);
 
           const dataSource = result.data.map((el) => {
             return {
@@ -132,15 +92,11 @@
 
             pageSize: 6,
             callback: function (data, pagination) {
-              console.log(data);
               $("#data-container").html(createList(data));
             },
           });
         });
       });
-      // 데이터 값 넣는것
-      // date.sort((a, b) => a.price - b.price);
-      // createList(data);
 
       function createList(data) {
         var dataHtml = "";
@@ -177,12 +133,12 @@
         // container.html("");
         // $("#data-container").html("");
         container.empty();
-        const category = "<%=category%>";
+        const category = "<%=search_item%>";
         // 엑시오스 데이터 불러오는곳
         axios({
-          url: `/api/categories/${category}`,
+          url: `/api/search/${search_item}`,
           method: "post",
-          data: { category: category },
+          data: { search_item: search_item },
         }).then((result) => {
           let dataSource = result.data.map((el) => {
             return {
@@ -217,12 +173,12 @@
         // 페이지네이션 깨트리는곳
         // container.pagination("destroy");
         container.empty();
-        const category = "<%=category%>";
+        const category = "<%=search_item%>";
         // 엑시오스 데이터 불러오는곳
         axios({
-          url: `/api/categories/${category}`,
+          url: `/api/search/${search_item}`,
           method: "post",
-          data: { category: category },
+          data: { search_item: search_item },
         }).then((result) => {
           let dataSource = result.data.map((el) => {
             return {
@@ -259,12 +215,12 @@
         // 페이지네이션 깨트리는곳
         // container.pagination("destroy");
         container.empty();
-        const category = "<%=category%>";
+        const category = "<%=search_item%>";
         // 엑시오스 데이터 불러오는곳
         axios({
-          url: `/api/categories/${category}`,
+          url: `/api/search/${search_item}`,
           method: "post",
-          data: { category: category },
+          data: { search_item: search_item },
         }).then((result) => {
           let dataSource = result.data.map((el) => {
             return {
