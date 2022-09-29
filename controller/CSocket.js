@@ -7,7 +7,7 @@ exports.roomlist = (req, res) => {
   res.render("socket/roomList");
 };
 exports.socket = (req, res) => {
-  res.render("socket/socket");
+  res.render("socket/socket", { room_id: req.params.id });
 };
 
 // 채팅 방 만들기
@@ -53,5 +53,20 @@ exports.socket_check = (req, res) => {
     const data = result;
     if (data) res.send(data);
     else res.send(data);
+  });
+};
+
+// 채팅 내용 찾기
+exports.socket_content = (req, res) => {
+  Room.findOne({
+    raw: true,
+    include: [ChatContent],
+    where: {
+      id: req.body.room_id,
+    },
+  }).then((result) => {
+    console.log(result);
+    const data = result;
+    res.send(data);
   });
 };

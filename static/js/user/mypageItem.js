@@ -44,7 +44,8 @@ function addItem(obj) {
   modal.setStyle({
     position: "fixed",
     display: "flex",
-    boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+    boxShadow:
+      "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
 
     // 시꺼먼 레이어 보다 한칸 위에 보이기
     zIndex: zIndex + 1,
@@ -87,7 +88,8 @@ function fixItem() {
   modal.setStyle({
     position: "fixed",
     display: "flex",
-    boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+    boxShadow:
+      "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
 
     // 시꺼먼 레이어 보다 한칸 위에 보이기
     zIndex: zIndex + 1,
@@ -117,12 +119,15 @@ function modalAddItem() {
   formData.append("user_id", sessionStorage.getItem("id"));
   formData.append("category_id", category.value);
   formData.append("title", form.title.value);
-  formData.append("img", file.files);
+  // formData.append("img", Object.values(file.files));
+  for (key in file.files) {
+    formData.append("img", file.files[key]);
+  }
   formData.append("adult", true);
   formData.append("price", form.price.value);
   formData.append("position", "마포구");
   formData.append("content", form.content.value);
-
+  console.log(formData);
   axios({
     headers: {
       "Content-Type": "multipart/form-data",
@@ -134,7 +139,9 @@ function modalAddItem() {
     if (response) {
       var itemList = document.querySelector(".itemList");
       const price = response.data.price;
-      const comma = price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+      const comma = price
+        .toString()
+        .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 
       $(itemList).append(`
       <div class="my-item">
@@ -144,7 +151,9 @@ function modalAddItem() {
         <div class="item-info">
           <div class="item-text">
             <h4 class="item-text-name">${response.data.title}</h4>
-            <div class="item-text-category">${categories[response.data.category_id]}</div>
+            <div class="item-text-category">${
+              categories[response.data.category_id]
+            }</div>
             <div class="item-text-content">${response.data.content}</div>
             <div class="item-text-price">${comma}원</div>
           </div>
@@ -152,8 +161,12 @@ function modalAddItem() {
         </div>
         </a>
         <div class="item-cancel">
-          <button type="button" class="item-fix-btn" onclick="itemFix(this, ${response.data.id})">상품 수정</button>
-          <button type="button" class="item-cancel-btn" onclick="itemDelete(this, ${response.data.id})">상품 삭제</button>
+          <button type="button" class="item-fix-btn" onclick="itemFix(this, ${
+            response.data.id
+          })">상품 수정</button>
+          <button type="button" class="item-cancel-btn" onclick="itemDelete(this, ${
+            response.data.id
+          })">상품 삭제</button>
         </div>
         </div>
       `);
@@ -187,7 +200,9 @@ axios({
   for (i = 0; i < result.data.length; i++) {
     var itemList = document.querySelector(".itemList");
     const price = result.data[i].price;
-    const comma = price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+    const comma = price
+      .toString()
+      .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 
     $(itemList).append(`
       <div class="my-item">
@@ -197,7 +212,9 @@ axios({
             <div class="item-info">
               <div class="item-text">
                 <h4 class="item-text-name">${result.data[i].title}</h4>
-                <div class="item-text-category">${categories[result.data[i].category_id]}</div>
+                <div class="item-text-category">${
+                  categories[result.data[i].category_id]
+                }</div>
                 <div class="item-text-content">${result.data[i].content}</div>
                 <div class="item-text-price">${comma}원</div>
               </div>
@@ -205,8 +222,12 @@ axios({
           </div>
         </a>
         <div class="item-cancel">
-          <button type="button" class="item-fix-btn" onclick="itemFix(this, ${result.data[i].id})">상품 수정</button>
-          <button type="button" class="item-cancel-btn" onclick="itemDelete(this, ${result.data[i].id})">상품 삭제</button>
+          <button type="button" class="item-fix-btn" onclick="itemFix(this, ${
+            result.data[i].id
+          })">상품 수정</button>
+          <button type="button" class="item-cancel-btn" onclick="itemDelete(this, ${
+            result.data[i].id
+          })">상품 삭제</button>
         </div>
       </div>
     `);
@@ -284,7 +305,9 @@ function modalFixItem() {
     if (response) {
       var itemList = document.querySelector(".itemList");
       const price = response.data.price;
-      const comma = price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+      const comma = price
+        .toString()
+        .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 
       $(itemList).append(`
         <div class="my-item">
@@ -294,7 +317,9 @@ function modalFixItem() {
               <div class="item-info">
                 <div class="item-text">
                   <h4 class="item-text-name">${response.data.title}</h4>
-                  <div class="item-text-category">${categories[response.data.category_id]}</div>
+                  <div class="item-text-category">${
+                    categories[response.data.category_id]
+                  }</div>
                   <div class="item-text-content">${response.data.content}</div>
                   <div class="item-text-price">${comma}원</div>
                 </div>
@@ -302,8 +327,12 @@ function modalFixItem() {
             </div>
           </a>
           <div class="item-cancel">
-            <button type="button" class="item-fix-btn" onclick="itemFix(this, ${response.data.id})">상품 수정</button>
-            <button type="button" class="item-cancel-btn" onclick="itemDelete(this, ${response.data.id})">상품 삭제</button>
+            <button type="button" class="item-fix-btn" onclick="itemFix(this, ${
+              response.data.id
+            })">상품 수정</button>
+            <button type="button" class="item-cancel-btn" onclick="itemDelete(this, ${
+              response.data.id
+            })">상품 삭제</button>
           </div>
         </div>
       `);
