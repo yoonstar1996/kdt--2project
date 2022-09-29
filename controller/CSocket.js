@@ -1,11 +1,26 @@
-const { Room, ChatContent, Participation } = require("../model");
-const { Op } = require("sequelize");
+const { Room, Participation } = require("../model");
 const sequelize = require("sequelize");
+const { Op } = require("sequelize");
 
 // 채팅 페이지
 exports.roomlist = (req, res) => {
   res.render("socket/roomList");
 };
+// 채팅 내용 찾기
+exports.myroomlist = (req, res) => {
+  Participation.findAll({
+    raw: true,
+    include: [Room],
+    where: {
+      room_id: req.body.room_id,
+    },
+  }).then((result) => {
+    console.log(result);
+    const data = result;
+    res.send(data);
+  });
+};
+
 exports.socket = (req, res) => {
   res.render("socket/socket", { room_id: req.params.id });
 };
@@ -13,25 +28,27 @@ exports.socket = (req, res) => {
 // 채팅 방 만들기
 exports.socket_create = (req, res) => {
   const data = {
-    name: req.body.title,
+    title: req.body.title,
+    img: "",
+    content: "",
   };
   Room.create(data).then((result) => {
-    console.log(result);
-    const chat_data = {
-      room_id: result.id,
-      content: "",
-    };
-    ChatContent.create(chat_data).then((result) => {});
-    const participation_my_data = {
+    // const participation_my_data = {
+    //   user_id: req.body.user_id,
+    //   room_id: result.id,
+    // };
+    // const participation_other_data = {
+    //   user_id: req.body.other_id,
+    //   room_id: result.id,
+    // };
+    Participation.create({
       user_id: req.body.user_id,
       room_id: result.id,
-    };
-    const participation_other_data = {
+    }).then((result) => {});
+    Participation.create({
       user_id: req.body.other_id,
       room_id: result.id,
-    };
-    Participation.create(participation_my_data).then((result) => {});
-    Participation.create(participation_other_data).then((result) => {});
+    }).then((result) => {});
     res.send({ id: result.id });
   });
 };
@@ -51,6 +68,7 @@ exports.socket_check = (req, res) => {
     }),
   }).then((result) => {
     const data = result;
+    console.log(data);
     if (data) res.send(data);
     else res.send(data);
   });
@@ -60,7 +78,6 @@ exports.socket_check = (req, res) => {
 exports.socket_content = (req, res) => {
   Room.findOne({
     raw: true,
-    include: [ChatContent],
     where: {
       id: req.body.room_id,
     },
