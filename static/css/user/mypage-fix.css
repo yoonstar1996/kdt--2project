@@ -1,0 +1,62 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+.wrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 1000px;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+.d-none {
+  display: none;
+}
+.left-sgt {
+  display: flex;
+  flex-direction: column;
+  float: left;
+  margin: 0 50px 0 0;
+  width: 170px;
+  font-size: 1rem;
+}
+.left-sgt > div {
+  display: flex;
+  justify-content: center;
+  font-weight: 700;
+  margin: 0 0 20px 0;
+  font-size: 1.1rem;
+}
+.left-sgt-button {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.1rem;
+  padding: 0;
+}
+.left-sgt-button > button {
+  background-color: transparent;
+  height: 55px;
+  border: none;
+  border-bottom: 1px solid #eaeaea;
+  font-size: 1rem;
+}
+.left-sgt-button > button:hover {
+  cursor: pointer;
+  color: #eb8d00;
+  /* background-color: #f1f3f5; */
+}
+.right-sgt {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    /* margin: 0 50px; */
+    width: 100%;
+  }
+.right-sgt-content {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  /* flex-wrap: wrap; */
+}

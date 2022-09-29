@@ -321,3 +321,7 @@ function mypage() {
 function mypick() {
   window.location.href = "/mypick";
 }
+
+function myfix() {
+  window.location.href = "/myfix";
+}

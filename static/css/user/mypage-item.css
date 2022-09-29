@@ -5,6 +5,7 @@
 .wrapper {
   display: flex;
   justify-content: flex-start;
+  align-items: flex-start;
   width: 1000px;
   margin: 0 auto;
   margin-top: 50px;
@@ -298,6 +299,10 @@
   padding-left: 8px;
   font-size: 1.3rem;
   font-weight: 800;
+  text-overflow: ellipsis;
+  white-space: nowrap; /*글자를 한줄로 모아준다*/
+  overflow: hidden;
+
   /* border-bottom: 1px solid #eaeaea; */
 }
 .item-text-price {
