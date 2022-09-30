@@ -13,7 +13,7 @@ exports.login_check = (req, res) => {
       pw: req.body.pw,
     },
   }).then((result) => {
-    if( result ) {
+    if (result) {
       jwt.sign(
         {
           id: req.body.id,
@@ -25,12 +25,10 @@ exports.login_check = (req, res) => {
         (err, token) => {
           if (err) {
             console.log(err);
-            res
-              .status(401)
-              .json({ success: false, errormessage: "token sign fail" });
+            res.status(401).json({ success: false, errormessage: "token sign fail" });
           } else {
             res.cookie("jwt", token);
-            res.json({ success: true, accessToken: token });
+            res.json({ success: true, accessToken: token, id: req.body.id });
           }
         }
       );

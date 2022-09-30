@@ -20,5 +20,19 @@ exports.kakaoCallback = (req, res) => {
 exports.mypage = (req, res) => {
   const data = [];
   let result = true;
-  res.render("./login/mypageItem", { data: result });
+  res.render("./mypage/mypageItem", { data: result });
+};
+
+exports.mypick = (req, res) => {
+  const data = [];
+  let result = true;
+  res.render("./mypage/mypagePick", { data: result });
+};
+
+exports.myfix = (req, res) => {
+  res.render("./mypage/mypageFix");
+};
+
+exports.infofix = (req, res) => {
+  res.render("./mypage/mypageGoFix");
 };

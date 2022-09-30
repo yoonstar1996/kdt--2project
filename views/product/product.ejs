@@ -21,7 +21,12 @@
             style="margin-right: 20px"
           ></i>
         </div>
-        <div class="product-photo"></div>
+        <div class="product-photo">
+          <img
+            src="<%=data.img%>"
+            style="max-width: 666px; height: 417px; margin: auto"
+          />
+        </div>
         <div class="right-arrow">
           <i
             class="fa-solid fa-angle-right fa-2xl"
@@ -29,6 +34,10 @@
           ></i>
         </div>
       </div>
+      <button id="heart-1" class="heart-1" type="button" onclick="heart()">
+        <i class="heart-i fa-solid fa-heart"></i
+        ><span style="color: black; margin-left: 5px">찜하기</span>
+      </button>
       <br />
       <div class="product-wrapper3">
         <div class="profile-photo"></div>
@@ -51,7 +60,9 @@
       <hr class="hr-2" />
       <div class="product-wrapper5">
         <div class="price">가격</div>
-        <div class="product-price"><%=data.price%><span>원</span></div>
+        <div class="product-price">
+          <span><%=data.price%></span><span>원</span>
+        </div>
       </div>
       <hr class="hr-2" />
       <div class="category-another">이 카테고리의 다른 상품</div>
@@ -73,10 +84,17 @@
     <br />
     <br />
     <div>
-      <button id="chat-1" class="chat-1" type="button" onclick="">
+      <button
+        id="chat-1"
+        class="chat-1"
+        type="button"
+        onclick="chattingRoom('<%=data.title%>','<%=data.user.id%>')"
+      >
         채팅하기
       </button>
     </div>
+    <script src="/static/js/product/product.js"></script>
     <%-include("../main/footer.ejs")%>
+    <script src="/static/js/product/product.js"></script>
   </body>
 </html>
