@@ -59,7 +59,7 @@
 .threestnavsort {
   display: flex;
 }
-
+/* 정렬 네비바 보더라인 및 효과주기 시작 */
 .sortnav {
   float: left;
   height: 100%;
@@ -72,6 +72,39 @@
   text-decoration: none;
   color: #555;
 }
+
+.sortnav button {
+  background-color: white;
+  border: none;
+}
+
+.sortnav button:hover {
+  color: #eb8d00;
+}
+/* 정렬 네비바 보더라인 및 효과주기 끝 */
+
+/* 정렬 네비바 맨 좌측에만 보더라인 제거 시작 */
+.sortnavleft {
+  float: left;
+  height: 100%;
+  padding: 0 10px;
+  line-height: 1.5;
+}
+
+.sortnavleft a {
+  text-decoration: none;
+  color: #555;
+}
+
+.sortnavleft button {
+  background-color: white;
+  border: none;
+}
+
+.sortnavleft button:hover {
+  color: #eb8d00;
+}
+/* 정렬 네비바 맨 좌측에만 보더라인 제거 끝 */
 
 /* 상단 정렬네브바 css 끝 */
 
@@ -94,11 +127,34 @@
 /* 페이지네이션 css 끝 */
 
 .hero-header {
-  height: 450px;
+  height: 250px;
+  position: relative;
+}
+
+.hero-header:before {
+  content: "";
   background-image: url(https://i0.wp.com/osiswing.com/wp-content/uploads/2021/02/4876507.jpg?resize=1536%2C1024&ssl=1);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
+  border-radius: 25px;
+  opacity: 0.4;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.hero-header-h3 {
+  text-align: center;
+  line-height: 250px;
+  font-weight: 800;
+  font-size: 50px;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
 }
 
 .product-list {
@@ -140,6 +196,11 @@
   --bs-gutter-y: 0rem !important;
 }
 
+.paginationjs .paginationjs-pages li.active > a {
+  background: #eb8d00 !important;
+  color: #fff;
+}
+
 /* 카드박스 내부 css 시작*/
 
 /* 텍스트 전체박스 */
@@ -155,10 +216,9 @@
 
 /* 아이디 텍스트 */
 .card-text.id {
-  font-weight: 800;
-  font-size: 20px;
-  margin-bottom: 5px;
+  font-size: 15px;
   color: black;
+  margin-bottom: 5px;
 }
 /* a태그 데코제거 */
 .adeco {
@@ -166,7 +226,9 @@
 }
 /* 상품명 텍스트 */
 .card-title {
-  font-size: 15px;
+  font-weight: 800;
+  font-size: 20px;
+  margin-bottom: 10px;
   overflow-x: hidden;
   overflow-y: hidden;
   text-overflow: ellipsis;
@@ -178,6 +240,7 @@
 .card-text.position {
   font-size: small;
   color: gray;
+  margin-top: 5px;
 }
 /* 가격 텍스트 */
 .card-text.price {
@@ -186,12 +249,14 @@
   color: rgb(220, 85, 85);
   float: right;
   font-weight: 800;
+  margin-top: 5px;
 }
 /* 카테고리 분류 텍스트 */
 .card-text.elec {
   text-align: left;
   font-size: small;
   color: gray;
+  margin-top: 5px;
 }
 
 /* 부트스트랩 박스 크기 33.3333% 제거 */
@@ -205,6 +270,39 @@
     width: 100%;
   }
 }
+/* 정렬버튼 미디어쿼리 시작 */
+@media (max-width: 633px) {
+  .sortnav {
+    width: 100px;
+    font-size: small;
+    float: left;
+    height: 100%;
+    padding: 0 10px;
+    line-height: 1.5;
+    border-left: 1px solid #eee;
+  }
+
+  .twostnavsort {
+    margin-bottom: 20px;
+  }
+
+  .onestnavsort {
+    display: flex;
+    align-content: space-between;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .hero-header {
+    height: 250px;
+  }
+
+  .hero-header-h3 {
+    font-size: 25px;
+    line-height: 250px;
+  }
+}
+/* 정렬버튼 미디어쿼리 끝 */
 
 @media (min-width: 576px) {
   .col-sm-6 {
