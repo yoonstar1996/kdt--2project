@@ -28,15 +28,24 @@ axios({
       </div>
       <div class="box-title">${product[i].title}</div>
       <div class="box-price">${product[i].price}<span>원</span></div></a>
-      <button class="heart" type="button" onclick="heart(${product[i].id}, this)"><i class="heart1 fa-solid fa-heart fa-xl"></i></button>
+      <button class="heart d-none" type="button" onclick="heart(${product[i].id}, this)"><i class="heart1 fa-solid fa-heart fa-xl"></i></button>
     </div>`);
   }
 
+  const heartbtn = document.querySelectorAll(".heart");
+  // console.log(heartbtn);
   if (sessionStorage.getItem("id")) {
-    const heartbtn = document.querySelectorAll(".heart");
-    heartbtn.classList.remove("d-none");
+    // heartbtn.classList.remove("d-none");
+    // heartbtn.map((el) => el.classList.remove("d-none"));
+    for (let i = 0; i < heartbtn.length; i++) {
+      heartbtn[i].classList.remove("d-none");
+    }
   } else {
-    heartbtn.classList.add("d-none");
+    // heartbtn.classList.add("d-none");
+    // heartbtn.map((el) => el.classList.add("d-none"));
+    for (let i = 0; i < heartbtn.length; i++) {
+      heartbtn[i].classList.add("d-none");
+    }
   }
 });
 
