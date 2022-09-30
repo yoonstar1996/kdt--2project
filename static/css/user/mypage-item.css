@@ -394,12 +394,13 @@
 .modal2-content {
   text-align: center;
   position: relative;
-  background-color: white;
+  background-color: #eaeaea;
   border: 1px solid blue;
   border-radius: 10px;
   top: 0;
   padding: 10px 25px;
   height: 30%;
+  width: 50%;
 }
 
 .modal2-content > h2 {
@@ -416,6 +417,26 @@
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+
+.yes,
+.no {
+  border-radius: 10px;
+  width: 50px;
+  height: 40px;
+  margin: 0 15px;
+}
+
+.withDraw {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+  font-size: 0.8rem;
+  color: gray;
+}
+
+.withDraw:hover {
+  color: black;
 }
 
 .d-none {

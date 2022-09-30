@@ -6,7 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="/static/css/user/mypage-fix.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.1.min.js"
+      integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+      crossorigin="anonymous"
+    ></script>
     <%-include("../link.ejs")%>
 
     <title>SGT - 개인 정보 수정</title>
@@ -21,20 +25,48 @@
           <button type="button">거래 내역</button>
           <button type="button" onclick="mypick();">찜한 상품</button>
           <button type="button" onclick="myfix();">개인 정보 수정</button>
-          <a type="button" class="widthdraw" onclick="withDraw();">회원탈퇴</a>
+          <a type="button" class="withDraw">회원탈퇴</a>
+          <!-- 모달 창 -->
+          <div id="myModal" class="modal2 hidden">
+            <!-- 모달 창 내용 -->
+            <div class="modal2-bgr"></div>
+            <div class="modal2-content">
+              <h2>정말 탈퇴하시겠습니까?</h2>
+              <div class="modal-btn">
+                <button type="button" class="yes">예</button>
+                <button type="button" class="no">닫기</button>
+              </div>
+            </div>
+          </div>
         </ul>
       </div>
 
       <div class="right-sgt">
         <div class="title">개인 정보 수정</div>
         <div class="repw">비밀번호 재확인</div>
-        <div class="little">회원님의 정보를 안전하게 보호하기 위해 비밀번호를 다시 한번 확인해주세요.</div>
+        <div class="little">
+          회원님의 정보를 안전하게 보호하기 위해 비밀번호를 다시 한번
+          확인해주세요.
+        </div>
         <hr />
         <div class="right-sgt-content">
           <div class="content-wrapper">
-            <input type="text" name="id" id="id" class="id" placeholder="ID" disabled />
-            <input type="password" name="pw" id="pw" class="pw" placeholder="비밀번호를 입력해주세요." />
-            <hr>
+            <input
+              type="text"
+              name="id"
+              id="id"
+              class="id"
+              placeholder="ID"
+              disabled
+            />
+            <input
+              type="password"
+              name="pw"
+              id="pw"
+              class="pw"
+              placeholder="비밀번호를 입력해주세요."
+            />
+            <hr />
             <button type="button" id="fixbtn" onclick="goToFix()">확인</button>
           </div>
         </div>

@@ -65,11 +65,11 @@ function searchBtn() {
   } else {
     window.location.href = `/search/${keyword}`;
   }
-
-  var search = document.querySelector("#search");
-  search.addEventListener("keydown", ({ key }) => {
-    if (key == "Enter") {
-      searchBtn();
-    }
-  });
 }
+
+var search = document.querySelector("#search");
+search.addEventListener("keydown", ({ key }) => {
+  if (key == "Enter") {
+    searchBtn();
+  }
+});
