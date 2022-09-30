@@ -254,13 +254,12 @@ function fixInfo() {
   var data = {
     id: form.id.value,
     pw: form.pw.value,
-    name: form.name.value,
     email: form.email.value,
-    phone: form.phone.value,
+    name: form.name.value,
     position: form.adress.value,
   };
   axios({
-    url: "/api/signup",
+    url: "/api/user/update",
     method: "put",
     data: data,
   }).then((response) => {
@@ -320,4 +319,17 @@ phone.addEventListener("input", function (event) {
   } else {
     phoneval.classList.remove("d-none");
   }
+});
+
+axios({
+  url: "/api/signup/idcheck",
+  method: "post",
+  data: { id: sessionStorage.getItem("id") },
+}).then((result) => {
+  console.log(result);
+  const form = document.querySelector("form");
+  form.id.value = result.data.id;
+  form.name.value = result.data.name;
+  form.email.value = result.data.email;
+  form.adress.value = result.data.position;
 });

@@ -1,7 +1,3 @@
-// const { default: axios } = require("axios");
-
-const { default: axios } = require("axios");
-
 // const { session } = require("passport");
 
 var modal = document.querySelector(".myModal");
@@ -300,7 +296,6 @@ function itemFix(obj, id) {
 
   document.querySelector(".addItemBtn").classList.add("d-none");
   document.querySelector(".addFixBtn").classList.remove("d-none");
-
 }
 
 function modalFixItem() {
@@ -309,11 +304,13 @@ function modalFixItem() {
   const formData = new FormData();
   const file = document.querySelector(".img");
 
+  formData.append("id", form.item_id.value);
   formData.append("user_id", sessionStorage.getItem("id"));
-  formData.append("item_id", form.item_id.innerText);
   formData.append("category_id", category.value);
   formData.append("title", form.title.value);
-  formData.append("img", file.files);
+  for (key in file.files) {
+    formData.append("img", file.files[key]);
+  }
   formData.append("adult", true);
   formData.append("price", form.price.value);
   formData.append("position", "마포구");
@@ -323,7 +320,7 @@ function modalFixItem() {
     headers: {
       "Content-Type": "multipart/form-data",
     },
-    url: "/api/product",
+    url: "/api/product/update",
     method: "put",
     data: formData,
   }).then((response) => {
@@ -397,8 +394,11 @@ function displayModal() {
 function widthDraw() {
   const id = sessionStorage.getItem("id");
   axios({
-    url: "~~~",
+    url: "/api/user/delete",
     method: "delete",
+    data: {
+      id: sessionStorage.getItem("id"),
+    },
   }).then((response) => {
     sessionStorage.clear();
     window.location.href = "/";
