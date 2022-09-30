@@ -109,9 +109,9 @@
               food: "식품/잡화",
               pet: "반려동물",
             };
-
+            const img = el.img.split("..")[0];
             return {
-              img: `<img src='${el.img}' class='card-img-top' alt='...' />`,
+              img: `<img src='${img}' class='card-img-top' alt='...' />`,
               name: `<h5 class='card-title'>${el.title}</h5>`,
               id: `<p class='card-text id'>${el.user_id}</p>`,
               address: `<p class='card-text position'>${el.position}</p>`,
