@@ -16,6 +16,9 @@ const Participation = (Sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
+      target: {
+        type: DataTypes.TEXT,
+      },
     },
     { tableName: "participation", freezTableName: true, timestamps: false }
   );

@@ -13,7 +13,6 @@ const upload = multer({
     filename(req, file, done) {
       const ext = path.extname(file.originalname);
       const time = new Date();
-      console.log(time.getMilliseconds());
       done(
         null,
         time.getFullYear() +
@@ -61,5 +60,6 @@ router.post("/roomlist", socket.myroomlist);
 router.post("/roomcheck", socket.socket_check);
 
 router.post("/content", socket.socket_content);
+router.post("/content/update", socket.content_updata);
 
 module.exports = router;

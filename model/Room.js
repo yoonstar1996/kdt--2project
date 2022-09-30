@@ -20,6 +20,10 @@ const Room = (Sequelize, DataTypes) => {
         type: DataTypes.TEXT,
         allowNull: false,
       },
+      lastdate: {
+        type: DataTypes.DATE,
+        allowNull: false,
+      },
     },
     { tableName: "room", freezTableName: true, timestamps: false }
   );

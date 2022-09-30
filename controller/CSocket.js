@@ -8,15 +8,20 @@ exports.roomlist = (req, res) => {
 };
 // 채팅 내용 찾기
 exports.myroomlist = (req, res) => {
-  Participation.findAll({
+  Room.findAll({
     raw: true,
-    include: [Room],
-    where: {
-      room_id: req.body.room_id,
-    },
+    include: [
+      {
+        model: Participation,
+        where: {
+          user_id: req.body.user_id,
+        },
+      },
+    ],
+    order: sequelize.literal("lastdate DESC"),
   }).then((result) => {
-    console.log(result);
     const data = result;
+    console.log(data);
     res.send(data);
   });
 };
@@ -29,25 +34,20 @@ exports.socket = (req, res) => {
 exports.socket_create = (req, res) => {
   const data = {
     title: req.body.title,
-    img: "",
+    img: req.body.img,
     content: "",
+    lastdate: new Date(),
   };
   Room.create(data).then((result) => {
-    // const participation_my_data = {
-    //   user_id: req.body.user_id,
-    //   room_id: result.id,
-    // };
-    // const participation_other_data = {
-    //   user_id: req.body.other_id,
-    //   room_id: result.id,
-    // };
     Participation.create({
       user_id: req.body.user_id,
       room_id: result.id,
+      target: req.body.other_id,
     }).then((result) => {});
     Participation.create({
       user_id: req.body.other_id,
       room_id: result.id,
+      target: req.body.user_id,
     }).then((result) => {});
     res.send({ id: result.id });
   });
@@ -68,7 +68,6 @@ exports.socket_check = (req, res) => {
     }),
   }).then((result) => {
     const data = result;
-    console.log(data);
     if (data) res.send(data);
     else res.send(data);
   });
@@ -82,7 +81,21 @@ exports.socket_content = (req, res) => {
       id: req.body.room_id,
     },
   }).then((result) => {
-    console.log(result);
+    const data = result;
+    res.send(data);
+  });
+};
+
+exports.content_updata = (req, res) => {
+  console.log(req.body.content);
+  Room.update(
+    { content: req.body.content, lastDate: new Date() },
+    {
+      where: {
+        id: req.body.room_id,
+      },
+    }
+  ).then((result) => {
     const data = result;
     res.send(data);
   });
