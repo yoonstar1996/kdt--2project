@@ -31,4 +31,18 @@ axios({
       <button class="heart" type="button" onclick="heart(${product[i].id}, this)"><i class="heart1 fa-solid fa-heart fa-xl"></i></button>
     </div>`);
   }
+
+  if (sessionStorage.getItem("id")) {
+    const heartbtn = document.querySelectorAll(".heart");
+    heartbtn.classList.remove("d-none");
+  } else {
+    heartbtn.classList.add("d-none");
+  }
 });
+
+// if (sessionStorage.getItem("id")) {
+//   const heartbtn = document.querySelector("#heart");
+//   heartbtn.classList.remove("d-none");
+// } else {
+//   heartbtn.classList.add("d-none");
+// }

@@ -133,18 +133,21 @@ hr {
   display: flex;
   margin-bottom: 31px;
 }
-.fix{
-  margin:30px 0 0 150px;
+.fix {
+  margin: 30px 0 0 150px;
 }
-.withdraw{
-  margin:30px 90px 0 0;
+.withdraw {
+  margin: 30px 90px 0 0;
   font-weight: normal;
   font-size: 0.9rem;
   color: gray;
-  border: 1px solid gray;
+  border: none;
   width: 70px;
   height: auto;
-
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  align-items: flex-end;
 }
 .colors {
   color: red;
@@ -197,6 +200,6 @@ input[type="radio"]:checked + label span span {
   text-align: center;
 }
 
-#wrap{
+#wrap {
   width: 300px;
 }
