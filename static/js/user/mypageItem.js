@@ -376,28 +376,15 @@ function myfix() {
   window.location.href = "/myfix";
 }
 
-function withDraw() {
-  var modal = document.querySelector("#myModal");
-  var no = document.querySelector(".no");
+const openModal = document.querySelector(".withDraw");
+const modalOn = document.querySelector(".modal2");
+const closeBtn = document.querySelector(".no");
+const modalBgr = document.querySelector(".modal-bgr");
 
-  no.onclick = function () {
-    modal.style.display = "none";
-  };
-  window.onclick = function (event) {
-    if (event.target == modal) {
-      modal.style.display = "none";
-    }
-  };
+function displayModal() {
+  modalOn.classList.toggle("hidden");
 }
 
-// Get the modal
-
-// Get the button that opens the modal
-
-// Get the <span> element that closes the modal
-
-// When the user clicks on the button, open the modal
-
-// When the user clicks on <span> (x), close the modal
-
-// When the user clicks anywhere outside of the modal, close it
+openModal.addEventListener("click", displayModal);
+closeBtn.addEventListener("click", displayModal);
+modalBgr.addEventListener("click", displayModal);
