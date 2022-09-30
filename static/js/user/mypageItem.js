@@ -44,7 +44,8 @@ function addItem() {
   modal.setStyle({
     position: "fixed",
     display: "flex",
-    boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+    boxShadow:
+      "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
 
     // 시꺼먼 레이어 보다 한칸 위에 보이기
     zIndex: zIndex + 1,
@@ -98,14 +99,18 @@ function modalAddItem() {
           <div class="item-text">
             <h4 class="item-text-name">${response.data.title}</h4>
             <div class="item-text-price">${response.data.price}</div>
-            <div class="item-text-category">${categories[response.data.category_id]}</div>
+            <div class="item-text-category">${
+              categories[response.data.category_id]
+            }</div>
             <div class="item-text-content">${response.data.content}</div>
           </div>
         </div>
         </div>
         </a>
         <div class="item-cancel">
-          <button type="button" class="item-cancel-btn" onclick="itemDelete(this, ${response.data.id})">상품 삭제</button>
+          <button type="button" class="item-cancel-btn" onclick="itemDelete(this, ${
+            response.data.id
+          })">상품 삭제</button>
         </div>
         </div>
       `);
@@ -151,14 +156,18 @@ axios({
         <div class="item-text">
           <h4 class="item-text-name">${result.data[i].title}</h4>
           <div class="item-text-price">${result.data[i].price}</div>
-          <div class="item-text-category">${categories[result.data[i].category_id]}</div>
+          <div class="item-text-category">${
+            categories[result.data[i].category_id]
+          }</div>
           <div class="item-text-content">${result.data[i].content}</div>
         </div>
       </div>
       </div>
       </a>
       <div class="item-cancel">
-        <button type="button" class="item-cancel-btn" onclick="itemDelete(this, ${result.data[i].id})">상품 삭제</button>
+        <button type="button" class="item-cancel-btn" onclick="itemDelete(this, ${
+          result.data[i].id
+        })">상품 삭제</button>
       </div>
       </div>
     `);
@@ -172,7 +181,6 @@ function imgname() {
   console.log(uploadName.value);
   uploadName.value = imgname;
 }
-
 
 function pageAlgo(total, bottomSize, listSize, cursor) {
   //total = 총 갯수
@@ -203,5 +211,7 @@ let info = pageAlgo(280, 20, 10, 21);
 
 //실제 출력하는 방법 샘플
 for (let i = info.firstBottomNumber; i <= info.lastBottomNumber; i++) {
-  i == info.cursor ? console.log(`<span>cur : ${i}</span>`) : console.log(`<span>${i}</span>`);
+  i == info.cursor
+    ? console.log(`<span>cur : ${i}</span>`)
+    : console.log(`<span>${i}</span>`);
 }
