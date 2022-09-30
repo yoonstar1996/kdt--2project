@@ -173,6 +173,7 @@ function modalAddItem() {
         </div>
       `);
       modalClose();
+      window.location.href = "/mypage";
     } else {
       alert("상품 등록 실패");
     }
@@ -190,6 +191,7 @@ function itemDelete(obj, id) {
     var parent3 = $(parent2).parent("div"); /*my-item*/
 
     $(parent3).remove();
+    window.location.href = "/mypage";
   });
 }
 
@@ -199,6 +201,20 @@ axios({
   method: "post",
   data: { id: sessionStorage.getItem("id") },
 }).then((result) => {
+  const List = document.querySelector(".no-item");
+  const NoList = document.querySelector(".itemList");
+  const addBtn = document.querySelector("#noModalOn");
+  console.log(result.data.length);
+  if (result.data.length) {
+    List.classList.add("d-none");
+    addBtn.classList.remove("d-none");
+    NoList.classList.remove("d-none");
+  } else {
+    List.classList.remove("d-none");
+    NoList.classList.add("d-none");
+    addBtn.classList.add("d-none");
+  }
+
   for (var i = 0; i < result.data.length; i++) {
     var itemList = document.querySelector(".itemList");
     const price = result.data[i].price;
@@ -359,3 +375,16 @@ function mypick() {
 function myfix() {
   window.location.href = "/myfix";
 }
+
+const openModal = document.querySelector(".withDraw");
+const modalOn = document.querySelector(".modal2");
+const closeBtn = document.querySelector(".no");
+const modalBgr = document.querySelector(".modal-bgr");
+
+function displayModal() {
+  modalOn.classList.toggle("hidden");
+}
+
+openModal.addEventListener("click", displayModal);
+closeBtn.addEventListener("click", displayModal);
+modalBgr.addEventListener("click", displayModal);

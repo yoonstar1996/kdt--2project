@@ -90,11 +90,11 @@
       // 상품목록 리스트 (페이지네이션) 시작
       $(function () {
         let container = $("#pagination");
-        const category = "<%=category%>";
+        const category = "<%=search_item%>";
         axios({
-          url: `/api/categories/${category}`,
+          url: `/api/search/${search_item}`,
           method: "post",
-          data: { category: category },
+          data: { search_item: search_item },
         }).then((result) => {
           console.log(result.data);
 
@@ -177,12 +177,12 @@
         // container.html("");
         // $("#data-container").html("");
         container.empty();
-        const category = "<%=category%>";
+        const category = "<%=search_item%>";
         // 엑시오스 데이터 불러오는곳
         axios({
-          url: `/api/categories/${category}`,
+          url: `/api/search/${search_item}`,
           method: "post",
-          data: { category: category },
+          data: { search_item: search_item },
         }).then((result) => {
           let dataSource = result.data.map((el) => {
             return {
@@ -217,12 +217,12 @@
         // 페이지네이션 깨트리는곳
         // container.pagination("destroy");
         container.empty();
-        const category = "<%=category%>";
+        const category = "<%=search_item%>";
         // 엑시오스 데이터 불러오는곳
         axios({
-          url: `/api/categories/${category}`,
+          url: `/api/search/${search_item}`,
           method: "post",
-          data: { category: category },
+          data: { search_item: search_item },
         }).then((result) => {
           let dataSource = result.data.map((el) => {
             return {
@@ -259,12 +259,12 @@
         // 페이지네이션 깨트리는곳
         // container.pagination("destroy");
         container.empty();
-        const category = "<%=category%>";
+        const category = "<%=search_item%>";
         // 엑시오스 데이터 불러오는곳
         axios({
-          url: `/api/categories/${category}`,
+          url: `/api/search/${search_item}`,
           method: "post",
-          data: { category: category },
+          data: { search_item: search_item },
         }).then((result) => {
           let dataSource = result.data.map((el) => {
             return {

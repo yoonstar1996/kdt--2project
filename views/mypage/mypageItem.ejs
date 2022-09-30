@@ -6,7 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="/static/css/user/mypage-item.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.1.min.js"
+      integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+      crossorigin="anonymous"
+    ></script>
     <%-include("../link.ejs")%>
 
     <title>SGT - 상품 등록</title>
@@ -22,6 +26,19 @@
           <button type="button">거래 내역</button>
           <button type="button" onclick="mypick();">찜한 상품</button>
           <button type="button" onclick="myfix();">개인 정보 수정</button>
+          <a type="button" class="withDraw">회원탈퇴</a>
+          <!-- 모달 창 -->
+          <div id="myModal" class="modal2 hidden">
+            <!-- 모달 창 내용 -->
+            <div class="modal2-bgr"></div>
+            <div class="modal2-content">
+              <h2>정말 탈퇴하시겠습니까?</h2>
+              <div class="modal-btn">
+                <button type="button" class="yes">예</button>
+                <button type="button" class="no">닫기</button>
+              </div>
+            </div>
+          </div>
         </ul>
       </div>
 
@@ -29,23 +46,38 @@
         <div class="right-sgt-top">상품 목록</div>
         <hr />
         <div class="right-sgt-content">
-          <!-- <%if(data) {%> -->
-
           <div class="itemList"></div>
-          <button id="noModalOn" class="cursor" onclick="addItem()">상품 등록 하기</button>
-          <!-- <%} else {%> -->
+          <button id="noModalOn" class="cursor" onclick="addItem()">
+            상품 등록 하기
+          </button>
           <div class="no-item">
             <div>등록한 상품이 없습니다.</div>
-            <button id="modalOn" class="cursor" onclick="addItem()">상품 등록 하기</button>
+            <button id="modalOn" class="cursor" onclick="addItem()">
+              상품 등록 하기
+            </button>
           </div>
-          <!-- <% } %> -->
           <form class="myModal">
             <div>
               <div class="addTitle">상품 등록</div>
             </div>
-            <input type="text" placeholder="상품 이름" name="title" class="title" />
-            <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="가격" name="price" class="price" />
-            <textarea placeholder="상품 설명" name="content" class="content"></textarea>
+            <input
+              type="text"
+              placeholder="상품 이름"
+              name="title"
+              class="title"
+            />
+            <input
+              type="text"
+              oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+              placeholder="가격"
+              name="price"
+              class="price"
+            />
+            <textarea
+              placeholder="상품 설명"
+              name="content"
+              class="content"
+            ></textarea>
             <div class="select">
               <select class="category">
                 <option value="life">생활/가전</option>
@@ -57,14 +89,39 @@
                 <option value="pet">반려동물</option>
               </select>
               <div class="container">
-                <input type="text" class="upload-name" placeholder="이미지를 업로드하세요" disabled />
+                <input
+                  type="text"
+                  class="upload-name"
+                  placeholder="이미지를 업로드하세요"
+                  disabled
+                />
                 <label for="img">상품 사진 선택</label>
-                <input type="file" onchange="imgname()" id="img" name="img" class="img" accept="image/png, image/jpeg" multiple />
+                <input
+                  type="file"
+                  onchange="imgname()"
+                  id="img"
+                  name="img"
+                  class="img"
+                  accept="image/png, image/jpeg"
+                  multiple
+                />
               </div>
             </div>
             <div class="itemAdd">
-              <button type="button" class="addItemBtn cursor" onclick="modalAddItem()">상품 등록</button>
-              <button type="button" class="addFixBtn cursor d-none" onclick="modalFixItem()">상품 수정</button>
+              <button
+                type="button"
+                class="addItemBtn cursor"
+                onclick="modalAddItem()"
+              >
+                상품 등록
+              </button>
+              <button
+                type="button"
+                class="addFixBtn cursor d-none"
+                onclick="modalFixItem()"
+              >
+                상품 수정
+              </button>
               <div class="modalClose cursor" onclick="modalClose();">닫기</div>
             </div>
           </form>

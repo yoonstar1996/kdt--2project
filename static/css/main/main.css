@@ -59,8 +59,6 @@
   margin: auto;
 }
 
-.new-box2 {
-}
 .att-box1,
 .att-box2,
 .att-box3,
@@ -147,4 +145,8 @@ a {
 }
 
 @media screen and (max-width: 1145px) {
+}
+
+.d-none {
+  display: none;
 }
