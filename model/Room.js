@@ -8,8 +8,20 @@ const Room = (Sequelize, DataTypes) => {
         primaryKey: true,
         autoIncrement: true,
       },
-      name: {
+      title: {
         type: DataTypes.STRING(30),
+        allowNull: false,
+      },
+      content: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+      },
+      img: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+      },
+      lastdate: {
+        type: DataTypes.DATE,
         allowNull: false,
       },
     },

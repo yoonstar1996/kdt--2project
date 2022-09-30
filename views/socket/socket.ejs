@@ -37,28 +37,35 @@
     <script>
       let chatContent = [];
       let room_id = "<%=room_id%>";
+      let user_name = sessionStorage.getItem("id");
       axios({
         url: "/api/content",
         method: "post",
         data: { room_id: room_id },
       }).then((res) => {
-        console.log(res.data["chat_contents.content"]);
-        chatContent = res.data["chat_contents.content"].split("/");
+        chatContent = res.data.content.split("/");
+        chatContent.map((el) => {
+          if (el) {
+            const data_list = el.split(".");
+            if (data_list[0] === user_name) myMsg(data_list[1], data_list[2]);
+            else otherMsg(el);
+          }
+        });
       });
 
       let socket = io.connect();
       socket.emit("create", `room${room_id}`);
-
-      socket.on("db message", (msg) => {
+      socket.on("db message", (data) => {
+        chatContent.push(data.msg);
+        let content = chatContent.join("/");
         axios({
           url: "/api/content/update",
-          method: "patch",
+          method: "post",
           data: {
-            content: chatContent,
+            room_id: room_id,
+            content: content,
           },
-        }).then((res) => {
-          console.log(res);
-        });
+        }).then((res) => {});
       });
     </script>
     <script src="/static/js/socket/socket.js"></script>
