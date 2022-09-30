@@ -319,28 +319,44 @@ function modalFixItem() {
   const formData = new FormData();
   const file = document.querySelector(".img");
 
+  formData.append("id", form.item_id.value);
   formData.append("user_id", sessionStorage.getItem("id"));
-  formData.append("item_id", form.item_id.value);
   formData.append("category_id", category.value);
   formData.append("title", form.title.value);
-  formData.append("img", file.files);
+  for (key in file.files) {
+    formData.append("img", file.files[key]);
+  }
   formData.append("adult", true);
   formData.append("price", form.price.value);
   formData.append("position", "마포구");
   formData.append("content", form.content.value);
+  console.log(form.item_id.value)
+  axios({
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+    url: "/api/product/update",
+    method: "put",
+    data: formData,
+  }).then((response) => {
+    console.log(form.item_id.value)
+    console.log(".item_id_" +form.item_id.value)
+    console.log(document.querySelector(".item_id_" + form.item_id.value))
+    var product = document.querySelector(".item_id_" + form.item_id.value)
+      .parentElement.parentElement;
 
-  var product = document.querySelector(".item_id_" + form.item_id.value)
-    .parentElement.parentElement;
-
-  const price = form.price.value;
-  const comma = price
-    .toString()
-    .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
-  $(product).find(".item-img").text(file.files);
-  $(product).find(".item-text-name").text(form.title.value);
-  $(product).find(".item-text-category").text(categories[category.value]);
-  $(product).find(".item-text-content").text(form.content.value);
-  $(product).find(".item-text-price").text(comma+"원");
+    const price = form.price.value;
+    const comma = price
+      .toString()
+      .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+    $(product).find(".item-img").text(response.data);
+    $(product).find(".item-text-name").text(form.title.value);
+    $(product).find(".item-text-category").text(categories[category.value]);
+    $(product).find(".item-text-content").text(form.content.value);
+    $(product)
+      .find(".item-text-price")
+      .text(comma + "원");
+  });
   modalClose();
 }
 
@@ -369,8 +385,11 @@ function displayModal() {
 function widthDraw() {
   const id = sessionStorage.getItem("id");
   axios({
-    url: "~~~",
+    url: "/api/user/delete",
     method: "delete",
+    data: {
+      id: sessionStorage.getItem("id"),
+    },
   }).then((response) => {
     sessionStorage.clear();
     window.location.href = "/";
