@@ -46,6 +46,8 @@ function addItem(obj) {
     display: "flex",
     boxShadow:
       "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+<<<<<<< HEAD
+=======
 
     // 시꺼먼 레이어 보다 한칸 위에 보이기
     zIndex: zIndex + 1,
@@ -90,6 +92,7 @@ function fixItem() {
     display: "flex",
     boxShadow:
       "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+>>>>>>> upstream/feature
 
     // 시꺼먼 레이어 보다 한칸 위에 보이기
     zIndex: zIndex + 1,
@@ -108,7 +111,6 @@ Element.prototype.setStyle = function (styles) {
   for (var k in styles) this.style[k] = styles[k];
   return this;
 };
-
 
 ///상품 등록///
 function modalAddItem() {
@@ -141,7 +143,7 @@ function modalAddItem() {
     if (response) {
       var itemList = document.querySelector(".itemList");
       const price = response.data.price;
-      let img_list = response.data.img.split('..');
+      let img_list = response.data.img.split("..");
       const comma = price
         .toString()
         .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
@@ -174,6 +176,7 @@ function modalAddItem() {
         </div>
       `);
       modalClose();
+      window.location.href = "/mypage";
     } else {
       alert("상품 등록 실패");
     }
@@ -191,11 +194,9 @@ function itemDelete(obj, id) {
     var parent3 = $(parent2).parent("div"); /*my-item*/
 
     $(parent3).remove();
+    window.location.href = "/mypage";
   });
 }
-
-
-
 
 ///상품 불러오기////
 axios({
@@ -203,11 +204,24 @@ axios({
   method: "post",
   data: { id: sessionStorage.getItem("id") },
 }).then((result) => {
+  const List = document.querySelector(".no-item");
+  const NoList = document.querySelector(".itemList");
+  const addBtn = document.querySelector("#noModalOn");
+  console.log(result.data.length);
+  if (result.data.length) {
+    List.classList.add("d-none");
+    addBtn.classList.remove("d-none");
+    NoList.classList.remove("d-none");
+  } else {
+    List.classList.remove("d-none");
+    NoList.classList.add("d-none");
+    addBtn.classList.add("d-none");
+  }
 
   for (var i = 0; i < result.data.length; i++) {
     var itemList = document.querySelector(".itemList");
     const price = result.data[i].price;
-    let img_list = result.data[i].img.split('..');
+    let img_list = result.data[i].img.split("..");
     const comma = price
       .toString()
       .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
@@ -257,7 +271,6 @@ function imgname() {
 //   console.log("imgname");
 
 // }
-
 
 ///상품 수정////
 function itemFix(obj) {
@@ -314,13 +327,37 @@ function modalFixItem() {
   }).then((response) => {
     if (response) {
       var itemList = document.querySelector(".itemList");
-      let img_list = response.data.img.split('..');
+      let img_list = response.data.img.split("..");
       const price = response.data.price;
       const comma = price
         .toString()
         .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 
       $(itemList).append(`
+<<<<<<< HEAD
+      <div class="my-item">
+      <a class="pagelink" href="/product/${response.data.id}">
+      <div>
+        <img class="item-img" src="${response.data.img}">
+        <div class="item-info">
+          <div class="item-text">
+            <h4 class="item-text-name">${response.data.title}</h4>
+            <div class="item-text-price">${response.data.price}</div>
+            <div class="item-text-category">${
+              categories[response.data.category_id]
+            }</div>
+            <div class="item-text-content">${response.data.content}</div>
+          </div>
+        </div>
+        </div>
+        </a>
+        <div class="item-cancel">
+          <button type="button" class="item-cancel-btn" onclick="itemDelete(this, ${
+            response.data.id
+          })">상품 삭제</button>
+        </div>
+        </div>
+=======
         <div class="my-item">
           <a class="pagelink" href="/product/${response.data.id}">
             <div>
@@ -346,6 +383,7 @@ function modalFixItem() {
             })">상품 삭제</button>
           </div>
         </div>
+>>>>>>> upstream/feature
       `);
       modalClose();
     } else {
@@ -358,10 +396,102 @@ function mypage() {
   window.location.href = "/mypage";
 }
 
+<<<<<<< HEAD
+axios({
+  url: "/api/product/myproduct",
+  method: "post",
+  data: { id: "yagobo1110" },
+}).then((result) => {
+  // console.log(result);
+  var i;
+  for (i = 0; i < result.data.length; i++) {
+    var itemList = document.querySelector(".itemList");
+    $(itemList).append(`
+    <div class="my-item">
+    <a class="pagelink" href="/product/${result.data[i].id}">
+    <div >
+    <img class="item-img" src="${result.data[i].img}">
+      <div class="item-info">
+        <div class="item-text">
+          <h4 class="item-text-name">${result.data[i].title}</h4>
+          <div class="item-text-price">${result.data[i].price}</div>
+          <div class="item-text-category">${
+            categories[result.data[i].category_id]
+          }</div>
+          <div class="item-text-content">${result.data[i].content}</div>
+        </div>
+      </div>
+      </div>
+      </a>
+      <div class="item-cancel">
+        <button type="button" class="item-cancel-btn" onclick="itemDelete(this, ${
+          result.data[i].id
+        })">상품 삭제</button>
+      </div>
+      </div>
+    `);
+  }
+});
+
+function imgname() {
+  var imgname = document.querySelector("#img").files[0].name;
+  var uploadName = document.querySelector(".upload-name");
+  console.log(imgname);
+  console.log(uploadName.value);
+  uploadName.value = imgname;
+}
+
+function pageAlgo(total, bottomSize, listSize, cursor) {
+  //total = 총 갯수
+  //bottomSize = 하단크기
+  //listSize = 화면에서 보여줄 크기
+  //cursor = 현재 나의 페이지
+
+  let totalPageSize = Math.ceil(total / listSize); //한 화면에 보여줄 갯수에서 구한 하단 총 갯수
+
+  let firstBottomNumber = cursor - (cursor % bottomSize) + 1; //하단 최초 숫자
+  let lastBottomNumber = cursor - (cursor % bottomSize) + bottomSize; //하단 마지막 숫자
+
+  if (lastBottomNumber > totalPageSize) lastBottomNumber = totalPageSize; //총 갯수보다 큰 경우 방지
+
+  return {
+    firstBottomNumber,
+    lastBottomNumber,
+    totalPageSize,
+    total,
+    bottomSize,
+    listSize,
+    cursor,
+  };
+}
+
+//280개의 데이터, 하단에는 20개씩, 1개화면에는 10개, 지금 나의페이지는 21
+let info = pageAlgo(280, 20, 10, 21);
+
+//실제 출력하는 방법 샘플
+for (let i = info.firstBottomNumber; i <= info.lastBottomNumber; i++) {
+  i == info.cursor
+    ? console.log(`<span>cur : ${i}</span>`)
+    : console.log(`<span>${i}</span>`);
+=======
 function mypick() {
   window.location.href = "/mypick";
 }
 
 function myfix() {
   window.location.href = "/myfix";
+>>>>>>> upstream/feature
 }
+
+const openModal = document.querySelector(".withDraw");
+const modalOn = document.querySelector(".modal2");
+const closeBtn = document.querySelector(".no");
+const modalBgr = document.querySelector(".modal-bgr");
+
+function displayModal() {
+  modalOn.classList.toggle("hidden");
+}
+
+openModal.addEventListener("click", displayModal);
+closeBtn.addEventListener("click", displayModal);
+modalBgr.addEventListener("click", displayModal);
