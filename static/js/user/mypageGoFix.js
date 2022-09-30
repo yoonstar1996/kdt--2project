@@ -171,6 +171,7 @@ function emailconfirm() {
   });
 }
 
+//////개인 정보 수정하기//////
 function fixInfo() {
   // e.preventDefault();
   var form = document.querySelector("form");
@@ -181,15 +182,6 @@ function fixInfo() {
   var email_key = 0;
   var phone_key = 0;
   var adress_key = 0;
-
-  if (id.value == "") {
-    id.setCustomValidity(validityMessage["badInput"]);
-  } else if (!valconfirm.test(id.value)) {
-    id.setCustomValidity(validityMessage["patternMismatch"]);
-  } else {
-    id.setCustomValidity("");
-    id_key = 1;
-  }
 
   if (pw.value == "") {
     pw.setCustomValidity(validityMessage["badInput"]);
@@ -218,14 +210,14 @@ function fixInfo() {
     name_key = 1;
   }
 
-  if (email.value == "") {
-    email.setCustomValidity(validityMessage["badInput"]);
-  } else if (!email_valconfirm.test(email.value)) {
-    email.setCustomValidity(validityMessage["patternMismatch"]);
-  } else {
-    email.setCustomValidity("");
-    email_key = 1;
-  }
+  // if (email.value == "") {
+  //   email.setCustomValidity(validityMessage["badInput"]);
+  // } else if (!email_valconfirm.test(email.value)) {
+  //   email.setCustomValidity(validityMessage["patternMismatch"]);
+  // } else {
+  //   email.setCustomValidity("");
+  //   email_key = 1;
+  // }
 
   if (phone.value == "") {
     phone.setCustomValidity(validityMessage["badInput"]);
@@ -262,19 +254,18 @@ function fixInfo() {
   var data = {
     id: form.id.value,
     pw: form.pw.value,
-    name: form.name.value,
     email: form.email.value,
-    phone: form.phone.value,
+    name: form.name.value,
     position: form.adress.value,
   };
   axios({
-    url: "/api/signup",
-    method: "",
+    url: "/api/user/update",
+    method: "put",
     data: data,
   }).then((response) => {
     if (response.data) {
       alert("수정 완료");
-      window.location.href = "/login";
+      window.location.href = "/myfix";
     } else {
       alert("실패");
     }
@@ -313,14 +304,14 @@ name.addEventListener("input", function (event) {
     nameval.classList.remove("d-none");
   }
 });
-email.addEventListener("input", function (event) {
-  if (email_valconfirm.test(email.value)) {
-    email.setCustomValidity("");
-    emailval.classList.add("d-none");
-  } else {
-    emailval.classList.remove("d-none");
-  }
-});
+// email.addEventListener("input", function (event) {
+//   if (email_valconfirm.test(email.value)) {
+//     email.setCustomValidity("");
+//     emailval.classList.add("d-none");
+//   } else {
+//     emailval.classList.remove("d-none");
+//   }
+// });
 phone.addEventListener("input", function (event) {
   if (phone_valconfirm.test(phone.value)) {
     phone.setCustomValidity("");
@@ -328,4 +319,17 @@ phone.addEventListener("input", function (event) {
   } else {
     phoneval.classList.remove("d-none");
   }
+});
+
+axios({
+  url: "/api/signup/idcheck",
+  method: "post",
+  data: { id: sessionStorage.getItem("id") },
+}).then((result) => {
+  console.log(result);
+  const form = document.querySelector("form");
+  form.id.value = result.data.id;
+  form.name.value = result.data.name;
+  form.email.value = result.data.email;
+  form.adress.value = result.data.position;
 });

@@ -58,7 +58,7 @@ exports.signup_id_check = (req, res) => {
       id: req.body.id,
     },
   }).then((result) => {
-    if (result) res.send(true);
+    if (result) res.send(result);
     else res.send(false);
   });
 };
@@ -93,7 +93,7 @@ exports.user_update = (req, res) => {
 
 // 회원탈퇴
 exports.user_delete = (req, res) => {
-  Room.destroy({
+  User.destroy({
     where: { id: req.body.id },
   }).then(() => {
     res.send(true);

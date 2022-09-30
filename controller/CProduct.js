@@ -91,15 +91,16 @@ exports.product_update = (req, res) => {
     title: req.body.title,
     img: img_name,
     adult: req.body.adult,
-    price: req.body.price,
+    price: req.body.price.replace("원", ""),
     position: req.body.position,
     content: req.body.content,
   };
+
+  console.log("datadatadata", data);
   Product.update(data, {
     where: { id: req.body.id },
-  }).then((res) => {
-    console.log(res);
-    res.send("true");
+  }).then((result) => {
+    res.send("/uploads/" + req.files[0].filename);
   });
 };
 

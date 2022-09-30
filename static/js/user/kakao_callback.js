@@ -23,7 +23,10 @@ function closebtn() {
 
 function findAdress() {
   // 현재 scroll 위치를 저장해놓는다.
-  var currentScroll = Math.max(document.body.scrollTop, document.documentElement.scrollTop);
+  var currentScroll = Math.max(
+    document.body.scrollTop,
+    document.documentElement.scrollTop
+  );
   new daum.Postcode({
     oncomplete: function (data) {
       // 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
@@ -51,7 +54,8 @@ function findAdress() {
         }
         // 건물명이 있고, 공동주택일 경우 추가한다.
         if (data.buildingName !== "" && data.apartment === "Y") {
-          extraAddr += extraAddr !== "" ? ", " + data.buildingName : data.buildingName;
+          extraAddr +=
+            extraAddr !== "" ? ", " + data.buildingName : data.buildingName;
         }
         // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
         if (extraAddr !== "") {
@@ -102,7 +106,8 @@ let phoneval = document.querySelector(".validephone");
 
 var valconfirm = /^[a-zA-Z0-9]{4,12}$/; //id와 pwassword 유효성 검사 정규식
 var name_valconfirm = /^[가-힣]{2,15}$/; //이름 유효성검사 정규식
-var email_valconfirm = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i; //이메일 유효성검사
+var email_valconfirm =
+  /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i; //이메일 유효성검사
 var phone_valconfirm = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
 
 function idconfirm() {
@@ -202,7 +207,13 @@ function signupCreate() {
     return;
   }
 
-  if (id_key == 1 && pw_key == 1 && name_key == 1 && email_key == 1 && phone_key == 1);
+  if (
+    id_key == 1 &&
+    pw_key == 1 &&
+    name_key == 1 &&
+    email_key == 1 &&
+    phone_key == 1
+  );
 
   var data = {
     id: form.id.value,

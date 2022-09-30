@@ -19,29 +19,16 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css"
     />
     <!-- 페이지네이션 기능 연결 끝 -->
-    <script>
-      // var dict = [
-      //   { age: 22, name: "a" },
-      //   { age: 25, name: "a" },
-      //   { age: 15, name: "a" },
-      // ];
-      // dict.sort((a, b) => {
-      //   console.log(" a : ", a);
-      //   console.log(" b : ", b);
-      //   return b.age - a.age;
-      //   // 내림차순
-      //   // a.age - b.age 로 하면 오름차순
-      // });
-      // console.log("dict : ", dict);
-    </script>
   </head>
   <body>
     <%-include("../main/navbar.ejs")%>
     <div class="all-body">
       <!-- 페이지네이션 기능 시작 -->
-      <div class="hero-header"></div>
+      <div class="hero-header">
+        <h3 class="hero-header-h3">새로운 중고물품</h3>
+      </div>
       <div class="products">
-        <h3>새로운 중고물품</h3>
+        <br />
         <br />
 
         <div class="onestnavsort">
@@ -49,7 +36,7 @@
             <!-- <div class="sortnav"><a href="">랭킹순</a></div>
             <div class="sortnav"><a href="">누적판매순</a></div>
             <div class="sortnav"><a href="">후기많은순</a></div> -->
-            <div class="sortnav">
+            <div class="sortnavleft">
               <button onclick="handleOnLow()">낮은가격순</button>
             </div>
             <div class="sortnav">
@@ -60,7 +47,11 @@
             </div>
           </div>
           <div class="threestnavsort">
-            <select id="mySelect" onchange="myFunction()">
+            <select
+              class="filterSelect"
+              id="mySelect"
+              onchange="myFunction(this)"
+            >
               <option value="3">3개씩 보기</option>
               <option value="6" selected>6개씩 보기</option>
             </select>
@@ -85,99 +76,16 @@
 
     <%-include("../main/footer.ejs")%>
 
-    <!-- <script src="/static/js/product/categories.js"></script> -->
+    <script src="/static/js/product/categories.js"></script>
     <script>
-      // 상품목록 리스트 (페이지네이션) 시작
-      $(function () {
-        let container = $("#pagination");
-        const category = "<%=search_item%>";
-        axios({
-          url: `/api/search/${search_item}`,
-          method: "post",
-          data: { search_item: search_item },
-        }).then((result) => {
-          console.log(result.data);
-
-          // // //변수가 없으면 기본 배열로 목록 생성
-          // if (result.data == "" || result.data == null) {
-          //   $("#data-container").html(createList(result.data));
-          //   //내림차순일때
-          // } else if (result.data == "desc") {
-          //   result.data.sort((a, b) => a.priceValue - b.priceValue);
-          //   $("#data-container").html(createList(result.data));
-          //   //오름차순일때
-          // } else {
-          //   result.data.sort((a, b) => b.priceValue - a.priceValue);
-          //   $("#data-container").html(createList(result.data));
-          // }
-          // console.log(data);
-
-          const dataSource = result.data.map((el) => {
-            return {
-              img: `<img src='${el.img}' class='card-img-top' alt='...' />`,
-              name: `<h5 class='card-title'>${el.title}</h5>`,
-              id: `<p class='card-text id'>${el.user_id}</p>`,
-              address: `<p class='card-text position'>${el.position}</p>`,
-              price: `<p class='card-text price'>${el.price}원</p>`,
-              categories: `<p class='card-text elec'>${el.category_id}</p>`,
-              priceValue: el.price,
-              idnumValue: el.id,
-            };
-          });
-          // 초기접속시 등록순으로 보여주기 데이터베이스 id 값을 역순으로 불러옴
-          dataSource.sort((a, b) => b.idnumValue - a.idnumValue);
-
-          container.pagination({
-            dataSource: dataSource,
-
-            pageSize: 6,
-            callback: function (data, pagination) {
-              console.log(data);
-              $("#data-container").html(createList(data));
-            },
-          });
-        });
-      });
-      // 데이터 값 넣는것
-      // date.sort((a, b) => a.price - b.price);
-      // createList(data);
-
-      function createList(data) {
-        var dataHtml = "";
-
-        $.each(data, function (index, el) {
-          dataHtml +=
-            "<a class='adeco' href=''>" +
-            "<div class= 'col-xs-12 col-sm-6 col-xl-4'>" +
-            "<div class='col'>" +
-            "<div class='card h-100'>" +
-            el.img +
-            "<div class='card-body'>" +
-            el.id +
-            el.name +
-            el.address +
-            el.price +
-            el.categories +
-            "</div>" +
-            "</div>" +
-            "</div>" +
-            "</div>" +
-            "<br/>" +
-            "</a>";
-        });
-        dataHtml += "";
-        return dataHtml;
-      }
-      // 낮은가격순 정렬
-      function handleOnLow() {
-        // console.log("aaaa");
+      function pgn(order, size) {
         let container = $("#pagination");
         // 페이지네이션 깨트리는곳
         // container.pagination("destroy");
-        // container.html("");
-        // $("#data-container").html("");
+
         container.empty();
-        const category = "<%=search_item%>";
+        const search_item = "<%=search_item%>";
+
         // 엑시오스 데이터 불러오는곳
         axios({
           url: `/api/search/${search_item}`,
@@ -185,121 +93,55 @@
           data: { search_item: search_item },
         }).then((result) => {
           let dataSource = result.data.map((el) => {
-            return {
-              img: `<img src='${el.img}' class='card-img-top' alt='...' />`,
-              name: `<h5 class='card-title'>${el.title}</h5>`,
-              id: `<p class='card-text id'>${el.user_id}</p>`,
-              address: `<p class='card-text position'>${el.position}</p>`,
-              price: `<p class='card-text price'>${el.price}원</p>`,
-              categories: `<p class='card-text elec'>${el.category_id}</p>`,
-              priceValue: el.price,
-              idnumValue: el.id,
-            };
-          });
-          //dataSource = dataSource.reverse(); 필요없음
-          dataSource.sort((a, b) => a.priceValue - b.priceValue);
-          console.log("dataSourcepick", dataSource);
-          container.pagination({
-            dataSource: dataSource,
+            // 3자리마다 가격에 , 집어넣기
+            var pricecom = `${el.price}`;
+            var pricecom2 = pricecom
+              .toString()
+              .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
-            pageSize: 6,
-            callback: function (data, pagination) {
-              console.log(data);
-              //data.sort((a, b) => a.priceValue - b.priceValue); 필요없음
-              $("#data-container").html(createList(data));
-            },
-          });
-        });
-      }
-      // 높은가격순 정렬
-      function handleOnHigh() {
-        let container = $("#pagination");
-        // 페이지네이션 깨트리는곳
-        // container.pagination("destroy");
-        container.empty();
-        const category = "<%=search_item%>";
-        // 엑시오스 데이터 불러오는곳
-        axios({
-          url: `/api/search/${search_item}`,
-          method: "post",
-          data: { search_item: search_item },
-        }).then((result) => {
-          let dataSource = result.data.map((el) => {
+            const categories = {
+              life: "생활/가전",
+              electro: "전자제품",
+              fashion: "패션/의류",
+              interior: "가구/인테리어",
+              book: "도서/음반/티켓",
+              food: "식품/잡화",
+              pet: "반려동물",
+            };
+
             return {
               img: `<img src='${el.img}' class='card-img-top' alt='...' />`,
               name: `<h5 class='card-title'>${el.title}</h5>`,
               id: `<p class='card-text id'>${el.user_id}</p>`,
               address: `<p class='card-text position'>${el.position}</p>`,
-              price: `<p class='card-text price'>${el.price}원</p>`,
+              price: `<p class='card-text price'> ${pricecom2}원</p>`,
               categories: `<p class='card-text elec'>${el.category_id}</p>`,
               priceValue: el.price,
               idnumValue: el.id,
+              // 카테고리 항목 변경(한글화)
+              categoryValue: `<p class='card-text elec'>${
+                categories[el.category_id]
+              }</p>`,
             };
           });
           // dataSource = dataSource.reverse(); 필요없음
-          dataSource.sort((a, b) => b.priceValue - a.priceValue);
-          console.log("dataSourcepick", dataSource);
+          if (order == "high")
+            dataSource.sort((a, b) => b.priceValue - a.priceValue);
+          else if (order == "low")
+            dataSource.sort((a, b) => a.priceValue - b.priceValue);
+          else if (order == "new")
+            dataSource.sort((a, b) => b.idnumValue - a.idnumValue);
+
           container.pagination({
             dataSource: dataSource,
 
-            pageSize: 6,
+            pageSize: size,
             callback: function (data, pagination) {
-              console.log(result.data);
-              console.log(data);
               // data.sort((a, b) => b.priceValue - a.priceValue); 필요없음
               $("#data-container").html(createList(data));
             },
           });
         });
-      }
-
-      // 최신가격순 정렬
-      function handleOnNew() {
-        let container = $("#pagination");
-        // 페이지네이션 깨트리는곳
-        // container.pagination("destroy");
-        container.empty();
-        const category = "<%=search_item%>";
-        // 엑시오스 데이터 불러오는곳
-        axios({
-          url: `/api/search/${search_item}`,
-          method: "post",
-          data: { search_item: search_item },
-        }).then((result) => {
-          let dataSource = result.data.map((el) => {
-            return {
-              img: `<img src='${el.img}' class='card-img-top' alt='...' />`,
-              name: `<h5 class='card-title'>${el.title}</h5>`,
-              id: `<p class='card-text id'>${el.user_id}</p>`,
-              address: `<p class='card-text position'>${el.position}</p>`,
-              price: `<p class='card-text price'>${el.price}원</p>`,
-              categories: `<p class='card-text elec'>${el.category_id}</p>`,
-              priceValue: el.price,
-              idnumValue: el.id,
-            };
-          });
-
-          // 최신등록순 클릭시 등록순으로 보여주기 데이터베이스 id 값을 역순으로 불러옴
-          dataSource.sort((a, b) => b.idnumValue - a.idnumValue);
-
-          container.pagination({
-            dataSource: dataSource,
-
-            pageSize: 6,
-            callback: function (data, pagination) {
-              console.log(result.data);
-              console.log(data);
-              // data.sort((a, b) => b.priceValue - a.priceValue); 필요없음
-              $("#data-container").html(createList(data));
-            },
-          });
-        });
-      }
-
-      // 3개씩 표기 6개씩 표기 설정
-      function myFunction() {
-        var x = document.getElementById("mySelect").value;
-        document.getElementById("pagenation-container").append();
       }
     </script>
   </body>
