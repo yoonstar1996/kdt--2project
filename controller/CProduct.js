@@ -87,8 +87,6 @@ exports.product_delete = (req, res) => {
     where: { id: req.body.id },
   }).then(() => {
     res.send("true");
-<<<<<<< HEAD
-=======
   });
 };
 
@@ -108,6 +106,5 @@ exports.search_item = (req, res) => {
   }).then((result) => {
     const data = result;
     res.send(data);
->>>>>>> upstream/feature
   });
 };
