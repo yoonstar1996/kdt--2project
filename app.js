@@ -44,10 +44,11 @@ io.on("connection", (socket) => {
   });
 
   socket.on("chat message", (data) => {
-    // console.log(socket.adapter.rooms);
     socket.broadcast.to(data.room_id).emit("chat message", {
       msg: data.msg,
-      type: "to",
+    });
+    io.to(data.room_id).emit("db message", {
+      msg: data.msg,
     });
   });
 

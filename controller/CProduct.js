@@ -20,7 +20,6 @@ exports.product = (req, res) => {
     },
   }).then((result) => {
     const data = result;
-    console.log(data);
     data.img = data.img.split("..")[0];
     data.category_id = categories[data.category_id];
     res.render("product/product", { data });
@@ -44,7 +43,6 @@ exports.categories_list = (req, res) => {
       category_id: req.params.id,
     },
   }).then((result) => {
-    console.log(result);
     res.send(result);
   });
 };
@@ -52,7 +50,6 @@ exports.categories_list = (req, res) => {
 // 상품 생성
 exports.product_create = (req, res) => {
   let img_name = "";
-  console.log(req.files);
   for (let i = 0; i < req.files.length; i++) {
     if (i != 0) img_name += "..";
     img_name += "/uploads/" + req.files[i].filename;
