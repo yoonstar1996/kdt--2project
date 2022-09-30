@@ -40,10 +40,27 @@ axios({
   idinput.value = result.data[0].user_id;
 });
 
-// axios({
-//   url: "/api/login",
-//   method: "post",
-//   data: data,
-// }).then((response) => {
-//   console.log(response);
-// });
+const openModal = document.querySelector(".withDraw");
+const modalOn = document.querySelector(".modal2");
+const widthDrawBtn = document.querySelector(".yes");
+const closeBtn = document.querySelector(".no");
+const modalBgr = document.querySelector(".modal-bgr");
+
+function displayModal() {
+  modalOn.classList.toggle("hidden");
+}
+
+function widthDraw() {
+  const id = sessionStorage.getItem("id");
+  axios({
+    url: "~~~",
+    method: "delete",
+  }).then((response) => {
+    sessionStorage.clear();
+    window.location.href = "/";
+  });
+}
+
+openModal.addEventListener("click", displayModal);
+closeBtn.addEventListener("click", displayModal);
+widthDrawBtn.addEventListener("click", widthDraw);
