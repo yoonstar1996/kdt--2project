@@ -10,6 +10,7 @@ function heart(id, btn) {
   var myheart = $(btn).children("i");
   if ($(myheart).hasClass("heart1")) {
     $(myheart).removeClass("heart1").addClass("heart-click");
+    alert("관심목록에 추가되었습니다.");
   } else $(myheart).removeClass("heart-click").addClass("heart1");
 }
 
@@ -48,10 +49,3 @@ axios({
     }
   }
 });
-
-// if (sessionStorage.getItem("id")) {
-//   const heartbtn = document.querySelector("#heart");
-//   heartbtn.classList.remove("d-none");
-// } else {
-//   heartbtn.classList.add("d-none");
-// }

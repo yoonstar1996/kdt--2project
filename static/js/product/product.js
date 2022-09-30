@@ -39,5 +39,13 @@ function heart() {
   var myheart = $(".heart-1").children("i");
   if ($(myheart).hasClass("heart-i")) {
     $(myheart).removeClass("heart-i").addClass("heart-click");
+    alert("관심목록에 추가되었습니다.");
   } else $(myheart).removeClass("heart-click").addClass("heart-i");
+}
+
+const heartbtn = document.querySelectorAll(".heart-1");
+if (sessionStorage.getItem("id")) {
+  $(heartbtn).removeClass("d-none");
+} else {
+  $(heartbtn).addClass("d-none");
 }
