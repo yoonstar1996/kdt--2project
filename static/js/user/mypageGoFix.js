@@ -119,61 +119,8 @@ var email_valconfirm =
 var phone_valconfirm = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
 var adress_valconfirm = /^[가-힣0-9 ]{2,30}$/; //주소 유효성검사 (내가만듬)
 
-function idconfirm() {
-  var form = document.querySelector("form");
-  if (id.value == "") {
-    id.setCustomValidity(validityMessage["badInput"]);
-    if (!form.checkValidity()) {
-      form.reportValidity();
-      return;
-    }
-  } else if (!valconfirm.test(id.value)) {
-    id.setCustomValidity(validityMessage["patternMismatch"]);
-    if (!form.checkValidity()) {
-      form.reportValidity();
-      return;
-    }
-  } else {
-    id.setCustomValidity("");
-  }
-
-  var data = {
-    id: form.id.value,
-  };
-  axios({
-    url: "/api/signup/idcheck",
-    method: "post",
-    data: data,
-  }).then((response) => {
-    if (response.data) {
-      alert("중복된 아이디가 존재합니다.");
-    } else {
-      alert("사용가능한 아이디 입니다.");
-    }
-  });
-}
-
-function emailconfirm() {
-  var form = $("form");
-  var data = {
-    email: form.email.value,
-  };
-  axios({
-    url: "/",
-    method: "post",
-    data: data,
-  }).then((response) => {
-    if (response.data) {
-      alert("이미 존재하는 이메일 입니다.");
-    } else {
-      alert("사용가능한 이메일 입니다.");
-    }
-  });
-}
-
 //////개인 정보 수정하기//////
 function fixInfo() {
-  // e.preventDefault();
   var form = document.querySelector("form");
 
   var id_key = 0;
@@ -210,15 +157,6 @@ function fixInfo() {
     name_key = 1;
   }
 
-  // if (email.value == "") {
-  //   email.setCustomValidity(validityMessage["badInput"]);
-  // } else if (!email_valconfirm.test(email.value)) {
-  //   email.setCustomValidity(validityMessage["patternMismatch"]);
-  // } else {
-  //   email.setCustomValidity("");
-  //   email_key = 1;
-  // }
-
   if (phone.value == "") {
     phone.setCustomValidity(validityMessage["badInput"]);
   } else if (!phone_valconfirm.test(phone.value)) {
@@ -243,13 +181,7 @@ function fixInfo() {
     return;
   }
 
-  if (
-    id_key == 1 &&
-    pw_key == 1 &&
-    name_key == 1 &&
-    email_key == 1 &&
-    phone_key == 1
-  );
+  if (id_key == 1 && pw_key == 1 && name_key == 1 && phone_key == 1);
 
   var data = {
     id: form.id.value,
@@ -304,14 +236,6 @@ name.addEventListener("input", function (event) {
     nameval.classList.remove("d-none");
   }
 });
-// email.addEventListener("input", function (event) {
-//   if (email_valconfirm.test(email.value)) {
-//     email.setCustomValidity("");
-//     emailval.classList.add("d-none");
-//   } else {
-//     emailval.classList.remove("d-none");
-//   }
-// });
 phone.addEventListener("input", function (event) {
   if (phone_valconfirm.test(phone.value)) {
     phone.setCustomValidity("");

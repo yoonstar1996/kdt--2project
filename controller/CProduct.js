@@ -100,7 +100,8 @@ exports.product_update = (req, res) => {
   Product.update(data, {
     where: { id: req.body.id },
   }).then((result) => {
-    res.send("/uploads/" + req.files[0].filename);
+    const img = "/uploads/" + req.files[0].filename
+    res.send(img);
   });
 };
 

@@ -1,5 +1,3 @@
-// const { session } = require("passport");
-
 var modal = document.querySelector(".myModal");
 var bg = document.createElement("div");
 var zIndex = 9999;
@@ -120,7 +118,7 @@ function modalAddItem() {
 
   formData.append("user_id", sessionStorage.getItem("id"));
   formData.append("category_id", category.value);
-  formData.append("item_id", form.itemId.value);
+  formData.append("item_id", form.item_id.value);
   formData.append("title", form.title.value);
   // formData.append("img", Object.values(file.files));
   for (key in file.files) {
@@ -140,8 +138,8 @@ function modalAddItem() {
   }).then((response) => {
     if (response) {
       var itemList = document.querySelector(".itemList");
-      const price = response.data.price;
       let img_list = response.data.img.split("..");
+      const price = response.data.price;
       const comma = price
         .toString()
         .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
@@ -150,7 +148,9 @@ function modalAddItem() {
       <div class="my-item">
       <a class="pagelink" href="/product/${response.data.id}">
       <div>
-        <div class="item_id d-none">${response.data[i].id}</div>
+        <div class="item_id_${response.data.id} d-none">${
+        response.data.id
+      }</div>
         <img class="item-img" src="${img_list[0]}">
         <div class="item-info">
           <div class="item-text">
@@ -229,7 +229,9 @@ axios({
       <div class="my-item">
         <a class="pagelink" href="/product/${result.data[i].id}">
           <div>
-            <div class="item_id d-none">${result.data[i].id}</div>
+            <div class="item_id_${result.data[i].id} d-none">${
+      result.data[i].id
+    }</div>
             <img class="item-img" src="${img_list[0]}">
             <div class="item-info">
               <div class="item-text">
@@ -286,12 +288,25 @@ function itemFix(obj, id) {
   var child6 = $(child4).children("div"); /*item-text-category*/
 
   fixItem();
+  var testString = child6[2].innerHTML; // 원래 문자열
+  var regex = /[^0-9]/g; // 숫자가 아닌 문자열을 선택하는 정규식
+  var result = testString.replace(regex, ""); // 원래 문자열에서 숫자가 아닌 모든 문자열을 빈 문자로 변경
+
   document.querySelector(".addTitle").innerHTML = "상품 수정";
   document.querySelector("#item_id").value = child7[0].innerText;
   document.querySelector(".title").value = child5[0].innerHTML;
-  document.querySelector(".price").value = child6[2].innerHTML;
+  document.querySelector(".price").value = result;
   document.querySelector(".content").value = child6[1].innerHTML;
-  document.querySelector(".select").value = child6[0].innerHTML;
+  document.querySelector(".category").value = child6[0].innerText;
+  var option = document.querySelector(".category").children;
+  for (var i = 0; i < option.length; i++) {
+    // console.log(option[i].innerText);
+    if (option[i].innerText == child6[0].innerText) {
+      option[i].selected = true;
+      break;
+    }
+  }
+  // console.log(document.querySelector(".category").children)
   document.querySelector(".upload-name").value = child2[0].currentSrc;
 
   document.querySelector(".addItemBtn").classList.add("d-none");
@@ -315,7 +330,7 @@ function modalFixItem() {
   formData.append("price", form.price.value);
   formData.append("position", "마포구");
   formData.append("content", form.content.value);
-
+  console.log(form.item_id.value)
   axios({
     headers: {
       "Content-Type": "multipart/form-data",
@@ -324,49 +339,25 @@ function modalFixItem() {
     method: "put",
     data: formData,
   }).then((response) => {
-    if (response) {
-      var itemList = document.querySelector(".itemList");
-      let img_list = response.data.img.split("..");
-      const price = response.data.price;
-      const comma = price
-        .toString()
-        .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+    console.log(form.item_id.value)
+    console.log(".item_id_" +form.item_id.value)
+    console.log(document.querySelector(".item_id_" + form.item_id.value))
+    var product = document.querySelector(".item_id_" + form.item_id.value)
+      .parentElement.parentElement;
 
-      $(itemList).append(`
-        <div class="my-item">
-          <a class="pagelink" href="/product/${response.data.id}">
-            <div>
-              <div class="item_id d-none">${result.data[i].id}</div>
-              <img class="item-img" src="${img_list[0]}">
-
-              <div class="item-info">
-                <div class="item-text">
-                  <h4 class="item-text-name">${response.data.title}</h4>
-                  <div class="item-text-category">${
-                    categories[response.data.category_id]
-                  }</div>
-                  <div class="item-text-content">${response.data.content}</div>
-                  <div class="item-text-price">${comma}원</div>
-                </div>
-              </div>
-            </div>
-          </a>
-          <div class="item-cancel">
-            <button type="button" class="item-fix-btn" onclick="itemFix(this, ${
-              response.data.id
-            })">상품 수정</button>
-            <button type="button" class="item-cancel-btn" onclick="itemDelete(this, ${
-              response.data.id
-            })">상품 삭제</button>
-          </div>
-        </div>
-      `);
-      modalClose();
-      window.location.href = "/mypage";
-    } else {
-      alert("상품 등록 실패");
-    }
+    const price = form.price.value;
+    const comma = price
+      .toString()
+      .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+    $(product).find(".item-img").text(response.data);
+    $(product).find(".item-text-name").text(form.title.value);
+    $(product).find(".item-text-category").text(categories[category.value]);
+    $(product).find(".item-text-content").text(form.content.value);
+    $(product)
+      .find(".item-text-price")
+      .text(comma + "원");
   });
+  modalClose();
 }
 
 function mypage() {
@@ -410,7 +401,7 @@ closeBtn.addEventListener("click", displayModal);
 widthDrawBtn.addEventListener("click", widthDraw);
 
 // function readMultipleImage(input) {
-//   const multipleContainer = document.getElementById("multiple-container");
+//   const multipleContainer = document.querySelector(".upload-name");
 
 //   // 인풋 태그에 파일들이 있는 경우
 //   if (input.files) {
@@ -462,7 +453,7 @@ widthDrawBtn.addEventListener("click", widthDraw);
 //   }
 // }
 
-// const inputMultipleImage = document.getElementById("input-multiple-image");
+// const inputMultipleImage = document.getElementById("img");
 // inputMultipleImage.addEventListener("change", (e) => {
 //   readMultipleImage(e.target);
 // });
