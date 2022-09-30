@@ -115,7 +115,6 @@ function modalAddItem() {
   const category = document.querySelector(".category");
   const formData = new FormData();
   const file = document.querySelector(".img");
-  console.log(file.files);
 
   formData.append("user_id", sessionStorage.getItem("id"));
   formData.append("category_id", category.value);
@@ -305,10 +304,13 @@ function modalFixItem() {
   const formData = new FormData();
   const file = document.querySelector(".img");
 
+  formData.append("id");
   formData.append("user_id", sessionStorage.getItem("id"));
   formData.append("category_id", category.value);
   formData.append("title", form.title.value);
-  formData.append("img", file.files);
+  for (key in file.files) {
+    formData.append("img", file.files[key]);
+  }
   formData.append("adult", true);
   formData.append("price", form.price.value);
   formData.append("position", "마포구");
@@ -318,49 +320,49 @@ function modalFixItem() {
     headers: {
       "Content-Type": "multipart/form-data",
     },
-    url: "/api/product",
-    method: "post",
+    url: "/api/product/update",
+    method: "put",
     data: formData,
   }).then((response) => {
-    if (response) {
-      var itemList = document.querySelector(".itemList");
-      let img_list = response.data.img.split("..");
-      const price = response.data.price;
-      const comma = price
-        .toString()
-        .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
-
-      $(itemList).append(`
-        <div class="my-item">
-          <a class="pagelink" href="/product/${response.data.id}">
-            <div>
-              <img class="item-img" src="${img_list[0]}">
-              <div class="item-info">
-                <div class="item-text">
-                  <h4 class="item-text-name">${response.data.title}</h4>
-                  <div class="item-text-category">${
-                    categories[response.data.category_id]
-                  }</div>
-                  <div class="item-text-content">${response.data.content}</div>
-                  <div class="item-text-price">${comma}원</div>
-                </div>
-              </div>
-            </div>
-          </a>
-          <div class="item-cancel">
-            <button type="button" class="item-fix-btn" onclick="itemFix(this, ${
-              response.data.id
-            })">상품 수정</button>
-            <button type="button" class="item-cancel-btn" onclick="itemDelete(this, ${
-              response.data.id
-            })">상품 삭제</button>
-          </div>
-        </div>
-      `);
-      modalClose();
-    } else {
-      alert("상품 등록 실패");
-    }
+    console.log(response);
+    // if (response) {
+    //   var itemList = document.querySelector(".itemList");
+    //   let img_list = response.data.img.split("..");
+    //   const price = response.data.price;
+    //   const comma = price
+    //     .toString()
+    //     .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+    //   $(itemList).append(`
+    //     <div class="my-item">
+    //       <a class="pagelink" href="/product/${response.data.id}">
+    //         <div>
+    //           <img class="item-img" src="${img_list[0]}">
+    //           <div class="item-info">
+    //             <div class="item-text">
+    //               <h4 class="item-text-name">${response.data.title}</h4>
+    //               <div class="item-text-category">${
+    //                 categories[response.data.category_id]
+    //               }</div>
+    //               <div class="item-text-content">${response.data.content}</div>
+    //               <div class="item-text-price">${comma}원</div>
+    //             </div>
+    //           </div>
+    //         </div>
+    //       </a>
+    //       <div class="item-cancel">
+    //         <button type="button" class="item-fix-btn" onclick="itemFix(this, ${
+    //           response.data.id
+    //         })">상품 수정</button>
+    //         <button type="button" class="item-cancel-btn" onclick="itemDelete(this, ${
+    //           response.data.id
+    //         })">상품 삭제</button>
+    //       </div>
+    //     </div>
+    //   `);
+    //   modalClose();
+    // } else {
+    //   alert("상품 등록 실패");
+    // }
   });
 }
 

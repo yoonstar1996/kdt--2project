@@ -79,6 +79,31 @@ exports.product_myproduct = (req, res) => {
 };
 
 // 나의 등록 상품
+exports.product_update = (req, res) => {
+  let img_name = "";
+  for (let i = 0; i < req.files.length; i++) {
+    if (i != 0) img_name += "..";
+    img_name += "/uploads/" + req.files[i].filename;
+  }
+  const data = {
+    user_id: req.body.user_id,
+    category_id: req.body.category_id,
+    title: req.body.title,
+    img: img_name,
+    adult: req.body.adult,
+    price: req.body.price,
+    position: req.body.position,
+    content: req.body.content,
+  };
+  Product.update(data, {
+    where: { id: req.body.id },
+  }).then((res) => {
+    console.log(res);
+    res.send("true");
+  });
+};
+
+// 나의 등록 상품
 exports.product_delete = (req, res) => {
   Product.destroy({
     where: { id: req.body.id },
