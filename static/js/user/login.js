@@ -18,6 +18,11 @@ function NormalLogin() {
     pw: form.pw.value,
   };
 
+  if (!form.checkValidity()) {
+    form.reportValidity();
+    return;
+  }
+
   axios({
     url: "/api/login",
     method: "post",
