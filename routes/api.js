@@ -57,6 +57,7 @@ router.post("/search/:product", product.search_item);
 
 // 카테고리 상품
 router.post("/categories/:id", product.categories_list);
+router.post("/product/categories", product.categories_items);
 
 // 소캣 룸 생성
 router.post("/room", socket.socket_create);
