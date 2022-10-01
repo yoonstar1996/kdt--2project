@@ -108,5 +108,18 @@
     </div>
     <%-include("../main/footer.ejs")%>
     <script src="/static/js/product/product.js"></script>
+    <script>
+      const category = "<%=data.category%>";
+
+      axios({
+        url: "/api/product/categories",
+        method: "post",
+        data: {
+          category: category,
+        },
+      }).then((result) => {
+        console.log(result);
+      });
+    </script>
   </body>
 </html>

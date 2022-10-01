@@ -22,6 +22,7 @@ exports.product = (req, res) => {
     const data = result;
     data.img = data.img.split("..")[0];
     data.category_id = categories[data.category_id];
+    data.category = data.category_id;
     res.render("product/product", { data });
   });
 };
@@ -101,7 +102,7 @@ exports.product_update = (req, res) => {
   Product.update(data, {
     where: { id: req.body.id },
   }).then((result) => {
-    const img = "/uploads/" + req.files[0].filename
+    const img = "/uploads/" + req.files[0].filename;
     res.send(img);
   });
 };
@@ -127,6 +128,17 @@ exports.search_item = (req, res) => {
       title: {
         [Op.like]: "%" + req.body.search_item + "%",
       },
+    },
+  }).then((result) => {
+    const data = result;
+    res.send(data);
+  });
+};
+
+exports.categories_items = (req, res) => {
+  Product.findAll({
+    where: {
+      category_id: req.body.category,
     },
   }).then((result) => {
     const data = result;
