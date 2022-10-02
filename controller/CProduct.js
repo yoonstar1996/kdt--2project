@@ -168,13 +168,14 @@ exports.like_delete_item = (req, res) => {
 // 찜한 목록
 exports.like_items = (req, res) => {
   console.log(req.body.user_id);
-  User.findOne({
-    include: [ProductLikeUsers],
+  ProductLikeUsers.findAll({
+    include: [Product],
     where: {
-      id: req.body.user_id,
+      user_id: req.body.user_id,
     },
   }).then((result) => {
-    const data = result.dataValues.product_like_users;
+    const data = result;
+    console.log(result);
     res.send(data);
   });
 };
