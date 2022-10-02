@@ -25,15 +25,24 @@
   position: relative;
   z-index: 1;
 }
+/* 채팅버튼 */
 #chatbox button {
   display: flex;
   align-items: center;
-  padding: 0 1rem;
+  /* padding: 0 1rem; */
   margin: 0.25rem;
+  border: none;
+}
+
+/* 화살표 css */
+.material-symbols-outlined {
+  color: #eb8d0081;
+  font-weight: 800;
 }
 
 #form {
-  background: rgba(0, 0, 0, 0.15);
+  background: #eb8d0053;
+  /* background: rgba(0, 0, 0, 0.15); */
   padding: 0.25rem;
   position: fixed;
   bottom: 0;
@@ -68,13 +77,15 @@
 
 #messages::-webkit-scrollbar {
   width: 10px;
+  display: none;
 }
 #messages::-webkit-scrollbar-thumb {
-  background-color: rgba(239, 184, 255, 0.5);
+  /* background-color: rgba(239, 184, 255, 0.5); */
+  background-color: #eb8d002c;
   border-radius: 10px;
 }
 #messages::-webkit-scrollbar-track {
-  background-color: rgba(255, 200, 154, 0.5);
+  background-color: rgba(255, 199, 154, 0.338);
   border-radius: 10px;
   box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
     7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
@@ -103,8 +114,8 @@
   border-radius: 5px;
   background: transparent;
   cursor: pointer;
-  box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
-    7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
+  /* box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
+    7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1); */
 }
 .back-btn {
   position: absolute;
@@ -116,6 +127,27 @@
   padding: 5px;
   border-radius: 5px;
 }
+
+/* 채팅방 시간 css */
+#messages > li > span {
+  font-size: small;
+  padding: 12px;
+}
+/* 채팅방 닉네임 css */
+#messages > li > div {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #eb8d00;
+}
+
+/* 채팅 박스 css */
+.chat__custom.msg.all {
+  font-size: 16px !important;
+  border-radius: 15px;
+  display: inline-block;
+  max-width: 70%;
+}
+
 .all {
   background: rgba(255, 231, 50, 0.3);
 }
@@ -125,6 +157,7 @@
 .mymsg {
   text-align: end;
 }
+
 .notice {
   color: rgb(255, 255, 255);
   text-align: center;
