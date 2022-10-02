@@ -55,6 +55,11 @@ router.delete("/product/delete", product.product_delete);
 
 router.post("/search/:product", product.search_item);
 
+// like
+router.post("/like", product.like_item);
+router.post("/likes", product.like_items);
+router.delete("/like_delete", product.like_delete_item);
+
 // 카테고리 상품
 router.post("/categories/:id", product.categories_list);
 router.post("/product/categories", product.categories_items);

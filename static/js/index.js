@@ -6,12 +6,30 @@ $(".post-wrapper").slick({
   arrows: false,
 });
 
-function heart(id, btn) {
+function heart(product_id, btn) {
   var myheart = $(btn).children("i");
   if ($(myheart).hasClass("heart1")) {
     $(myheart).removeClass("heart1").addClass("heart-click");
     alert("관심목록에 추가되었습니다.");
-  } else $(myheart).removeClass("heart-click").addClass("heart1");
+    axios({
+      url: "/api/like",
+      method: "post",
+      data: {
+        user_id: sessionStorage.getItem("id"),
+        product_id: product_id,
+      },
+    }).then((result) => {});
+  } else {
+    axios({
+      url: "/api/like_delete",
+      method: "delete",
+      data: {
+        user_id: sessionStorage.getItem("id"),
+        product_id: product_id,
+      },
+    }).then((result) => {});
+    $(myheart).removeClass("heart-click").addClass("heart1");
+  }
 }
 
 axios({

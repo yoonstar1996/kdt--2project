@@ -64,17 +64,16 @@ function displayModal() {
   modalOn.classList.toggle("hidden");
 }
 
-function widthDraw() {
-  const id = sessionStorage.getItem("id");
-  axios({
-    url: "~~~",
-    method: "delete",
-  }).then((response) => {
-    sessionStorage.clear();
-    window.location.href = "/";
-  });
-}
-
 openModal.addEventListener("click", displayModal);
 closeBtn.addEventListener("click", displayModal);
-widthDrawBtn.addEventListener("click", withDraw);
+widthDrawBtn.addEventListener("click", widthDraw);
+
+axios({
+  url: "api/likes",
+  method: "post",
+  data: {
+    user_id: sessionStorage.getItem("id"),
+  },
+}).then((result) => {
+  console.log(result.data);
+});

@@ -57,17 +57,6 @@ function displayModal() {
   modalOn.classList.toggle("hidden");
 }
 
-function widthDraw() {
-  const id = sessionStorage.getItem("id");
-  axios({
-    url: "~~~",
-    method: "delete",
-  }).then((response) => {
-    sessionStorage.clear();
-    window.location.href = "/";
-  });
-}
-
 openModal.addEventListener("click", displayModal);
 closeBtn.addEventListener("click", displayModal);
 widthDrawBtn.addEventListener("click", withDraw);
