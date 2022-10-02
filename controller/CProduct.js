@@ -1,4 +1,4 @@
-const { User, Product, Category } = require("../model");
+const { User, Product, Category, ProductLikeUsers } = require("../model");
 const { Op } = require("sequelize");
 const sequelize = require("sequelize");
 
@@ -142,6 +142,39 @@ exports.categories_items = (req, res) => {
     },
   }).then((result) => {
     const data = result;
+    res.send(data);
+  });
+};
+
+exports.like_item = (req, res) => {
+  const data = {
+    user_id: req.body.user_id,
+    product_id: req.body.product_id,
+  };
+  ProductLikeUsers.create(data).then((result) => {
+    const data = result;
+    res.send(data);
+  });
+};
+
+exports.like_delete_item = (req, res) => {
+  ProductLikeUsers.destroy({
+    where: { user_id: req.body.user_id, product_id: req.body.product_id },
+  }).then((result) => {
+    res.send(true);
+  });
+};
+
+// 찜한 목록
+exports.like_items = (req, res) => {
+  console.log(req.body.user_id);
+  User.findOne({
+    include: [ProductLikeUsers],
+    where: {
+      id: req.body.user_id,
+    },
+  }).then((result) => {
+    const data = result.dataValues.product_like_users;
     res.send(data);
   });
 };
