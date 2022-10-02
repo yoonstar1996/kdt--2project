@@ -61,12 +61,20 @@
         </div>
         <br />
         <div class="product-explanation"><%=data.content%></div>
+        <br />
+        <div class="heart-num">
+          <i class="fa-solid fa-heart fa-sm" style="color: #747474"></i>
+          <span style="color: #747474; font-size: 14px">관심</span>
+        </div>
       </div>
       <hr class="hr-2" />
       <div class="product-wrapper5">
         <div class="price">가격</div>
         <div class="product-price">
-          <span class="money"><%=data.price%></span><span>원</span>
+          <span class="money"
+            ><%=data.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g,
+            ",");%></span
+          ><span>원</span>
         </div>
       </div>
       <hr class="hr-2" />

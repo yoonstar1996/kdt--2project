@@ -65,6 +65,7 @@ exports.product_create = (req, res) => {
     position: req.body.position,
     content: req.body.content,
   };
+
   Product.create(data).then((result) => {
     res.send(result);
   });
