@@ -180,7 +180,7 @@
 .upload-name {
   display: inline-block;
   height: 50px;
-  padding: 0 15px;
+  padding: 0 5px;
   vertical-align: middle;
   border: 1px solid #dddddd;
   width: 350px;
@@ -430,7 +430,7 @@
   margin: 0 15px;
   border: 1px solid #eeeeee;
   font-size: 1rem;
-  color:black;
+  color: black;
   font-weight: 600;
   letter-spacing: -0.05em;
 }
@@ -468,4 +468,124 @@
   display: flex;
   flex-wrap: wrap;
   align-content: center;
+}
+
+img {
+  width: 50px;
+  height: 40px;
+}
+
+ol {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  text-overflow: ellipsis;
+  white-space: nowrap; /*글자를 한줄로 모아준다*/
+  overflow-x: scroll;
+}
+
+ol,
+ul {
+  padding-left: 0 !important;
+}
+li {
+  border: 1px solid #eaeaea;
+  height: 40px;
+  border-radius: 10px;
+  margin: 3px 2px;
+}
+
+@media screen and (max-width: 1000px) {
+  .wrapper {
+    width: 800px;
+    margin: 0 30px;
+  }
+  .right-sgt {
+    width: 630px;
+  }
+
+  .my-item {
+    width: 270px;
+  }
+}
+
+@media screen and (max-width: 860px) {
+  .wrapper {
+    width: 600px;
+    margin: 0 30px;
+  }
+  .right-sgt {
+    width: 550px;
+  }
+
+  .my-item {
+    width: 300px;
+  }
+}
+
+@media screen and (max-width: 670px) {
+  .wrapper {
+    width: 500px;
+    margin: 0 5px;
+  }
+  .left-sgt {
+    margin: 0 40px 0 0;
+  }
+  hr {
+    width: 280px;
+  }
+  .right-sgt {
+    width: 330px;
+  }
+
+  .my-item {
+    width: 250px;
+  }
+  ol {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  ol::-webkit-scrollbar {
+    display: none; /* Chrome , Safari , Opera */
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .wrapper {
+    width: 379px;
+    margin: 0 5px;
+  }
+  .left-sgt {
+    margin: 0 30px 0 0;
+  }
+  .left-sgt > div {
+    display: flex;
+    justify-content: center;
+    font-weight: 700;
+    margin: 0 0 20px 0;
+    font-size: 1rem;
+}
+.left-sgt-button > button {
+  font-size: 0.9rem;
+}
+  hr {
+    width: 280px;
+  }
+  .right-sgt {
+    width: 330px;
+  }
+
+  .my-item {
+    width: 250px;
+  }
+  ol {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  ol::-webkit-scrollbar {
+    display: none; /* Chrome , Safari , Opera */
+  }
 }

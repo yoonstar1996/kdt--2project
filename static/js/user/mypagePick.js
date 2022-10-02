@@ -19,7 +19,22 @@ function mypick() {
 function myfix() {
   window.location.href = "/myfix";
 }
+function withDraw() {
+  const id = sessionStorage.getItem("id");
+  axios({
+    url: "/api/user/delete",
+    method: "delete",
+    data: {
+      id: sessionStorage.getItem("id"),
+    },
+  }).then((response) => {
+    sessionStorage.clear();
+    window.location.href = "/";
+  });
+}
 
+
+//// 찜 목록 불러오기 ////
 axios({
   url: "/api/product/myproduct",
   method: "post",
@@ -37,41 +52,6 @@ axios({
     NoList.classList.add("d-none");
     addBtn.classList.add("d-none");
   }
-  // for (var i = 0; i < result.data.length; i++) {
-  //   var pickList = document.querySelector(".pickList");
-  //   const price = result.data[i].price;
-  //   const comma = price
-  //     .toString()
-  //     .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
-
-  //   $(pickList).append(`
-  //     <div class="my-item">
-  //       <a class="pagelink" href="/product/${result.data[i].id}">
-  //         <div>
-  //           <img class="item-img" src="${result.data[i].img}">
-  //           <div class="item-info">
-  //             <div class="item-text">
-  //               <h4 class="item-text-name">${result.data[i].title}</h4>
-  //               <div class="item-text-category">${
-  //                 categories[result.data[i].category_id]
-  //               }</div>
-  //               <div class="item-text-content">${result.data[i].content}</div>
-  //               <div class="item-text-price">${comma}원</div>
-  //             </div>
-  //           </div>
-  //         </div>
-  //       </a>
-  //       <div class="item-cancel">
-  //         <button type="button" class="item-fix-btn" onclick="itemFix(this, ${
-  //           result.data[i].id
-  //         })">상품 수정</button>
-  //         <button type="button" class="item-cancel-btn" onclick="itemDelete(this, ${
-  //           result.data[i].id
-  //         })">상품 삭제</button>
-  //       </div>
-  //     </div>
-  //   `);
-  // }
 });
 
 const openModal = document.querySelector(".withDraw");
@@ -97,4 +77,4 @@ function widthDraw() {
 
 openModal.addEventListener("click", displayModal);
 closeBtn.addEventListener("click", displayModal);
-widthDrawBtn.addEventListener("click", widthDraw);
+widthDrawBtn.addEventListener("click", withDraw);

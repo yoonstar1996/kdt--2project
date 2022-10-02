@@ -30,15 +30,22 @@ function goToFix() {
     }
   });
 }
+function withDraw() {
+  const id = sessionStorage.getItem("id");
+  axios({
+    url: "/api/user/delete",
+    method: "delete",
+    data: {
+      id: sessionStorage.getItem("id"),
+    },
+  }).then((response) => {
+    sessionStorage.clear();
+    window.location.href = "/";
+  });
+}
 
-axios({
-  url: "/api/product/myproduct",
-  method: "post",
-  data: { id: sessionStorage.getItem("id") },
-}).then((result) => {
-  var idinput = document.querySelector(".id");
-  idinput.value = result.data[0].user_id;
-});
+var idinput = document.querySelector(".id");
+idinput.value = sessionStorage.getItem("id");
 
 const openModal = document.querySelector(".withDraw");
 const modalOn = document.querySelector(".modal2");
@@ -63,4 +70,4 @@ function widthDraw() {
 
 openModal.addEventListener("click", displayModal);
 closeBtn.addEventListener("click", displayModal);
-widthDrawBtn.addEventListener("click", widthDraw);
+widthDrawBtn.addEventListener("click", withDraw);
