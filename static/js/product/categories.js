@@ -27,7 +27,7 @@ function createList(data) {
       el.img +
       "<div class='card-body'>" +
       el.name +
-      el.id +
+      el.user_id +
       el.address +
       el.price +
       el.categoryValue +
@@ -39,8 +39,10 @@ function createList(data) {
       "<div style= 'height:0;'>" +
       "<button class='heart " +
       is_diplay +
-      "' type='button' onclick='heart(this)'>" +
-      "<i class='heart1 fa-solid fa-heart fa-xl'>" +
+      `' type='button' onclick='heart(this, ${el.idnumValue})'>` +
+      `<i class='${
+        el.count ? "heart-click" : "heart1"
+      } fa-solid fa-heart fa-xl'>` +
       "</i>" +
       "</button>" +
       "</div>" +
@@ -79,11 +81,29 @@ function myFunction(obj) {
 
 // 찜 하트기능 시작
 
-function heart(btn) {
+function heart(btn, product_id) {
   var myheart = $(btn).children("i");
   if ($(myheart).hasClass("heart1")) {
     $(myheart).removeClass("heart1").addClass("heart-click");
     alert("관심목록에 추가되었습니다.");
-  } else $(myheart).removeClass("heart-click").addClass("heart1");
+    axios({
+      url: "/api/like",
+      method: "post",
+      data: {
+        user_id: sessionStorage.getItem("id"),
+        product_id: product_id,
+      },
+    }).then((result) => {});
+  } else {
+    axios({
+      url: "/api/like_delete",
+      method: "delete",
+      data: {
+        user_id: sessionStorage.getItem("id"),
+        product_id: product_id,
+      },
+    }).then((result) => {});
+    $(myheart).removeClass("heart-click").addClass("heart1");
+  }
 }
 // 찜 하트기능 끝
