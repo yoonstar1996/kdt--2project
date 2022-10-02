@@ -98,3 +98,13 @@ function widthDraw() {
 openModal.addEventListener("click", displayModal);
 closeBtn.addEventListener("click", displayModal);
 widthDrawBtn.addEventListener("click", widthDraw);
+
+axios({
+  url: "api/likes",
+  method: "post",
+  data: {
+    user_id: sessionStorage.getItem("id"),
+  },
+}).then((result) => {
+  console.log(result.data);
+});
