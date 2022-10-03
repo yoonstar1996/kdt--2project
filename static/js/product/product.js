@@ -1,3 +1,22 @@
+$(".post-wrapper").slick({
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  arrows: true,
+});
+
+const next = document.querySelector(".slick-next");
+if (next) {
+  next.innerHTML =
+    '<i class="fa-solid fa-angle-right fa-2xl" style="margin-left: 20px"></i>';
+  next.classList.add("icon");
+}
+const prev = document.querySelector(".slick-prev");
+if (prev) {
+  prev.innerHTML =
+    '<i class="fa-solid fa-angle-left fa-2xl" style="margin-right: 20px"></i>';
+  prev.classList.add("icon");
+}
+
 function chattingRoom(title, other_id, img) {
   const data = {
     other_id: other_id,

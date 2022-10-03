@@ -20,7 +20,7 @@ exports.product = (req, res) => {
     },
   }).then((result) => {
     const data = result;
-    data.img = data.img.split("..")[0];
+    data.img = data.img.split("..");
     data.category_id = categories[data.category_id];
     data.category = data.category_id;
     res.render("product/product", { data });
