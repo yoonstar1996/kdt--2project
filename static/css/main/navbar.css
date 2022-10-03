@@ -54,6 +54,11 @@ input:focus {
 
 #search-button {
   background-color: white;
+  position: relative;
+  top: 10px;
+  left: -30px;
+  width: 8px;
+  height: 8px;
   border: none;
 }
 
@@ -428,6 +433,6 @@ input:focus {
 
 .search-icon {
   position: relative;
-  top: 2px;
-  left: -35px;
+  top: -8px;
+  left: -5px;
 }
