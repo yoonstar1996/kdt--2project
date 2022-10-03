@@ -20,9 +20,10 @@ exports.product = (req, res) => {
     },
   }).then((result) => {
     const data = result;
+    console.log(data.category_id);
     data.img = data.img.split("..");
-    data.category_id = categories[data.category_id];
-    data.category = data.category_id;
+    data.category = categories[data.category_id];
+    data.category_id = data.category_id;
     res.render("product/product", { data });
   });
 };
