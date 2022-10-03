@@ -1,3 +1,13 @@
+.post-slider .post-wrapper {
+  width: 70vw;
+  margin: 0px auto;
+}
+.post-slider .post-wrapper .post {
+  width: 70vw;
+  display: inline-block;
+  background: gray;
+}
+
 .product-wrapper {
   width: 800px;
   margin: auto;
