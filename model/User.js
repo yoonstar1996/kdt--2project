@@ -23,6 +23,11 @@ const User = (Sequelize, DataTypes) => {
         type: DataTypes.STRING(20),
         allowNull: false,
       },
+      image: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+        defaultValue: DataTypes.TEXT,
+      },
     },
     { tableName: "user", freezTableName: true, timestamps: false }
   );
