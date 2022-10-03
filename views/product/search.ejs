@@ -33,9 +33,6 @@
 
         <div class="onestnavsort">
           <div class="twostnavsort">
-            <!-- <div class="sortnav"><a href="">랭킹순</a></div>
-            <div class="sortnav"><a href="">누적판매순</a></div>
-            <div class="sortnav"><a href="">후기많은순</a></div> -->
             <div class="sortnavleft">
               <button onclick="handleOnLow()">낮은가격순</button>
             </div>
@@ -52,8 +49,8 @@
               id="mySelect"
               onchange="myFunction(this)"
             >
-              <option value="3">3개씩 보기</option>
-              <option value="6" selected>6개씩 보기</option>
+              <option value="4">4개씩 보기</option>
+              <option value="8" selected>8개씩 보기</option>
             </select>
           </div>
         </div>
@@ -62,7 +59,7 @@
         <a href="#" class="products"></a>
         <div class="pagenation-container">
           <div
-            class="row row-cols-3 row-cols-md-3 g-4"
+            class="row row-cols-3 row-cols-md-4 g-4"
             id="data-container"
           ></div>
         </div>
@@ -81,7 +78,6 @@
       function pgn(order, size) {
         let container = $("#pagination");
         // 페이지네이션 깨트리는곳
-        // container.pagination("destroy");
 
         container.empty();
         const search_item = "<%=search_item%>";
@@ -90,7 +86,10 @@
         axios({
           url: `/api/search/${search_item}`,
           method: "post",
-          data: { search_item: search_item },
+          data: {
+            search_item: search_item,
+            user_id: sessionStorage.getItem("id"),
+          },
         }).then((result) => {
           let dataSource = result.data.map((el) => {
             // 3자리마다 가격에 , 집어넣기
@@ -108,11 +107,11 @@
               food: "식품/잡화",
               pet: "반려동물",
             };
-
+            const img = el.img.split("..")[0];
             return {
-              img: `<img src='${el.img}' class='card-img-top' alt='...' />`,
+              img: `<img src='${img}' class='card-img-top' alt='...' />`,
               name: `<h5 class='card-title'>${el.title}</h5>`,
-              id: `<p class='card-text id'>${el.user_id}</p>`,
+              user_id: `<p class='card-text id'>${el.user_id}</p>`,
               address: `<p class='card-text position'>${el.position}</p>`,
               price: `<p class='card-text price'> ${pricecom2}원</p>`,
               categories: `<p class='card-text elec'>${el.category_id}</p>`,
@@ -122,9 +121,9 @@
               categoryValue: `<p class='card-text elec'>${
                 categories[el.category_id]
               }</p>`,
+              count: el.product_like_users.length,
             };
           });
-          // dataSource = dataSource.reverse(); 필요없음
           if (order == "high")
             dataSource.sort((a, b) => b.priceValue - a.priceValue);
           else if (order == "low")
@@ -137,7 +136,6 @@
 
             pageSize: size,
             callback: function (data, pagination) {
-              // data.sort((a, b) => b.priceValue - a.priceValue); 필요없음
               $("#data-container").html(createList(data));
             },
           });

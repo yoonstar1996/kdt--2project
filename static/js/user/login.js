@@ -38,5 +38,5 @@ function NormalLogin() {
 }
 
 function Singup() {
-  window.location.href = "http://localhost:8000/signup";
+  window.location.href = "/signup";
 }

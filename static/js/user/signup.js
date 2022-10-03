@@ -67,7 +67,6 @@ function findAdress() {
       }
 
       // 우편번호와 주소 정보를 해당 필드에 넣는다.
-      // document.getElementById("adress_number").value = data.zonecode;
       document.getElementById("adress").value = addr;
       // 커서를 상세주소 필드로 이동한다.
       document.getElementById("adress_more").focus();
@@ -168,8 +167,6 @@ function emailconfirm() {
 function signupCreate() {
   // e.preventDefault();
   var form = document.querySelector("form");
-  console.log("155 : id.value : ", id.value);
-  console.log(valconfirm.test(id.value));
 
   var id_key = 0;
   var pw_key = 0;
@@ -232,16 +229,6 @@ function signupCreate() {
     phone_key = 1;
   }
 
-  if (adress.value == "") {
-    adress.setCustomValidity(validityMessage["rangeUnderflow"]);
-  } else if (!adress_valconfirm.test(adress.value)) {
-    adress.setCustomValidity(validityMessage["stepMismatch"]);
-  } else {
-    adress.setCustomValidity("");
-    adress_key = 1;
-  }
-
-  // console.log("202 : ", form.checkValidity());
   if (!form.checkValidity()) {
     form.reportValidity();
     return;

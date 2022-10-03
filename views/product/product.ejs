@@ -20,23 +20,16 @@
     <%-include("../main/navbar.ejs")%>
     <div class="product-wrapper">
       <div class="product-wrapper2">
-        <div class="left-arrow">
-          <i
-            class="fa-solid fa-angle-left fa-2xl"
-            style="margin-right: 20px"
-          ></i>
-        </div>
         <div class="product-photo">
-          <img
-            src="<%=data.img%>"
-            style="max-width: 666px; height: 417px; margin: auto"
-          />
-        </div>
-        <div class="right-arrow">
-          <i
-            class="fa-solid fa-angle-right fa-2xl"
-            style="margin-left: 20px"
-          ></i>
+          <div class="post-slider">
+            <div class="post-wrapper">
+              <% for( let i = 0; i < data.img.length; i++ ) { %>
+              <div class="post">
+                <img src="<%=data.img[i]%>" />
+              </div>
+              <% } %>
+            </div>
+          </div>
         </div>
       </div>
       <button
@@ -50,7 +43,9 @@
       </button>
       <br />
       <div class="product-wrapper3">
-        <div class="profile-photo"></div>
+        <div class="profile-photo">
+          <img src="<%=data.user.image%>" alt="" />
+        </div>
         <div class="user-nick-add">
           <div class="user-nick"><%=data.user.id%></div>
           <div class="user-address"><%=data.position%></div>
@@ -112,19 +107,36 @@
       </button>
     </div>
     <%-include("../main/footer.ejs")%>
-    <script src="/static/js/product/product.js"></script>
     <script>
       const category = "<%=data.category%>";
-
+      const product_id = "<%=data.id%>";
       axios({
         url: "/api/product/categories",
         method: "post",
         data: {
+          user_id: sessionStorage.getItem("id"),
           category: category,
         },
       }).then((result) => {
-        console.log(result);
+        console.log(result.data);
       });
+
+      if (sessionStorage.getItem("id")) {
+        axios({
+          url: "/api/product/like",
+          method: "post",
+          data: {
+            user_id: sessionStorage.getItem("id"),
+            product_id: product_id,
+          },
+        }).then((result) => {
+          var myheart = $(".heart-1").children("i");
+          console.log(result.data);
+          if (result.data)
+            $(myheart).removeClass("heart-i").addClass("heart-click");
+        });
+      }
     </script>
+    <script src="/static/js/product/product.js"></script>
   </body>
 </html>

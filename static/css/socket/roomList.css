@@ -25,6 +25,12 @@
   position: relative;
   z-index: 1;
 }
+/* 화살표 css */
+.material-symbols-outlined {
+  color: #eb8d0081;
+  font-weight: 800;
+}
+
 .headerbox {
   display: flex;
   justify-content: center;
@@ -36,8 +42,9 @@
   border-radius: 5px;
   background: transparent;
   cursor: pointer;
-  box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
-    7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
+  border: none;
+  /* box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
+    7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1); */
 }
 .back-btn {
   position: absolute;
@@ -51,6 +58,22 @@
   padding: 10px;
   height: 90%;
   overflow-y: scroll;
+}
+/* 스크롤바 css */
+.area::-webkit-scrollbar {
+  width: 10px;
+  display: none;
+}
+.area::-webkit-scrollbar-thumb {
+  /* background-color: rgba(239, 184, 255, 0.5); */
+  background-color: #eb8d002c;
+  border-radius: 10px;
+}
+.area::-webkit-scrollbar-track {
+  background-color: rgba(255, 199, 154, 0.338);
+  border-radius: 10px;
+  box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
+    7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
 }
 
 .item {
@@ -80,8 +103,9 @@
 .roomnickname {
   line-height: 35px;
   color: gray;
-  font-size: medium;
   font-weight: 700;
+  font-size: 18px;
+  color: #eb8d00;
 }
 
 .roomcontents {
@@ -98,15 +122,23 @@
 /* 시간 타임 묶음 */
 .roomtimenoti {
   width: 10%;
+  /* display: flex; */
+  /* justify-content: center;
+  align-items: center; */
+  /* text-align: center;
+  flex-direction: column; */
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
 }
 
 .roomtime {
   flex-grow: 1;
   color: gray;
+  font-size: small;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 .roomnotice {

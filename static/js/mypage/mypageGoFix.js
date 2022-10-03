@@ -2,7 +2,6 @@ if (sessionStorage.id == sessionStorage.id) {
   var nameposition = document.querySelector("#id");
   nameposition.value = sessionStorage.id;
 }
-console.log((nameposition.value = sessionStorage.id));
 
 // 오류 메세지 사전을 만든다
 const validityMessage = {
@@ -73,7 +72,6 @@ function findAdress() {
       }
 
       // 우편번호와 주소 정보를 해당 필드에 넣는다.
-      // document.getElementById("adress_number").value = data.zonecode;
       document.getElementById("adress").value = addr;
       // 커서를 상세주소 필드로 이동한다.
       document.getElementById("adress_more").focus();
@@ -175,7 +173,6 @@ function fixInfo() {
     adress_key = 1;
   }
 
-  // console.log("202 : ", form.checkValidity());
   if (!form.checkValidity()) {
     form.reportValidity();
     return;
@@ -250,7 +247,6 @@ axios({
   method: "post",
   data: { id: sessionStorage.getItem("id") },
 }).then((result) => {
-  console.log(result);
   const form = document.querySelector("form");
   form.id.value = result.data.id;
   form.name.value = result.data.name;

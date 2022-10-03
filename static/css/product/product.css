@@ -1,3 +1,21 @@
+.post-slider .post-wrapper {
+  width: 660px;
+  margin: 0px auto;
+  display: flex;
+  justify-content: center;
+}
+.post-slider .post-wrapper .post {
+  width: 100%;
+}
+.post-slider .post-wrapper .post img {
+  height: 417px;
+  margin: auto;
+}
+.icon {
+  background-color: white;
+  border: 0 solid white;
+}
+
 .product-wrapper {
   width: 800px;
   margin: auto;
@@ -53,14 +71,12 @@
   gap: 20px;
 }
 
-.profile-photo {
+.profile-photo img {
   width: 50px;
   height: 50px;
-  background-color: #eeeeee;
   border-radius: 100px;
   margin-right: 20px;
 }
-
 .user-nick {
   font-size: medium;
   font-weight: 700;

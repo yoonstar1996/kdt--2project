@@ -52,8 +52,8 @@
               id="mySelect"
               onchange="myFunction(this)"
             >
-              <option value="3">3개씩 보기</option>
-              <option value="6" selected>6개씩 보기</option>
+              <option value="4">4개씩 보기</option>
+              <option value="8" selected>8개씩 보기</option>
             </select>
           </div>
         </div>
@@ -62,7 +62,7 @@
         <a href="#" class="products"></a>
         <div class="pagenation-container">
           <div
-            class="row row-cols-3 row-cols-md-3 g-4"
+            class="row row-cols-3 row-cols-md-4 g-4"
             id="data-container"
           ></div>
         </div>
@@ -90,7 +90,7 @@
         axios({
           url: `/api/categories/${category}`,
           method: "post",
-          data: { category: category },
+          data: { category: category, user_id: sessionStorage.getItem("id") },
         }).then((result) => {
           let dataSource = result.data.map((el) => {
             // console.log(el);
@@ -113,7 +113,7 @@
             return {
               img: `<img src='${img}' class='card-img-top' alt='...' />`,
               name: `<h5 class='card-title'>${el.title}</h5>`,
-              id: `<p class='card-text id'>${el.user_id}</p>`,
+              user_id: `<p class='card-text id'>${el.user_id}</p>`,
               address: `<p class='card-text position'>${el.position}</p>`,
               price: `<p class='card-text price'> ${pricecom2}원</p>`,
               categories: `<p class='card-text elec'>${el.category_id}</p>`,
@@ -123,6 +123,7 @@
               categoryValue: `<p class='card-text elec'>${
                 categories[el.category_id]
               }</p>`,
+              count: el.product_like_users.length,
             };
           });
           // dataSource = dataSource.reverse(); 필요없음
@@ -133,14 +134,14 @@
           else if (order == "new")
             dataSource.sort((a, b) => b.idnumValue - a.idnumValue);
 
-          console.log("dataSourcepick", dataSource);
+          // console.log("dataSourcepick", dataSource);
           container.pagination({
             dataSource: dataSource,
 
             pageSize: size,
             callback: function (data, pagination) {
-              console.log(result.data);
-              console.log(data);
+              // console.log(result.data);
+              // console.log(data);
 
               // data.sort((a, b) => b.priceValue - a.priceValue); 필요없음
               $("#data-container").html(createList(data));
