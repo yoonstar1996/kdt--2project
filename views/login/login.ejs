@@ -63,7 +63,6 @@
           /></a>
           <div id="naver_id_login" class="naver-button"></div>
 
-          <!--네이버 로그인-->
         </div>
       </form>
     </div>
@@ -91,7 +90,6 @@
       naver_id_login.setButton("green", 3, 51);
       naver_id_login.setDomain(".service.com");
       naver_id_login.setState(state);
-      // naver_id_login.setPopup();
       naver_id_login.init_naver_id_login();
       // <!-- 네이버아디디로로그인 초기화 Script -->
 
@@ -120,10 +118,6 @@
                 console.log($("#kakao_sign").children("#email").val());
                 console.log($("#kakao_sign").children("#name").val());
                 form.submit();
-                // window.location.href = "http://localhost:8000/kakao_callback"; //리다이렉트 되는 코드
-                // $(".center-id").children("input").val(kakao_account.email);
-                // $(".center-name").children("input").val(kakao_account.profile.nickname);
-                // $(".center-email").children("input").val(kakao_account.email);
               },
             });
           },

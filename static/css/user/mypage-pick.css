@@ -14,7 +14,7 @@
   display: flex;
   flex-direction: column;
   float: left;
-  margin: 0 50px 0 0;
+  margin: 55px 50px 0 0;
   width: 170px;
   font-size: 1rem;
   position: sticky;
@@ -45,10 +45,10 @@
   color: #eb8d00;
 }
 
-.withDraw{
+.withDraw {
   color: red;
 }
-.withDraw:hover{
+.withDraw:hover {
   color: red;
 }
 .right-sgt {
@@ -61,6 +61,9 @@
 .right-top {
   display: flex;
   height: 80px;
+  flex-direction: row;
+  align-content: flex-end;
+  flex-wrap: wrap;
 }
 .right-sgt-top {
   font-weight: 700;
@@ -540,10 +543,10 @@
     font-weight: 700;
     margin: 0 0 20px 0;
     font-size: 1rem;
-}
-.left-sgt-button > button {
-  font-size: 0.9rem;
-}
+  }
+  .left-sgt-button > button {
+    font-size: 0.9rem;
+  }
   hr {
     width: 280px;
   }
