@@ -2,6 +2,9 @@
   padding: 0;
   margin: 0;
 }
+.flexwrapper{
+  display: flex;
+}
 
 .wrapper {
   display: flex;
@@ -25,17 +28,14 @@ button,
   margin-left: 15px;
   border-radius: 10px;
 }
-.btncolor {
-  margin-top: 10px;
-}
 .left-text {
   display: flex;
   flex-wrap: wrap;
   align-content: center;
-  width: 139px;
+  width: 130px;
   height: 33px;
   margin: auto 0;
-  font-size: 1rem;
+  /* font-size: 1rem; */
 }
 .write-signup {
   text-align: center;
@@ -50,7 +50,8 @@ button,
 hr {
   margin-top: 8px;
 }
-.red {
+.red,
+.colors {
   color: red;
 }
 .sign-main {
@@ -84,7 +85,7 @@ hr {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  width: 315px;
+  width: 300px;
   height: 42px;
   border: 1px solid rgb(118, 118, 118);
   border-radius: 10px;
@@ -118,17 +119,15 @@ hr {
 
 .height2 {
   width: 300px;
-  height: 38px;
+  height: 42px;
   padding-left: 10px;
   font-size: 0.9rem;
   border-radius: 10px;
   border: 1px solid rgb(118, 118, 118);
 }
-.height2,
-.rightbtn {
-  margin-top: 10px;
+#adress {
+  margin-bottom: 20px;
 }
-
 .signup-button {
   display: flex;
   justify-content: center;
@@ -149,10 +148,6 @@ hr {
   flex-direction: row;
   align-content: center;
   align-items: flex-end;
-}
-.colors {
-  color: red;
-  margin-left: 10px;
 }
 .d-none {
   display: none;
@@ -203,4 +198,207 @@ input[type="radio"]:checked + label span span {
 
 #wrap {
   width: 300px;
+}
+
+
+
+@media screen and (max-width: 700px) {
+  .sign-main {
+    margin: 0 25px;
+  }
+  .write-signup,
+  hr,
+  .necessary,
+  .signup-button {
+    width: 650px;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .sign-main {
+    width: 550px;
+    margin: 0 20px;
+  }
+  .write-signup,
+  hr,
+  .necessary,
+  .signup-button {
+    width: 500px;
+  }
+  .nec-text {
+    font-size: 0.9rem;
+  }
+  .left-text,
+  .sign-gender-text,
+  .sign-birth-text {
+    font-size: 0.9rem;
+    width: 110px;
+  }
+  .height2,
+  .sign-adress-input,
+  .sign-birth-right,
+  .sign-gender-radio,
+  .sign-birth-input {
+    width: 250px;
+    font-size: 0.8rem;
+  }
+  .sign-birth-input > input {
+    width: 80px;
+    padding-left: 8px;
+  }
+  .height2 {
+    padding-left: 8px;
+    height: 38px;
+  }
+  .height2::placeholder {
+    font-size: 85%;
+  }
+  .sign-gender-radio {
+    justify-content: normal;
+  }
+  button,
+  .btncolor {
+    width: 95px;
+    height: 38px;
+    font-size: 13px;
+  }
+
+  input[type="radio"] + label span {
+    display: inline-block;
+    width: 11px;
+    height: 11px;
+    margin: -2px 0 0 0;
+    vertical-align: middle;
+    cursor: pointer;
+    background-color: #868686;
+    border-radius: 20px;
+    position: relative;
+  }
+  .smallcircle {
+    margin-bottom: 11px !important;
+  }
+  label {
+    margin: 0 6px 0 0;
+  }
+
+  input[type="radio"]:checked + label span {
+    background-color: #eb8d00;
+    border-radius: 20px;
+  }
+
+  input[type="radio"]:checked + label span span {
+    background-color: white;
+    width: 5px;
+    height: 5px;
+    border-radius: 20px;
+    position: absolute;
+    top: 5px;
+    left: 3px;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .colors{
+    font-size: 0.6rem;
+    width: 150px;
+    margin: 0;
+  }
+  .wrapper {
+    width: 390px;
+  }
+  .write-signup {
+    font-size: 1.3rem;
+  }
+  #wrap {
+    width: 250px !important;
+  }
+  .sign-main {
+    width: 388px;
+    margin: 0 0;
+  }
+  .write-signup,
+  hr,
+  .necessary,
+  .signup-button {
+    width: 330px;
+  }
+  .nec-text {
+    font-size: 0.9rem;
+  }
+  .left-text,
+  .sign-gender-text,
+  .sign-birth-text {
+    font-size: 12px;
+    width: 100px;
+  }
+  .left-text > div {
+    width: 98px;
+  }
+  .height2,
+  .sign-adress-input,
+  .sign-birth-right,
+  .sign-birth-input {
+    width: 150px;
+    font-size: 12px;
+  }
+  .sign-gender-radio {
+    width: 158px;
+  }
+  .sign-birth-input > input {
+    width: 49px;
+    padding-left: 5px;
+  }
+  .height2 {
+    padding-left: 5px;
+    height: 35px;
+  }
+  .height2::placeholder {
+    font-size: 70%;
+  }
+  .sign-gender-radio {
+    justify-content: normal;
+  }
+  button,
+  .btncolor {
+    width: 75px;
+    height: 35px;
+    font-size: 10px;
+    margin-left: 8px;
+  }
+
+  input[type="radio"] + label span {
+    display: inline-block;
+    width: 11px;
+    height: 11px;
+    margin: 0 0 0 0;
+    vertical-align: middle;
+    cursor: pointer;
+    background-color: #868686;
+    border-radius: 20px;
+    position: relative;
+  }
+  .smallcircle {
+    margin-bottom: 12px !important;
+  }
+  label {
+    margin: 0 6px 0 0;
+    font-size: 12px;
+  }
+
+  input[type="radio"]:checked + label span {
+    background-color: #eb8d00;
+    border-radius: 20px;
+  }
+
+  input[type="radio"]:checked + label span span {
+    background-color: white;
+    width: 5px;
+    height: 5px;
+    border-radius: 20px;
+    position: absolute;
+    top: 5px;
+    left: 3px;
+    text-align: center;
+  }
 }

@@ -15,6 +15,7 @@ const categories = {
 function modalClose() {
   bg.remove();
   modal.reset();
+  $(".upload-name").empty();
   modal.style.display = "none";
 }
 
@@ -176,7 +177,6 @@ function modalAddItem() {
       `);
       modalClose();
       window.location.href = "/mypage";
-      // console.log(response.data[i].id);
     } else {
       alert("상품 등록 실패");
     }
@@ -194,7 +194,11 @@ function itemDelete(obj, id) {
     var parent3 = $(parent2).parent("div"); /*my-item*/
 
     $(parent3).remove();
-    window.location.href = "/mypage";
+    var itemList = document.querySelector(".itemList");
+
+    if (itemList.children.length == 0) {
+      window.location.href = "/mypage";
+    }
   });
 }
 
@@ -255,24 +259,8 @@ axios({
         </div>
       </div>
     `);
-    // console.log(result.data[i]);
   }
 });
-
-function imgname() {
-  var imgname = document.querySelector("#img").files[0].name;
-  var uploadName = document.querySelector(".upload-name");
-  uploadName.value = imgname;
-}
-
-// var img_files = [];
-// $(document).ready(function () {
-//   $("#img").on("change", handleImgFilesSelect);
-// });
-
-// function imgname() {
-
-// }
 
 ///상품 수정////
 function itemFix(obj, id) {
@@ -300,13 +288,11 @@ function itemFix(obj, id) {
   document.querySelector(".category").value = child6[0].innerText;
   var option = document.querySelector(".category").children;
   for (var i = 0; i < option.length; i++) {
-    // console.log(option[i].innerText);
     if (option[i].innerText == child6[0].innerText) {
       option[i].selected = true;
       break;
     }
   }
-  // console.log(document.querySelector(".category").children)
   document.querySelector(".upload-name").value = child2[0].currentSrc;
 
   document.querySelector(".addItemBtn").classList.add("d-none");
@@ -330,7 +316,6 @@ function modalFixItem() {
   formData.append("price", form.price.value);
   formData.append("position", "마포구");
   formData.append("content", form.content.value);
-  console.log(form.item_id.value)
   axios({
     headers: {
       "Content-Type": "multipart/form-data",
@@ -339,9 +324,6 @@ function modalFixItem() {
     method: "put",
     data: formData,
   }).then((response) => {
-    console.log(form.item_id.value)
-    console.log(".item_id_" +form.item_id.value)
-    console.log(document.querySelector(".item_id_" + form.item_id.value))
     var product = document.querySelector(".item_id_" + form.item_id.value)
       .parentElement.parentElement;
 
@@ -382,7 +364,7 @@ function displayModal() {
   modalOn.classList.toggle("hidden");
 }
 
-function widthDraw() {
+function withDraw() {
   const id = sessionStorage.getItem("id");
   axios({
     url: "/api/user/delete",
@@ -397,63 +379,63 @@ function widthDraw() {
 }
 
 openModal.addEventListener("click", displayModal);
+widthDrawBtn.addEventListener("click", withDraw);
 closeBtn.addEventListener("click", displayModal);
-widthDrawBtn.addEventListener("click", widthDraw);
 
-// function readMultipleImage(input) {
-//   const multipleContainer = document.querySelector(".upload-name");
+const input = document.querySelector("#img");
+const preview = document.querySelector(".upload-name");
 
-//   // 인풋 태그에 파일들이 있는 경우
-//   if (input.files) {
-//     // 이미지 파일 검사 (생략)
+input.addEventListener("change", updateImageDisplay);
 
-//     console.log(input.files);
+function updateImageDisplay() {
+  while (preview.firstChild) {
+    preview.removeChild(preview.firstChild);
+  }
 
-//     // 유사배열을 배열로 변환 (forEach문으로 처리하기 위해)
-//     const fileArr = Array.from(input.files);
+  const curFiles = input.files;
+  if (curFiles.length === 0) {
+  } else {
+    const list = document.createElement("ol");
+    preview.appendChild(list);
 
-//     const $colDiv1 = document.createElement("div");
-//     const $colDiv2 = document.createElement("div");
-//     $colDiv1.classList.add("column");
-//     $colDiv2.classList.add("column");
+    for (const file of curFiles) {
+      const listItem = document.createElement("li");
+      if (validFileType(file)) {
+        const image = document.createElement("img");
+        const imageClass = image.setAttribute("class", "imgpreview");
+        image.src = URL.createObjectURL(file);
 
-//     fileArr.forEach((file, index) => {
-//       const reader = new FileReader();
+        listItem.appendChild(image);
+      } else {
+      }
+      list.appendChild(listItem);
+    }
+  }
+}
 
-//       const $imgDiv = document.createElement("div");
-//       const $img = document.createElement("img");
-//       $img.classList.add("image");
+const fileTypes = [
+  "image/apng",
+  "image/bmp",
+  "image/gif",
+  "image/jpeg",
+  "image/pjpeg",
+  "image/png",
+  "image/svg+xml",
+  "image/tiff",
+  "image/webp",
+  "image/x-icon",
+];
 
-//       const $label = document.createElement("label");
-//       $label.classList.add("image-label");
-//       $label.textContent = file.name;
+function validFileType(file) {
+  return fileTypes.includes(file.type);
+}
 
-//       $imgDiv.appendChild($img);
-//       $imgDiv.appendChild($label);
-
-//       reader.onload = (e) => {
-//         $img.src = e.target.result;
-
-//         $imgDiv.style.width = $img.naturalWidth * 0.2 + "px";
-//         $imgDiv.style.height = $img.naturalHeight * 0.2 + "px";
-//       };
-
-//       console.log(file.name);
-//       if (index % 2 == 0) {
-//         $colDiv1.appendChild($imgDiv);
-//       } else {
-//         $colDiv2.appendChild($imgDiv);
-//       }
-
-//       reader.readAsDataURL(file);
-//     });
-
-//     multipleContainer.appendChild($colDiv1);
-//     multipleContainer.appendChild($colDiv2);
-//   }
-// }
-
-// const inputMultipleImage = document.getElementById("img");
-// inputMultipleImage.addEventListener("change", (e) => {
-//   readMultipleImage(e.target);
-// });
+function returnFileSize(number) {
+  if (number < 1024) {
+    return number + "bytes";
+  } else if (number >= 1024 && number < 1048576) {
+    return (number / 1024).toFixed(1) + "KB";
+  } else if (number >= 1048576) {
+    return (number / 1048576).toFixed(1) + "MB";
+  }
+}
