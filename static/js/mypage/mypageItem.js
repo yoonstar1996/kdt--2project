@@ -210,15 +210,15 @@ axios({
 }).then((result) => {
   const List = document.querySelector(".no-item");
   const NoList = document.querySelector(".itemList");
-  const addBtn = document.querySelector("#noModalOn");
+  const noModalOn = document.querySelector("#noModalOn");
   if (result.data.length) {
     List.classList.add("d-none");
-    addBtn.classList.remove("d-none");
+    noModalOn.classList.remove("d-none");
     NoList.classList.remove("d-none");
   } else {
     List.classList.remove("d-none");
     NoList.classList.add("d-none");
-    addBtn.classList.add("d-none");
+    noModalOn.classList.add("d-none");
   }
 
   for (var i = 0; i < result.data.length; i++) {

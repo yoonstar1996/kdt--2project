@@ -33,9 +33,6 @@
 
         <div class="onestnavsort">
           <div class="twostnavsort">
-            <!-- <div class="sortnav"><a href="">랭킹순</a></div>
-            <div class="sortnav"><a href="">누적판매순</a></div>
-            <div class="sortnav"><a href="">후기많은순</a></div> -->
             <div class="sortnavleft">
               <button onclick="handleOnLow()">낮은가격순</button>
             </div>
@@ -81,7 +78,6 @@
       function pgn(order, size) {
         let container = $("#pagination");
         // 페이지네이션 깨트리는곳
-        // container.pagination("destroy");
 
         container.empty();
         const search_item = "<%=search_item%>";
@@ -128,7 +124,6 @@
               count: el.product_like_users.length,
             };
           });
-          // dataSource = dataSource.reverse(); 필요없음
           if (order == "high")
             dataSource.sort((a, b) => b.priceValue - a.priceValue);
           else if (order == "low")
@@ -141,7 +136,6 @@
 
             pageSize: size,
             callback: function (data, pagination) {
-              // data.sort((a, b) => b.priceValue - a.priceValue); 필요없음
               $("#data-container").html(createList(data));
             },
           });
