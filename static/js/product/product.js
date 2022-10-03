@@ -40,7 +40,25 @@ function heart() {
   if ($(myheart).hasClass("heart-i")) {
     $(myheart).removeClass("heart-i").addClass("heart-click");
     alert("관심목록에 추가되었습니다.");
-  } else $(myheart).removeClass("heart-click").addClass("heart-i");
+    axios({
+      url: "/api/like",
+      method: "post",
+      data: {
+        user_id: sessionStorage.getItem("id"),
+        product_id: product_id,
+      },
+    });
+  } else {
+    $(myheart).removeClass("heart-click").addClass("heart-i");
+    axios({
+      url: "/api/like_delete",
+      method: "delete",
+      data: {
+        user_id: sessionStorage.getItem("id"),
+        product_id: product_id,
+      },
+    });
+  }
 }
 
 const heartbtn = document.querySelectorAll(".heart-1");

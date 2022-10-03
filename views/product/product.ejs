@@ -107,19 +107,36 @@
       </button>
     </div>
     <%-include("../main/footer.ejs")%>
-    <script src="/static/js/product/product.js"></script>
     <script>
       const category = "<%=data.category%>";
-
+      const product_id = "<%=data.id%>";
       axios({
         url: "/api/product/categories",
         method: "post",
         data: {
+          user_id: sessionStorage.getItem("id"),
           category: category,
         },
       }).then((result) => {
-        console.log(result);
+        console.log(result.data);
       });
+
+      if (sessionStorage.getItem("id")) {
+        axios({
+          url: "/api/product/like",
+          method: "post",
+          data: {
+            user_id: sessionStorage.getItem("id"),
+            product_id: product_id,
+          },
+        }).then((result) => {
+          var myheart = $(".heart-1").children("i");
+          console.log(result.data);
+          if (result.data)
+            $(myheart).removeClass("heart-i").addClass("heart-click");
+        });
+      }
     </script>
+    <script src="/static/js/product/product.js"></script>
   </body>
 </html>
