@@ -78,22 +78,13 @@
         </div>
       </div>
       <hr class="hr-2" />
-      <div class="category-another">이 카테고리의 다른 상품</div>
+  <div style="width: 100%"
+    <div class="category-another"><span>이 카테고리의 다른 상품</span></div>
       <div class="product-wrapper6 container">
-        <div class="category-another-first row">
-          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-            <div class="another-photo1"></div>
-            <div class="another-product1">갤럭시 워치 5</div>
-            <div class="another-price1">7,000원</div>
-          </div>
-        </div>
-        <div class="category-another-second">
-          <div class="another-photo2"></div>
-          <div class="another-product2">에어팟 프로 2세대</div>
-          <div class="another-price2">17,000원</div>
-        </div>
+        <div class="category-another-first row"></div>
       </div>
     </div>
+  </div>
     <br />
     <br />
     <br />
@@ -121,10 +112,19 @@
           product_id: product_id,
         },
       }).then((result) => {
-        console.log("a", result.data);
-        // for (var i = 0; i < 2; i++) {
-
-        // }
+        var another = result.data;
+        for (var i = 0; i < 2; i++) {
+          var imglist = another[i].img.split("..");
+          var money = another[i].price
+            .toString()
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+          $(".category-another-first")
+            .append(`<div class="another-product col-xs-12 col-sm-6 col-md-6 col-lg-6">
+            <div class="another-photo1"><img class="another-photo1" src="${imglist[0]}"></div>
+            <div class="another-product1">${another[i].title}</div>
+            <div class="another-price1">${money}<span>원</span></div>
+          </div>`);
+        }
       });
 
       if (sessionStorage.getItem("id")) {
