@@ -16,11 +16,6 @@ app.use("/uploads", express.static(__dirname + "/uploads"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// app.use("/*", function(req,res, next){
-
-//   next()
-// })
-
 // redirect JS jQuery
 app.use("/jq", express.static(__dirname + "/node_modules/jquery/dist"));
 // redirect JS jQuery
@@ -31,6 +26,11 @@ app.use("/js", express.static(__dirname + "/node_modules/bootstrap/dist/js"));
 app.use("/css", express.static(__dirname + "/node_modules/bootstrap/dist/css"));
 // redirect axios
 app.use("/axios", express.static(__dirname + "/node_modules/axios/dist"));
+// slick
+app.use(
+  "/slick",
+  express.static(__dirname + "/node_modules/slick-carousel/slick")
+);
 
 const router = require("./routes");
 app.use("/", router);
