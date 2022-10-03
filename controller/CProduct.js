@@ -127,6 +127,7 @@ exports.product_create = (req, res) => {
 exports.product_myproduct = (req, res) => {
   Product.findAll({
     where: { user_id: req.body.id },
+    order: [["id", "DESC"]],
   }).then((result) => {
     res.send(result);
   });
