@@ -110,14 +110,15 @@
     </div>
     <%-include("../main/footer.ejs")%>
     <script>
-      const category = "<%=data.category_id%>";
+      const category_id = "<%=data.category_id%>";
       const product_id = "<%=data.id%>";
       axios({
         url: "/api/product/categories",
         method: "post",
         data: {
           user_id: sessionStorage.getItem("id"),
-          category: category,
+          category_id: category_id,
+          product_id: product_id,
         },
       }).then((result) => {
         console.log("a", result.data);
