@@ -200,7 +200,6 @@ function signupCreate() {
     phone_key = 1;
   }
 
-  // console.log("202 : ", form.checkValidity());
   if (!form.checkValidity()) {
     form.reportValidity();
     return;

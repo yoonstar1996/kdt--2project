@@ -2,7 +2,6 @@ if (sessionStorage.id == sessionStorage.id) {
   var nameposition = document.querySelector("#id");
   nameposition.value = sessionStorage.id;
 }
-console.log((nameposition.value = sessionStorage.id));
 
 // 오류 메세지 사전을 만든다
 const validityMessage = {
@@ -175,7 +174,6 @@ function fixInfo() {
     adress_key = 1;
   }
 
-  // console.log("202 : ", form.checkValidity());
   if (!form.checkValidity()) {
     form.reportValidity();
     return;
@@ -250,7 +248,6 @@ axios({
   method: "post",
   data: { id: sessionStorage.getItem("id") },
 }).then((result) => {
-  console.log(result);
   const form = document.querySelector("form");
   form.id.value = result.data.id;
   form.name.value = result.data.name;
