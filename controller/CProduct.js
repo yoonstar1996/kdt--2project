@@ -235,6 +235,7 @@ exports.like_delete_item = (req, res) => {
   ProductLikeUsers.destroy({
     where: { user_id: req.body.user_id, product_id: req.body.product_id },
   }).then((result) => {
+    console.log(result);
     res.send(true);
   });
 };

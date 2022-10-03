@@ -194,7 +194,11 @@ function itemDelete(obj, id) {
     var parent3 = $(parent2).parent("div"); /*my-item*/
 
     $(parent3).remove();
-    window.location.href = "/mypage";
+    var itemList = document.querySelector(".itemList");
+
+    if (itemList.children.length == 0) {
+      window.location.href = "/mypage";
+    }
   });
 }
 
@@ -390,26 +394,20 @@ function updateImageDisplay() {
 
   const curFiles = input.files;
   if (curFiles.length === 0) {
-    const para = document.createElement("p");
-    para.textContent = "No files currently selected for upload";
-    preview.appendChild(para);
   } else {
     const list = document.createElement("ol");
     preview.appendChild(list);
 
     for (const file of curFiles) {
       const listItem = document.createElement("li");
-      const para = document.createElement("p");
       if (validFileType(file)) {
         const image = document.createElement("img");
+        const imageClass = image.setAttribute("class", "imgpreview");
         image.src = URL.createObjectURL(file);
 
         listItem.appendChild(image);
-        listItem.appendChild(para);
       } else {
-        listItem.appendChild(para);
       }
-
       list.appendChild(listItem);
     }
   }

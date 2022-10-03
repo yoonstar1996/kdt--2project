@@ -17,6 +17,8 @@
   margin: 0 50px 0 0;
   width: 170px;
   font-size: 1rem;
+  position: sticky;
+  top: 200px;
 }
 .left-sgt > div {
   display: flex;
@@ -275,10 +277,9 @@
   height: 450px;
   margin: 10px;
   padding: 1px;
-  border: 2px solid rgba(255, 111, 59, 0.897);
+  border: 1px solid #eeeeee;
   border-radius: 15px;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
-    rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 .pagelink {
   text-decoration: none;
@@ -529,6 +530,11 @@
   }
   .left-sgt {
     margin: 0 30px 0 0;
+    position: sticky;
+    top: 200px;
+    width: 80px;
+    padding-left: 5px;
+    text-align: center;
   }
   .left-sgt > div {
     display: flex;

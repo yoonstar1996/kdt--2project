@@ -232,14 +232,14 @@ function signupCreate() {
     phone_key = 1;
   }
 
-  if (adress.value == "") {
-    adress.setCustomValidity(validityMessage["rangeUnderflow"]);
-  } else if (!adress_valconfirm.test(adress.value)) {
-    adress.setCustomValidity(validityMessage["stepMismatch"]);
-  } else {
-    adress.setCustomValidity("");
-    adress_key = 1;
-  }
+  // if (adress.value == "") {
+  //   adress.setCustomValidity(validityMessage["rangeUnderflow"]);
+  // } else if (!adress_valconfirm.test(adress.value)) {
+  //   adress.setCustomValidity(validityMessage["stepMismatch"]);
+  // } else {
+  //   adress.setCustomValidity("");
+  //   adress_key = 1;
+  // }
 
   // console.log("202 : ", form.checkValidity());
   if (!form.checkValidity()) {
