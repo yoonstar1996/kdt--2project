@@ -79,11 +79,13 @@
       </div>
       <hr class="hr-2" />
       <div class="category-another">이 카테고리의 다른 상품</div>
-      <div class="product-wrapper6">
-        <div class="category-another-first">
-          <div class="another-photo1"></div>
-          <div class="another-product1">갤럭시 워치 5</div>
-          <div class="another-price1">7,000원</div>
+      <div class="product-wrapper6 container">
+        <div class="category-another-first row">
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="another-photo1"></div>
+            <div class="another-product1">갤럭시 워치 5</div>
+            <div class="another-price1">7,000원</div>
+          </div>
         </div>
         <div class="category-another-second">
           <div class="another-photo2"></div>
@@ -118,7 +120,7 @@
           category: category,
         },
       }).then((result) => {
-        console.log(result.data);
+        console.log("a", result.data);
       });
 
       if (sessionStorage.getItem("id")) {
