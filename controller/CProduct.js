@@ -27,6 +27,17 @@ exports.product = (req, res) => {
   });
 };
 
+exports.product_like = (req, res) => {
+  ProductLikeUsers.findOne({
+    where: {
+      user_id: req.body.user_id,
+      product_id: req.body.product_id,
+    },
+  }).then((result) => {
+    res.send(result);
+  });
+};
+
 exports.product_list = (req, res) => {
   const id = req.body.id;
 
