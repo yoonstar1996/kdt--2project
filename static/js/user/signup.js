@@ -168,8 +168,6 @@ function emailconfirm() {
 function signupCreate() {
   // e.preventDefault();
   var form = document.querySelector("form");
-  console.log("155 : id.value : ", id.value);
-  console.log(valconfirm.test(id.value));
 
   var id_key = 0;
   var pw_key = 0;
@@ -241,7 +239,6 @@ function signupCreate() {
   //   adress_key = 1;
   // }
 
-  // console.log("202 : ", form.checkValidity());
   if (!form.checkValidity()) {
     form.reportValidity();
     return;
