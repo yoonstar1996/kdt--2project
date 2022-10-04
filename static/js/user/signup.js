@@ -228,7 +228,6 @@ function signupCreate() {
     phone_key = 1;
   }
 
-
   if (!form.checkValidity()) {
     form.reportValidity();
     return;

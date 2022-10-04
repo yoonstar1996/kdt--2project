@@ -21,8 +21,8 @@ exports.product = (req, res) => {
   }).then((result) => {
     const data = result;
     data.img = data.img.split("..");
-    data.category_id = categories[data.category_id];
-    data.category = data.category_id;
+    data.category = categories[data.category_id];
+    data.category_id = data.category_id;
     res.render("product/product", { data });
   });
 };
@@ -211,9 +211,11 @@ exports.search_item = (req, res) => {
 };
 
 exports.categories_items = (req, res) => {
+  console.log(req.body.product_id);
   Product.findAll({
     where: {
-      category_id: req.body.category,
+      category_id: req.body.category_id,
+      [Op.not]: [{ id: req.body.product_id }],
     },
   }).then((result) => {
     const data = result;
