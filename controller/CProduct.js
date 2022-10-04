@@ -1,4 +1,4 @@
-const { User, Product, Category } = require("../model");
+const { User, Product, Category, ProductLikeUsers } = require("../model");
 const { Op } = require("sequelize");
 const sequelize = require("sequelize");
 
@@ -20,32 +20,84 @@ exports.product = (req, res) => {
     },
   }).then((result) => {
     const data = result;
-    data.img = data.img.split("..")[0];
-    data.category_id = categories[data.category_id];
-    data.category = data.category_id;
+    data.img = data.img.split("..");
+    data.category = categories[data.category_id];
+    data.category_id = data.category_id;
     res.render("product/product", { data });
   });
 };
 
-exports.product_list = (req, res) => {
-  Product.findAll({
-    order: [["id", "DESC"]],
+exports.product_like = (req, res) => {
+  ProductLikeUsers.findOne({
+    where: {
+      user_id: req.body.user_id,
+      product_id: req.body.product_id,
+    },
   }).then((result) => {
     res.send(result);
   });
+};
+
+exports.product_list = (req, res) => {
+  const id = req.body.id;
+
+  if (id) {
+    Product.findAll({
+      include: [
+        {
+          model: ProductLikeUsers,
+          required: false,
+          where: {
+            user_id: id,
+          },
+        },
+      ],
+      order: [["id", "DESC"]],
+    }).then((result) => {
+      res.send(result);
+    });
+  } else {
+    Product.findAll({
+      include: [ProductLikeUsers],
+      order: [["id", "DESC"]],
+    }).then((result) => {
+      res.send(result);
+    });
+  }
 };
 exports.categories = (req, res) => {
   res.render("product/categories", { category: req.params.id });
 };
 
 exports.categories_list = (req, res) => {
-  Product.findAll({
-    where: {
-      category_id: req.params.id,
-    },
-  }).then((result) => {
-    res.send(result);
-  });
+  const user_id = req.body.user_id;
+
+  if (user_id) {
+    Product.findAll({
+      include: [
+        {
+          model: ProductLikeUsers,
+          required: false,
+          where: {
+            user_id: user_id,
+          },
+        },
+      ],
+      where: {
+        category_id: req.params.id,
+      },
+    }).then((result) => {
+      res.send(result);
+    });
+  } else {
+    Product.findAll({
+      where: {
+        category_id: req.params.id,
+      },
+    }).then((result) => {
+      res.send(result);
+    });
+  }
 };
 
 // 상품 생성
@@ -65,8 +117,10 @@ exports.product_create = (req, res) => {
     position: req.body.position,
     content: req.body.content,
   };
+
   Product.create(data).then((result) => {
     res.send(result);
+    console.log(result);
   });
 };
 
@@ -74,6 +128,7 @@ exports.product_create = (req, res) => {
 exports.product_myproduct = (req, res) => {
   Product.findAll({
     where: { user_id: req.body.id },
+    order: [["id", "DESC"]],
   }).then((result) => {
     res.send(result);
   });
@@ -97,7 +152,6 @@ exports.product_update = (req, res) => {
     content: req.body.content,
   };
 
-  console.log("datadatadata", data);
   Product.update(data, {
     where: { id: req.body.id },
   }).then((result) => {
@@ -122,11 +176,47 @@ exports.product_search = (req, res) => {
 
 // 나의 등록 상품
 exports.search_item = (req, res) => {
+  const user_id = req.body.user_id;
+  if (user_id) {
+    Product.findAll({
+      include: [
+        {
+          model: ProductLikeUsers,
+          required: false,
+          where: {
+            user_id: user_id,
+          },
+        },
+      ],
+      where: {
+        title: {
+          [Op.like]: "%" + req.body.search_item + "%",
+        },
+      },
+    }).then((result) => {
+      const data = result;
+      res.send(data);
+    });
+  } else {
+    Product.findAll({
+      where: {
+        title: {
+          [Op.like]: "%" + req.body.search_item + "%",
+        },
+      },
+    }).then((result) => {
+      const data = result;
+      res.send(data);
+    });
+  }
+};
+
+exports.categories_items = (req, res) => {
+  console.log(req.body.product_id);
   Product.findAll({
     where: {
-      title: {
-        [Op.like]: "%" + req.body.search_item + "%",
-      },
+      category_id: req.body.category_id,
+      [Op.not]: [{ id: req.body.product_id }],
     },
   }).then((result) => {
     const data = result;
@@ -134,10 +224,32 @@ exports.search_item = (req, res) => {
   });
 };
 
-exports.categories_items = (req, res) => {
-  Product.findAll({
+exports.like_item = (req, res) => {
+  const data = {
+    user_id: req.body.user_id,
+    product_id: req.body.product_id,
+  };
+  ProductLikeUsers.create(data).then((result) => {
+    const data = result;
+    res.send(data);
+  });
+};
+
+exports.like_delete_item = (req, res) => {
+  ProductLikeUsers.destroy({
+    where: { user_id: req.body.user_id, product_id: req.body.product_id },
+  }).then((result) => {
+    console.log(result);
+    res.send(true);
+  });
+};
+
+// 찜한 목록
+exports.like_items = (req, res) => {
+  ProductLikeUsers.findAll({
+    include: [Product],
     where: {
-      category_id: req.body.category,
+      user_id: req.body.user_id,
     },
   }).then((result) => {
     const data = result;

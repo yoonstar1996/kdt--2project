@@ -23,9 +23,6 @@
   <body>
     <%-include("../main/navbar.ejs")%>
 
-    <!-- <script>
-        window.location.href="localhost:8000/"
-      </script> -->
     <div class="wrapper">
       <div class="signup-text">
         <div class="write-signup">회원가입</div>
@@ -157,7 +154,6 @@
             <div>우편번호<span class="red">*</span></div>
           </div>
           <div class="sign-adress-input">
-            <!-- <input type="text" id="adress_number" placeholder="우편번호" /> -->
             <input
               type="text"
               name="adress"
@@ -205,7 +201,6 @@
               onclick="findAdress()"
               value="우편번호 찾기"
             /><br />
-            <!-- <input type="text" id="etc" placeholder="참고항목" /> -->
           </div>
         </div>
         <div class="sign-gender">
@@ -290,10 +285,9 @@
     <script type="text/javascript">
       var naver_id_login = new naver_id_login(
         "RgAJTyB9QRvqTCV77uKZ",
-        "http://localhost:8000/naver_callback"
+        "http://101.101.218.43:8000/naver_callback"
       );
       // 접근 토큰 값 출력
-      // alert(naver_id_login.oauthParams.access_token);
       // 네이버 사용자 프로필 조회
       naver_id_login.get_naver_userprofile("naverSignInCallback()");
       // 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function
@@ -312,7 +306,6 @@
         console.log(naver_id_login.getProfileData("email"));
       }
 
-      //https://nid.naver.com/oauth2.0/token?grant_type=delete&client_id=RgAJTyB9QRvqTCV77uKZ&client_secret=ag0YPa6Sgs&access_token=AAAAOiJxJy6WDZJAPoYYcuIAw4yWiIfeK-tlWifrSo-3j7lbW1FAeOmJafjcfTc2Jk-N8PFARr4E9WDpAo1v6Vnv23Q&service_provider=NAVER
     </script>
   </body>
 </html>

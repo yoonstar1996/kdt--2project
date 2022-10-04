@@ -67,7 +67,6 @@ function findAdress() {
       }
 
       // 우편번호와 주소 정보를 해당 필드에 넣는다.
-      // document.getElementById("adress_number").value = data.zonecode;
       document.getElementById("adress").value = addr;
       // 커서를 상세주소 필드로 이동한다.
       document.getElementById("adress_more").focus();
@@ -166,10 +165,7 @@ function emailconfirm() {
 }
 
 function signupCreate() {
-  // e.preventDefault();
   var form = document.querySelector("form");
-  console.log("155 : id.value : ", id.value);
-  console.log(valconfirm.test(id.value));
 
   var id_key = 0;
   var pw_key = 0;
@@ -232,16 +228,6 @@ function signupCreate() {
     phone_key = 1;
   }
 
-  if (adress.value == "") {
-    adress.setCustomValidity(validityMessage["rangeUnderflow"]);
-  } else if (!adress_valconfirm.test(adress.value)) {
-    adress.setCustomValidity(validityMessage["stepMismatch"]);
-  } else {
-    adress.setCustomValidity("");
-    adress_key = 1;
-  }
-
-  // console.log("202 : ", form.checkValidity());
   if (!form.checkValidity()) {
     form.reportValidity();
     return;
@@ -277,7 +263,7 @@ function signupCreate() {
   });
 }
 
-id.addEventListener("input", function (event) {
+id.addEventListener("input", function () {
   if (valconfirm.test(id.value)) {
     id.setCustomValidity("");
     idval.classList.add("d-none");
@@ -285,7 +271,7 @@ id.addEventListener("input", function (event) {
     idval.classList.remove("d-none");
   }
 });
-pw.addEventListener("input", function (event) {
+pw.addEventListener("input", function () {
   if (valconfirm.test(pw.value)) {
     pw.setCustomValidity("");
     pwval.classList.add("d-none");
@@ -293,7 +279,7 @@ pw.addEventListener("input", function (event) {
     pwval.classList.remove("d-none");
   }
 });
-pwconfirm.addEventListener("input", function (event) {
+pwconfirm.addEventListener("input", function () {
   if (pw.value !== pwconfirm.value) {
     pwconfirm.setCustomValidity("");
     pwconfirmval.classList.remove("d-none");
@@ -301,7 +287,7 @@ pwconfirm.addEventListener("input", function (event) {
     pwconfirmval.classList.add("d-none");
   }
 });
-name.addEventListener("input", function (event) {
+name.addEventListener("input", function () {
   if (name_valconfirm.test(name.value)) {
     name.setCustomValidity("");
     nameval.classList.add("d-none");
@@ -309,7 +295,7 @@ name.addEventListener("input", function (event) {
     nameval.classList.remove("d-none");
   }
 });
-email.addEventListener("input", function (event) {
+email.addEventListener("input", function () {
   if (email_valconfirm.test(email.value)) {
     email.setCustomValidity("");
     emailval.classList.add("d-none");
@@ -317,7 +303,7 @@ email.addEventListener("input", function (event) {
     emailval.classList.remove("d-none");
   }
 });
-phone.addEventListener("input", function (event) {
+phone.addEventListener("input", function () {
   if (phone_valconfirm.test(phone.value)) {
     phone.setCustomValidity("");
     phoneval.classList.add("d-none");

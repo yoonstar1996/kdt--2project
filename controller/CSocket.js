@@ -21,7 +21,6 @@ exports.myroomlist = (req, res) => {
     order: sequelize.literal("lastdate DESC"),
   }).then((result) => {
     const data = result;
-    console.log(data);
     res.send(data);
   });
 };
@@ -87,7 +86,6 @@ exports.socket_content = (req, res) => {
 };
 
 exports.content_updata = (req, res) => {
-  console.log(req.body.content);
   Room.update(
     { content: req.body.content, lastDate: new Date() },
     {

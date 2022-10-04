@@ -62,11 +62,9 @@ function findAdress() {
           extraAddr = " (" + extraAddr + ")";
         }
         // 조합된 참고항목을 해당 필드에 넣는다.
-        // document.getElementById("etc").value = extraAddr;
       }
 
       // 우편번호와 주소 정보를 해당 필드에 넣는다.
-      // document.getElementById("adress_number").value = data.zonecode;
       document.getElementById("adress").value = addr;
       // 커서를 상세주소 필드로 이동한다.
       document.getElementById("adress_more").focus();
@@ -200,7 +198,6 @@ function signupCreate() {
     phone_key = 1;
   }
 
-  // console.log("202 : ", form.checkValidity());
   if (!form.checkValidity()) {
     form.reportValidity();
     return;
@@ -237,42 +234,42 @@ function signupCreate() {
   });
 }
 
-id.addEventListener("input", function (event) {
+id.addEventListener("input", function () {
   if (valconfirm.test(id.value)) {
     idval.classList.add("d-none");
   } else {
     idval.classList.remove("d-none");
   }
 });
-pw.addEventListener("input", function (event) {
+pw.addEventListener("input", function () {
   if (valconfirm.test(pw.value)) {
     pwval.classList.add("d-none");
   } else {
     pwval.classList.remove("d-none");
   }
 });
-pwconfirm.addEventListener("input", function (event) {
+pwconfirm.addEventListener("input", function () {
   if (pwconfirm.value == pw.value) {
     pwconfirmval.classList.add("d-none");
   } else {
     pwconfirmval.classList.remove("d-none");
   }
 });
-name.addEventListener("input", function (event) {
+name.addEventListener("input", function () {
   if (name_valconfirm.test(name.value)) {
     nameval.classList.add("d-none");
   } else {
     nameval.classList.remove("d-none");
   }
 });
-email.addEventListener("input", function (event) {
+email.addEventListener("input", function () {
   if (email_valconfirm.test(email.value)) {
     emailval.classList.add("d-none");
   } else {
     emailval.classList.remove("d-none");
   }
 });
-phone.addEventListener("input", function (event) {
+phone.addEventListener("input", function () {
   if (valconfirm.test(phone.value)) {
     phoneval.classList.add("d-none");
   } else {
