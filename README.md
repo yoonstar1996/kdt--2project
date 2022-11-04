@@ -55,3 +55,5 @@
 
 ![sgt-fixinfo](https://user-images.githubusercontent.com/107985535/196099527-74815493-ebe3-44a3-81ea-82a027b3273c.gif)
 
+* 노션 링크 : https://obsidian-tapir-ca1.notion.site/SGT-Market-14fa3e9449054d54a6a641bc334a5f1a
+
