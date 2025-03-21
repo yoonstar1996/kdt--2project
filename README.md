@@ -6,7 +6,6 @@
 * SGT Market은 중고거래 사이트이자 나눔을 하는 사이트입니다.
 
 ## SGT Market
-* 포스코 X 코딩온 KDT - 2차 프로젝트
 * 2022.09.19 ~ 2022.10.03
 * 사용 기술: CSS, JavaScript, jQuery, node.js, ejs. MySQL
 
